@@ -1,0 +1,14 @@
+{
+  "name": "dojo.io",
+  "version": "1.0.0",
+  "scripts": {},
+  "dependencies": {
+    "@dojo/framework": "^4.0.0",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-app": "^4.0.0",
+    "@dojo/cli-test-intern": "^4.0.0",
+    "typescript": "~2.6.1"
+  }
+}
