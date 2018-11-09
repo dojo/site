@@ -6,7 +6,6 @@
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
-    "precommit": "lint-staged",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\""
   },
   "dependencies": {
@@ -38,12 +37,6 @@
     "sinon": "~4.5.0",
     "typescript": "~2.8.4",
     "unified": "^7.0.0"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "prettier": {
     "singleQuote": true,
