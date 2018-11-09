@@ -18,12 +18,12 @@ export default class App extends WidgetBase {
 			<div classes={[css.root]}>
 				<Menu />
 				<div classes={[css.content]}>
-					<Outlet key='home' id='home' renderer={() => <Home />} />
-					<Outlet key='blog' id='blog' renderer={() => <Blog />} />
-					<Outlet key='documentation' id='documentation' renderer={() => <Documentation />} />
-					<Outlet key='examples' id='examples' renderer={() => <Examples />} />
-					<Outlet key='playground' id='playground' renderer={() => <Playground />} />
-					<Outlet key='community' id='community' renderer={() => <Community />} />
+					<Outlet key="home" id="home" renderer={() => <Home />} />
+					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<Outlet key="documentation" id="documentation" renderer={() => <Documentation />} />
+					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
+					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+					<Outlet key="community" id="community" renderer={() => <Community />} />
 				</div>
 			</div>
 		);

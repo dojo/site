@@ -5,6 +5,10 @@ import * as css from './Community.m.css';
 
 export default class Community extends WidgetBase {
 	protected render() {
-		return <div><h1 classes={[css.root]}>Community</h1></div>
+		return (
+			<div>
+				<h1 classes={[css.root]}>Community</h1>
+			</div>
+		);
 	}
 }

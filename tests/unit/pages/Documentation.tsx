@@ -13,14 +13,14 @@ describe('Documentation', () => {
 		const h = harness(() => <Documentation />);
 		h.expect(() => (
 			<div classes={[css.root]}>
-				{ list.map(({ name, path }) => (
+				{list.map(({ name, path }) => (
 					<div key="name">
-						<Link key={ name } to='tutorial' params={ { tutorial: path } } activeClasses={['active']}>
-							{ name }
+						<Link key={name} to="tutorial" params={{ tutorial: path }} activeClasses={['active']}>
+							{name}
 						</Link>
 					</div>
-				)) }
-				<Outlet id="tutorial" renderer={() => <div></div>} />
+				))}
+				<Outlet id="tutorial" renderer={() => <div />} />
 			</div>
 		));
 	});

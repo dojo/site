@@ -9,7 +9,9 @@ describe('Blog', () => {
 	it('renders', () => {
 		const h = harness(() => <Blog />);
 		h.expect(() => (
-			<div><h1 classes={[css.root]}>Blog</h1></div>
+			<div>
+				<h1 classes={[css.root]}>Blog</h1>
+			</div>
 		));
 	});
 });

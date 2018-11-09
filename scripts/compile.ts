@@ -12,8 +12,8 @@ const unified = require('unified');
 const parse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
-const macro = require('remark-macro')()
-const all = require('mdast-util-to-hast/lib/all')
+const macro = require('remark-macro')();
+const all = require('mdast-util-to-hast/lib/all');
 
 const handlers: Handler[] = [
 	{ type: 'Aside' },
@@ -40,7 +40,7 @@ export const pragma = (tag: string, props: any = {}, children: any[]) => {
 		return w(type, props, children);
 	}
 	return v(tag, props, children);
-}
+};
 
 function registerHandlers(types: Handler[]): { [type: string]: HandlerFunction } {
 	return types.reduce((handlers: { [type: string]: HandlerFunction }, { type, inline = false }) => {
@@ -48,9 +48,12 @@ function registerHandlers(types: Handler[]): { [type: string]: HandlerFunction }
 			macro.addMacro(type, (props: any) => ({ type, props }), true);
 			handlers[type] = (h, node) => h(node, node.type, node.props);
 		} else {
-			macro.addMacro(type, (content: string, props: any, { transformer, eat }: { transformer: any, eat: any }) => {
-				return { type, props, children: transformer.tokenizeBlock(content, eat.now()) };
-			});
+			macro.addMacro(
+				type,
+				(content: string, props: any, { transformer, eat }: { transformer: any; eat: any }) => {
+					return { type, props, children: transformer.tokenizeBlock(content, eat.now()) };
+				}
+			);
 			handlers[type] = (h, node) => h(node, node.type, node.props, all(h, node));
 		}
 		return handlers;
@@ -69,7 +72,7 @@ const fromMarkdown = (content: string) => {
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
 	return toH(pragma, result);
-}
+};
 
 export function process() {
 	console.info();
@@ -79,13 +82,16 @@ export function process() {
 		path = resolve(__dirname, '../', 'content', path);
 		const content = readFileSync(path, 'utf-8');
 		const nodes = fromMarkdown(content);
-	
+
 		const generatedPath = resolve('src', 'generated', outputPath);
 		console.info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
 		outputFileSync(generatedPath, `export default () => { return ${JSON.stringify(nodes)} }`);
 	});
-	
-	const paths = manifest.tutorials.map(({ name, path }: { name: string, path: string }) => ({ name, path: parsePath(path).name }));
+
+	const paths = manifest.tutorials.map(({ name, path }: { name: string; path: string }) => ({
+		name,
+		path: parsePath(path).name
+	}));
 	const listPath = resolve('src', 'generated', 'list.ts');
 	console.info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
 	outputFileSync(listPath, `export default ${JSON.stringify(paths)};`);

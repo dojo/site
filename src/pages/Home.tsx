@@ -5,6 +5,10 @@ import * as css from './Home.m.css';
 
 export default class Home extends WidgetBase {
 	protected render() {
-		return <div><h1 classes={[css.root]}>Home</h1></div>
+		return (
+			<div>
+				<h1 classes={[css.root]}>Home</h1>
+			</div>
+		);
 	}
 }

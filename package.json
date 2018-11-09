@@ -2,7 +2,12 @@
   "name": "dojo.io",
   "version": "1.0.0",
   "scripts": {
-    "dev": "dojo build --mode dev --watch --serve"
+    "dev": "dojo build --mode dev --watch --serve",
+    "lint:tslint": "tslint -p .",
+    "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
+    "lint": "run-p lint:*",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@dojo/framework": "file:deps/dojo-framework-4.0.5.tgz",
@@ -11,6 +16,7 @@
   "devDependencies": {
     "@dojo/cli-build-app": "file:deps/dojo-cli-build-app-4.0.5.tgz",
     "@dojo/cli-test-intern": "^4.0.0",
+    "@dojo/scripts": "^3.1.0",
     "@dojo/webpack-contrib": "file:deps/dojo-webpack-contrib-4.0.5.tgz",
     "@types/fs-extra": "^5.0.4",
     "@types/mockery": "^1.4.29",
@@ -32,5 +38,19 @@
     "sinon": "~4.5.0",
     "typescript": "~2.8.4",
     "unified": "^7.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "parser": "typescript",
+    "printWidth": 120,
+    "arrowParens": "always"
   }
 }

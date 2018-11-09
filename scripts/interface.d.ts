@@ -1,4 +1,4 @@
-import { WNode } from "@dojo/framework/widget-core/interfaces";
+import { WNode } from '@dojo/framework/widget-core/interfaces';
 
 export interface Handler {
 	type: string;
@@ -16,7 +16,7 @@ export type WidgetBuilder = (type: string, props: any, children: any[]) => WNode
 export type RegionMatcherFactory = (region: string) => RegionMatcher;
 
 export interface RegionMatcher {
-  regionStartMatcher: string;
+	regionStartMatcher: string;
 	regionEndMatcher: string;
 	regionCommentMatcher: RegExp;
 }

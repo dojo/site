@@ -3,18 +3,16 @@ import { customElement } from '@dojo/framework/widget-core/decorators/customElem
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 const TaskStyles = {
-	'borderLeft': '4px solid #009dff',
-	'paddingLeft': '0.5rem',
-	'fontWeight': 'bold'
-}
+	borderLeft: '4px solid #009dff',
+	paddingLeft: '0.5rem',
+	fontWeight: 'bold'
+};
 
 @customElement({
 	tag: 'dojo-task'
 })
 export default class Task extends WidgetBase {
 	render() {
-		return (
-			<div styles={ TaskStyles }>{ this.children }</div>
-		);
+		return <div styles={TaskStyles}>{this.children}</div>;
 	}
 }

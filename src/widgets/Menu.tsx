@@ -6,13 +6,7 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Menu.m.css';
 
-const pages = [
-	'Blog',
-	'Documentation',
-	'Examples',
-	'Playground',
-	'Community'
-];
+const pages = ['Blog', 'Documentation', 'Examples', 'Playground', 'Community'];
 
 export default class Menu extends WidgetBase {
 	protected render() {
@@ -20,17 +14,17 @@ export default class Menu extends WidgetBase {
 			<div classes={css.root}>
 				<div classes={css.menu}>
 					<div classes={css.left}>
-						<Link to='home' activeClasses={[css.selected]}>
-							<img classes={[css.logo]} alt='logo' src={logo} />
+						<Link to="home" activeClasses={[css.selected]}>
+							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</div>
-					{ pages.map((page) => (
+					{pages.map((page) => (
 						<div classes={[css.menuItem]}>
-							<Link to={ page.toLowerCase() } classes={[css.link]} activeClasses={[css.selected]}>
-								{ page }
+							<Link to={page.toLowerCase()} classes={[css.link]} activeClasses={[css.selected]}>
+								{page}
 							</Link>
 						</div>
-					)) }
+					))}
 				</div>
 			</div>
 		);

@@ -9,7 +9,9 @@ describe('Community', () => {
 	it('renders', () => {
 		const h = harness(() => <Community />);
 		h.expect(() => (
-			<div><h1 classes={[css.root]}>Community</h1></div>
+			<div>
+				<h1 classes={[css.root]}>Community</h1>
+			</div>
 		));
 	});
 });

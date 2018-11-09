@@ -6,5 +6,5 @@ export const INLINE_HASH_MATCHER: RegionMatcherFactory = (region) => {
 		regionStartMatcher: `^\\s*# *@start-region ${region}\\s*$`,
 		regionEndMatcher: `\\s*# *@end-region ${region}\\s*$`,
 		regionCommentMatcher: /^\s*# *@(start|end)-region \S*\s*/gm
-	}
+	};
 };

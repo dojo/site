@@ -22,14 +22,14 @@ export default class Documentation extends WidgetBase {
 	protected render() {
 		return (
 			<div classes={[css.root]}>
-				{ list.map(({ name, path }) => (
+				{list.map(({ name, path }) => (
 					<div key="name">
-						<Link key={ name } to='tutorial' params={ { tutorial: path } } activeClasses={['active']}>
-							{ name }
+						<Link key={name} to="tutorial" params={{ tutorial: path }} activeClasses={['active']}>
+							{name}
 						</Link>
 					</div>
-				)) }
-				<Outlet id="tutorial" renderer={({ params }) => (this._getTutorial(params.tutorial))} />
+				))}
+				<Outlet id="tutorial" renderer={({ params }) => this._getTutorial(params.tutorial)} />
 			</div>
 		);
 	}
