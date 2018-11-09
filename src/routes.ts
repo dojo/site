@@ -10,7 +10,13 @@ export default [
 	},
 	{
 		path: 'documentation',
-		outlet: 'documentation'
+		outlet: 'documentation',
+		children: [
+			{
+				path: '{tutorial}',
+				outlet: 'tutorial'
+			}
+		]
 	},
 	{
 		path: 'examples',

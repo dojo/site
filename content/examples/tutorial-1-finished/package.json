@@ -1,0 +1,25 @@
+{
+  "name": "tutorial-1",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "dojo build -m dev -w -s",
+    "build": "dojo build",
+    "test": "npm run test:unit && npm run test:functional",
+    "test:unit": "dojo build -m unit && dojo test -u",
+    "test:functional": "dojo build -m functional && dojo test -f"
+  },
+  "dependencies": {
+    "@dojo/framework": "^4.0.0",
+    "@dojo/themes": "^4.0.0",
+    "@dojo/widgets": "^4.0.0",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@dojo/cli": "^4.0.0",
+    "@dojo/cli-build-app": "^4.0.3",
+    "@dojo/cli-create-theme": "^4.0.0",
+    "@dojo/cli-test-intern": "^4.0.0",
+    "@types/node": "~9.6.5",
+    "typescript": "~2.6.1"
+  }
+}

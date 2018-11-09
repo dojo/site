@@ -3,3 +3,5 @@ _build/
 output/
 .cert/
 src/generated/
+
+.vscode

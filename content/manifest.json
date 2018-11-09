@@ -1,0 +1,12 @@
+{
+	"tutorials": [
+		{
+			"name": "Sample Tutorial",
+			"path": "./tutorials/sample-tutorial.md"
+		},
+		{
+			"name": "Another Tutorial",
+			"path": "./tutorials/another-tutorial.md"
+		}
+	]
+}
