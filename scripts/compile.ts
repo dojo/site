@@ -3,6 +3,7 @@ import { readFileSync, outputFileSync } from 'fs-extra';
 import { resolve, parse as parsePath } from 'path';
 import chalk from 'chalk';
 
+import { info } from './logger';
 import { Handler, WidgetBuilders, HandlerFunction } from './interface';
 import { rehypePrism } from './rehype-prism';
 import { regionBuilder } from './regions/parser';
@@ -15,7 +16,7 @@ const remark2rehype = require('remark-rehype');
 const macro = require('remark-macro')();
 const all = require('mdast-util-to-hast/lib/all');
 
-const handlers: Handler[] = [
+export const handlers: Handler[] = [
 	{ type: 'Aside' },
 	{ type: 'Task' },
 	{ type: 'Instruction' },
@@ -32,6 +33,7 @@ let key = 0;
 
 export const pragma = (tag: string, props: any = {}, children: any[]) => {
 	props.key = `compiled-${key}`;
+	key++;
 	if (tag.substr(0, 1) === tag.substr(0, 1).toUpperCase()) {
 		const type = `docs-${tag.toLowerCase()}`;
 		if (widgets[type]) {
@@ -42,7 +44,7 @@ export const pragma = (tag: string, props: any = {}, children: any[]) => {
 	return v(tag, props, children);
 };
 
-function registerHandlers(types: Handler[]): { [type: string]: HandlerFunction } {
+export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFunction } => {
 	return types.reduce((handlers: { [type: string]: HandlerFunction }, { type, inline = false }) => {
 		if (inline) {
 			macro.addMacro(type, (props: any) => ({ type, props }), true);
@@ -58,11 +60,9 @@ function registerHandlers(types: Handler[]): { [type: string]: HandlerFunction }
 		}
 		return handlers;
 	}, {});
-}
+};
 
-const registeredHandlers = registerHandlers(handlers);
-
-const fromMarkdown = (content: string) => {
+export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }) => {
 	const pipeline = unified()
 		.use(parse)
 		.use(macro.transformer)
@@ -75,16 +75,18 @@ const fromMarkdown = (content: string) => {
 };
 
 export function process() {
-	console.info();
+	info();
+
+	const registeredHandlers = registerHandlers(handlers);
 
 	manifest.tutorials.map(({ path }: { path: string }) => {
 		const outputPath = path.replace(/\.md$/, '.ts');
 		path = resolve(__dirname, '../', 'content', path);
 		const content = readFileSync(path, 'utf-8');
-		const nodes = fromMarkdown(content);
+		const nodes = fromMarkdown(content, registeredHandlers);
 
 		const generatedPath = resolve('src', 'generated', outputPath);
-		console.info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
+		info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
 		outputFileSync(generatedPath, `export default () => { return ${JSON.stringify(nodes)} }`);
 	});
 
@@ -93,6 +95,6 @@ export function process() {
 		path: parsePath(path).name
 	}));
 	const listPath = resolve('src', 'generated', 'list.ts');
-	console.info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
+	info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
 	outputFileSync(listPath, `export default ${JSON.stringify(paths)};`);
 }

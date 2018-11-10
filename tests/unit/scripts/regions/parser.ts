@@ -3,14 +3,15 @@ import { w } from '@dojo/framework/widget-core/d';
 import * as mockery from 'mockery';
 import * as sinon from 'sinon';
 
-import { fromHtml, leftAlign, stripRegionComments } from '../../../../scripts/regions/parser';
+import { leftAlign, stripRegionComments } from '../../../../scripts/regions/parser';
 import { INLINE_C_MATCHER } from '../../../../scripts/regions/region-matchers/inline-c';
 
 const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 
+export const REGION_NAME = 'RegionName';
+
 const parserPath = '../../../../scripts/regions/parser';
-const regionName = 'RegionName';
 
 const regionContents = `	protected render() {
 		// @start-region renderReturn
@@ -27,7 +28,7 @@ const regionContentsLeftAlligned = `protected render() {
 }`;
 
 const fromHtmlInput = `<pre><code class="language-tsx">${regionContentsLeftAlligned}</pre></code>`;
-const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
+export const FROM_HTML_OUTPUT: DNode<DefaultWidgetBaseInterface> = {
 	tag: 'pre',
 	originalProperties: {},
 	children: [
@@ -39,7 +40,7 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['protected'],
-					properties: { class: 'token keyword', key: 'compiled-0' },
+					properties: { class: 'token keyword', key: 'compiled-2' },
 					type: '__VNODE_TYPE'
 				},
 				' ',
@@ -47,21 +48,21 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['render'],
-					properties: { class: 'token function', key: 'compiled-0' },
+					properties: { class: 'token function', key: 'compiled-3' },
 					type: '__VNODE_TYPE'
 				},
 				{
 					tag: 'span',
 					originalProperties: {},
 					children: ['('],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-4' },
 					type: '__VNODE_TYPE'
 				},
 				{
 					tag: 'span',
 					originalProperties: {},
 					children: [')'],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-5' },
 					type: '__VNODE_TYPE'
 				},
 				' ',
@@ -69,7 +70,7 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['{'],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-6' },
 					type: '__VNODE_TYPE'
 				},
 				'\n\t',
@@ -77,7 +78,7 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['return'],
-					properties: { class: 'token keyword', key: 'compiled-0' },
+					properties: { class: 'token keyword', key: 'compiled-7' },
 					type: '__VNODE_TYPE'
 				},
 				' ',
@@ -85,21 +86,21 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['('],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-8' },
 					type: '__VNODE_TYPE'
 				},
 				{
 					tag: 'span',
 					originalProperties: {},
 					children: [')'],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-9' },
 					type: '__VNODE_TYPE'
 				},
 				{
 					tag: 'span',
 					originalProperties: {},
 					children: [';'],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-10' },
 					type: '__VNODE_TYPE'
 				},
 				'\n',
@@ -107,15 +108,15 @@ const fromHtmlOutput: DNode<DefaultWidgetBaseInterface> = {
 					tag: 'span',
 					originalProperties: {},
 					children: ['}'],
-					properties: { class: 'token punctuation', key: 'compiled-0' },
+					properties: { class: 'token punctuation', key: 'compiled-11' },
 					type: '__VNODE_TYPE'
 				}
 			],
-			properties: { class: 'language-tsx', key: 'compiled-0' },
+			properties: { class: 'language-tsx', key: 'compiled-12' },
 			type: '__VNODE_TYPE'
 		}
 	],
-	properties: { class: 'language-tsx', key: 'compiled-0' },
+	properties: { class: 'language-tsx', key: 'compiled-13' },
 	type: '__VNODE_TYPE'
 };
 
@@ -165,15 +166,15 @@ describe('region parser', () => {
 		lefAlignStub.returns(regionContentsLeftAlligned.split('\n'));
 
 		const fromHtmlStub = sandbox.stub(parser, 'fromHtml');
-		fromHtmlStub.returns(fromHtmlOutput);
+		fromHtmlStub.returns(FROM_HTML_OUTPUT);
 
 		const stripRegionCommentsStub = sandbox.stub(parser, 'stripRegionComments');
 		stripRegionCommentsStub.returns(regionContentsCommentsStripped.split('\n'));
 
 		const type = 'docs-codeblock';
-		const props: any = { path: 'path/to/file', region: regionName, language: 'tsx' };
+		const props: any = { path: 'path/to/file', region: REGION_NAME, language: 'tsx' };
 		const regionBuilderOutput = parser.regionBuilder(type, props, []);
-		const regionMatcher = INLINE_C_MATCHER(regionName);
+		const regionMatcher = INLINE_C_MATCHER(REGION_NAME);
 
 		assert.equal(stripRegionCommentsStub.callCount, 1);
 		assert.deepEqual(stripRegionCommentsStub.firstCall.args, [regionContents.split('\n'), regionMatcher]);
@@ -184,11 +185,11 @@ describe('region parser', () => {
 		assert.equal(fromHtmlStub.callCount, 1);
 		assert.deepEqual(fromHtmlStub.firstCall.args, [fromHtmlInput]);
 
-		assert.deepEqual(regionBuilderOutput, w(type, props, [fromHtmlOutput]));
+		assert.deepEqual(regionBuilderOutput, w(type, props, [FROM_HTML_OUTPUT]));
 	});
 
 	it('should left strip region comments from output', () => {
-		const regionMatcher = INLINE_C_MATCHER(regionName);
+		const regionMatcher = INLINE_C_MATCHER(REGION_NAME);
 		const output = stripRegionComments(regionContents.split('\n'), regionMatcher);
 
 		assert.deepEqual(output, regionContentsCommentsStripped.split('\n'));
@@ -201,8 +202,9 @@ describe('region parser', () => {
 	});
 
 	it('should convert from html to vnode syntax', () => {
-		const output = fromHtml(fromHtmlInput);
+		const parser = require(parserPath);
+		const output = parser.fromHtml(fromHtmlInput);
 
-		assert.equal(JSON.stringify(output), JSON.stringify(fromHtmlOutput));
+		assert.equal(JSON.stringify(output), JSON.stringify(FROM_HTML_OUTPUT));
 	});
 });
