@@ -5,10 +5,7 @@ import { resolve, parse as parsePath } from 'path';
 import chalk from 'chalk';
 
 import { info } from './logger';
-
-const regionBuilder = () => {
-	return w('CodeSandbox', {}, [ 'Dummy Region' ]);
-}
+import { regionBuilder } from './regions/parser';
 
 const manifest = require('../content/manifest.json');
 const unified = require('unified');
@@ -82,7 +79,9 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 		.use(parse)
 		.use(macro.transformer)
 		.use(remark2rehype, { handlers: registeredHandlers });
-		// .use(rehypePrism, { ignoreMissing: true, extraLanguages: ['tsx'] });
+
+	// TODO: Fix language parsing here for tsx
+	// .use(rehypePrism, { ignoreMissing: true, extraLanguages: ['tsx'] });
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
