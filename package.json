@@ -7,6 +7,7 @@
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
+    "test": "dojo test",
     "uploadCoverage": "codecov --file=coverage/coverage.json"
   },
   "dependencies": {
