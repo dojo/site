@@ -1,8 +1,0 @@
-{
-	"json.schemas": [
-		{
-			"fileMatch": ["/content-mainfest-schema.json"],
-			"url": "http://dojo.io/content-manifest#"
-		}
-	]
-}
