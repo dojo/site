@@ -5,9 +5,6 @@ import chalk from 'chalk';
 
 import { HandlerFunction } from '../../../scripts/compile';
 
-const FROM_HTML_OUTPUT = 'DUMMY UNTIL PARSER IS IN';
-const REGION_NAME = 'DUMMY REGION NAME';
-
 const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 
@@ -198,8 +195,9 @@ describe('content compiler', () => {
 
 	it('should build a docs-codeblock widget', () => {
 		const tag = 'CodeBlock';
-		const props: any = { path: 'path/to/file', region: REGION_NAME, language: 'tsx' };
-		const expectedOutput = w('docs-codeblock', props, [FROM_HTML_OUTPUT]);
+		const props: any = { path: 'path/to/file', region: 'RegionName', language: 'tsx' };
+		const fromHtmlOuput = 'Dummy output';
+		const expectedOutput = w('docs-codeblock', props, [fromHtmlOuput]);
 
 		const regionBuilderStub = sandbox.stub();
 		regionBuilderStub.returns(expectedOutput);
