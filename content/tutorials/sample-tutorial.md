@@ -9,7 +9,7 @@ The 2nd argument of the `w()` function is mandatory even you have no properties 
 [/Aside]
 
 ## Task
-<dojo-task>Create a new root node for the application</dojo-task>
+[Task]Create a new root node for the application[/Task]
 
 ## Instruction
 [Instruction]
