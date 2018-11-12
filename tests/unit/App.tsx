@@ -21,12 +21,12 @@ describe('App', () => {
 			<div classes={[css.root]}>
 				<Menu />
 				<div classes={[css.content]}>
-					<Outlet key='home' id='home' renderer={() => <Home />} />
-					<Outlet key='blog' id='blog' renderer={() => <Blog />} />
-					<Outlet key='documentation' id='documentation' renderer={() => <Documentation />} />
-					<Outlet key='examples' id='examples' renderer={() => <Examples />} />
-					<Outlet key='playground' id='playground' renderer={() => <Playground />} />
-					<Outlet key='community' id='community' renderer={() => <Community />} />
+					<Outlet key="home" id="home" renderer={() => <Home />} />
+					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<Outlet key="documentation" id="documentation" renderer={() => <Documentation />} />
+					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
+					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+					<Outlet key="community" id="community" renderer={() => <Community />} />
 				</div>
 			</div>
 		));
@@ -35,10 +35,10 @@ describe('App', () => {
 	const pages = [
 		{ outlet: 'home', content: <Home /> },
 		{ outlet: 'blog', content: <Blog /> },
-		{ outlet: 'documentation', content: <Documentation />},
-		{ outlet: 'examples', content: <Examples />},
-		{ outlet: 'playground', content: <Playground />},
-		{ outlet: 'community', content: <Community />}
+		{ outlet: 'documentation', content: <Documentation /> },
+		{ outlet: 'examples', content: <Examples /> },
+		{ outlet: 'playground', content: <Playground /> },
+		{ outlet: 'community', content: <Community /> }
 	];
 
 	it('outlets render contents', () => {

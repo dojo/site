@@ -44,7 +44,8 @@ I am another tutorial
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
 
-const fromMarkupOutput = '{"tag":"div","originalProperties":{},"children":[{"tag":"h1","originalProperties":{},"children":["Another Tutorial"],"properties":{"key":"compiled-2"},"type":"__VNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["Aside"],"properties":{"key":"compiled-3"},"type":"__VNODE_TYPE"},"\\n",{"children":[{"tag":"p","originalProperties":{},"children":["I am another tutorial"],"properties":{"key":"compiled-4"},"type":"__VNODE_TYPE"}],"widgetConstructor":"docs-aside","properties":{"title":"Another tutorial","key":"compiled-5"},"type":"__WNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["CodeSandbox Embed"],"properties":{"key":"compiled-6"},"type":"__VNODE_TYPE"},"\\n",{"children":[],"widgetConstructor":"docs-codesandbox","properties":{"url":"https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc","key":"compiled-7"},"type":"__WNODE_TYPE"}],"properties":{"key":"compiled-8"},"type":"__VNODE_TYPE"}';
+const fromMarkupOutput =
+	'{"tag":"div","originalProperties":{},"children":[{"tag":"h1","originalProperties":{},"children":["Another Tutorial"],"properties":{"key":"compiled-2"},"type":"__VNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["Aside"],"properties":{"key":"compiled-3"},"type":"__VNODE_TYPE"},"\\n",{"children":[{"tag":"p","originalProperties":{},"children":["I am another tutorial"],"properties":{"key":"compiled-4"},"type":"__VNODE_TYPE"}],"widgetConstructor":"docs-aside","properties":{"title":"Another tutorial","key":"compiled-5"},"type":"__WNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["CodeSandbox Embed"],"properties":{"key":"compiled-6"},"type":"__VNODE_TYPE"},"\\n",{"children":[],"widgetConstructor":"docs-codesandbox","properties":{"url":"https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc","key":"compiled-7"},"type":"__WNODE_TYPE"}],"properties":{"key":"compiled-8"},"type":"__VNODE_TYPE"}';
 
 describe('content compiler', () => {
 	let sandbox: sinon.SinonSandbox;
@@ -115,7 +116,10 @@ describe('content compiler', () => {
 		assert.deepEqual(readFileSyncStub.firstCall.args, [tutorialSourcePath, 'utf-8']);
 
 		assert.equal(outputFileSyncStub.callCount, 2);
-		assert.deepEqual(outputFileSyncStub.firstCall.args, [tutorialOutputPath, `export default () => { return ${JSON.stringify(fromMarkupOutput)} }`]);
+		assert.deepEqual(outputFileSyncStub.firstCall.args, [
+			tutorialOutputPath,
+			`export default () => { return ${JSON.stringify(fromMarkupOutput)} }`
+		]);
 		assert.deepEqual(outputFileSyncStub.secondCall.args, [tutorialListOutputPath, listOutput]);
 
 		assert.equal(infoStub.callCount, 3);
