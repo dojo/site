@@ -6,7 +6,6 @@
 const path = require('path');
 
 const tsconfigPath = path.join(__dirname, 'scripts/tsconfig.json');
-// const tsconfig = require(tsconfigPath);
 
 // Register TS compilation.
 require('ts-node').register({

@@ -44,8 +44,7 @@ const widgets: WidgetBuilders = {
 let key = 0;
 
 export const pragma = (tag: string, props: any = {}, children: any[]) => {
-	props.key = `compiled-${key}`;
-	key++;
+	props.key = `compiled-${key++}`;
 	if (tag.substr(0, 1) === tag.substr(0, 1).toUpperCase()) {
 		const type = `docs-${tag.toLowerCase()}`;
 		if (widgets[type]) {
@@ -89,8 +88,6 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 };
 
 export function process() {
-	info();
-
 	const registeredHandlers = registerHandlers(handlers);
 
 	manifest.tutorials.map(({ path }: { path: string }) => {
@@ -101,7 +98,7 @@ export function process() {
 
 		const generatedPath = resolve('src', 'generated', outputPath);
 		info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
-		outputFileSync(generatedPath, `export default () => { return ${JSON.stringify(nodes)} }`);
+		outputFileSync(generatedPath, `export default ${JSON.stringify(nodes)};`);
 	});
 
 	const paths = manifest.tutorials.map(({ name, path }: { name: string; path: string }) => ({
