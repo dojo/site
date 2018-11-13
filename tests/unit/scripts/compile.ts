@@ -115,14 +115,13 @@ describe('content compiler', () => {
 		assert.equal(outputFileSyncStub.callCount, 2);
 		assert.deepEqual(outputFileSyncStub.firstCall.args, [
 			tutorialOutputPath,
-			`export default () => { return ${JSON.stringify(fromMarkupOutput)} }`
+			`export default ${JSON.stringify(fromMarkupOutput)};`
 		]);
 		assert.deepEqual(outputFileSyncStub.secondCall.args, [tutorialListOutputPath, listOutput]);
 
-		assert.equal(infoStub.callCount, 3);
-		assert.deepEqual(infoStub.firstCall.args, []);
-		assert.deepEqual(infoStub.secondCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialOutputPath}`]);
-		assert.deepEqual(infoStub.thirdCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialListOutputPath}`]);
+		assert.equal(infoStub.callCount, 2);
+		assert.deepEqual(infoStub.firstCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialOutputPath}`]);
+		assert.deepEqual(infoStub.secondCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialListOutputPath}`]);
 
 		assert.equal(registerHandlersStub.callCount, 1);
 
