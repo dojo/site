@@ -9,7 +9,9 @@ describe('Examples', () => {
 	it('renders', () => {
 		const h = harness(() => <Examples />);
 		h.expect(() => (
-			<div><h1 classes={[css.root]}>Examples</h1></div>
+			<div>
+				<h1 classes={[css.root]}>Examples</h1>
+			</div>
 		));
 	});
 });

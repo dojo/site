@@ -15,32 +15,32 @@ describe('Menu', () => {
 			<div classes={css.root}>
 				<div classes={css.menu}>
 					<div classes={css.left}>
-						<Link to='home' activeClasses={[css.selected]}>
-							<img classes={[css.logo]} alt='logo' src={logo} />
+						<Link to="home" activeClasses={[css.selected]}>
+							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to='blog' classes={[css.link]} activeClasses={[css.selected]}>
+						<Link to="blog" classes={[css.link]} activeClasses={[css.selected]}>
 							Blog
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to='documentation' classes={[css.link]} activeClasses={[css.selected]}>
+						<Link to="documentation" classes={[css.link]} activeClasses={[css.selected]}>
 							Documentation
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to='examples' classes={[css.link]} activeClasses={[css.selected]}>
+						<Link to="examples" classes={[css.link]} activeClasses={[css.selected]}>
 							Examples
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to='playground' classes={[css.link]} activeClasses={[css.selected]}>
+						<Link to="playground" classes={[css.link]} activeClasses={[css.selected]}>
 							Playground
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to='community' classes={[css.link]} activeClasses={[css.selected]}>
+						<Link to="community" classes={[css.link]} activeClasses={[css.selected]}>
 							Community
 						</Link>
 					</div>
