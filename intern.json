@@ -1,0 +1,60 @@
+{
+  "basePath": "./",
+  "environments": [
+    { "browserName": "node" }
+  ],
+  "maxConcurrency": 2,
+  "tunnel": "selenium",
+  "tunnelOptions": {
+    "hostname": "localhost",
+    "port": "4444"
+	},
+	"node": {
+		"reporters": [
+			{
+				"name": "runner"
+			},
+			{
+				"name": "lcov",
+				"options": {
+					"directory": "output/coverage/lcov",
+					"filename": "coverage.lcov"
+				}
+			},
+			{
+				"name": "htmlcoverage",
+				"options": {
+					"directory": "output/coverage/html"
+				}
+			}
+		],
+		"plugins": [
+			{
+				"script": "@dojo/cli-test-intern/plugins/jsdom",
+				"options": {
+					"global": true
+				}
+			},
+			"@dojo/cli-test-intern/plugins/postcssRequire",
+			"@dojo/cli-test-intern/plugins/tsnode",
+			{
+				"script": "@dojo/cli-test-intern/plugins/registerExtension",
+				"options": {
+					"extensions": [ ".gif", ".png" ,".jpg", ".jpeg", ".svg", ".eot", ".ttf", ".woff", ".woff2" ]
+				}
+			}
+		],
+		"suites": [
+			"./tests/unit/all.ts"
+		]
+	},
+	"coverage": [
+		"./src/**/*.ts",
+		"!./src/**/*.d.ts",
+		"./scripts/**/*.ts"
+	],
+	"defaultTimeout": 15000,
+	"instrumenterOptions": {
+		"esModules": true
+	}
+}
