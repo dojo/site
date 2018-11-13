@@ -8,7 +8,7 @@
     "lint": "run-p lint:*",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "test": "intern",
-    "uploadCoverage": "codecov --file=coverage/coverage.json"
+    "uploadCoverage": "codecov --file=output/coverage/coverage-final.json"
   },
   "dependencies": {
     "@dojo/framework": "file:deps/dojo-framework-4.0.5.tgz",

@@ -15,10 +15,9 @@
 				"name": "runner"
 			},
 			{
-				"name": "lcov",
+				"name": "jsoncoverage",
 				"options": {
-					"directory": "output/coverage/lcov",
-					"filename": "coverage.lcov"
+					"directory": "output/coverage"
 				}
 			},
 			{
