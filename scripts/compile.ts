@@ -12,6 +12,7 @@ const unified = require('unified');
 const parse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
+const rehypePrism = require('@mapbox/rehype-prism');
 const macro = require('remark-macro')();
 const all = require('mdast-util-to-hast/lib/all');
 
@@ -77,10 +78,8 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 	const pipeline = unified()
 		.use(parse)
 		.use(macro.transformer)
-		.use(remark2rehype, { handlers: registeredHandlers });
-
-	// TODO: Fix language parsing here for tsx
-	// .use(rehypePrism, { ignoreMissing: true, extraLanguages: ['tsx'] });
+		.use(remark2rehype, { handlers: registeredHandlers })
+		.use(rehypePrism, { ignoreMissing: false });
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);

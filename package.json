@@ -24,6 +24,7 @@
     "@types/mockery": "^1.4.29",
     "@types/node": "~9.6.5",
     "@types/sinon": "~4.3.3",
+    "@mapbox/rehype-prism": "^0.3.0",
     "chokidar-cli": "^1.2.1",
     "codecov": "^3.0.4",
     "fs-extra": "^7.0.0",

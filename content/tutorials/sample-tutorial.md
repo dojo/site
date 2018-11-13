@@ -23,8 +23,8 @@ Add these lines at the top of the file.
 [CodeBlock path=tutorial-2-finished/src/widgets/App.tsx, region=render, language=tsx]
 
 ## Standard code fences
-```ts
+```tsx
 render() {
-	return v('div', [ 'some inline code' ]);
+	return (<div>some inline code</div>);
 }
 ```
