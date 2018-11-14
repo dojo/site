@@ -1,7 +1,7 @@
-import { WNode } from '@dojo/framework/widget-core/interfaces';
-import { w } from '@dojo/framework/widget-core/d';
+import { WNode, VNode } from '@dojo/framework/widget-core/interfaces';
+import { w, v } from '@dojo/framework/widget-core/d';
 import { resolve } from 'path';
-import { readFileSync } from 'fs-extra';
+import { readFileSync, existsSync } from 'fs-extra';
 
 import { WidgetBuilder, fromMarkdown } from '../compile';
 
@@ -12,12 +12,21 @@ import { HTML_MATCHER } from './region-matchers/html';
 const refractor = require('refractor');
 refractor.register(require(`refractor/lang/tsx.js`));
 
-export type RegionMatcherFactory = (region: string) => RegionMatcher;
+export type RegionMatcherFactory = {
+	factory: (region: string) => RegionMatcher;
+	regionCommentMatcher: RegExp;
+}
 
 export interface RegionMatcher {
 	regionStartMatcher: string;
 	regionEndMatcher: string;
-	regionCommentMatcher: RegExp;
+}
+
+// TODO: Move this into the code block widget
+export interface RegionCodeBlockProps {
+	path?: string;
+	region?: string;
+	language: string;
 }
 
 const regionMatchers: { [key: string]: RegionMatcherFactory } = {
@@ -30,31 +39,51 @@ const regionMatchers: { [key: string]: RegionMatcherFactory } = {
 
 export const REGION_GROUP_MATCHER = '\\s*^(.[\\s\\S]*)$';
 
-export const regionBuilder: WidgetBuilder = (type: string, props: any): WNode => {
+export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps): WNode | VNode => {
 	let { path, region, language = 'ts' } = props;
-	path = resolve(__dirname, '../../', 'content/examples', path);
+	if (path === undefined) {
+		return v('p', ['Invalid file path']);
+	}
 
-	const regionMatcher = regionMatchers[language](region);
+	const resolvedPath = resolve(__dirname, '../../', 'content/examples', path);
 
-	let code = readFileSync(path, 'utf-8');
-	if (region) {
+	let code: string | undefined;
+	if (!existsSync(resolvedPath)) {
+		return v('p', ['Could not load file']);
+	}
+
+	if (regionMatchers[language] === undefined) {
+		return v('p', ['Could not recognize language']);
+	}
+
+	const regionMatcherFactory = regionMatchers[language];
+
+	let fileInput = readFileSync(resolvedPath, 'utf-8');
+	if (region !== undefined) {
+		const regionMatcher = regionMatcherFactory.factory(region);
 		const regionRegExp = new RegExp(
 			`${regionMatcher.regionStartMatcher}${REGION_GROUP_MATCHER}${regionMatcher.regionEndMatcher}`,
 			'gm'
 		);
-		const regionMatches = regionRegExp.exec(code);
+		const regionMatches = regionRegExp.exec(fileInput);
 		if (regionMatches && regionMatches.length) {
 			code = regionMatches[1];
 		}
+	} else {
+		code = fileInput;
 	}
 
-	code = leftAlign(stripRegionComments(code.split('\n'), regionMatcher)).join('\n');
-
-	return w(type, props, [fromMarkdown('```' + `${language}\n${code}\n` + '```', {})]);
+	if (code !== undefined) {
+		code = leftAlign(stripRegionComments(code.split('\n'), regionMatcherFactory.regionCommentMatcher)).join('\n');
+		const wProps: any = { path, region, language };
+		return w(type, wProps, [fromMarkdown('```' + `${language}\n${code}\n` + '```', {})]);
+	} else {
+		return v('p', ['Could not load region']);
+	}
 };
 
-export const stripRegionComments = (lines: string[], regionMatcher: RegionMatcher): string[] => {
-	return lines.filter((line) => !line.match(regionMatcher.regionCommentMatcher));
+export const stripRegionComments = (lines: string[], regionCommentMatcher: RegExp): string[] => {
+	return lines.filter((line) => !line.match(regionCommentMatcher));
 };
 
 export const leftAlign = (lines: string[]): string[] => {

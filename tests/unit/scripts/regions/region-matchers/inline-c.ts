@@ -19,7 +19,7 @@ describe('inline-c region-matcher', () => {
 	it('should match start annotations', () => {
 		let matches: RegExpExecArray | null;
 
-		const regionMatcher = INLINE_C_MATCHER(regionName);
+		const regionMatcher = INLINE_C_MATCHER.factory(regionName);
 		const startMatcher = new RegExp(regionMatcher.regionStartMatcher);
 
 		matches = startMatcher.exec(`// @start-region ${regionName}`);
@@ -35,7 +35,7 @@ describe('inline-c region-matcher', () => {
 	it('should match end annotations', () => {
 		let matches: RegExpExecArray | null;
 
-		const regionMatcher = INLINE_C_MATCHER(regionName);
+		const regionMatcher = INLINE_C_MATCHER.factory(regionName);
 		const endMatcher = new RegExp(regionMatcher.regionEndMatcher);
 
 		matches = endMatcher.exec(`// @end-region ${regionName} `);
@@ -51,7 +51,7 @@ describe('inline-c region-matcher', () => {
 	it('should match full region and retreive contents', () => {
 		let matches: RegExpExecArray | null;
 
-		const regionMatcher = INLINE_C_MATCHER(regionName);
+		const regionMatcher = INLINE_C_MATCHER.factory(regionName);
 		const regionRegExp = new RegExp(
 			`${regionMatcher.regionStartMatcher}${REGION_GROUP_MATCHER}${regionMatcher.regionEndMatcher}`,
 			'gm'

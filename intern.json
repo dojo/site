@@ -44,13 +44,13 @@
 			}
 		],
 		"suites": [
-			"./tests/unit/all.ts"
+			"./_build/tests/unit/all.js"
 		]
 	},
 	"coverage": [
-		"./src/**/*.ts",
-		"!./src/**/*.d.ts",
-		"./scripts/**/*.ts"
+		"./_build/src/**/*.js",
+		"!./_build/src/generated/**/*.js",
+		"./_build/scripts/**/*.js"
 	],
 	"defaultTimeout": 15000,
 	"instrumenterOptions": {
