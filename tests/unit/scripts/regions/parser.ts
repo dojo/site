@@ -289,10 +289,10 @@ describe('region parser', () => {
 
 		const type = 'docs-codeblock';
 		const props: any = { path: 'path/to/file' };
-		const propsWithRegion: any = Object.assign({}, props, { region: regionName });
-		const propsWithTS: any = Object.assign({}, propsWithRegion, { language: 'ts' });
-		const propsWithTSX: any = Object.assign({}, propsWithRegion, { language: 'tsx' });
-		const propsWithTSWithoutRegion: any = Object.assign({}, props, { region: undefined, language: 'ts' });
+		const propsWithRegion: any = { ...props, region: regionName };
+		const propsWithTS: any = { ...propsWithRegion, ...{ language: 'ts' } };
+		const propsWithTSX: any = { ...propsWithRegion, ...{ language: 'tsx' } };
+		const propsWithTSWithoutRegion: any = { ...props, ...{ region: undefined, language: 'ts' } };
 
 		// Proper run with language provided
 		parser.regionBuilder(type, propsWithTSX, []);
@@ -368,7 +368,7 @@ describe('region parser', () => {
 		assert.equal(vStub.callCount, 3);
 		assert.deepEqual(vStub.thirdCall.args, ['p', ['Invalid file path']]);
 
-		parser.regionBuilder(type, Object.assign({}, props, { language: 'dummy' }), []);
+		parser.regionBuilder(type, { ...props, ...{ language: 'dummy' } });
 		assert.equal(existsSyncStub.callCount, 3);
 		assert.equal(readFileSyncStub.callCount, 1);
 		assert.equal(vStub.callCount, 4);
