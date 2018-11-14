@@ -268,7 +268,7 @@ describe('region parser', () => {
 
 		const readFileSyncStub = sandbox.stub();
 		readFileSyncStub.returns(fileContents);
-	
+
 		mockery.registerMock('fs-extra', {
 			existsSync: existsSyncStub,
 			readFileSync: readFileSyncStub
@@ -298,7 +298,10 @@ describe('region parser', () => {
 		parser.regionBuilder(type, propsWithTSX, []);
 
 		assert.equal(stripRegionCommentsStub.callCount, 1);
-		assert.deepEqual(stripRegionCommentsStub.firstCall.args, [regionContents.split('\n'), INLINE_C_MATCHER.regionCommentMatcher]);
+		assert.deepEqual(stripRegionCommentsStub.firstCall.args, [
+			regionContents.split('\n'),
+			INLINE_C_MATCHER.regionCommentMatcher
+		]);
 
 		assert.equal(lefAlignStub.callCount, 1);
 		assert.deepEqual(lefAlignStub.firstCall.args, [regionContentsCommentsStripped.split('\n')]);

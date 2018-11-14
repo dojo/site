@@ -15,7 +15,7 @@ refractor.register(require(`refractor/lang/tsx.js`));
 export type RegionMatcherFactory = {
 	factory: (region: string) => RegionMatcher;
 	regionCommentMatcher: RegExp;
-}
+};
 
 export interface RegionMatcher {
 	regionStartMatcher: string;

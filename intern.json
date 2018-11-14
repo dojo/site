@@ -48,7 +48,7 @@
 		]
 	},
 	"coverage": [
-		"./_build/src/**/*.js",
+		"./_build/src/**/!(main|routes).js",
 		"!./_build/src/generated/**/*.js",
 		"./_build/scripts/**/*.js"
 	],
