@@ -35,7 +35,6 @@
 				}
 			},
 			"@dojo/cli-test-intern/plugins/postcssRequire",
-			"@dojo/cli-test-intern/plugins/tsnode",
 			{
 				"script": "@dojo/cli-test-intern/plugins/registerExtension",
 				"options": {
