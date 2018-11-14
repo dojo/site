@@ -1,4 +1,4 @@
-import { WNode, VNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { w, v } from '@dojo/framework/widget-core/d';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
@@ -39,7 +39,7 @@ const regionMatchers: { [key: string]: RegionMatcherFactory } = {
 
 export const REGION_GROUP_MATCHER = '\\s*^(.[\\s\\S]*)$';
 
-export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps): WNode | VNode => {
+export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps): DNode => {
 	let { path, region, language = 'ts' } = props;
 	if (path === undefined) {
 		return v('p', ['Invalid file path']);

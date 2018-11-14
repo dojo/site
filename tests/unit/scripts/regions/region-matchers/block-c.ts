@@ -48,6 +48,27 @@ describe('block-c', () => {
 		assert.isNull(matches);
 	});
 
+	it('should match all region comments', () => {
+		let matches: RegExpMatchArray | null;
+
+		const regionMatcher = BLOCK_C_MATCHER.regionCommentMatcher;
+
+		matches = `/* @end-region ${regionName} */`.match(regionMatcher);
+		assert.isNotNull(matches);
+
+		matches = `/*@end-region ${regionName2}*/`.match(regionMatcher);
+		assert.isNotNull(matches);
+
+		matches = `/* @start-region ${regionName} */`.match(regionMatcher);
+		assert.isNotNull(matches);
+
+		matches = `/*@start-region ${regionName2}*/`.match(regionMatcher);
+		assert.isNotNull(matches);
+
+		matches = `/* @middle-region ${regionName} */`.match(regionMatcher);
+		assert.isNull(matches);
+	});
+
 	it('should match full region and retreive contents', () => {
 		let matches: RegExpExecArray | null;
 

@@ -1,5 +1,5 @@
 import { v, w } from '@dojo/framework/widget-core/d';
-import { WNode, VNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { readFileSync, outputFileSync } from 'fs-extra';
 import { resolve, parse as parsePath } from 'path';
 import chalk from 'chalk';
@@ -27,7 +27,7 @@ export interface WidgetBuilders {
 	[type: string]: WidgetBuilder;
 }
 
-export type WidgetBuilder = (type: string, props: any, children: any[]) => WNode | VNode;
+export type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
 
 export const handlers: Handler[] = [
 	{ type: 'Aside' },
