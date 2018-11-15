@@ -3,12 +3,12 @@ import * as mockery from 'mockery';
 import * as sinon from 'sinon';
 import chalk from 'chalk';
 
-import { HandlerFunction } from '../../../scripts/compile';
+import { HandlerFunction } from '../compile';
 
 const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 
-const COMPILE_SCRIPT_PATH = '../../../scripts/compile';
+const COMPILE_SCRIPT_PATH = '../compile';
 
 const handlersOutput: { [type: string]: HandlerFunction } = {
 	Aside: (h, node) => h(node),

@@ -1,7 +1,8 @@
 {
 	"basePath": "./",
 	"environments": [
-		{ "browserName": "node" }
+		{ "browserName": "node" },
+		{ "browserName": "chrome" }
 	],
 	"maxConcurrency": 2,
 	"tunnel": "selenium",
@@ -43,16 +44,41 @@
 			}
 		],
 		"suites": [
-			"./_build/tests/unit/all.js"
+			"./_build/scripts/tests/node.js"
+		]
+	},
+	"browser": {
+		"suites": [
+			"./output/test/unit/all.js"
 		]
 	},
 	"coverage": [
-		"./_build/src/**/!(main|routes).js",
-		"!./_build/src/generated/**/*.js",
-		"./_build/scripts/**/*.js"
+		"./_build/scripts/**/*.js",
+		"!./_build/scripts/tests/**/*.js"
 	],
 	"defaultTimeout": 15000,
 	"instrumenterOptions": {
 		"esModules": true
+	},
+	"configs": {
+		"ci": {
+			"maxConcurrency": 2,
+			"tunnel": "browserstack",
+			"environments": [
+			  {
+				"browserName": "internet explorer",
+				"version": "11",
+				"platform": "WINDOWS"
+			  },
+			  {
+				"browserName": "firefox",
+				"platform": "WINDOWS"
+			  },
+			  {
+				"browserName": "chrome",
+				"platform": "WINDOWS"
+			  }
+			]
+		}
 	}
 }

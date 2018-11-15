@@ -2,8 +2,8 @@ import { DefaultWidgetBaseInterface, DNode } from '@dojo/framework/widget-core/i
 import * as mockery from 'mockery';
 import * as sinon from 'sinon';
 
-import { leftAlign, stripRegionComments } from '../../../../scripts/regions/parser';
-import { INLINE_C_MATCHER } from '../../../../scripts/regions/region-matchers/inline-c';
+import { leftAlign, stripRegionComments } from '../../regions/parser';
+import { INLINE_C_MATCHER } from '../../regions/region-matchers/inline-c';
 import { v } from '@dojo/framework/widget-core/d';
 
 const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
@@ -11,7 +11,7 @@ const { assert } = intern.getPlugin('chai');
 
 export const regionName = 'RegionName';
 
-const parserPath = '../../../../scripts/regions/parser';
+const parserPath = '../../regions/parser';
 
 const regionContents = `	protected render() {
 		const div = <div>Test content</div>;

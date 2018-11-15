@@ -4,7 +4,7 @@ import * as sinon from 'sinon';
 const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 
-const LOGGER_SCRIPT_PATH = '../../../scripts/logger';
+const LOGGER_SCRIPT_PATH = '../logger';
 
 describe('logger compiler', () => {
 	let sandbox: sinon.SinonSandbox;

@@ -1,8 +1,8 @@
 const { describe, it } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 
-import { REGION_GROUP_MATCHER } from '../../../../../scripts/regions/parser';
-import { INLINE_HASH_MATCHER } from '../../../../../scripts/regions/region-matchers/inline-hash';
+import { REGION_GROUP_MATCHER } from '../../../regions/parser';
+import { INLINE_HASH_MATCHER } from '../../../regions/region-matchers/inline-hash';
 
 const regionName = 'RegionName';
 const regionName2 = 'RegionName2';
