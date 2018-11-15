@@ -64,9 +64,13 @@
 		"ci": {
 			"maxConcurrency": 2,
 			"tunnel": "browserstack",
-			"environments": [
+			"tunnelOptions": {
+				"username": "dylanschiemann2",
+				"accessKey": "4Q2g8YAc9qeZzB2hECnS"
+			},
+			"environments+": [
 			  {
-				"browserName": "internet explorer",
+				"browserName": "edge",
 				"version": "11",
 				"platform": "WINDOWS"
 			  },
