@@ -80,10 +80,12 @@
 				"fixSessionCapabilities": "no-detect"
 			},
 			"environments+": [
+				{ "browserName": "internet explorer", "version": "11", "os": "WINDOWS", "os_version": [ "8.1", "10" ] },
 				{ "browserName": "edge" },
 				{ "browserName": "firefox", "platform": "WINDOWS" },
 				{ "browserName": "chrome", "platform": "WINDOWS" },
-				{ "browserName": "safari", "version": "10.1", "platform": "MAC" }
+				{ "browserName": "safari", "version": [ "10.1", "11" ], "platform": "MAC" },
+				{ "browserName": "safari", "version": "12", "os_version": "Mojave" }
 			]
 		}
 	}

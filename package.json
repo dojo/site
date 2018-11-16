@@ -9,7 +9,7 @@
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
-    "test:build": "tsc && dojo build -m unit",
+    "test:build": "tsc && dojo build -m unit -l",
     "test:build:static": "cpx \"{src,tests,content}/**/*.{html,png,jpg,gif,json,xml,css,txt,d.ts,svg,ico}\" _build",
     "test:clean": "shx rm -Rf _build",
     "test:ci": "run-s test:build test:build:static intern:ci test:clean",
