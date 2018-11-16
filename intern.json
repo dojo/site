@@ -50,16 +50,23 @@
 	"browser": {
 		"suites": [
 			"./output/test/unit/all.js"
+		],
+		"plugins+": [
+			{
+				"script": "./node_modules/@dojo/framework/shim/browser.js"
+			}
 		]
 	},
+	"plugins": [
+		{
+			"script": "./node_modules/@dojo/framework/shim/main.js"
+		}
+	],
 	"coverage": [
 		"./_build/scripts/**/*.js",
 		"!./_build/scripts/tests/**/*.js"
 	],
 	"defaultTimeout": 15000,
-	"instrumenterOptions": {
-		"esModules": true
-	},
 	"configs": {
 		"ci": {
 			"maxConcurrency": 2,
@@ -68,20 +75,16 @@
 				"username": "dylanschiemann2",
 				"accessKey": "4Q2g8YAc9qeZzB2hECnS"
 			},
+			"capabilities": {
+				"idle-timeout": 60,
+				"fixSessionCapabilities": "no-detect"
+			},
 			"environments+": [
-			  {
-				"browserName": "edge",
-				"version": "11",
-				"platform": "WINDOWS"
-			  },
-			  {
-				"browserName": "firefox",
-				"platform": "WINDOWS"
-			  },
-			  {
-				"browserName": "chrome",
-				"platform": "WINDOWS"
-			  }
+				{ "browserName": "internet explorer", "version": "11", "os": "WINDOWS", "os_version": [ "8.1", "10" ] },
+				{ "browserName": "edge" },
+				{ "browserName": "firefox", "platform": "WINDOWS" },
+				{ "browserName": "chrome", "platform": "WINDOWS" },
+				{ "browserName": "safari", "version": "10.1", "platform": "MAC" }
 			]
 		}
 	}
