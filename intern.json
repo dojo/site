@@ -1,0 +1,90 @@
+{
+	"basePath": "./",
+	"environments": [
+		{ "browserName": "node" },
+		{ "browserName": "chrome" }
+	],
+	"maxConcurrency": 2,
+	"tunnel": "selenium",
+	"tunnelOptions": {
+		"hostname": "localhost",
+		"port": "4444"
+	},
+	"node": {
+		"reporters": [
+			{
+				"name": "runner"
+			},
+			{
+				"name": "jsoncoverage",
+				"options": {
+					"directory": "output/coverage"
+				}
+			},
+			{
+				"name": "htmlcoverage",
+				"options": {
+					"directory": "output/coverage/html"
+				}
+			}
+		],
+		"plugins": [
+			{
+				"script": "@dojo/cli-test-intern/plugins/jsdom",
+				"options": {
+					"global": true
+				}
+			},
+			"@dojo/cli-test-intern/plugins/postcssRequire",
+			{
+				"script": "@dojo/cli-test-intern/plugins/registerExtension",
+				"options": {
+					"extensions": [ ".gif", ".png" ,".jpg", ".jpeg", ".svg", ".eot", ".ttf", ".woff", ".woff2" ]
+				}
+			}
+		],
+		"suites": [
+			"./_build/scripts/tests/node.js"
+		]
+	},
+	"browser": {
+		"suites": [
+			"./output/test/unit/all.js"
+		],
+		"plugins+": [
+			{
+				"script": "./node_modules/@dojo/framework/shim/browser.js"
+			}
+		]
+	},
+	"plugins": [
+		{
+			"script": "./node_modules/@dojo/framework/shim/main.js"
+		}
+	],
+	"coverage": [
+		"./_build/scripts/**/*.js",
+		"!./_build/scripts/tests/**/*.js"
+	],
+	"defaultTimeout": 15000,
+	"configs": {
+		"ci": {
+			"maxConcurrency": 2,
+			"tunnel": "browserstack",
+			"tunnelOptions": {
+				"username": "dylanschiemann2",
+				"accessKey": "4Q2g8YAc9qeZzB2hECnS"
+			},
+			"capabilities": {
+				"idle-timeout": 60,
+				"fixSessionCapabilities": "no-detect"
+			},
+			"environments+": [
+				{ "browserName": "edge" },
+				{ "browserName": "firefox", "platform": "WINDOWS" },
+				{ "browserName": "chrome", "platform": "WINDOWS" },
+				{ "browserName": "safari", "version": "10.1", "platform": "MAC" }
+			]
+		}
+	}
+}

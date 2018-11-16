@@ -1,5 +1,5 @@
 import { v, w } from '@dojo/framework/widget-core/d';
-import { WNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { readFileSync, outputFileSync } from 'fs-extra';
 import { resolve, parse as parsePath } from 'path';
 import chalk from 'chalk';
@@ -12,6 +12,7 @@ const unified = require('unified');
 const parse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
+const rehypePrism = require('@mapbox/rehype-prism');
 const macro = require('remark-macro')();
 const all = require('mdast-util-to-hast/lib/all');
 
@@ -26,7 +27,7 @@ export interface WidgetBuilders {
 	[type: string]: WidgetBuilder;
 }
 
-export type WidgetBuilder = (type: string, props: any, children: any[]) => WNode;
+export type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
 
 export const handlers: Handler[] = [
 	{ type: 'Aside' },
@@ -77,10 +78,8 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 	const pipeline = unified()
 		.use(parse)
 		.use(macro.transformer)
-		.use(remark2rehype, { handlers: registeredHandlers });
-
-	// TODO: Fix language parsing here for tsx
-	// .use(rehypePrism, { ignoreMissing: true, extraLanguages: ['tsx'] });
+		.use(remark2rehype, { handlers: registeredHandlers })
+		.use(rehypePrism, { ignoreMissing: false });
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
