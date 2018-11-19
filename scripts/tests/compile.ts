@@ -28,6 +28,25 @@ const manifestJson = {
 	]
 };
 
+const manifestJsonPath = '/content/manifest.json';
+const tutorialSourcePath = '/content/tutorials/another-tutorial.md';
+const generatedOutputPath = '/assets/generated/';
+const tutorialOutputPath = '/assets/generated/tutorials/another-tutorial.ts';
+const tutorialListOutputPath = '/assets/generated/list.ts';
+const buildJsonPath = `${generatedOutputPath}build.json`;
+const buildJsonBadPath = `${generatedOutputPath}bad-build.json`;
+const exampleFile = '/content/examples/tutorial-2-finished/src/widgets/App.tsx';
+
+const buildJson: { [section: string]: { [filePath: string]: string } } = {
+	tutorials: {}
+};
+buildJson.tutorials[exampleFile] = "./tutorials/another-tutorial.md";
+
+const buildJsonBad: { [section: string]: { [filePath: string]: string } } = {
+	tutorials: {}
+};
+buildJsonBad.tutorials[exampleFile + 'BAD'] = "./tutorials/bad-tutorial.md";
+
 const listOutput = `export default [{"name":"Another Tutorial","path":"another-tutorial"}];`;
 
 const markupContent = `# Another Tutorial
@@ -61,16 +80,19 @@ describe('content compiler', () => {
 	});
 
 	it('should compile manifest files', () => {
-		mockery.registerMock('../content/manifest.json', manifestJson);
-
-		const tutorialSourcePath = '/content/tutorials/another-tutorial.md';
-		const tutorialOutputPath = '/src/generated/tutorials/another-tutorial.ts';
-		const tutorialListOutputPath = '/src/generated/list.ts';
+		mockery.registerMock(manifestJsonPath, manifestJson);
+		mockery.registerMock(buildJsonPath, buildJson);
+		mockery.registerMock(buildJsonBadPath, buildJsonBad);
 
 		const resolveStub = sandbox.stub();
-		resolveStub.onFirstCall().returns(tutorialSourcePath);
-		resolveStub.onSecondCall().returns(tutorialOutputPath);
-		resolveStub.onThirdCall().returns(tutorialListOutputPath);
+		resolveStub.onFirstCall().returns(manifestJsonPath);
+		resolveStub.onSecondCall().returns(buildJsonPath);
+		resolveStub.onThirdCall().returns(tutorialSourcePath);
+		resolveStub.onCall(3).returns(tutorialOutputPath);
+		resolveStub.onCall(4).returns(tutorialListOutputPath);
+
+		const joinStub = sandbox.stub();
+		joinStub.onFirstCall().returns(generatedOutputPath);
 
 		const parseStub = sandbox.stub();
 		parseStub.onFirstCall().returns({
@@ -80,16 +102,19 @@ describe('content compiler', () => {
 		mockery.registerMock('path', {
 			resolve: resolveStub,
 			parse: parseStub,
-			parsePath: parseStub
+			parsePath: parseStub,
+			join: joinStub
 		});
 
 		const readFileSyncStub = sandbox.stub();
-		readFileSyncStub.onFirstCall().returns(markupContent);
+		readFileSyncStub.returns(markupContent);
 
 		const outputFileSyncStub = sandbox.stub();
 		mockery.registerMock('fs-extra', {
 			readFileSync: readFileSyncStub,
-			outputFileSync: outputFileSyncStub
+			outputFileSync: outputFileSyncStub,
+			removeSync: () => {},
+			existsSync: () => true
 		});
 
 		const infoStub = sandbox.stub();
@@ -105,29 +130,128 @@ describe('content compiler', () => {
 		const fromMarkdownStub = sandbox.stub(compiler, 'fromMarkdown');
 		fromMarkdownStub.returns(fromMarkupOutput);
 
+		// Full build
 		compiler.process();
 
-		assert.equal(resolveStub.callCount, 3);
+		assert.equal(resolveStub.callCount, 5);
 
 		assert.equal(readFileSyncStub.callCount, 1);
 		assert.deepEqual(readFileSyncStub.firstCall.args, [tutorialSourcePath, 'utf-8']);
 
-		assert.equal(outputFileSyncStub.callCount, 2);
+		assert.equal(outputFileSyncStub.callCount, 3);
 		assert.deepEqual(outputFileSyncStub.firstCall.args, [
 			tutorialOutputPath,
 			`export default ${JSON.stringify(fromMarkupOutput)};`
 		]);
 		assert.deepEqual(outputFileSyncStub.secondCall.args, [tutorialListOutputPath, listOutput]);
+		assert.equal(outputFileSyncStub.thirdCall.args[0], buildJsonPath);
 
-		assert.equal(infoStub.callCount, 2);
-		assert.deepEqual(infoStub.firstCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialOutputPath}`]);
-		assert.deepEqual(infoStub.secondCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialListOutputPath}`]);
+		assert.equal(infoStub.callCount, 4);
+		assert.deepEqual(infoStub.firstCall.args, [`${chalk.yellow.bold(' processing ')} tutorials...`]);
+		assert.deepEqual(infoStub.secondCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialOutputPath}`]);
+		assert.deepEqual(infoStub.thirdCall.args, [`${chalk.magenta.bold(' generated ')} ${tutorialListOutputPath}`]);
+		assert.deepEqual(infoStub.getCall(3).args, [`${chalk.blue.bold(' build details ')} ${buildJsonPath}`]);
 
 		assert.equal(registerHandlersStub.callCount, 1);
 
 		assert.equal(fromMarkdownStub.callCount, 1);
 		assert.deepEqual(fromMarkdownStub.firstCall.args[0], markupContent);
 		assert.deepEqual(fromMarkdownStub.firstCall.args[1], handlersOutput);
+
+		// Good Partial Build
+		resolveStub.onCall(5).returns(manifestJsonPath);
+		resolveStub.onCall(6).returns(buildJsonPath);
+		resolveStub.onCall(7).returns(exampleFile);
+		resolveStub.onCall(8).returns(tutorialSourcePath);
+		resolveStub.onCall(9).returns(tutorialOutputPath);
+
+		compiler.process('update', exampleFile);
+
+		assert.equal(resolveStub.callCount, 10);
+
+		assert.equal(readFileSyncStub.callCount, 2);
+		assert.deepEqual(readFileSyncStub.secondCall.args, [tutorialSourcePath, 'utf-8']);
+
+		assert.equal(outputFileSyncStub.callCount, 5);
+		assert.deepEqual(outputFileSyncStub.getCall(3).args, [
+			tutorialOutputPath,
+			`export default ${JSON.stringify(fromMarkupOutput)};`
+		]);
+		assert.equal(outputFileSyncStub.getCall(4).args[0], buildJsonPath);
+
+		assert.equal(infoStub.callCount, 7);
+		assert.deepEqual(infoStub.getCall(4).args, [`${chalk.yellow.bold(' processing ')} tutorials...`]);
+		assert.deepEqual(infoStub.getCall(5).args, [`${chalk.magenta.bold(' generated ')} ${tutorialOutputPath}`]);
+		assert.deepEqual(infoStub.getCall(6).args, [`${chalk.blue.bold(' build details ')} ${buildJsonPath}`]);
+
+		assert.equal(registerHandlersStub.callCount, 2);
+
+		assert.equal(fromMarkdownStub.callCount, 2);
+		assert.deepEqual(fromMarkdownStub.secondCall.args[0], markupContent);
+		assert.deepEqual(fromMarkdownStub.secondCall.args[1], handlersOutput);
+
+		// Bad Partial Build
+		resolveStub.onCall(10).returns(manifestJsonPath);
+		resolveStub.onCall(11).returns(buildJsonBadPath);
+		resolveStub.onCall(12).returns(exampleFile);
+
+		compiler.process('update', exampleFile);
+
+		assert.equal(resolveStub.callCount, 13);
+		assert.equal(readFileSyncStub.callCount, 2);
+
+		assert.equal(outputFileSyncStub.callCount, 6);
+		assert.deepEqual(outputFileSyncStub.getCall(5).args, [buildJsonBadPath, JSON.stringify(buildJsonBad, null, 2)]);
+
+		assert.equal(infoStub.callCount, 8);
+		assert.deepEqual(infoStub.getCall(7).args, [`${chalk.blue.bold(' build details ')} ${buildJsonBadPath}`]);
+
+		assert.equal(registerHandlersStub.callCount, 3);
+		assert.equal(fromMarkdownStub.callCount, 2);
+	});
+
+	it('should trigger full build on manifest change', () => {		const resolveStub = sandbox.stub();
+		resolveStub.onFirstCall().returns(manifestJsonPath);
+		resolveStub.onSecondCall().returns(buildJsonPath);
+		resolveStub.onThirdCall().returns(manifestJsonPath);
+
+		mockery.registerMock('path', {
+			resolve: resolveStub
+		});
+
+		const infoStub = sandbox.stub();
+		mockery.registerMock('./logger', {
+			info: infoStub
+		});
+
+		const outputFileSyncStub = sandbox.stub();
+		mockery.registerMock('fs-extra', {
+			outputFileSync: outputFileSyncStub,
+			existsSync: () => true
+		});
+
+		mockery.registerMock(manifestJsonPath, manifestJson);
+
+		const compiler = require(COMPILE_SCRIPT_PATH);
+
+		const processSectionStub = sandbox.stub(compiler, 'processSection');
+		const registerHandlersStub = sandbox.stub(compiler, 'registerHandlers');
+		registerHandlersStub.returns(handlersOutput);
+
+		compiler.process("update", manifestJsonPath);
+
+		assert.equal(processSectionStub.callCount, 1);
+		assert.deepEqual(processSectionStub.firstCall.args, ['tutorials', manifestJson, handlersOutput, undefined]);
+
+		assert.equal(resolveStub.callCount, 3);
+
+		assert.equal(outputFileSyncStub.callCount, 1);
+		assert.equal(outputFileSyncStub.firstCall.args[0], buildJsonPath);
+
+		assert.equal(infoStub.callCount, 1);
+		assert.deepEqual(infoStub.firstCall.args, [`${chalk.blue.bold(' build details ')} ${buildJsonPath}`]);
+
+		assert.equal(registerHandlersStub.callCount, 1);
 	});
 
 	it('should register handers', () => {
