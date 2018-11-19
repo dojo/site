@@ -3,6 +3,7 @@ _build/
 output/
 .cert/
 src/generated/
+assets/generated/
 
 .vscode
 *.log
