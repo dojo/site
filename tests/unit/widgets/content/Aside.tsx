@@ -12,9 +12,11 @@ describe('Aside', () => {
 		const children = 'Some text here';
 
 		const h = harness(() => <Aside title={title}>{children}</Aside>);
-		h.expect(() => <article classes={[css.root]}>
-			<strong>{title}</strong>
-			<p>{children}</p>
-		</article>);
+		h.expect(() => (
+			<article classes={[css.root]}>
+				<strong>{title}</strong>
+				<p>{children}</p>
+			</article>
+		));
 	});
 });

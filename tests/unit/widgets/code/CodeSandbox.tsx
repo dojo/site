@@ -26,7 +26,7 @@ const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub
 			return mockStub(MetaType);
 		}
 	};
-}
+};
 
 describe('CodeSandbox', () => {
 	it('renders', () => {
@@ -52,13 +52,13 @@ describe('CodeSandbox', () => {
 		if (!exists('build-time-render')) {
 			add('build-time-render', false, false);
 		}
-		
+
 		const url = 'https://codesandbox.io/embed/dummy';
 
 		const h = harness(() => w(mockMetaMixin(CodeSandbox, mockMeta), { url }));
 		h.expect(() => (
 			<div key="root" classes={[css.root]}>
-				<iframe classes={[css.root]} src='' />
+				<iframe classes={[css.root]} src="" />
 			</div>
 		));
 
