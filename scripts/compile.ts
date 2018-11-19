@@ -165,7 +165,7 @@ export const processSection = (
 		manifest[section].map(({ path }: { path: string }) => processMarkdown(path, registeredHandlers));
 		buildSectionList(manifest, section);
 	}
-}
+};
 
 export const processMarkdown = (path: string, registeredHandlers: { [type: string]: HandlerFunction }): void => {
 	currentParent = path;
@@ -179,7 +179,7 @@ export const processMarkdown = (path: string, registeredHandlers: { [type: strin
 	const generatedPath = resolve('assets', 'generated', outputPath);
 	outputFileSync(generatedPath, `export default ${JSON.stringify(nodes)};`);
 	info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
-}
+};
 
 export const buildSectionList = (manifest: ManifestConfig, section: string): void => {
 	let paths: ManifestConfigFile[] = [];
@@ -190,4 +190,4 @@ export const buildSectionList = (manifest: ManifestConfig, section: string): voi
 	const listPath = resolve('assets', 'generated', `${section}-list.ts`);
 	outputFileSync(listPath, `export default ${JSON.stringify(paths)};`);
 	info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
-}
+};

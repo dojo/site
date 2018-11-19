@@ -40,12 +40,12 @@ const exampleFile = '/content/examples/tutorial-2-finished/src/widgets/App.tsx';
 const buildJson: { [section: string]: { [filePath: string]: string } } = {
 	tutorials: {}
 };
-buildJson.tutorials[exampleFile] = "./tutorials/another-tutorial.md";
+buildJson.tutorials[exampleFile] = './tutorials/another-tutorial.md';
 
 const buildJsonBad: { [section: string]: { [filePath: string]: string } } = {
 	tutorials: {}
 };
-buildJsonBad.tutorials[exampleFile + 'BAD'] = "./tutorials/bad-tutorial.md";
+buildJsonBad.tutorials[exampleFile + 'BAD'] = './tutorials/bad-tutorial.md';
 
 const listOutput = `export default [{"name":"Another Tutorial","path":"another-tutorial"}];`;
 
@@ -210,7 +210,8 @@ describe('content compiler', () => {
 		assert.equal(fromMarkdownStub.callCount, 2);
 	});
 
-	it('should trigger full build on manifest change', () => {		const resolveStub = sandbox.stub();
+	it('should trigger full build on manifest change', () => {
+		const resolveStub = sandbox.stub();
 		resolveStub.onFirstCall().returns(manifestJsonPath);
 		resolveStub.onSecondCall().returns(buildJsonPath);
 		resolveStub.onThirdCall().returns(manifestJsonPath);
@@ -238,7 +239,7 @@ describe('content compiler', () => {
 		const registerHandlersStub = sandbox.stub(compiler, 'registerHandlers');
 		registerHandlersStub.returns(handlersOutput);
 
-		compiler.process("update", manifestJsonPath);
+		compiler.process('update', manifestJsonPath);
 
 		assert.equal(processSectionStub.callCount, 1);
 		assert.deepEqual(processSectionStub.firstCall.args, ['tutorials', manifestJson, handlersOutput, undefined]);
