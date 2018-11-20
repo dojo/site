@@ -17,6 +17,7 @@ export default class App extends WidgetBase {
 		return (
 			<div classes={[css.root]}>
 				<Menu />
+				WILL THIS DEPLOY?
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
