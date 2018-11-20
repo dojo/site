@@ -11,6 +11,7 @@
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
+    "now-build": "npm run build && mv output/dist dist",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "test:build": "tsc && dojo build -m unit -l",
     "test:build:static": "cpx \"{src,tests,content}/**/*.{html,png,jpg,gif,json,xml,css,txt,d.ts,svg,ico}\" _build",
