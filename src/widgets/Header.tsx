@@ -38,6 +38,12 @@ export default class Menu extends WidgetBase {
 		this.invalidate();
 	}
 
+	protected onKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			this.close();
+		}
+	}
+
 	protected renderToggleButton(shouldRender: boolean) {
 		if (shouldRender) {
 			return (
@@ -55,7 +61,7 @@ export default class Menu extends WidgetBase {
 		isSmall && rootClasses.push(css.responsive);
 		expanded && rootClasses.push(css.expanded);
 		return (
-			<header key="root" classes={rootClasses}>
+			<header key="root" classes={rootClasses} onkeydown={this.onKeyDown}>
 				<div classes={[css.left]}>
 					<span classes={css.toggleButtonContainer}>{this.renderToggleButton(isSmall)}</span>
 					<Link onClick={this.close} to="home" activeClasses={[css.selected]}>

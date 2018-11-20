@@ -12,10 +12,9 @@ describe('Menu', () => {
 	it('renders', () => {
 		const h = harness(() => <Header />);
 		h.expect(() => (
-			<header key="root" classes={[css.root]}>
+			<header key="root" onkeydown={() => {}} classes={[css.root]}>
 				<div classes={[css.left]}>
-					<span classes={css.toggleButtonContainer}>
-					</span>
+					<span classes={css.toggleButtonContainer} />
 					<Link onClick={() => {}} to="home" activeClasses={[css.selected]}>
 						<img classes={[css.logo]} alt="logo" src={logo} />
 					</Link>
@@ -28,7 +27,12 @@ describe('Menu', () => {
 							</Link>
 						</li>
 						<li classes={[css.menuItem]}>
-							<Link onClick={() => {}} to="documentation" classes={[css.link]} activeClasses={[css.selected]}>
+							<Link
+								onClick={() => {}}
+								to="documentation"
+								classes={[css.link]}
+								activeClasses={[css.selected]}
+							>
 								Documentation
 							</Link>
 						</li>
@@ -38,7 +42,12 @@ describe('Menu', () => {
 							</Link>
 						</li>
 						<li classes={[css.menuItem]}>
-							<Link onClick={() => {}} to="playground" classes={[css.link]} activeClasses={[css.selected]}>
+							<Link
+								onClick={() => {}}
+								to="playground"
+								classes={[css.link]}
+								activeClasses={[css.selected]}
+							>
 								Playground
 							</Link>
 						</li>
