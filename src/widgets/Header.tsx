@@ -41,10 +41,10 @@ export default class Menu extends WidgetBase {
 	protected renderToggleButton(shouldRender: boolean) {
 		if (shouldRender) {
 			return (
-				<a onclick={this.toggle} classes={css.toggleButton} role="button" aria-expanded={`${this.expanded}`}>
+				<button onclick={this.toggle} classes={css.toggleButton} aria-expanded={`${this.expanded}`}>
 					<span classes={css.srOnly}>Menu</span>
 					<div classes={css.toggleBar} />
-				</a>
+				</button>
 			);
 		}
 	}
@@ -56,8 +56,8 @@ export default class Menu extends WidgetBase {
 		expanded && rootClasses.push(css.expanded);
 		return (
 			<header key="root" classes={rootClasses}>
-				<div classes={css.left}>
-					<span classes={[css.toggleButtonContainer]}>{this.renderToggleButton(isSmall)}</span>
+				<div classes={[css.left]}>
+					<span classes={css.toggleButtonContainer}>{this.renderToggleButton(isSmall)}</span>
 					<Link onClick={this.close} to="home" activeClasses={[css.selected]}>
 						<img classes={[css.logo]} alt="logo" src={logo} />
 					</Link>
@@ -78,7 +78,7 @@ export default class Menu extends WidgetBase {
 						))}
 					</ul>
 				</nav>
-				<div href="" onclick={this.close} classes={[css.backdrop]} tabindex="-1" aria-hidden="true" hidden />
+				<div onclick={this.close} classes={[css.backdrop]} tabindex="-1" aria-hidden="true" hidden />
 			</header>
 		);
 	}

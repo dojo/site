@@ -4,12 +4,12 @@ import Link from '@dojo/framework/routing/ActiveLink';
 
 const logo = require('../assets/logo.svg');
 
-import Menu from './Menu';
-import * as css from './Menu.m.css';
+import Header from './Header';
+import * as css from './Header.m.css';
 
-describe('Menu', () => {
+describe('Header', () => {
 	it('renders', () => {
-		const h = harness(() => <Menu />);
+		const h = harness(() => <Header />);
 		h.expect(() => (
 			<div classes={css.root}>
 				<div classes={css.menu}>

@@ -113,16 +113,16 @@
 }
 
 .toggleButton {
-	display: inline-block;
+	text-align: left;
+	background: none;
+	font: inherit;
 	position: relative;
-	user-select: none;
 	cursor: pointer;
 	height: var(--toggle-button-height);
 	width: var(--toggle-button-width);
 	z-index: 2;
 	top: calc(50 - var(--toggle-button-height));
 	border: none;
-	background: none;
 	display: inline-block;
 	padding: 0;
 	margin: 0;
