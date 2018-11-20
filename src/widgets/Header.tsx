@@ -43,7 +43,7 @@ export default class Menu extends WidgetBase {
 			return (
 				<a onclick={this.toggle} classes={css.toggleButton} role="button" aria-expanded={`${this.expanded}`}>
 					<span classes={css.srOnly}>Menu</span>
-					<div classes={css.toggleBar}></div>
+					<div classes={css.toggleBar} />
 				</a>
 			);
 		}
@@ -65,15 +65,20 @@ export default class Menu extends WidgetBase {
 				<nav role="navigation" classes={[css.menu]} aria-expanded={!isSmall || expanded} aria-label="Main Menu">
 					<ul>
 						{pages.map((page) => (
-						<li classes={[css.menuItem]}>
-							<Link onClick={this.close} to={page.toLowerCase()} classes={[css.link]} activeClasses={[css.selected]}>
-								{page}
-							</Link>
-						</li>
+							<li classes={[css.menuItem]}>
+								<Link
+									onClick={this.close}
+									to={page.toLowerCase()}
+									classes={[css.link]}
+									activeClasses={[css.selected]}
+								>
+									{page}
+								</Link>
+							</li>
 						))}
 					</ul>
 				</nav>
-				<div href="" onclick={this.close} classes={[css.backdrop]} tabindex="-1" aria-hidden="true" hidden></div>
+				<div href="" onclick={this.close} classes={[css.backdrop]} tabindex="-1" aria-hidden="true" hidden />
 			</header>
 		);
 	}
