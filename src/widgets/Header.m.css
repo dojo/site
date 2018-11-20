@@ -1,0 +1,202 @@
+:root {
+	--toggle-button-height: 20px;
+	--toggle-button-width: 26px;
+}
+
+.root {
+	position: fixed;
+	width: 100%;
+	background: #212329;
+	display: flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: center;
+}
+
+.root * {
+	box-sizing: border-box;
+}
+
+/* .menu { */
+/* 	height: 80px; */
+/* 	padding: 0 40px; */
+/* 	color: rgba(117,117,117 ,1); */
+/* 	box-shadow: 5px 10px 20px -20px rgba(85,172,238 ,1); */
+/* } */
+
+.menu {
+}
+
+.menu ul {
+	list-style: none;
+	display: flex;
+	padding: 0;
+	height: auto;
+	width: auto;
+	background: none;
+}
+
+.menuItem {
+	text-align: right;
+	margin: 10px;
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	flex: 1 0 auto;
+}
+
+.expanded .left {
+	z-index: 999;
+}
+
+.link:hover {
+}
+
+.link {
+	font-size: 0.9rem;
+	min-width: 140px;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	box-sizing: border-box;
+	color: #999;
+	text-transform: uppercase;
+	transition: 0.1s ease-in-out;
+	transition-property: color, background-color;
+}
+
+.selected {
+}
+
+.logo {
+	height: 48px;
+	width: 110px;
+}
+
+.backdrop {}
+
+.expanded .backdrop {
+	position: fixed;
+	display: block;
+	content: "";
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 998;
+	background: rgba(0,0,0,0.85);
+	cursor: default;
+}
+
+.responsive {
+}
+
+.responsive .menu {
+	position: fixed;
+	left: -200px;
+	top: 52px;
+	height: 100%;
+	overflow-x: visible;
+	overflow-y: scroll;
+	transition: left 0.3s ease,
+				box-shadow 0.3s ease;
+	z-index: 999;
+}
+
+.responsive .menu ul {
+	margin: 0;
+	padding: 2.5em 0 0;
+	box-shadow: -8px 0 8px rgba(0,0,0,0.5);
+	min-height: 100%;
+	width: 200px;
+	background: #212328;
+	display: block;
+}
+
+.toggleButtonContainer {
+	margin: auto 10px;
+}
+
+.toggleButton {
+	display: inline-block;
+	position: relative;
+	user-select: none;
+	cursor: pointer;
+	height: var(--toggle-button-height);
+	width: var(--toggle-button-width);
+	z-index: 2;
+	top: calc(50 - var(--toggle-button-height));
+	border: none;
+	background: none;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+.toggleBar {
+	margin-top: 0;
+}
+
+.toggleBar::after {
+	margin-top: calc(var(--toggle-button-height)  / 2.5);
+}
+
+.toggleBar::before {
+	margin-top: calc(calc(var(--toggle-button-height) / 2.5) * -1);
+}
+
+.toggleBar,
+.toggleBar::after,
+.toggleBar::before {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: all 0.5s ease;
+	background: #D3D3D3;
+	border-radius: 3px;
+	content: '';
+	height: calc(var(--toggle-button-height) / 5);
+	width: 100%;
+}
+
+.expanded {}
+
+.expanded .toggleBar {
+	background: transparent;
+}
+
+.expanded .toggleBar::after,
+.expanded .toggleBar::before {
+	background: #D3D3D3;
+	margin-top: 0;
+}
+
+.expanded .toggleBar::before {
+	transform: rotate(-45deg);
+}
+
+.expanded .toggleBar::after {
+	transform: rotate(45deg);
+}
+
+.expanded .menu {
+	left: 0;
+	outline: none;
+	box-shadow: 3px 0 12px rgba(0,0,0,0.25);
+	z-index: 1000;
+}
+
+.expanded ul {
+	position: relative;
+	z-index: 1000;
+}
+
+.srOnly {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
