@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "dojo build --mode dev --watch --serve",
+    "build:content": "node pipeline",
+    "build:site": "dojo build -l",
+    "build": "run-s build:content build:site",
     "intern": "intern",
     "intern:ci": "intern config=@ci",
     "lint:tslint": "tslint -p .",
