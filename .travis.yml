@@ -2,6 +2,9 @@ sudo: false
 language: node_js
 node_js:
 - '6'
+cache:
+  directories:
+    - "node_modules"
 addons:
   chrome: stable
 env:
@@ -12,8 +15,6 @@ env:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
   - FORCE_COLOR: 1
-install:
-- travis_retry npm install
 script:
 - npm run lint && npm run test:ci && npm run uploadCoverage
 notifications:
