@@ -1,3 +1,44 @@
 .root {
 	padding: 60px;
+	width: 100%;
+}
+
+.cards {
+	width: 90%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	padding: 20px;
+	box-sizing: border-box;
+	background-color: #fff;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+	margin-bottom: 30px;
+	margin-left: 2%;
+	width: 400px;
+}
+
+.header {
+}
+
+.header a,
+.header a:link,
+.header a:visited {
+	display: flex;
+	text-decoration: none;
+}
+
+.header h3 {
+	color: #333;
+	height: 100%;
+	margin: 0;
+	align-self: center;
+}
+
+.header img {
+	width: 100%;
+	max-width: 40px;
+	height: 100%;
+	margin-right: 15px;
 }
