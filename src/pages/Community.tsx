@@ -145,10 +145,13 @@ export class Card extends WidgetBase<CardProperties> {
 	protected renderHeader() {
 		const { title, url, image, imageAlt = '' } = this.properties;
 		const titleTag = <h3>{title}</h3>;
-		const imgTag = image && <img src={image} alt={imageAlt}/>;
+		const imgTag = image && <img src={image} alt={imageAlt} />;
 		return (
 			<div classes={[css.header]}>
-				<a href={url}>{imgTag}{titleTag}</a>
+				<a href={url}>
+					{imgTag}
+					{titleTag}
+				</a>
 			</div>
 		);
 	}
@@ -178,20 +181,17 @@ export default class Community extends WidgetBase<CommunityProperties> {
 
 				<div classes={[css.cards]}>
 					{linkList.map(({ title, url, image, imageAlt, description }) => (
-					<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description}/>
+						<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description} />
 					))}
 				</div>
 
 				<h2>Projects</h2>
 
-				<p>
-					Dojo is a project consisting of several projects!
-					We are always looking for new contributors.
-				</p>
+				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
 				<div classes={[css.cards]}>
 					{projectList.map(({ title, url, image, imageAlt, description }) => (
-					<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description}/>
+						<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description} />
 					))}
 				</div>
 			</div>
