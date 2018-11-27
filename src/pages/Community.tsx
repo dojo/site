@@ -10,7 +10,7 @@ const twitter = require('../assets/logo-twitter.svg');
 const discourse = require('../assets/logo-discourse.svg');
 const dojo = require('../assets/dojo-logo-black.svg');
 
-interface CardProperties {
+export interface CardProperties {
 	title: string;
 	url: string;
 	image?: string;
@@ -141,18 +141,14 @@ const projects: CardProperties[] = [
 	}
 ];
 
-class Card extends WidgetBase<CardProperties> {
+export class Card extends WidgetBase<CardProperties> {
 	protected renderHeader() {
 		const { title, url, image, imageAlt = '' } = this.properties;
 		const titleTag = <h3>{title}</h3>;
 		const imgTag = image && <img src={image} alt={imageAlt}/>;
 		return (
 			<div classes={[css.header]}>
-				{
-					url
-					? <a href={url}>{imgTag}{titleTag}</a>
-					: <span>{imgTag}{titleTag}</span>
-				}
+				<a href={url}>{imgTag}{titleTag}</a>
 			</div>
 		);
 	}
@@ -168,22 +164,33 @@ class Card extends WidgetBase<CardProperties> {
 	}
 }
 
-export default class Community extends WidgetBase {
+export interface CommunityProperties {
+	links?: CardProperties[];
+	projects?: CardProperties[];
+}
+
+export default class Community extends WidgetBase<CommunityProperties> {
 	protected render() {
+		const { links: linkList = links, projects: projectList = projects } = this.properties;
 		return (
 			<div classes={[css.root]}>
 				<h2>Community Links</h2>
 
 				<div classes={[css.cards]}>
-					{links.map(({ title, url, image, imageAlt, description }) => (
+					{linkList.map(({ title, url, image, imageAlt, description }) => (
 					<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description}/>
 					))}
 				</div>
 
 				<h2>Projects</h2>
 
+				<p>
+					Dojo is a project consisting of several projects!
+					We are always looking for new contributors.
+				</p>
+
 				<div classes={[css.cards]}>
-					{projects.map(({ title, url, image, imageAlt, description }) => (
+					{projectList.map(({ title, url, image, imageAlt, description }) => (
 					<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description}/>
 					))}
 				</div>
