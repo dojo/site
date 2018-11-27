@@ -69,7 +69,7 @@ export default class Menu extends WidgetBase {
 			<header key="root" classes={rootClasses} onkeydown={this.onKeyDown}>
 				<div classes={[css.left]}>
 					<span classes={css.toggleButtonContainer}>{this.renderToggleButton(isSmall)}</span>
-					<Link onClick={this.close} to="home" activeClasses={[css.selected]}>
+					<Link key="homeLink" onClick={this.close} to="home" activeClasses={[css.selected]}>
 						<img classes={[css.logo]} alt="logo" src={logo} />
 					</Link>
 				</div>
@@ -78,6 +78,7 @@ export default class Menu extends WidgetBase {
 						{pages.map((page) => (
 							<li classes={[css.menuItem]}>
 								<Link
+									key={`${page.toLowerCase()}Link`}
 									onClick={this.close}
 									to={page.toLowerCase()}
 									classes={[css.link]}
