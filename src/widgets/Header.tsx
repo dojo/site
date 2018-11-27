@@ -47,7 +47,12 @@ export default class Menu extends WidgetBase {
 	protected renderToggleButton(shouldRender: boolean) {
 		if (shouldRender) {
 			return (
-				<button onclick={this.toggle} classes={css.toggleButton} aria-expanded={`${this.expanded}`}>
+				<button
+					key="toggleButton"
+					onclick={this.toggle}
+					classes={css.toggleButton}
+					aria-expanded={this.expanded}
+				>
 					<span classes={css.srOnly}>Menu</span>
 					<div classes={css.toggleBar} />
 				</button>
