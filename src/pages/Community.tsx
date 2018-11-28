@@ -179,21 +179,13 @@ export default class Community extends WidgetBase<CommunityProperties> {
 			<div classes={[css.root]}>
 				<h2>Community Links</h2>
 
-				<div classes={[css.cards]}>
-					{linkList.map(({ title, url, image, imageAlt, description }) => (
-						<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description} />
-					))}
-				</div>
+				<div classes={[css.cards]}>{linkList.map((link) => <Card {...link} />)}</div>
 
 				<h2>Projects</h2>
 
 				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
-				<div classes={[css.cards]}>
-					{projectList.map(({ title, url, image, imageAlt, description }) => (
-						<Card title={title} url={url} image={image} imageAlt={imageAlt} description={description} />
-					))}
-				</div>
+				<div classes={[css.cards]}>{projectList.map((project) => <Card {...project} />)}</div>
 			</div>
 		);
 	}

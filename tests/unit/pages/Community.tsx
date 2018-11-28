@@ -51,7 +51,7 @@ describe('Community Page', () => {
 
 					<div classes={[css.cards]}>
 						<Card title="test" url="test" image="test" imageAlt="test" description="test" />
-						<Card title="test2" url="test2" image="test2" imageAlt={undefined} description="test2" />
+						<Card title="test2" url="test2" image="test2" description="test2" />
 					</div>
 
 					<h2>Projects</h2>
@@ -59,7 +59,7 @@ describe('Community Page', () => {
 					<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
 					<div classes={[css.cards]}>
-						<Card title="test" url="test" image={undefined} imageAlt={undefined} description="test" />
+						<Card title="test" url="test" description="test" />
 					</div>
 				</div>
 			));
