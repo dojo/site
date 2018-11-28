@@ -24,7 +24,7 @@ export default class Menu extends WidgetBase {
 		return isSmall;
 	}
 
-	protected smallPredicate(contentRect: ContentRect) {
+	protected smallPredicate(contentRect: ContentRect): boolean {
 		return contentRect.width < 768;
 	}
 

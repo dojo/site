@@ -1,12 +1,26 @@
-const { describe, it } = intern.getInterface('bdd');
+const { beforeEach, describe, it } = intern.getInterface('bdd');
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/ActiveLink';
+
+import { Constructor, WidgetMetaBase, WidgetMetaConstructor } from '@dojo/framework/widget-core/interfaces';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { stub, SinonStub } from 'sinon';
+import Resize from '@dojo/framework/widget-core/meta/Resize';
+import { w } from '@dojo/framework/widget-core/d';
 
 const logo = require('../../../src/assets/logo.svg');
 
 import Header from '../../../src/widgets/Header';
 import * as css from '../../../src/widgets/Header.m.css';
+
+function MockMetaMixin<T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: SinonStub): T {
+	return class extends Base {
+		protected meta<T extends WidgetMetaBase>(MetaType: WidgetMetaConstructor<T>): T {
+			return mockStub(MetaType);
+		}
+	};
+}
 
 describe('Menu', () => {
 	function getRender(responsive: boolean = false, expanded: boolean = false) {
@@ -107,6 +121,31 @@ describe('Menu', () => {
 	it('renders', () => {
 		const h = harness(() => <Header />);
 		h.expect(() => getRender());
+	});
+
+	describe('resizing predicate', () => {
+		let resizeValue: number;
+		let mockMeta: SinonStub;
+		beforeEach(() => {
+			mockMeta = stub();
+			mockMeta.withArgs(Resize).returns({
+				get: () => ({
+					isSmall: (Header.prototype as any).smallPredicate({ width: resizeValue })
+				})
+			});
+		});
+
+		it('should not apply the "responsive" class when larger than 768', () => {
+			resizeValue = 900;
+			const h = harness(() => w(MockMetaMixin(Header, mockMeta), {}));
+			h.expect(() => getRender(false));
+		});
+
+		it('should apply the "responsive" class when smaller than 768', () => {
+			resizeValue = 500;
+			const h = harness(() => w(MockMetaMixin(Header, mockMeta), {}));
+			h.expect(() => getRender(true));
+		});
 	});
 
 	describe('responsive mode', () => {
