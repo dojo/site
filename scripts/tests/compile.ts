@@ -25,12 +25,32 @@ const manifestJson = {
 			name: 'Another Tutorial',
 			path: './tutorials/another-tutorial.md'
 		}
+	],
+	blog : [
+		{
+			"name": "Announcing Version 4 of Dojo",
+			"path": "./blog/2018/10/15/2018-10-15-Version-4-Dojo.md"
+		}
 	]
 };
 
 const listOutput = `export default [{"name":"Another Tutorial","path":"another-tutorial"}];`;
 
-const markupContent = `# Another Tutorial
+const markupContent = `---
+title: A example blog post
+date: 2018-10-15 12:00:00
+author: someone
+---
+## A test blog post
+
+Some content
+
+<!-- more -->
+
+## Another heading
+`;
+
+const blogMarkupContent = `# Another Tutorial
 
 ## Aside
 [Aside title="Another tutorial"]
@@ -41,7 +61,7 @@ I am another tutorial
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
 
-const fromMarkupOutput =
+const getHyperscriptOutput =
 	'{"tag":"div","originalProperties":{},"children":[{"tag":"h1","originalProperties":{},"children":["Another Tutorial"],"properties":{"key":"compiled-2"},"type":"__VNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["Aside"],"properties":{"key":"compiled-3"},"type":"__VNODE_TYPE"},"\\n",{"children":[{"tag":"p","originalProperties":{},"children":["I am another tutorial"],"properties":{"key":"compiled-4"},"type":"__VNODE_TYPE"}],"widgetConstructor":"docs-aside","properties":{"title":"Another tutorial","key":"compiled-5"},"type":"__WNODE_TYPE"},"\\n",{"tag":"h2","originalProperties":{},"children":["CodeSandbox Embed"],"properties":{"key":"compiled-6"},"type":"__VNODE_TYPE"},"\\n",{"children":[],"widgetConstructor":"docs-codesandbox","properties":{"url":"https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc","key":"compiled-7"},"type":"__WNODE_TYPE"}],"properties":{"key":"compiled-8"},"type":"__VNODE_TYPE"}';
 
 describe('content compiler', () => {
@@ -63,14 +83,18 @@ describe('content compiler', () => {
 	it('should compile manifest files', () => {
 		mockery.registerMock('../content/manifest.json', manifestJson);
 
+		const atomXmlOutputPath = '/src/generated/assets/atom.xml';
 		const tutorialSourcePath = '/content/tutorials/another-tutorial.md';
 		const tutorialOutputPath = '/src/generated/tutorials/another-tutorial.ts';
 		const tutorialListOutputPath = '/src/generated/list.ts';
+		
 
 		const resolveStub = sandbox.stub();
-		resolveStub.onFirstCall().returns(tutorialSourcePath);
-		resolveStub.onSecondCall().returns(tutorialOutputPath);
-		resolveStub.onThirdCall().returns(tutorialListOutputPath);
+		resolveStub.onCall(0).returns(atomXmlOutputPath);
+		resolveStub.onCall(1).returns(tutorialSourcePath);
+		resolveStub.onCall(2).returns(tutorialOutputPath);
+		resolveStub.onCall(3).returns(tutorialListOutputPath);
+		
 
 		const parseStub = sandbox.stub();
 		parseStub.onFirstCall().returns({
@@ -102,20 +126,21 @@ describe('content compiler', () => {
 		const registerHandlersStub = sandbox.stub(compiler, 'registerHandlers');
 		registerHandlersStub.returns(handlersOutput);
 
-		const fromMarkdownStub = sandbox.stub(compiler, 'fromMarkdown');
-		fromMarkdownStub.returns(fromMarkupOutput);
+		const getHyperscriptStub = sandbox.stub(compiler, 'getHyperscript');
+		getHyperscriptStub.returns(getHyperscriptOutput);
 
 		compiler.process();
 
-		assert.equal(resolveStub.callCount, 3);
+		assert.equal(resolveStub.callCount, 6);
 
-		assert.equal(readFileSyncStub.callCount, 1);
-		assert.deepEqual(readFileSyncStub.firstCall.args, [tutorialSourcePath, 'utf-8']);
+		assert.equal(readFileSyncStub.callCount, 2);
+		assert.deepEqual(readFileSyncStub.firstCall.args, [atomXmlOutputPath, 'utf-8']);
+		assert.deepEqual(readFileSyncStub.secondCall.args, [tutorialListOutputPath, 'utf-8']);
 
-		assert.equal(outputFileSyncStub.callCount, 2);
+		assert.equal(outputFileSyncStub.callCount, 4);
 		assert.deepEqual(outputFileSyncStub.firstCall.args, [
 			tutorialOutputPath,
-			`export default ${JSON.stringify(fromMarkupOutput)};`
+			`export default ${JSON.stringify(getHyperscriptOutput)};`
 		]);
 		assert.deepEqual(outputFileSyncStub.secondCall.args, [tutorialListOutputPath, listOutput]);
 
@@ -125,9 +150,9 @@ describe('content compiler', () => {
 
 		assert.equal(registerHandlersStub.callCount, 1);
 
-		assert.equal(fromMarkdownStub.callCount, 1);
-		assert.deepEqual(fromMarkdownStub.firstCall.args[0], markupContent);
-		assert.deepEqual(fromMarkdownStub.firstCall.args[1], handlersOutput);
+		assert.equal(getHyperscriptStub.callCount, 1);
+		assert.deepEqual(getHyperscriptStub.firstCall.args[0], markupContent);
+		assert.deepEqual(getHyperscriptStub.firstCall.args[1], handlersOutput);
 	});
 
 	it('should register handers', () => {
@@ -215,8 +240,16 @@ describe('content compiler', () => {
 		const compiler = require(COMPILE_SCRIPT_PATH);
 
 		const registeredHandlers = compiler.registerHandlers(compiler.handlers);
-		const nodes = compiler.fromMarkdown(markupContent, registeredHandlers);
+		const nodes = compiler.getHyperscript(markupContent, registeredHandlers);
 
-		assert.equal(JSON.stringify(nodes), fromMarkupOutput);
+		assert.equal(JSON.stringify(nodes), getHyperscriptOutput);
 	});
+
+	it('should generate HTML from markdown', () => {
+		const compiler = require(COMPILE_SCRIPT_PATH);
+		const html = compiler.getHtml(blogMarkupContent);
+
+		assert.equal(html, '<h1>Another Tutorial</h1>\n<h2>Aside</h2>\n<p>[Aside title="Another tutorial"]\nI am another tutorial\n[/Aside]</p>\n<h2>CodeSandbox Embed</h2>\n<p>[CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]</p>\n');
+	});
+
 });

@@ -8,5 +8,11 @@
 			"name": "Another Tutorial",
 			"path": "./tutorials/another-tutorial.md"
 		}
+	],
+	"blog" : [
+		{
+			"name": "Announcing Version 4 of Dojo",
+			"path": "./blog/2018/10/15/2018-10-15-Version-4-Dojo.md"
+		}
 	]
 }
