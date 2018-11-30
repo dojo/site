@@ -12,18 +12,6 @@ const pages = ['Blog', 'Documentation', 'Examples', 'Playground', 'Community'];
 export default class Menu extends WidgetBase {
 	protected expanded = false;
 
-	protected get isSmall(): boolean {
-		const { isSmall } = this.meta(Resize).get('root', {
-			isSmall: this.smallPredicate
-		});
-
-		if (!isSmall) {
-			this.expanded = false;
-		}
-
-		return isSmall;
-	}
-
 	protected smallPredicate(contentRect: ContentRect): boolean {
 		return contentRect.width < 768;
 	}
@@ -44,24 +32,16 @@ export default class Menu extends WidgetBase {
 		}
 	}
 
-	protected renderToggleButton(shouldRender: boolean) {
-		if (shouldRender) {
-			return (
-				<button
-					key="toggleButton"
-					onclick={this.toggle}
-					classes={css.toggleButton}
-					aria-expanded={this.expanded}
-				>
-					<span classes={css.srOnly}>Menu</span>
-					<div classes={css.toggleBar} />
-				</button>
-			);
-		}
-	}
-
 	protected render() {
-		const { isSmall, expanded } = this;
+		let { expanded } = this;
+		const { isSmall } = this.meta(Resize).get('root', {
+			isSmall: this.smallPredicate
+		});
+
+		if (!isSmall) {
+			expanded = this.expanded = false;
+		}
+
 		const rootClasses = [css.root];
 		isSmall && rootClasses.push(css.responsive);
 		expanded && rootClasses.push(css.expanded);
