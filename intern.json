@@ -2,7 +2,10 @@
 	"basePath": "./",
 	"environments": [
 		{ "browserName": "node" },
-		{ "browserName": "chrome" }
+		{ "browserName": "chrome", "goog:chromeOptions": {
+			"args": ["headless", "disable-gpu", "window-size=1280,1024"]
+		  } 
+		}
 	],
 	"maxConcurrency": 2,
 	"tunnel": "selenium",
