@@ -48,13 +48,27 @@ export default class Menu extends WidgetBase {
 		return (
 			<header key="root" classes={rootClasses} onkeydown={this.onKeyDown}>
 				<div classes={[css.left]}>
-					<span classes={css.toggleButtonContainer}>{this.renderToggleButton(isSmall)}</span>
-					<Link key="homeLink" onClick={this.close} to="home" activeClasses={[css.selected]}>
-						<img classes={[css.logo]} alt="logo" src={logo} />
-					</Link>
+					<span classes={css.toggleButtonContainer}>
+						{isSmall ? (
+							<button
+								key="toggleButton"
+								onclick={this.toggle}
+								classes={css.toggleButton}
+								aria-expanded={this.expanded}
+							>
+								<span classes={css.srOnly}>Menu</span>
+								<div classes={css.toggleBar} />
+							</button>
+						) : null}
+					</span>
+					<span classes={[css.logoContainer]}>
+						<Link key="homeLink" onClick={this.close} to="home" classes={[css.homeLink]} activeClasses={[css.selected]}>
+							<img classes={[css.logo]} alt="logo" src={logo} />
+						</Link>
+					</span>
 				</div>
 				<nav role="navigation" classes={[css.menu]} aria-expanded={!isSmall || expanded} aria-label="Main Menu">
-					<ul>
+					<ul classes={[css.menuList]}>
 						{pages.map((page) => (
 							<li classes={[css.menuItem]}>
 								<Link
