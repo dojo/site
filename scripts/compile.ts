@@ -51,10 +51,10 @@ let key = 0;
 const feed = new Feed({
 	title: "Dojo",
 	description: "This is my personal feed!",
-	id: "http://dojo.io/",
-	// link: "http://dojo.io/",
+	id: "http://dojo.io/blog",
+	link: "http://dojo.io/blog",
 	// image: "http://example.com/image.png",
-	// favicon: "http://example.com/favicon.ico",
+	favicon: "https://dojo.io/favicon.ico",
 	copyright: "All rights reserved 2018, SitePen",
 	// generator: "awesome", // optional, default = 'Feed for Node.js'
 	feedLinks: {
@@ -104,7 +104,6 @@ export const getHtml = (content: string) => {
 		.use(frontmatter, ['yaml'])
 		.use(html)
 		.processSync(content);
-	console.log(parsedHtml);
 	return String(parsedHtml);
 }
 
