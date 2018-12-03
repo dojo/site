@@ -39,6 +39,8 @@ const listOutput = `export default [{"name":"Another Tutorial","path":"another-t
 const blogMarkupContent = `---
 title: A example blog post
 date: 2018-10-15 12:00:00
+description: A description of the post
+imageUrl: some/image/path.jpg
 author: someone
 ---
 ## A test blog post
@@ -60,8 +62,6 @@ I am another tutorial
 ## CodeSandbox Embed
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
-
-const startAtomXmlOuput = '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<feed xmlns=\"http://www.w3.org/2005/Atom\">\n'; //    <id>http://dojo.io/blog</id>\n    <title>Dojo</title>\n    <updated>2018-12-03T13:23:30.607Z</updated>\n    <generator>https://github.com/jpmonette/feed</generator>\n    <author>\n        <name>SitePen</name>\n    </author>\n    <link rel=\"alternate\" href=\"http://dojo.io/blog\"/>\n    <link rel=\"self\" href=\"https://dojo.io/atom\"/>\n    <subtitle>This is my personal feed!</subtitle>\n    <icon>https://dojo.io/favicon.ico</icon>\n    <rights>All rights reserved 2018, SitePen</rights>\n    <entry>\n        <title type=\"html\"><![CDATA[A example blog post]]></title>\n        <id>https://dojo.io/./blog/2018/10/15/2018-10-15-Version-4-Dojo.md</id>\n        <link href=\"https://dojo.io/./blog/2018/10/15/2018-10-15-Version-4-Dojo.md\">\n        </link>\n        <updated>2018-10-15T12:00:00.000Z</updated>\n        <content type=\"html\"><![CDATA[<h2>A test blog post</h2>\n<p>Some content</p>\n<!-- more -->\n<h2>Another heading</h2>\n]]></content>\n    </entry>\n</feed>';
 
 const getBlogHyperscriptOutput = '';
 const getTutorialHyperscriptOutput =
@@ -134,7 +134,12 @@ describe('content compiler', () => {
 		const getHyperscriptStub = sandbox.stub(compiler, 'getHyperscript');
 		getHyperscriptStub.onCall(0).returns(getBlogHyperscriptOutput);
 		getHyperscriptStub.onCall(1).returns(getTutorialHyperscriptOutput);
-		
+
+		const now = new Date();
+		const isoTime = now.toISOString();
+		const nowTime = now.getTime();
+		const clock = sinon.useFakeTimers(nowTime);
+
 		compiler.process();
 
 		assert.equal(resolveStub.callCount, 6);
@@ -150,8 +155,9 @@ describe('content compiler', () => {
 			`export default ${JSON.stringify(getBlogHyperscriptOutput)};`
 		]);
 
+		const startAtomXmlOuput = `<?xml version="1.0" encoding="utf-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n    <id>http://dojo.io/blog</id>\n    <title>Dojo</title>\n    <updated>${isoTime}</updated>\n    <generator>https://github.com/jpmonette/feed</generator>\n    <author>\n        <name>SitePen</name>\n    </author>\n    <link rel="alternate" href="http://dojo.io/blog"/>\n    <link rel="self" href="https://dojo.io/atom"/>\n    <subtitle>The official blog of the Dojo framework</subtitle>\n    <icon>https://dojo.io/favicon.ico</icon>\n    <rights>All rights reserved 2018, SitePen</rights>\n    <entry>\n        <title type="html"><![CDATA[A example blog post]]></title>\n        <id>https://dojo.io/./blog/2018/10/15/2018-10-15-Version-4-Dojo.md</id>\n        <link href="https://dojo.io/./blog/2018/10/15/2018-10-15-Version-4-Dojo.md">\n        </link>\n        <updated>2018-10-15T12:00:00.000Z</updated>\n        <summary type="html"><![CDATA[A description of the post]]></summary>\n        <content type="html"><![CDATA[<h2>A test blog post</h2>\n<p>Some content</p>\n<!-- more -->\n<h2>Another heading</h2>\n]]></content>\n    </entry>\n</feed>`
 		assert.equal(outputFileSyncStub.getCall(1).args[0], atomXmlOutputPath);
-		assert.isTrue(outputFileSyncStub.getCall(1).args[1].startsWith(startAtomXmlOuput));
+		assert.equal(outputFileSyncStub.getCall(1).args[1], startAtomXmlOuput);
 
 		assert.deepEqual(outputFileSyncStub.getCall(2).args, [
 			tutorialOutputPath,
@@ -176,6 +182,8 @@ describe('content compiler', () => {
 		assert.deepEqual(getHyperscriptStub.getCall(0).args[1], handlersOutput);
 		assert.deepEqual(getHyperscriptStub.getCall(1).args[0], markupContent);
 		assert.deepEqual(getHyperscriptStub.getCall(1).args[1], handlersOutput);
+
+		clock.restore();
 	});
 
 	it('should register handers', () => {
@@ -270,16 +278,25 @@ describe('content compiler', () => {
 
 	it('should generate HTML from markdown', () => {
 		const compiler = require(COMPILE_SCRIPT_PATH);
-		const html = compiler.getHtml(blogMarkupContent);
+		const blogHtml = compiler.getHtml(blogMarkupContent);
 
-		assert.equal(html, '<h2>A test blog post</h2>\n<p>Some content</p>\n<!-- more -->\n<h2>Another heading</h2>\n');
+		assert.equal(blogHtml, '<h2>A test blog post</h2>\n<p>Some content</p>\n<!-- more -->\n<h2>Another heading</h2>\n');
+
+		const tutorialHtml = compiler.getHtml(markupContent);
+		assert.equal(tutorialHtml, '<h1>Another Tutorial</h1>\n<h2>Aside</h2>\n<p>[Aside title="Another tutorial"]\nI am another tutorial\n[/Aside]</p>\n<h2>CodeSandbox Embed</h2>\n<p>[CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]</p>\n');
 	});
 
-	// it('should generate HTML from markdown', () => {
-	// 	const compiler = require(COMPILE_SCRIPT_PATH);
-	// 	const html = compiler.getHtml(blogMarkupContent);
+	it('should generate object from frontmatter YAML', () => {
 
-	// 	assert.equal(html, '<h1>Another Tutorial</h1>\n<h2>Aside</h2>\n<p>[Aside title="Another tutorial"]\nI am another tutorial\n[/Aside]</p>\n<h2>CodeSandbox Embed</h2>\n<p>[CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]</p>\n');
-	// });
+		const compiler = require(COMPILE_SCRIPT_PATH);
+		const frontmatter = compiler.getFrontmatterYaml(blogMarkupContent);
+
+		assert.equal(frontmatter.title, "A example blog post");
+		assert.equal(frontmatter.author, "someone");
+		assert.equal(frontmatter.description, "A description of the post");
+		assert.equal(frontmatter.imageUrl, "some/image/path.jpg");
+		assert.equal(frontmatter.date, new Date("2018-10-15T12:00:00.000Z").toString());
+		
+	});
 
 });

@@ -1,8 +1,9 @@
 ---
 title: Announcing Version 4 of Dojo
 date: 2018-10-15 12:00:00
+description: Announcing the latest version of Dojo 4, with better CLI tooling, evergreen builds by default and widget refinements.
+imageUrl: some/image/path.jpg
 author: Paul Shannon
-featuredImage: featured.jpg
 ---
 ## Being a Better Dojo
 

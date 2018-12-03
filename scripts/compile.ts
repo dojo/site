@@ -50,7 +50,7 @@ let key = 0;
 
 const feed = new Feed({
 	title: "Dojo",
-	description: "This is my personal feed!",
+	description: "The official blog of the Dojo framework",
 	id: "http://dojo.io/blog",
 	link: "http://dojo.io/blog",
 	// image: "http://example.com/image.png",
@@ -130,13 +130,14 @@ export const getHyperscript = (content: string, registeredHandlers: { [type: str
 
 export function process() {
 	const registeredHandlers = registerHandlers(handlers);
+	feed.options.updated = new Date(); // This makes mocking much easier
 
 	manifest.blog.map(({ path }: { path: string }) => {
 		const outputPath = path.replace(/\.md$/, '.ts');
 		const fullPath = resolve(__dirname, '../', 'content', path);
 
 		const content = readFileSync(fullPath, 'utf-8');
-		const { title, date, author } = getFrontmatterYaml(content);
+		const { title, date, author, imageUrl, description } = getFrontmatterYaml(content);
 		const itemContent = getHtml(content);
 		const nodes = getHyperscript(content, registeredHandlers);
 		const url = "https://dojo.io/" + path;
@@ -146,7 +147,8 @@ export function process() {
 			id: url,
 			author: author,
 			link: url,
-			description: '', // TODO: Create description
+			image: imageUrl,
+			description: description,
 			content: itemContent,
 			date: date
 		});
