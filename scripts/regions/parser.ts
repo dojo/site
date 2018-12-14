@@ -3,7 +3,7 @@ import { w, v } from '@dojo/framework/widget-core/d';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
 
-import { WidgetBuilder, fromMarkdown } from '../compile';
+import { WidgetBuilder, fromMarkdown, registerFileWithBuild } from '../compile';
 
 import { BLOCK_C_MATCHER } from './region-matchers/block-c';
 import { INLINE_C_MATCHER } from './region-matchers/inline-c';
@@ -57,6 +57,8 @@ export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBloc
 	}
 
 	const regionMatcherFactory = regionMatchers[language];
+
+	registerFileWithBuild(resolvedPath);
 
 	let fileInput = readFileSync(resolvedPath, 'utf-8');
 	if (region !== undefined) {

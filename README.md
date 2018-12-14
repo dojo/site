@@ -7,19 +7,21 @@ This project was generated with the [Dojo CLI](https://github.com/dojo/cli) & [D
 
 Run `dojo build --mode dist` (the `mode` option defaults to `dist`) to create a production build for the project. The built artifacts will be stored in the `output/dist` directory.
 
-## Development Build
+## Content Build
 
-Run `dojo build --mode dev` to create a development build for the project. The built artifacts will be stored in the `output/dev` directory.
+Run `npm run build:content` to build the content
 
-## Development server
+## Production Build
 
-Run `dojo build --mode dev --watch memory --serve` to create an in memory development build and start a development server with hot reload. By default the server runs on port `9999`, navigate to `http://localhost:9999/`.
+Run `npm run build` to create a development build for the project. The built artifacts will be stored in the `output/dev` directory.
 
-To change the port of the development use the `--port` option.
+## Development Build/Server
+
+Run `npm run dev` to create a development build and start a development server. By default the server runs on port `9999`, navigate to `http://localhost:9999/`.
 
 ## Running unit tests
 
-To run units tests in node only use `dojo test` which uses JIT (just in time) compilation.
+To run units tests in node only use `npm run test` which uses JIT (just in time) compilation.
 
 To run the unit tests against built bundles, first the run a test build with `dojo build --mode unit`. The build test artifacts are written to the `output/tests/unit` directory.
 

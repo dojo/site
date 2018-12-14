@@ -8,5 +8,11 @@
 			"name": "Another Tutorial",
 			"path": "./tutorials/another-tutorial.md"
 		}
+	],
+	"roadmap": [
+		{
+			"name": "Dojo Roadmap",
+			"path": "./roadmap/dojo-5-roadmap.md"
+		}
 	]
 }

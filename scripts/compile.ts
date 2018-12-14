@@ -1,13 +1,12 @@
 import { v, w } from '@dojo/framework/widget-core/d';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
-import { readFileSync, outputFileSync } from 'fs-extra';
-import { resolve, parse as parsePath } from 'path';
+import { readFileSync, outputFileSync, removeSync, existsSync } from 'fs-extra';
+import { resolve, parse as parsePath, join } from 'path';
 import chalk from 'chalk';
 
 import { info } from './logger';
 import { regionBuilder } from './regions/parser';
 
-const manifest = require('../content/manifest.json');
 const unified = require('unified');
 const parse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
@@ -15,6 +14,21 @@ const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
 const macro = require('remark-macro')();
 const all = require('mdast-util-to-hast/lib/all');
+
+export interface ManifestConfigFile {
+	name: string;
+	path: string;
+}
+
+export interface ManifestConfig {
+	[section: string]: ManifestConfigFile[];
+}
+
+export interface BuildDetails {
+	[section: string]: {
+		[filePath: string]: string;
+	};
+}
 
 export interface Handler {
 	type: string;
@@ -43,6 +57,9 @@ const widgets: WidgetBuilders = {
 };
 
 let key = 0;
+let buildDetails: BuildDetails = {};
+let currentSection: string;
+let currentParent: string;
 
 export const pragma = (tag: string, props: any = {}, children: any[]) => {
 	props.key = `compiled-${key++}`;
@@ -86,25 +103,91 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 	return toH(pragma, result);
 };
 
-export function process() {
+export const registerFileWithBuild = (path: string) => {
+	if (buildDetails[currentSection] === undefined) {
+		buildDetails[currentSection] = {};
+	}
+
+	buildDetails[currentSection][path] = currentParent;
+};
+
+export function process(event?: string, filePath?: string) {
+	const manifestPath = resolve('content', 'manifest.json');
+	const buildDetailsPath = resolve('assets', 'generated', 'build.json');
+
+	let buildAll = true;
+	if (event !== undefined && filePath !== undefined) {
+		filePath = resolve(filePath);
+		if (filePath !== manifestPath && existsSync(buildDetailsPath)) {
+			buildAll = false;
+
+			buildDetails = require(buildDetailsPath);
+		}
+	}
+
 	const registeredHandlers = registerHandlers(handlers);
+	const manifest: ManifestConfig = require(manifestPath);
 
-	manifest.tutorials.map(({ path }: { path: string }) => {
-		const outputPath = path.replace(/\.md$/, '.ts');
-		path = resolve(__dirname, '../', 'content', path);
-		const content = readFileSync(path, 'utf-8');
-		const nodes = fromMarkdown(content, registeredHandlers);
+	for (let section in manifest) {
+		processSection(section, manifest, registeredHandlers, buildAll ? undefined : filePath);
+	}
 
-		const generatedPath = resolve('src', 'generated', outputPath);
-		info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
-		outputFileSync(generatedPath, `export default ${JSON.stringify(nodes)};`);
-	});
+	outputFileSync(buildDetailsPath, JSON.stringify(buildDetails, null, 2));
+	info(`${chalk.blue.bold(' build details ')} ${buildDetailsPath}`);
+}
 
-	const paths = manifest.tutorials.map(({ name, path }: { name: string; path: string }) => ({
+export const processSection = (
+	section: string,
+	manifest: ManifestConfig,
+	registeredHandlers: { [type: string]: HandlerFunction },
+	filePath?: string
+) => {
+	currentSection = section;
+
+	console.log(`hello? ${section}`);
+
+	if (filePath !== undefined) {
+		// Build part
+		let partToBuild: string | undefined;
+		if (buildDetails[section] !== undefined && buildDetails[section][filePath] !== undefined) {
+			partToBuild = buildDetails[section][filePath];
+		}
+
+		const part = manifest[section].find((file) => file.path === partToBuild);
+		if (part !== undefined) {
+			info(`${chalk.yellow.bold(' processing ')} ${section}...`);
+			processMarkdown(part.path, registeredHandlers);
+		}
+	} else {
+		// Build All
+		info(`${chalk.yellow.bold(' processing ')} ${section}...`);
+		removeSync(join(__dirname, 'assets/generated'));
+		manifest[section].map(({ path }: { path: string }) => processMarkdown(path, registeredHandlers));
+		buildSectionList(manifest, section);
+	}
+};
+
+export const processMarkdown = (path: string, registeredHandlers: { [type: string]: HandlerFunction }): void => {
+	currentParent = path;
+
+	const outputPath = path.replace(/\.md$/, '.ts');
+	path = resolve(__dirname, '../', 'content', path);
+	const content = readFileSync(path, 'utf-8');
+
+	const nodes = fromMarkdown(content, registeredHandlers);
+
+	const generatedPath = resolve('assets', 'generated', outputPath);
+	outputFileSync(generatedPath, `export default ${JSON.stringify(nodes)};`);
+	info(`${chalk.magenta.bold(' generated ')} ${generatedPath}`);
+};
+
+export const buildSectionList = (manifest: ManifestConfig, section: string): void => {
+	let paths: ManifestConfigFile[] = [];
+	paths = manifest[section].map(({ name, path }: { name: string; path: string }) => ({
 		name,
 		path: parsePath(path).name
 	}));
-	const listPath = resolve('src', 'generated', 'list.ts');
-	info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
+	const listPath = resolve('assets', 'generated', `${section}-list.ts`);
 	outputFileSync(listPath, `export default ${JSON.stringify(paths)};`);
-}
+	info(`${chalk.magenta.bold(' generated ')} ${listPath}`);
+};
