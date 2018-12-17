@@ -29,5 +29,9 @@ export default [
 	{
 		path: 'community',
 		outlet: 'community'
+	},
+	{
+		path: '{section}/{page}',
+		outlet: 'page'
 	}
 ];

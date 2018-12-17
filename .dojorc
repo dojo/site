@@ -1,5 +1,21 @@
 {
 	"build-app": {
+		"build-time-render": {
+			"root": "root",
+			"paths": [
+				"blog",
+				"home",
+				"community",
+				"tutorials/sample-tutorial",
+				"tutorials/another-tutorial"
+			],
+			"puppeteerOptions": {
+				"args": [
+					"--no-sandbox",
+					"--disable-setuid-sandbox"
+				]
+			}
+		},
 		"pwa": {
 			"manifest": {
 				"name": "dojo.io",
