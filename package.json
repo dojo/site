@@ -18,9 +18,8 @@
     "test:build": "tsc && dojo build -m unit -l",
     "test:build:static": "cpx \"{src,tests,content}/**/*.{html,png,jpg,gif,json,xml,css,txt,d.ts,svg,ico}\" _build",
     "test:clean": "shx rm -Rf _build",
-    "test:ci": "run-s test:build test:build:static intern:ci test:clean",
-    "test": "run-s test:build test:build:static intern test:clean",
-    "uploadCoverage": "codecov --file=output/coverage/coverage-final.json"
+    "test:ci": "run-s test:build test:build:static",
+    "test": "run-s test:build test:build:static"
   },
   "dependencies": {
     "@dojo/framework": "file:deps/dojo-framework-4.0.5.tgz",
