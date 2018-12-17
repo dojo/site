@@ -1,0 +1,11 @@
+*
+!deps
+!content
+!scripts
+!src
+!pipeline.js
+!package.json
+!package-lock.json
+!yarn.lock
+!tsconfig.json
+!tslint.json
