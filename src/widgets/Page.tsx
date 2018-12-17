@@ -10,9 +10,9 @@ export interface PageParameters {
 
 export default class Page extends WidgetBase<PageParameters> {
 	private _getPage(path: string) {
-    return this.meta(Build).run(compiler)(`./../../content/${path}.md`);
+		return this.meta(Build).run(compiler)(`./../../content/${path}.md`);
 	}
-	
+
 	protected render() {
 		const { path } = this.properties;
 		return <div classes={css.root}>{this._getPage(path)}</div>;
