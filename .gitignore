@@ -4,6 +4,7 @@ output/
 .cert/
 src/generated/
 assets/generated/
+coverage/
 
 .vscode
 *.log

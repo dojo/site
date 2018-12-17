@@ -7,7 +7,10 @@
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
     "now-build": "npm run build && mv ./output/dist /public",
-    "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\""
+    "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
+    "test": "jest",
+    "test:ci": "jest --coverage",
+    "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
     "@dojo/framework": "next",
@@ -20,12 +23,15 @@
     "@dojo/webpack-contrib": "next",
     "@mapbox/rehype-prism": "^0.3.0",
     "@types/fs-extra": "^5.0.4",
+    "@types/jest": "^23.3.10",
     "@types/node": "~9.6.5",
     "chokidar-cli": "^1.2.1",
     "codecov": "^3.0.4",
     "cpx": "^1.5.0",
     "fs-extra": "^7.0.0",
     "hast-to-hyperscript": "^5.0.0",
+    "jest": "~23.4.1",
+    "jest-junit": "~3.6.0",
     "mdast-util-to-hast": "^3.0.2",
     "npm-run-all": "^4.1.3",
     "refractor": "^2.6.0",
@@ -35,8 +41,47 @@
     "remark-rehype": "^3.0.1",
     "remark-stringify": "^6.0.1",
     "shx": "^0.3.2",
+    "ts-jest": "~22.4.2",
     "typescript": "~2.8.4",
     "unified": "^7.0.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "_build",
+      "output",
+      "\\.m\\.css",
+      "\\.m\\.css\\.d\\.ts"
+    ],
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "\\.(m.css|css)$": "<rootDir>/__mocks__/css-modules-transform"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file-mock.js"
+    },
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "_build",
+      "output",
+      "\\.m\\.css",
+      "\\.m\\.css\\.d\\.ts"
+    ],
+    "testRegex": "((\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "jest-junit": {
+    "suiteName": "ui tests",
+    "output": "output/info/junit.xml",
+    "usePathForSuiteName": "true"
   },
   "prettier": {
     "singleQuote": true,
