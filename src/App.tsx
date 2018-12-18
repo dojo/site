@@ -29,7 +29,7 @@ export default class App extends WidgetBase {
 						renderer={(matchDetails) => {
 							if (matchDetails.isExact) {
 								const path = `${matchDetails.params.section}/${matchDetails.params.page}`;
-								return <Page path={path} />;
+								return <Page section={matchDetails.params.section} path={path} />;
 							}
 						}}
 					/>
