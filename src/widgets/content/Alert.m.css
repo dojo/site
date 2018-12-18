@@ -1,0 +1,20 @@
+.root {
+	padding-left: 0.5rem;
+	font-weight: bold;
+}
+
+.info {
+	border-left: 4px solid #009dff;
+}
+
+.success {
+	border-left: 4px solid #32d296;
+}
+
+.danger {
+	border-left: 4px solid #fc502d;
+}
+
+.warning {
+	border-left: 4px solid #fcd02d;
+}

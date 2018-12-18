@@ -42,12 +42,10 @@ export interface WidgetBuilders {
 export type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
 
 export const handlers: Handler[] = [
+	{ type: 'Alert' },
 	{ type: 'Aside' },
-	{ type: 'Task' },
-	{ type: 'Instruction' },
 	{ type: 'CodeBlock', inline: true },
-	{ type: 'CodeSandbox', inline: true },
-	{ type: 'Metadata', inline: true }
+	{ type: 'CodeSandbox', inline: true }
 ];
 
 export const widgets: WidgetBuilders = {
