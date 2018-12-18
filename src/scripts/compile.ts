@@ -1,12 +1,12 @@
 import { v, w } from '@dojo/framework/widget-core/d';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { readFileSync } from 'fs-extra';
-import { resolve, parse as parsePath } from 'path';
+import { resolve } from 'path';
 
 import { regionBuilder } from './regions/parser';
 
 const unified = require('unified');
-const parse = require('remark-parse');
+const remarkParse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
@@ -94,7 +94,7 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 
 export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): any => {
 	const pipeline = unified()
-		.use(parse)
+		.use(remarkParse)
 		.use(macro.transformer)
 		.use(remark2rehype, { handlers: registeredHandlers })
 		.use(rehypePrism, { ignoreMissing: false });
@@ -109,13 +109,4 @@ export const processMarkdown = (path: string, registeredHandlers: { [type: strin
 	const content = readFileSync(path, 'utf-8');
 
 	return fromMarkdown(content, registeredHandlers);
-};
-
-export const buildSectionList = (manifest: ManifestConfig, section: string): ManifestConfigFile[] => {
-	let paths: ManifestConfigFile[] = [];
-	paths = manifest[section].map(({ name, path }: { name: string; path: string }) => ({
-		name,
-		path: parsePath(path).name
-	}));
-	return paths;
 };
