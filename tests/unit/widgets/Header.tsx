@@ -1,5 +1,5 @@
 const { beforeEach, describe, it } = intern.getInterface('bdd');
-import harness from '@dojo/framework/testing/harness';
+import harness, { HarnessAPI } from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/ActiveLink';
 
@@ -45,9 +45,11 @@ describe('Menu', () => {
 							undefined
 						)}
 					</span>
-					<Link key="homeLink" onClick={() => {}} to="home" activeClasses={[css.selected]}>
-						<img classes={[css.logo]} alt="logo" src={logo} />
-					</Link>
+					<span classes={[css.logoContainer]}>
+						<Link key="homeLink" classes={[css.homeLink]} onClick={() => {}} to="home" activeClasses={[css.selected]}>
+							<img classes={[css.logo]} alt="logo" src={logo} />
+						</Link>
+					</span>
 				</div>
 				<nav
 					role="navigation"
@@ -55,7 +57,7 @@ describe('Menu', () => {
 					aria-expanded={!responsive || expanded}
 					aria-label="Main Menu"
 				>
-					<ul>
+					<ul classes={[css.menuList]}>
 						<li classes={[css.menuItem]}>
 							<Link
 								key="blogLink"
@@ -149,19 +151,20 @@ describe('Menu', () => {
 	});
 
 	describe('responsive mode', () => {
-		class SmallHeader extends Header {
-			protected get isSmall() {
-				return true;
-			}
-		}
+		let mockMeta: SinonStub;
+		let h: HarnessAPI;
 
-		it('renders with the responsive class when isSmall is true', () => {
-			const h = harness(() => <SmallHeader />);
-			h.expect(() => getRender(true));
+		beforeEach(() => {
+			mockMeta = stub();
+			mockMeta.withArgs(Resize).returns({
+				get: () => ({
+					isSmall: () => true
+				})
+			});
+			h = harness(() => w(MockMetaMixin(Header, mockMeta), {}));
 		});
 
 		it('adds the expanded class when triggered', () => {
-			const h = harness(() => <SmallHeader />);
 			// trigger opening
 			h.trigger('@toggleButton', 'onclick');
 			h.expect(() => getRender(true, true));
@@ -172,7 +175,6 @@ describe('Menu', () => {
 		});
 
 		it('closes when the close event is triggered', () => {
-			const h = harness(() => <SmallHeader />);
 			// trigger opening
 			h.trigger('@toggleButton', 'onclick');
 			h.expect(() => getRender(true, true));
@@ -183,13 +185,12 @@ describe('Menu', () => {
 		});
 
 		it('closes when Escape is pressed', () => {
-			const h = harness(() => <SmallHeader />);
 			// trigger opening
 			h.trigger('@toggleButton', 'onclick');
 			h.expect(() => getRender(true, true));
 
 			// trigger any other key down
-			h.trigger('@root', 'onkeydown', { key: ' ' });
+			h.trigger('@root', 'onkeydown', { key: 'x' });
 			h.expect(() => getRender(true, true));
 
 			// trigger close via escape
