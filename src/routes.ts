@@ -31,7 +31,13 @@ export default [
 		outlet: 'community'
 	},
 	{
-		path: '{section}/{page}',
-		outlet: 'page'
+		path: 'tutorials',
+		outlet: 'tutorials',
+		children: [
+			{
+				path: '{page}',
+				outlet: 'tutorials-page'
+			}
+		]
 	}
 ];

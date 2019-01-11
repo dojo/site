@@ -11,7 +11,6 @@ interface ManifestConfig {
 }
 
 export default function(section: string) {
-	console.log(section);
 	const manifestPath = resolve('content', 'manifest.json');
 	
 	const manifest: ManifestConfig = readJSONSync(manifestPath);

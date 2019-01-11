@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "dev": "dojo build -m dev -w",
+    "dev": "dojo build -w",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",

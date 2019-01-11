@@ -5,6 +5,10 @@
 			"path": "./tutorials/sample-tutorial.md"
 		},
 		{
+			"name": "Local Installation",
+			"path": "./tutorials/local-installation.md"
+		},
+		{
 			"name": "Another Tutorial",
 			"path": "./tutorials/another-tutorial.md"
 		}

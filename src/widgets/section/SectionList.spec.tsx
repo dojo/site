@@ -2,8 +2,8 @@ import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import SectionList from './SectionList';
-import * as css from './Page.m.css';
-import * as sectionList from '../scripts/compile.build';
+import * as css from '../Page.m.css';
+import * as sectionList from '../../scripts/compile.build';
 
 jest.mock('../scripts/section-list.build');
 

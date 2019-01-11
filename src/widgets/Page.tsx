@@ -1,32 +1,24 @@
-import Build from '../scripts/Build';
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import Build from '@dojo/framework/widget-core/meta/Build';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import SectionList from './SectionList';
 import compiler from '../scripts/compile.build';
 import * as css from './Page.m.css';
 
 export interface PageParameters {
-	section?: string;
+	hasSection?: boolean;
 	path: string;
 }
 
 export default class Page extends WidgetBase<PageParameters> {
-	private _cache: { [page: string]: any } = {};
-
 	private _getPage(path: string) {
-		const page = this.meta(Build).run(compiler)(`./../../content/${path}.md`);
-		this._cache[path] = page;
-		return page;
+		return this.meta(Build).run(compiler)(`./../../content/${path}.md`);
 	}
 
 	protected render() {
-		const { path, section } = this.properties;
-
-		return <div classes={css.root}>
-			{section ? <div classes={css.sectionList}>
-				<SectionList section={section}></SectionList>
-			</div> : undefined}
+		const { path, hasSection = false } = this.properties;
+		return <div data-test={path.replace('/', '-')} classes={[css.root, hasSection ? css.contentShiftRight : '']}>
 			<div classes={css.content}>{this._getPage(path)}</div>
+			{/* Future home of right menu */}
 		</div>;
 	}
 }

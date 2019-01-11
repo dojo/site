@@ -20,7 +20,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "jest" ]
+		"types": [ "jest", "node" ]
 	},
 	"include": [
 		"./src/**/*.ts",
