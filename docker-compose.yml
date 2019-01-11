@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+
+  http:
+    image: httpd:latest
+    ports:
+      - 9005:80
+    volumes:
+      - type: bind
+        source: ./output/dist
+        target: /usr/local/apache2/htdocs/
