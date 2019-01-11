@@ -16,7 +16,13 @@ export default class Page extends WidgetBase<PageParameters> {
 
 	protected render() {
 		const { path, hasSection = false } = this.properties;
-		return <div data-test={path.replace('/', '-')} classes={[css.root, hasSection ? css.contentShiftRight : '']}>
+
+		const rootClasses = [css.root];
+		if (hasSection) {
+			rootClasses.push(css.contentShiftRight);
+		}
+
+		return <div classes={rootClasses}>
 			<div classes={css.content}>{this._getPage(path)}</div>
 			{/* Future home of right menu */}
 		</div>;

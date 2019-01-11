@@ -24,8 +24,8 @@ describe('Menu', () => {
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>
-						<Link to="documentation" classes={[css.link]} activeClasses={[css.selected]}>
-							Documentation
+						<Link to="tutorials" classes={[css.link]} activeClasses={[css.selected]}>
+							Tutorials
 						</Link>
 					</div>
 					<div classes={[css.menuItem]}>

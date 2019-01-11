@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Playground from './pages/Playground';
 import Menu from './widgets/Menu';
 import Page from './widgets/Page';
+import Section from './widgets/section/Section';
 
 import App from './App';
 import * as css from './App.m.css';
@@ -25,7 +26,8 @@ describe('App', () => {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="page" id="page" renderer={() => <div />} />
+					<Outlet key="tutorials" id="tutorials" renderer={() => <div />} />
+					<Outlet key="tutorials-page" id="tutorials-page" renderer={() => <div />} />
 				</div>
 			</div>
 		));
@@ -50,14 +52,13 @@ describe('App', () => {
 	it('page outlet renders contents', () => {
 		const h = harness(() => <App />);
 
-		const renderer = h.trigger(`@page`, 'renderer', {
+		const renderer = h.trigger(`@tutorials-page`, 'renderer', {
 			isExact: true,
 			params: {
-				section: 'tutorials',
 				page: 'test'
 			}
 		});
-		h.expect(() => <Page path="tutorials/test" />, () => renderer);
+		h.expect(() => <Section key="section-tutorials" section='tutorials' path="tutorials/test" />, () => renderer);
 	});
 
 	it('page outlet does not render on partial match', () => {
