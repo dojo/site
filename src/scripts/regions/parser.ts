@@ -45,7 +45,7 @@ export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBloc
 		return v('p', ['Invalid file path']);
 	}
 
-	const resolvedPath = resolve(__dirname, '../../', 'content/examples', path);
+	const resolvedPath = resolve(__dirname, '../../../', 'content/examples', path);
 
 	let code: string | undefined;
 	if (!existsSync(resolvedPath)) {

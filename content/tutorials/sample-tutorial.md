@@ -1,20 +1,19 @@
 # Sample Tutorial
 
-## Metadata
-[Metadata overview="Learn how to create and style custom widgets in Dojo.", topic="widgets"]
-
 ## Aside
 [Aside title="Mandatory object for properties"]
 The 2nd argument of the `w()` function is mandatory even you have no properties to pass in. This is to ensure the correct type guarding for all widgets in TypeScript.
 [/Aside]
 
 ## Task
-[Task]Create a new root node for the application[/Task]
+[Alert]
+Create a new root node for the application
+[/Alert]
 
 ## Instruction
-[Instruction]
+[Alert type="success"]
 Add these lines at the top of the file.
-[/Instruction]
+[/Alert]
 
 ## CodeBlock from file
 [CodeBlock path=tutorial-2-finished/src/widgets/App.tsx, language=tsx]
@@ -28,3 +27,19 @@ render() {
 	return (<div>some inline code</div>);
 }
 ```
+
+[Alert]
+Info alert
+[/Alert]
+
+[Alert type="success"]
+Success alert
+[/Alert]
+
+[Alert type="warning"]
+Warning alert
+[/Alert]
+
+[Alert type="danger"]
+Danger alert
+[/Alert]
