@@ -15,6 +15,6 @@ describe('Section', () => {
 		const path = 'tutorials/page-1';
 
 		const h = harness(() => <Section section={section} path={`${path}`} />);
-		h.expect(() => <div></div>);
+		h.expect(() => <div />);
 	});
 });

@@ -43,19 +43,21 @@ export default class Section extends WidgetBase<SectionParameters> {
 
 		if (!pages) {
 			this._fetchSectionList();
-			return <div></div>;
+			return <div />;
 		}
 
 		if (path === undefined) {
 			if (pages.length === 0) {
-				return <div classes={css.root}></div>;
+				return <div classes={css.root} />;
 			}
 			path = pages[0].path;
 		}
 
-		return <div classes={css.root}>
-			<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
-			<Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} />
-		</div>;
+		return (
+			<div classes={css.root}>
+				<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
+				<Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} />
+			</div>
+		);
 	}
 }

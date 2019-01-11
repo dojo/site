@@ -13,19 +13,25 @@ export interface SectionListParameters {
 export default class SectionList extends WidgetBase<SectionListParameters> {
 	protected render() {
 		const { pages, section, currentPath } = this.properties;
-		return <div key={`section-list-${section}`} classes={css.root}>
-			<ul classes={css.list}>
-				{pages.map((s) => {
-					const extraClasses: { [key: string]: string } = {};
-					if (s.path === currentPath) {
-						extraClasses.root = css.selected;
-					}
+		return (
+			<div key={`section-list-${section}`} classes={css.root}>
+				<ul classes={css.list}>
+					{pages.map((s) => {
+						const extraClasses: { [key: string]: string } = {};
+						if (s.path === currentPath) {
+							extraClasses.root = css.selected;
+						}
 
-					return <li key={`section-list-${section}-${s.path}`} classes={css.item}>
-						<Link to={`${section}-page`} params={{page: s.path}} extraClasses={extraClasses}>{s.name}</Link>
-					</li>;
-				})}
-			</ul>
-		</div>;
+						return (
+							<li key={`section-list-${section}-${s.path}`} classes={css.item}>
+								<Link to={`${section}-page`} params={{ page: s.path }} extraClasses={extraClasses}>
+									{s.name}
+								</Link>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+		);
 	}
 }

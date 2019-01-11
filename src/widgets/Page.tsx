@@ -22,9 +22,11 @@ export default class Page extends WidgetBase<PageParameters> {
 			rootClasses.push(css.contentShiftRight);
 		}
 
-		return <div classes={rootClasses}>
-			<div classes={css.content}>{this._getPage(path)}</div>
-			{/* Future home of right menu */}
-		</div>;
+		return (
+			<div classes={rootClasses}>
+				<div classes={css.content}>{this._getPage(path)}</div>
+				{/* Future home of right menu */}
+			</div>
+		);
 	}
 }

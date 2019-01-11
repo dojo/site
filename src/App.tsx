@@ -28,7 +28,13 @@ export default class App extends WidgetBase {
 				key={`${section}-page`}
 				id={`${section}-page`}
 				renderer={(matchDetails) => {
-					return <Section key={`section-${section}`} section={section} path={`${section}/${matchDetails.params.page}`} />;
+					return (
+						<Section
+							key={`section-${section}`}
+							section={section}
+							path={`${section}/${matchDetails.params.page}`}
+						/>
+					);
 				}}
 			/>
 		];

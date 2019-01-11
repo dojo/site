@@ -14,9 +14,11 @@ describe('Page', () => {
 		const path = 'tutorials/sample-tutorial';
 
 		const h = harness(() => <Page path={`${path}`} />);
-		h.expect(() => <div classes={[css.root]}>
-			<div classes={css.content}>Some content</div>
-		</div>);
+		h.expect(() => (
+			<div classes={[css.root]}>
+				<div classes={css.content}>Some content</div>
+			</div>
+		));
 
 		compiler.default.mockRestore();
 	});

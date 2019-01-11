@@ -58,7 +58,7 @@ describe('App', () => {
 				page: 'test'
 			}
 		});
-		h.expect(() => <Section key="section-tutorials" section='tutorials' path="tutorials/test" />, () => renderer);
+		h.expect(() => <Section key="section-tutorials" section="tutorials" path="tutorials/test" />, () => renderer);
 	});
 
 	it('page outlet does not render on partial match', () => {

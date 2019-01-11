@@ -12,14 +12,14 @@ interface ManifestConfig {
 
 export default function(section: string) {
 	const manifestPath = resolve('content', 'manifest.json');
-	
+
 	const manifest: ManifestConfig = readJSONSync(manifestPath);
-	
+
 	let paths: ManifestConfigFile[] = [];
 	paths = manifest[section].map(({ name, path }: { name: string; path: string }) => ({
 		name,
 		path: parse(path).name
 	}));
-	
+
 	return paths;
-};
+}
