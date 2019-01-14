@@ -10,6 +10,12 @@ jest.mock('../scripts/compile.build');
 describe('Page', () => {
 	jest.spyOn(compiler, 'default').mockReturnValue('Some content');
 
+	const footer = (
+		<footer classes={css.footer}>
+			<span>{`© ${new Date().getFullYear()} JS Foundation, All Rights Reserved.`}</span>
+		</footer>
+	);
+
 	it('renders without section', () => {
 		const path = 'tutorials/sample-tutorial';
 
@@ -17,6 +23,7 @@ describe('Page', () => {
 		h.expect(() => (
 			<div classes={[css.root]}>
 				<div classes={css.content}>Some content</div>
+				{footer}
 			</div>
 		));
 	});
@@ -28,6 +35,7 @@ describe('Page', () => {
 		h.expect(() => (
 			<div classes={[css.root, css.contentShiftRight]}>
 				<div classes={css.content}>Some content</div>
+				{footer}
 			</div>
 		));
 	});
