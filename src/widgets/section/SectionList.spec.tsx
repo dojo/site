@@ -2,6 +2,7 @@ import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/Link';
 
+import { PageData } from './Section';
 import SectionList from './SectionList';
 import * as css from './SectionList.m.css';
 
@@ -32,7 +33,11 @@ describe('Section List', () => {
 
 						return (
 							<li key={`section-list-${section}-${s.path}`} classes={css.item}>
-								<Link to={`${section}-page`} params={{ page: s.path }} extraClasses={extraClasses}>
+								<Link
+									to={`${section}-page`}
+									params={{ page: s.path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '') }}
+									extraClasses={extraClasses}
+								>
 									{s.name}
 								</Link>
 							</li>

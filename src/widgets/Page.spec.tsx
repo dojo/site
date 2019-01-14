@@ -8,9 +8,9 @@ import * as compiler from '../scripts/compile.build';
 jest.mock('../scripts/compile.build');
 
 describe('Page', () => {
-	it('renders', () => {
-		compiler.default = jest.fn().mockReturnValue('Some content');
+	jest.spyOn(compiler, 'default').mockReturnValue('Some content');
 
+	it('renders without section', () => {
 		const path = 'tutorials/sample-tutorial';
 
 		const h = harness(() => <Page path={`${path}`} />);
@@ -19,7 +19,16 @@ describe('Page', () => {
 				<div classes={css.content}>Some content</div>
 			</div>
 		));
+	});
 
-		compiler.default.mockRestore();
+	it('renders with section', () => {
+		const path = 'tutorials/sample-tutorial';
+
+		const h = harness(() => <Page hasSection={true} path={`${path}`} />);
+		h.expect(() => (
+			<div classes={[css.root, css.contentShiftRight]}>
+				<div classes={css.content}>Some content</div>
+			</div>
+		));
 	});
 });

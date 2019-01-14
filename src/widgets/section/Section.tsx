@@ -14,22 +14,15 @@ export interface SectionParameters {
 	path?: string;
 }
 
-interface SectionState {
-	pages?: PageData[];
-}
-
 export interface PageData {
 	name: string;
 	path: string;
 }
 
 export default class Section extends WidgetBase<SectionParameters> {
-	private _state: SectionState = {};
-
-	private async _fetchSectionList() {
+	private _fetchSectionList() {
 		const { section } = this.properties;
-		this._state.pages = await this.meta(Build).run(sectionList)(section);
-		this.invalidate();
+		return this.meta(Build).run(sectionList)(section);
 	}
 
 	@diffProperty('path')
@@ -40,30 +33,22 @@ export default class Section extends WidgetBase<SectionParameters> {
 	protected render() {
 		let { path } = this.properties;
 		const { section } = this.properties;
-		let { pages } = this._state;
-
-		if (!pages) {
-			this._fetchSectionList();
-			return <div />;
-		}
+		const pages = this._fetchSectionList();
 
 		if (path === undefined) {
-			if (pages.length === 0) {
-				return <div classes={css.root} />;
-			}
-			path = pages[0].path;
 			const item = this.registry.getInjector<Router>('router');
-			if (item) {
+			if (item && pages.length > 0) {
+				path = pages[0].path;
 				const router: Router = item.injector();
 				router.setPath(path);
+				return;
 			}
-			return <div />;
 		}
 
 		return (
 			<div classes={css.root}>
 				<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
-				<Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} />
+				{path ? <Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} /> : null}
 			</div>
 		);
 	}

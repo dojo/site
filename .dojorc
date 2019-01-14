@@ -6,10 +6,10 @@
 				"blog",
 				"home",
 				"community",
-				"tutorials",
 				"tutorials/sample-tutorial",
 				"tutorials/local-installation",
-				"tutorials/another-tutorial"
+				"tutorials/another-tutorial",
+				"tutorials"
 			],
 			"puppeteerOptions": {
 				"args": [
@@ -29,9 +29,7 @@
 					{
 						"src": "src/assets/favicon.ico",
 						"sizes": [
-							128,
-							256,
-							512
+							16
 						]
 					}
 				]

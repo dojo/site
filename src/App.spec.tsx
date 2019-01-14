@@ -8,7 +8,6 @@ import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
 import Menu from './widgets/Menu';
-import Page from './widgets/Page';
 import Section from './widgets/section/Section';
 
 import App from './App';
@@ -49,27 +48,38 @@ describe('App', () => {
 		});
 	});
 
-	it('page outlet renders contents', () => {
+	const sections: string[] = ['tutorials'];
+
+	it('section outlets with page outlet renders contents', () => {
 		const h = harness(() => <App />);
 
-		const renderer = h.trigger(`@tutorials-page`, 'renderer', {
-			isExact: true,
-			params: {
-				page: 'test'
-			}
+		sections.forEach((section) => {
+			const renderer = h.trigger(`@${section}-page`, 'renderer', {
+				isExact: () => true,
+				params: {
+					page: 'test'
+				}
+			});
+			h.expect(
+				() => <Section key={`section-${section}`} section={section} path={`${section}/test`} />,
+				() => renderer
+			);
 		});
-		h.expect(() => <Section key="section-tutorials" section="tutorials" path="tutorials/test" />, () => renderer);
 	});
 
-	it('page outlet does not render on partial match', () => {
+	it('section outlets without page outlet renders contents', () => {
 		const h = harness(() => <App />);
 
-		const renderer = h.trigger(`@page`, 'renderer', {
-			isExact: false,
-			params: {
-				section: 'tutorials'
-			}
+		sections.forEach((section) => {
+			const renderer = h.trigger(`@${section}`, 'renderer', {
+				isExact: () => true
+			});
+			h.expect(() => <Section key={`section-${section}`} section={section} />, () => renderer);
+
+			const rendererNonExact = h.trigger(`@${section}`, 'renderer', {
+				isExact: () => false
+			});
+			h.expect(() => null, () => rendererNonExact);
 		});
-		h.expect(() => undefined, () => renderer);
 	});
 });

@@ -6,7 +6,7 @@ import * as css from './SectionList.m.css';
 
 export interface SectionListParameters {
 	section: string;
-	currentPath: string;
+	currentPath?: string;
 	pages: PageData[];
 }
 
@@ -24,7 +24,11 @@ export default class SectionList extends WidgetBase<SectionListParameters> {
 
 						return (
 							<li key={`section-list-${section}-${s.path}`} classes={css.item}>
-								<Link to={`${section}-page`} params={{ page: s.path }} extraClasses={extraClasses}>
+								<Link
+									to={`${section}-page`}
+									params={{ page: s.path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '') }}
+									extraClasses={extraClasses}
+								>
 									{s.name}
 								</Link>
 							</li>
