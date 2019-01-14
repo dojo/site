@@ -1,18 +1,24 @@
 .root {
-	padding: 60px;
 	display: flex;
-	flex-grow: 1
-}
-
-.sectionList {
+	flex-direction: column;
+	flex-grow: 1;
+	padding-top: 60px;
 }
 
 .content {
 	flex-grow: 1;
 	max-width: 900px;
-	margin: 0 auto;
+	margin: 0 auto 80px;
 }
 
 .contentShiftRight {
 	margin-left: 300px;
+}
+
+.footer {
+	color: #999 !important;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	text-align: right;
+	padding: 1rem;
 }

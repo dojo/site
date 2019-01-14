@@ -22,11 +22,13 @@ export default class Page extends WidgetBase<PageParameters> {
 			rootClasses.push(css.contentShiftRight);
 		}
 
-		return (
+		return [
 			<div classes={rootClasses}>
 				<div classes={css.content}>{this._getPage(path)}</div>
-				{/* Future home of right menu */}
+				<footer classes={css.footer}>
+					<span>{`© ${new Date().getFullYear()} JS Foundation, All Rights Reserved.`}</span>
+				</footer>
 			</div>
-		);
+		];
 	}
 }
