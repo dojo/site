@@ -18,7 +18,7 @@ export default function(section: string) {
 	let paths: ManifestConfigFile[] = [];
 	paths = manifest[section].map(({ name, path }: { name: string; path: string }) => ({
 		name,
-		path: parse(path).name
+		path: path.replace(parse(path).ext, '')
 	}));
 
 	return paths;

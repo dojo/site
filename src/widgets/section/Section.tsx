@@ -1,5 +1,6 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import Build from '@dojo/framework/widget-core/meta/Build';
+import { Router } from '@dojo/framework/routing/Router';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import diffProperty from '@dojo/framework/widget-core/decorators/diffProperty';
 import sectionList from '../../scripts/section-list.build';
@@ -51,6 +52,12 @@ export default class Section extends WidgetBase<SectionParameters> {
 				return <div classes={css.root} />;
 			}
 			path = pages[0].path;
+			const item = this.registry.getInjector<Router>('router');
+			if (item) {
+				const router: Router = item.injector();
+				router.setPath(path);
+			}
+			return <div />;
 		}
 
 		return (
