@@ -21,7 +21,7 @@
     "@dojo/cli": "^4.0.0",
     "@dojo/cli-build-app": "next",
     "@dojo/scripts": "^3.1.0",
-    "@dojo/webpack-contrib": "file:../webpack-contrib/dojo-webpack-contrib-5.0.0-pre.tgz",
+    "@dojo/webpack-contrib": "next",
     "@mapbox/rehype-prism": "^0.3.0",
     "@types/fs-extra": "^5.0.4",
     "@types/jest": "^23.3.10",
