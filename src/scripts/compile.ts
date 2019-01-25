@@ -3,7 +3,6 @@ import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { readFileSync } from 'fs-extra';
 import { resolve } from 'path';
 
-// import RemarkMacro from './remark-macro';
 import { regionBuilder } from './regions/parser';
 
 const unified = require('unified');
