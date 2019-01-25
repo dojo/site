@@ -4,13 +4,13 @@ import { Registry } from '@dojo/framework/widget-core/Registry';
 import { Router } from '@dojo/framework/routing/Router';
 import { MemoryHistory } from '@dojo/framework/routing/history/MemoryHistory';
 
-import * as sectionListBuild from '../../scripts/section-list.build';
+import * as sectionListBlock from '../../scripts/section-list.block';
 import Section from './Section';
 import * as css from './Section.m.css';
 import SectionList from './SectionList';
 import Page from '../Page';
 
-jest.mock('../../scripts/section-list.build');
+jest.mock('../../scripts/section-list.block');
 jest.mock('@dojo/framework/routing/Router');
 
 describe('Section', () => {
@@ -24,7 +24,7 @@ describe('Section', () => {
 			path: 'path/to/two'
 		}
 	];
-	const mockSectionListBuild = jest.spyOn(sectionListBuild, 'default');
+	const mockSectionListBlock = jest.spyOn(sectionListBlock, 'default');
 	const section = 'tutorials';
 
 	const registry = new Registry();
@@ -54,10 +54,10 @@ describe('Section', () => {
 
 	it('renders default with path', () => {
 		const path = 'path/to/two';
-		mockSectionListBuild.mockReturnValueOnce(pages);
+		mockSectionListBlock.mockReturnValueOnce(pages);
 
 		const h = harness(() => <TestSection section={section} path={`${path}`} />);
-		expect(mockSectionListBuild).toBeCalledWith(section);
+		expect(mockSectionListBlock).toBeCalledWith(section);
 		h.expect(() => (
 			<div classes={css.root}>
 				<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
@@ -68,19 +68,19 @@ describe('Section', () => {
 
 	it('redirects with pages but without path', () => {
 		const path = 'path/to/one';
-		mockSectionListBuild.mockReturnValueOnce(pages);
+		mockSectionListBlock.mockReturnValueOnce(pages);
 		const mockSetPath = jest.spyOn(router, 'setPath');
 
 		harness(() => <TestSection section={section} />);
-		expect(mockSectionListBuild).toBeCalledWith(section);
+		expect(mockSectionListBlock).toBeCalledWith(section);
 		expect(mockSetPath).toBeCalledWith(path);
 	});
 
 	it('renders empty section list if no pages', () => {
-		mockSectionListBuild.mockReturnValueOnce([]);
+		mockSectionListBlock.mockReturnValueOnce([]);
 
 		const h = harness(() => <TestSection section={section} />);
-		expect(mockSectionListBuild).toBeCalledWith(section);
+		expect(mockSectionListBlock).toBeCalledWith(section);
 		h.expect(() => (
 			<div classes={css.root}>
 				<SectionList key={`list-${section}`} section={section} pages={[]} currentPath={undefined} />

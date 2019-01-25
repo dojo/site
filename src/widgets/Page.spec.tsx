@@ -3,9 +3,9 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import Page from './Page';
 import * as css from './Page.m.css';
-import * as compiler from '../scripts/compile.build';
+import * as compiler from '../scripts/compile.block';
 
-jest.mock('../scripts/compile.build');
+jest.mock('../scripts/compile.block');
 
 describe('Page', () => {
 	jest.spyOn(compiler, 'default').mockReturnValue('Some content');
