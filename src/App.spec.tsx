@@ -1,6 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Outlet from '@dojo/framework/routing/Outlet';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 
 import Blog from './pages/Blog';
 import Community from './pages/Community';
@@ -13,6 +14,12 @@ import TutorialsPage from './pages/TutorialsPage';
 
 import App from './App';
 import * as css from './App.m.css';
+
+interface Page {
+	outlet: string;
+	content: DNode;
+	args?: any[];
+}
 
 describe('App', () => {
 	it('renders', () => {
@@ -37,20 +44,24 @@ describe('App', () => {
 		));
 	});
 
-	const pages = [
+	const pages: Page[] = [
 		{ outlet: 'home', content: <Home /> },
 		{ outlet: 'blog', content: <Blog /> },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'community', content: <Community /> },
 		{ outlet: 'tutorials', content: <TutorialsLanding /> },
-		{ outlet: 'tutorials-page', content: <TutorialsPage page="some-tutorial" /> }
+		{
+			outlet: 'tutorials-page',
+			content: <TutorialsPage page="some-tutorial" />,
+			args: [{ params: { page: 'some-tutorial' } }]
+		}
 	];
 
 	it('outlets render contents', () => {
 		const h = harness(() => <App />);
-		pages.forEach(({ outlet, content }) => {
-			const renderer = h.trigger(`@${outlet}`, 'renderer');
+		pages.forEach(({ outlet, content, args = [] }) => {
+			const renderer = h.trigger(`@${outlet}`, 'renderer', ...args);
 			h.expect(() => content, () => renderer);
 		});
 	});
