@@ -8,7 +8,8 @@ import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
 import Menu from './widgets/Menu';
-import Section from './widgets/section/Section';
+import TutorialsLanding from './pages/TutorialsLanding';
+import TutorialsPage from './pages/TutorialsPage';
 
 import App from './App';
 import * as css from './App.m.css';
@@ -25,8 +26,8 @@ describe('App', () => {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="tutorials" id="tutorials" renderer={() => <div />} />
-					<Outlet key="tutorials-page" id="tutorials-page" renderer={() => <div />} />
+					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
+					<Outlet key="tutorials-page" id="tutorials-page" renderer={() => <TutorialsPage page='some-tutorial' />} />
 				</div>
 			</div>
 		));
@@ -37,7 +38,9 @@ describe('App', () => {
 		{ outlet: 'blog', content: <Blog /> },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
-		{ outlet: 'community', content: <Community /> }
+		{ outlet: 'community', content: <Community /> },
+		{ outlet: 'tutorials', content: <TutorialsLanding /> },
+		{ outlet: 'tutorials-page', content: <TutorialsPage page='some-tutorial' /> }
 	];
 
 	it('outlets render contents', () => {
@@ -45,41 +48,6 @@ describe('App', () => {
 		pages.forEach(({ outlet, content }) => {
 			const renderer = h.trigger(`@${outlet}`, 'renderer');
 			h.expect(() => content, () => renderer);
-		});
-	});
-
-	const sections: string[] = ['tutorials'];
-
-	it('section outlets with page outlet renders contents', () => {
-		const h = harness(() => <App />);
-
-		sections.forEach((section) => {
-			const renderer = h.trigger(`@${section}-page`, 'renderer', {
-				isExact: () => true,
-				params: {
-					page: 'test'
-				}
-			});
-			h.expect(
-				() => <Section key={`section-${section}`} section={section} path={`${section}/test`} />,
-				() => renderer
-			);
-		});
-	});
-
-	it('section outlets without page outlet renders contents', () => {
-		const h = harness(() => <App />);
-
-		sections.forEach((section) => {
-			const renderer = h.trigger(`@${section}`, 'renderer', {
-				isExact: () => true
-			});
-			h.expect(() => <h1>{`Landing Page Temp for ${section}`}</h1>, () => renderer);
-
-			const rendererNonExact = h.trigger(`@${section}`, 'renderer', {
-				isExact: () => false
-			});
-			h.expect(() => null, () => rendererNonExact);
 		});
 	});
 });

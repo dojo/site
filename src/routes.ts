@@ -26,6 +26,6 @@ export default [
 	},
 	{
 		path: 'tutorials/{page}',
-		outlet: 'tutorialsPage'
+		outlet: 'tutorials-page'
 	}
 ];

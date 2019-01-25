@@ -3,12 +3,13 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import Outlet from '@dojo/framework/routing/Outlet';
 
 import Menu from './widgets/Menu';
-import Section from './widgets/section/Section';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Examples from './pages/Examples';
 import Playground from './pages/Playground';
 import Community from './pages/Community';
+import TutorialsLanding from './pages/TutorialsLanding';
+import TutorialsPage from './pages/TutorialsPage';
 
 import * as css from './App.m.css';
 
@@ -26,24 +27,12 @@ export default class App extends WidgetBase {
 					<Outlet
 						key="tutorials"
 						id="tutorials"
-						renderer={(matchDetails) => {
-							if (matchDetails.isExact()) {
-								return <h1>Landing Page Temp for tutorials</h1>;
-							}
-						}}
+						renderer={(matchDetails) => <TutorialsLanding />}
 					/>
 					<Outlet
-						key="tutorialsPage"
-						id="tutorialsPage"
-						renderer={(matchDetails) => {
-							return (
-								<Section
-									key="section-tutorials"
-									section="tutorials"
-									path={`tutorials/${matchDetails.params.page}`}
-								/>
-							);
-						}}
+						key="tutorials-page"
+						id="tutorials-page"
+						renderer={(matchDetails) => <TutorialsPage page={matchDetails.params.page} />}
 					/>
 				</div>
 			</div>
