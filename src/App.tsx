@@ -24,11 +24,7 @@ export default class App extends WidgetBase {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet
-						key="tutorials"
-						id="tutorials"
-						renderer={(matchDetails) => <TutorialsLanding />}
-					/>
+					<Outlet key="tutorials" id="tutorials" renderer={(matchDetails) => <TutorialsLanding />} />
 					<Outlet
 						key="tutorials-page"
 						id="tutorials-page"

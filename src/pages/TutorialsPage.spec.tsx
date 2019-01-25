@@ -11,12 +11,6 @@ describe('TutorialsPage', () => {
 
 		const h = harness(() => <TutorialsPage page={page} />);
 
-		h.expect(() => (
-			<Section
-				key="section-tutorials"
-				section="tutorials"
-				path={`tutorials/${page}`}
-			/>
-		));
+		h.expect(() => <Section key="section-tutorials" section="tutorials" path={`tutorials/${page}`} />);
 	});
 });

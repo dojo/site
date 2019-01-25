@@ -11,12 +11,6 @@ export default class Blog extends WidgetBase<TutorialsPageProperties> {
 	protected render() {
 		const { page } = this.properties;
 
-		return (
-			<Section
-				key="section-tutorials"
-				section="tutorials"
-				path={`tutorials/${page}`}
-			/>
-		);
+		return <Section key="section-tutorials" section="tutorials" path={`tutorials/${page}`} />;
 	}
 }

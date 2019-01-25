@@ -27,7 +27,11 @@ describe('App', () => {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
-					<Outlet key="tutorials-page" id="tutorials-page" renderer={() => <TutorialsPage page='some-tutorial' />} />
+					<Outlet
+						key="tutorials-page"
+						id="tutorials-page"
+						renderer={() => <TutorialsPage page="some-tutorial" />}
+					/>
 				</div>
 			</div>
 		));
@@ -40,7 +44,7 @@ describe('App', () => {
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'community', content: <Community /> },
 		{ outlet: 'tutorials', content: <TutorialsLanding /> },
-		{ outlet: 'tutorials-page', content: <TutorialsPage page='some-tutorial' /> }
+		{ outlet: 'tutorials-page', content: <TutorialsPage page="some-tutorial" /> }
 	];
 
 	it('outlets render contents', () => {

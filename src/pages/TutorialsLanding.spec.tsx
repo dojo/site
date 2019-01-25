@@ -7,8 +7,6 @@ describe('TutorialsLanding', () => {
 	it('renders', () => {
 		const h = harness(() => <TutorialsLanding />);
 
-		h.expect(() => (
-			<h1>Landing Page Temp for Tutorials</h1>
-		));
+		h.expect(() => <h1>Landing Page Temp for Tutorials</h1>);
 	});
 });
