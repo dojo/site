@@ -1,4 +1,4 @@
-import sectionListBuild from './section-list.build';
+import sectionListBuild from './section-list.block';
 import * as fs from 'fs-extra';
 import * as path from 'canonical-path';
 

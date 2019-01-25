@@ -1,9 +1,9 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import Build from '@dojo/framework/widget-core/meta/Build';
+import Block from '@dojo/framework/widget-core/meta/Block';
 import { Router } from '@dojo/framework/routing/Router';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import diffProperty from '@dojo/framework/widget-core/decorators/diffProperty';
-import sectionList from '../../scripts/section-list.build';
+import sectionList from '../../scripts/section-list.block';
 import * as css from './Section.m.css';
 
 import Page from '../Page';
@@ -22,7 +22,7 @@ export interface PageData {
 export default class Section extends WidgetBase<SectionParameters> {
 	private _fetchSectionList() {
 		const { section } = this.properties;
-		return this.meta(Build).run(sectionList)(section);
+		return this.meta(Block).run(sectionList)(section);
 	}
 
 	@diffProperty('path')

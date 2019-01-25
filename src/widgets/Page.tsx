@@ -1,7 +1,7 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import Build from '@dojo/framework/widget-core/meta/Build';
+import Block from '@dojo/framework/widget-core/meta/Block';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import compiler from '../scripts/compile.build';
+import compiler from '../scripts/compile.block';
 import * as css from './Page.m.css';
 
 export interface PageParameters {
@@ -11,7 +11,7 @@ export interface PageParameters {
 
 export default class Page extends WidgetBase<PageParameters> {
 	private _getPage(path: string) {
-		return this.meta(Build).run(compiler)(`./../../content/${path}.md`);
+		return this.meta(Block).run(compiler)(`./../../content/${path}.md`);
 	}
 
 	protected render() {
