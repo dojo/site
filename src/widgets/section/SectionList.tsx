@@ -1,13 +1,15 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/Link';
-import { PageData } from './Section';
+
+import { PageDefinition } from '../../scripts/section-list.block';
+
 import * as css from './SectionList.m.css';
 
 export interface SectionListParameters {
 	section: string;
 	currentPath?: string;
-	pages: PageData[];
+	pages: PageDefinition[];
 }
 
 export default class SectionList extends WidgetBase<SectionListParameters> {

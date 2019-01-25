@@ -1,13 +1,13 @@
 import { resolve, parse } from 'canonical-path';
 import { readJSONSync } from 'fs-extra';
 
-interface ManifestConfigFile {
+export interface PageDefinition {
 	name: string;
 	path: string;
 }
 
 interface ManifestConfig {
-	[section: string]: ManifestConfigFile[];
+	[section: string]: PageDefinition[];
 }
 
 export default function(section: string) {
@@ -15,7 +15,7 @@ export default function(section: string) {
 
 	const manifest: ManifestConfig = readJSONSync(manifestPath);
 
-	let paths: ManifestConfigFile[] = [];
+	let paths: PageDefinition[] = [];
 	paths = manifest[section].map(({ name, path }: { name: string; path: string }) => ({
 		name,
 		path: path.replace(parse(path).ext, '')

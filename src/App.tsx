@@ -13,33 +13,6 @@ import Community from './pages/Community';
 import * as css from './App.m.css';
 
 export default class App extends WidgetBase {
-	private _renderSectionOutlet(section: string) {
-		return [
-			<Outlet
-				key={`${section}`}
-				id={`${section}`}
-				renderer={(matchDetails) => {
-					if (matchDetails.isExact()) {
-						return <Section key={`section-${section}`} section={section} />;
-					}
-				}}
-			/>,
-			<Outlet
-				key={`${section}-page`}
-				id={`${section}-page`}
-				renderer={(matchDetails) => {
-					return (
-						<Section
-							key={`section-${section}`}
-							section={section}
-							path={`${section}/${matchDetails.params.page}`}
-						/>
-					);
-				}}
-			/>
-		];
-	}
-
 	protected render() {
 		return (
 			<div classes={[css.root]}>
@@ -50,7 +23,28 @@ export default class App extends WidgetBase {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					{this._renderSectionOutlet('tutorials')}
+					<Outlet
+						key='tutorials'
+						id='tutorials'
+						renderer={(matchDetails) => {
+							if (matchDetails.isExact()) {
+								return <h1>Landing Page Temp for tutorials</h1>;
+							}
+						}}
+					/>
+					<Outlet
+						key={`tutorials-page`}
+						id={`tutorials-page`}
+						renderer={(matchDetails) => {
+							return (
+								<Section
+									key='section-tutorials'
+									section='tutorials'
+									path={`tutorials/${matchDetails.params.page}`}
+								/>
+							);
+						}}
+					/>
 				</div>
 			</div>
 		);

@@ -74,7 +74,7 @@ describe('App', () => {
 			const renderer = h.trigger(`@${section}`, 'renderer', {
 				isExact: () => true
 			});
-			h.expect(() => <Section key={`section-${section}`} section={section} />, () => renderer);
+			h.expect(() => <h1>{`Landing Page Temp for ${section}`}</h1>, () => renderer);
 
 			const rendererNonExact = h.trigger(`@${section}`, 'renderer', {
 				isExact: () => false

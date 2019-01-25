@@ -1,6 +1,5 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import Block from '@dojo/framework/widget-core/meta/Block';
-import { Router } from '@dojo/framework/routing/Router';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import sectionList from '../../scripts/section-list.block';
 import * as css from './Section.m.css';
@@ -22,21 +21,6 @@ export default class Section extends WidgetBase<SectionParameters> {
 	private _fetchSectionList() {
 		const { section } = this.properties;
 		return this.meta(Block).run(sectionList)(section);
-	}
-
-	protected onAttach() {
-		let { path } = this.properties;
-		const pages = this._fetchSectionList();
-
-		if (path === undefined) {
-			const item = this.registry.getInjector<Router>('router');
-			if (item && pages.length > 0) {
-				path = pages[0].path;
-				const router: Router = item.injector();
-				router.setPath(path);
-				return;
-			}
-		}
 	}
 
 	protected render() {

@@ -72,19 +72,6 @@ describe('Section', () => {
 		));
 	});
 
-	it('redirects with pages but without path', () => {
-		const path = 'path/to/one';
-		mockSectionListBlock.mockReturnValueOnce(pages);
-		const mockSetPath = jest.spyOn(router, 'setPath');
-
-		const h = harness(() => <TestSection section={section} />);
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-
-		expect(mockSectionListBlock).toBeCalledWith(section);
-		expect(mockSetPath).toBeCalledWith(path);
-	});
-
 	it('renders empty section list if no pages', () => {
 		mockSectionListBlock.mockReturnValueOnce([]);
 
