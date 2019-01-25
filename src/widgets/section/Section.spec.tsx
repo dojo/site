@@ -54,10 +54,16 @@ describe('Section', () => {
 
 	it('renders default with path', () => {
 		const path = 'path/to/two';
-		mockSectionListBlock.mockReturnValueOnce(pages);
+		mockSectionListBlock.mockReturnValue(pages);
 
+		expect(mockSectionListBlock).not.toHaveBeenCalled();
 		const h = harness(() => <TestSection section={section} path={`${path}`} />);
+		const widget = (h.getRender(0) as any).bind;
+		widget.onAttach();
+
 		expect(mockSectionListBlock).toBeCalledWith(section);
+		expect(mockSectionListBlock).toHaveBeenCalledTimes(1);
+
 		h.expect(() => (
 			<div classes={css.root}>
 				<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
@@ -71,7 +77,10 @@ describe('Section', () => {
 		mockSectionListBlock.mockReturnValueOnce(pages);
 		const mockSetPath = jest.spyOn(router, 'setPath');
 
-		harness(() => <TestSection section={section} />);
+		const h = harness(() => <TestSection section={section} />);
+		const widget = (h.getRender(0) as any).bind;
+		widget.onAttach();
+
 		expect(mockSectionListBlock).toBeCalledWith(section);
 		expect(mockSetPath).toBeCalledWith(path);
 	});
@@ -80,6 +89,9 @@ describe('Section', () => {
 		mockSectionListBlock.mockReturnValueOnce([]);
 
 		const h = harness(() => <TestSection section={section} />);
+		const widget = (h.getRender(0) as any).bind;
+		widget.onAttach();
+
 		expect(mockSectionListBlock).toBeCalledWith(section);
 		h.expect(() => (
 			<div classes={css.root}>

@@ -40,16 +40,6 @@ export default class App extends WidgetBase {
 		];
 	}
 
-	/*private _renderPageOutlet(page: string) {
-		return <Outlet
-			key={page}
-			id={page}
-			renderer={(matchDetails) => {
-				return <Page path={page} />;
-			}}
-		/>;
-	}*/
-
 	protected render() {
 		return (
 			<div classes={[css.root]}>

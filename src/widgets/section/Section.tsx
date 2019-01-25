@@ -2,7 +2,6 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import Block from '@dojo/framework/widget-core/meta/Block';
 import { Router } from '@dojo/framework/routing/Router';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import diffProperty from '@dojo/framework/widget-core/decorators/diffProperty';
 import sectionList from '../../scripts/section-list.block';
 import * as css from './Section.m.css';
 
@@ -25,14 +24,8 @@ export default class Section extends WidgetBase<SectionParameters> {
 		return this.meta(Block).run(sectionList)(section);
 	}
 
-	@diffProperty('path')
-	protected pathChange() {
-		this.invalidate();
-	}
-
-	protected render() {
+	protected onAttach() {
 		let { path } = this.properties;
-		const { section } = this.properties;
 		const pages = this._fetchSectionList();
 
 		if (path === undefined) {
@@ -44,6 +37,12 @@ export default class Section extends WidgetBase<SectionParameters> {
 				return;
 			}
 		}
+	}
+
+	protected render() {
+		let { path } = this.properties;
+		const { section } = this.properties;
+		const pages = this._fetchSectionList();
 
 		return (
 			<div classes={css.root}>
