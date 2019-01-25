@@ -53,7 +53,6 @@ export const widgets: WidgetBuilders = {
 };
 
 let key = 0;
-// const macro = new RemarkMacro();
 
 export const pragma = (tag: string, props: any = {}, children: any[]) => {
 	props.key = `compiled-${key++}`;
