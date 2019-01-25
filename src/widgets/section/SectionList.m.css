@@ -1,10 +1,10 @@
 .root {
-  position: fixed;
-  top: 80px;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box;
-  overflow: auto;
+	position: fixed;
+	top: 80px;
+	bottom: 0;
+	left: 0;
+	box-sizing: border-box;
+	overflow: auto;
 }
 
 .selected {
@@ -28,22 +28,22 @@
 }
 
 @media (min-width: 1400px) {
-  .root {
-    width: 300px !important;
+	.root {
+		width: 300px !important;
 		padding: 45px 45px 60px 45px;
 	}
 }
 
 @media (min-width: 960px) {
-  .root {
-    padding: 40px 40px 60px 40px;
+	.root {
+		padding: 40px 40px 60px 40px;
 		width: 300px !important;
 		border-right: 1px #e5e5e5 solid;
 	}
 }
 
 @media (max-width: 960px) {
-  .root {
+	.root {
 		width: 100vw;
 	}
 }
