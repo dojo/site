@@ -7,8 +7,8 @@
 .menu {
 	height: 80px;
 	padding: 0 40px;
-	color: rgba(117,117,117 ,1);
-	box-shadow: 5px 10px 20px -20px rgba(85,172,238 ,1);
+	color: rgba(117, 117, 117, 1);
+	box-shadow: 5px 10px 20px -20px rgba(85, 172, 238, 1);
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;

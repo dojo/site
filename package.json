@@ -5,10 +5,10 @@
     "build": "dojo build",
     "build:dev": "tsc && dojo build -m=dev",
     "lint:tslint": "tslint -p .",
-    "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
+    "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "lint": "run-p lint:*",
     "now-build": "npm run build && mv ./output/dist /public",
-    "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx}\"",
+    "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "test": "jest",
     "test:ci": "jest --coverage",
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
@@ -85,11 +85,16 @@
     "output": "output/info/junit.xml",
     "usePathForSuiteName": "true"
   },
+  "lint-staged": {
+    "*.{ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "prettier": {
     "singleQuote": true,
     "tabWidth": 4,
     "useTabs": true,
-    "parser": "typescript",
     "printWidth": 120,
     "arrowParens": "always"
   }
