@@ -24,8 +24,8 @@ export default class App extends WidgetBase {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet
-						key='tutorials'
-						id='tutorials'
+						key="tutorials"
+						id="tutorials"
 						renderer={(matchDetails) => {
 							if (matchDetails.isExact()) {
 								return <h1>Landing Page Temp for tutorials</h1>;
@@ -38,8 +38,8 @@ export default class App extends WidgetBase {
 						renderer={(matchDetails) => {
 							return (
 								<Section
-									key='section-tutorials'
-									section='tutorials'
+									key="section-tutorials"
+									section="tutorials"
 									path={`tutorials/${matchDetails.params.page}`}
 								/>
 							);
