@@ -33,8 +33,8 @@ export default class App extends WidgetBase {
 						}}
 					/>
 					<Outlet
-						key={`tutorials-page`}
-						id={`tutorials-page`}
+						key="tutorialsPage"
+						id="tutorialsPage"
 						renderer={(matchDetails) => {
 							return (
 								<Section
