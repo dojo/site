@@ -3,5 +3,6 @@ import { registerHandlers, processMarkdown, handlers } from './compile';
 export default function(filePath: string) {
 	const registeredHandlers = registerHandlers(handlers);
 
-	return processMarkdown(filePath, registeredHandlers);
+	const test = processMarkdown(filePath, registeredHandlers);
+	return test;
 }

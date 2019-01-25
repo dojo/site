@@ -1,5 +1,5 @@
 import * as compiler from './compile';
-import compilerBuild from './compile.build';
+import compilerBuild from './compile.block';
 
 jest.mock('./compile');
 

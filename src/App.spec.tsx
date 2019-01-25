@@ -1,6 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Outlet from '@dojo/framework/routing/Outlet';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 
 import Blog from './pages/Blog';
 import Community from './pages/Community';
@@ -8,10 +9,17 @@ import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
 import Menu from './widgets/Menu';
-import Page from './widgets/Page';
+import TutorialsLanding from './pages/TutorialsLanding';
+import TutorialsPage from './pages/TutorialsPage';
 
 import App from './App';
 import * as css from './App.m.css';
+
+interface Page {
+	outlet: string;
+	content: DNode;
+	args?: any[];
+}
 
 describe('App', () => {
 	it('renders', () => {
@@ -25,50 +33,36 @@ describe('App', () => {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="page" id="page" renderer={() => <div />} />
+					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
+					<Outlet
+						key="tutorials-page"
+						id="tutorials-page"
+						renderer={() => <TutorialsPage page="some-tutorial" />}
+					/>
 				</div>
 			</div>
 		));
 	});
 
-	const pages = [
+	const pages: Page[] = [
 		{ outlet: 'home', content: <Home /> },
 		{ outlet: 'blog', content: <Blog /> },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
-		{ outlet: 'community', content: <Community /> }
+		{ outlet: 'community', content: <Community /> },
+		{ outlet: 'tutorials', content: <TutorialsLanding /> },
+		{
+			outlet: 'tutorials-page',
+			content: <TutorialsPage page="some-tutorial" />,
+			args: [{ params: { page: 'some-tutorial' } }]
+		}
 	];
 
 	it('outlets render contents', () => {
 		const h = harness(() => <App />);
-		pages.forEach(({ outlet, content }) => {
-			const renderer = h.trigger(`@${outlet}`, 'renderer');
+		pages.forEach(({ outlet, content, args = [] }) => {
+			const renderer = h.trigger(`@${outlet}`, 'renderer', ...args);
 			h.expect(() => content, () => renderer);
 		});
-	});
-
-	it('page outlet renders contents', () => {
-		const h = harness(() => <App />);
-
-		const renderer = h.trigger(`@page`, 'renderer', {
-			isExact: true,
-			params: {
-				section: 'tutorials',
-				page: 'test'
-			}
-		});
-		h.expect(() => <Page path="tutorials/test" />, () => renderer);
-	});
-
-	it('page outlet does not render on partial match', () => {
-		const h = harness(() => <App />);
-
-		const renderer = h.trigger(`@page`, 'renderer', {
-			isExact: false,
-			params: {
-				section: 'tutorials'
-			}
-		});
-		h.expect(() => undefined, () => renderer);
 	});
 });

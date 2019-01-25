@@ -9,16 +9,6 @@ export default [
 		outlet: 'blog'
 	},
 	{
-		path: 'documentation',
-		outlet: 'documentation',
-		children: [
-			{
-				path: '{tutorial}',
-				outlet: 'tutorial'
-			}
-		]
-	},
-	{
 		path: 'examples',
 		outlet: 'examples'
 	},
@@ -31,7 +21,11 @@ export default [
 		outlet: 'community'
 	},
 	{
-		path: '{section}/{page}',
-		outlet: 'page'
+		path: 'tutorials',
+		outlet: 'tutorials'
+	},
+	{
+		path: 'tutorials/{page}',
+		outlet: 'tutorials-page'
 	}
 ];

@@ -3,19 +3,40 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import Page from './Page';
 import * as css from './Page.m.css';
-import * as compiler from '../scripts/compile.build';
+import * as compiler from '../scripts/compile.block';
 
-jest.mock('../scripts/compile.build');
+jest.mock('../scripts/compile.block');
 
 describe('Page', () => {
-	it('renders', () => {
-		compiler.default = jest.fn().mockReturnValue('Some content');
+	jest.spyOn(compiler, 'default').mockReturnValue('Some content');
 
+	const footer = (
+		<footer classes={css.footer}>
+			<span>{`© ${new Date().getFullYear()} JS Foundation, All Rights Reserved.`}</span>
+		</footer>
+	);
+
+	it('renders without section', () => {
 		const path = 'tutorials/sample-tutorial';
 
 		const h = harness(() => <Page path={`${path}`} />);
-		h.expect(() => <div classes={css.root}>Some content</div>);
+		h.expect(() => (
+			<div classes={[css.root]}>
+				<div classes={css.content}>Some content</div>
+				{footer}
+			</div>
+		));
+	});
 
-		compiler.default.mockRestore();
+	it('renders with section', () => {
+		const path = 'tutorials/sample-tutorial';
+
+		const h = harness(() => <Page hasSection={true} path={`${path}`} />);
+		h.expect(() => (
+			<div classes={[css.root, css.contentShiftRight]}>
+				<div classes={css.content}>Some content</div>
+				{footer}
+			</div>
+		));
 	});
 });

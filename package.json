@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
+    "build:dev": "tsc && dojo build -m=dev",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx}\"",
     "lint": "run-p lint:*",
@@ -25,6 +26,7 @@
     "@types/fs-extra": "^5.0.4",
     "@types/jest": "^23.3.10",
     "@types/node": "~9.6.5",
+    "canonical-path": "^1.0.0",
     "chokidar-cli": "^1.2.1",
     "codecov": "^3.0.4",
     "cpx": "^1.5.0",

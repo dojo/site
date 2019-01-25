@@ -2,10 +2,8 @@ import { w } from '@dojo/framework/widget-core/d';
 import * as fs from 'fs-extra';
 import { resolve } from 'path';
 import * as compiler from './compile';
-import * as parser from './regions/parser';
-import { add } from '@dojo/framework/has/has';
 
-export const mockHandlers: Handler[] = [
+export const mockHandlers: compiler.Handler[] = [
 	{ type: 'Aside' },
 	{ type: 'Task' },
 	{ type: 'Instruction' },
@@ -14,7 +12,7 @@ export const mockHandlers: Handler[] = [
 	{ type: 'Metadata', inline: true }
 ];
 
-const mockHandlersOutput: { [type: string]: HandlerFunction } = {
+const mockHandlersOutput: { [type: string]: compiler.HandlerFunction } = {
 	Aside: (h, node) => h(node),
 	Task: (h, node) => h(node),
 	Instruction: (h, node) => h(node),
@@ -40,8 +38,6 @@ const mockBuildJson: { [section: string]: { [filePath: string]: string } } = {
 	tutorials: {}
 };
 mockBuildJson.tutorials[mockExampleFile] = './tutorials/another-tutorial.md';
-
-const mockListOutput = `export default [{"name: 'Another Tutorial',"path: 'another-tutorial"}];`;
 
 const mockMarkupContent = `# Another Tutorial
 
@@ -138,7 +134,6 @@ describe('content compiler', () => {
 	jest.mock('fs-extra');
 
 	beforeEach(() => {
-		compiler.key = 0;
 		jest.resetAllMocks();
 	});
 
@@ -204,6 +199,6 @@ describe('content compiler', () => {
 
 		expect(wnode).toEqual(expectedOutput);
 
-		compiler.widgets['docs-codeblock'].mockRestore();
+		regionBuilderStub.mockRestore();
 	});
 });

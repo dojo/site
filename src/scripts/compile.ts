@@ -6,11 +6,11 @@ import { resolve } from 'path';
 import { regionBuilder } from './regions/parser';
 
 const unified = require('unified');
+const macro = require('remark-macro')();
 const remarkParse = require('remark-parse');
 const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
-const macro = require('remark-macro')();
 const all = require('mdast-util-to-hast/lib/all');
 
 export interface ManifestConfigFile {

@@ -17,7 +17,7 @@ export const stubEvent = {
 	target: {}
 };
 
-const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: SinonStub): T => {
+const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
 	return class extends Base {
 		protected meta<T extends MetaBase>(MetaType: WidgetMetaConstructor<T>): T {
 			return mockStub(MetaType);
