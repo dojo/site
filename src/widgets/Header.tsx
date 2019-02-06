@@ -62,7 +62,13 @@ export default class Menu extends WidgetBase {
 						) : null}
 					</span>
 					<span classes={[css.logoContainer]}>
-						<Link key="homeLink" onClick={this.close} to="home" classes={[css.homeLink]} activeClasses={[css.selected]}>
+						<Link
+							key="homeLink"
+							onClick={this.close}
+							to="home"
+							classes={[css.homeLink]}
+							activeClasses={[css.selected]}
+						>
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</span>

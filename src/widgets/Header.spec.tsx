@@ -43,7 +43,13 @@ describe('Menu', () => {
 						)}
 					</span>
 					<span classes={[css.logoContainer]}>
-						<Link key="homeLink" classes={[css.homeLink]} onClick={() => {}} to="home" activeClasses={[css.selected]}>
+						<Link
+							key="homeLink"
+							classes={[css.homeLink]}
+							onClick={() => {}}
+							to="home"
+							activeClasses={[css.selected]}
+						>
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</span>
