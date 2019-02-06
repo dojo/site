@@ -4,7 +4,6 @@ import Link from '@dojo/framework/routing/ActiveLink';
 
 import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/widget-core/interfaces';
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import Resize from '@dojo/framework/widget-core/meta/Resize';
 import { w } from '@dojo/framework/widget-core/d';
 
 const logo = require('../../../src/assets/logo.svg');
@@ -69,13 +68,13 @@ describe('Menu', () => {
 						</li>
 						<li classes={[css.menuItem]}>
 							<Link
-								key="documentationLink"
+								key="tutorialsLink"
 								onClick={() => {}}
-								to="documentation"
+								to="tutorials"
 								classes={[css.link]}
 								activeClasses={[css.selected]}
 							>
-								Documentation
+								Tutorials
 							</Link>
 						</li>
 						<li classes={[css.menuItem]}>
