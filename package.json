@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "build:dev": "tsc && dojo build -m=dev",
-    "build:docker": "npm run build && shx rm -Rf ./output/public/* && shx cp -Rf ./output/dist/* ./output/public",
+    "build:dev": "dojo build -m=dev -w -s",
+    "build:ci": "tsc && npm run build",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "lint": "run-p lint:*",
@@ -15,20 +15,20 @@
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
-    "@dojo/framework": "next",
+    "@dojo/framework": "5.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
     "tslib": "1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "^4.0.0",
-    "@dojo/cli-build-app": "next",
+    "@dojo/cli": "5.0.0",
+    "@dojo/cli-build-app": "5.0.0",
     "@dojo/scripts": "^3.1.0",
-    "@dojo/webpack-contrib": "next",
+    "@dojo/webpack-contrib": "5.0.0",
     "@mapbox/rehype-prism": "^0.3.0",
     "@types/fs-extra": "^5.0.4",
     "@types/jest": "^23.3.10",
-    "@types/node": "~9.6.5",
+    "@types/node": "~10.12.23",
     "canonical-path": "^1.0.0",
     "chokidar-cli": "^1.2.1",
     "codecov": "^3.0.4",
@@ -46,7 +46,7 @@
     "remark-stringify": "^6.0.1",
     "shx": "^0.3.2",
     "ts-jest": "~22.4.2",
-    "typescript": "~2.8.4",
+    "typescript": "^3.2.4",
     "unified": "^7.0.0"
   },
   "jest": {

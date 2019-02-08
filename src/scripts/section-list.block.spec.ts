@@ -20,7 +20,7 @@ describe('content compiler', () => {
 			]
 		});
 		const mockResolve = jest.spyOn(path, 'resolve').mockReturnValueOnce('path/to/somewhere');
-		const mockParse = jest.spyOn(path, 'parse').mockReturnValue({ ext: '.md' });
+		const mockParse = jest.spyOn(path, 'parse').mockReturnValue({ ext: '.md' } as any);
 
 		const result = await sectionListBuild('sectionName');
 
