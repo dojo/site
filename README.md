@@ -1,8 +1,8 @@
-# Dojo.io Site
+# dojo.io
 
-Next generation dojo.io site.
+Next generation dojo.io.
 
-## Running Dojo.io Locally
+## Running dojo.io Locally
 
 Build Time Rendering does not function properly with dojo's serve feature, so docker is used instead to serve up the static site (same as the Now deployments).
 
@@ -38,8 +38,8 @@ Coming Soon
 
 We use Jest for unit tests on the site.
 
-Run all unit tests, `npm run test` / `npm test` / `jest`.
+Run all unit tests, `npm run test` or `npm test` or `jest`.
 
-## Deployments
+## Now Deployments
 
 On submission of a PR, an automatic deployment of the site is made to `now.sh`. The PR will be updated with the URL to the deployment automatically. You can test this deployment prior by running `now` locally (install the now cli with `npm install -g now`).
