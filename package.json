@@ -4,6 +4,7 @@
   "scripts": {
     "build": "dojo build",
     "build:dev": "tsc && dojo build -m=dev",
+    "build:docker": "npm run build && rm -Rf ./output/public/* && cpx \"./output/dist/**/*.*\" ./output/public",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "lint": "run-p lint:*",
