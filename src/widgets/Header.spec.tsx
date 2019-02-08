@@ -27,7 +27,7 @@ describe('Menu', () => {
 		return (
 			<header key="root" onkeydown={() => {}} classes={[css.root, ...rootClasses]}>
 				<div classes={[css.left]}>
-					<span classes={css.toggleButtonContainer}>
+					<span classes={css.leftContainer}>
 						{responsive ? (
 							<button
 								key="toggleButton"
@@ -42,7 +42,7 @@ describe('Menu', () => {
 							undefined
 						)}
 					</span>
-					<span classes={[css.logoContainer]}>
+					<span classes={[css.centerContainer]}>
 						<Link
 							key="homeLink"
 							classes={[css.homeLink]}
@@ -52,6 +52,8 @@ describe('Menu', () => {
 						>
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
+					</span>
+					<span classes={[css.rightContainer]}>
 					</span>
 				</div>
 				<nav
