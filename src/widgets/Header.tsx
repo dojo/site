@@ -48,7 +48,7 @@ export default class Menu extends WidgetBase {
 		return (
 			<header key="root" classes={rootClasses} onkeydown={this.onKeyDown}>
 				<div classes={[css.left]}>
-					<span classes={css.toggleButtonContainer}>
+					<span classes={css.leftContainer}>
 						{isSmall ? (
 							<button
 								key="toggleButton"
@@ -61,7 +61,7 @@ export default class Menu extends WidgetBase {
 							</button>
 						) : null}
 					</span>
-					<span classes={[css.logoContainer]}>
+					<span classes={[css.centerContainer]}>
 						<Link
 							key="homeLink"
 							onClick={this.close}
@@ -71,6 +71,8 @@ export default class Menu extends WidgetBase {
 						>
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
+					</span>
+					<span classes={[css.rightContainer]}>
 					</span>
 				</div>
 				<nav role="navigation" classes={[css.menu]} aria-expanded={!isSmall || expanded} aria-label="Main Menu">

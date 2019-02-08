@@ -6,6 +6,8 @@
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
 	--link-color: #fff;
+	--logo-width: 110px;
+	--logo-height: 48px;
 	position: fixed;
 	width: 100%;
 	background: var(--header-background-color);
@@ -57,12 +59,12 @@
 .selected {
 }
 
-.logoContainer {
+.centerContainer {
 }
 
 .logo {
-	height: 48px;
-	width: 110px;
+	height: var(--logo-height);
+	width: var(--logo-width);
 }
 
 .backdrop {
@@ -81,7 +83,7 @@
 	cursor: default;
 }
 
-.toggleButtonContainer {
+.leftContainer {
 	margin: auto 10px;
 }
 
@@ -136,6 +138,13 @@
 	overflow: hidden;
 }
 
+.rightContainer {
+	display: none;
+	width: var(--toggle-button-width);
+	height: var(--toggle-button-height);
+	margin: auto 10px;
+}
+
 /* responsive */
 
 .responsive {
@@ -144,7 +153,7 @@
 .responsive .menu {
 	position: fixed;
 	left: -200px;
-	top: 52px;
+	top: 55px;
 	height: 100%;
 	overflow-x: visible;
 	overflow-y: scroll;
@@ -162,11 +171,17 @@
 	display: block;
 }
 
-.responsive .logoContainer {
+.responsive .centerContainer {
 	flex-grow: 2;
+	text-align: center;
 }
 
-.responsive .toggleButtonContainer {
+.responsive .leftContainer {
+	flex-grow: 0;
+}
+
+.responsive .rightContainer {
+	display: block;
 	flex-grow: 0;
 }
 
@@ -183,6 +198,7 @@
 .expanded .toggleBar::before {
 	background: var(--toggle-button-color);
 	margin-top: 0;
+	top: 0;
 }
 
 .expanded .toggleBar::before {
