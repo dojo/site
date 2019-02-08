@@ -4,32 +4,9 @@ Next generation dojo.io.
 
 ## Running dojo.io Locally
 
-Build Time Rendering does not function properly with dojo's serve feature, so docker is used instead to serve up the static site (same as the Now deployments).
+Before building for the first time, run `npm install`.
 
-### Pre-requisites
-
-The only pre-requisite is to have [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac) installed, running and logged in with a valid Docker account.
-
-### Install, Build and Start Docker
-
-1. Install, `npm install`
-2. Build the site once, `npm run build:docker`
-  - The docker build relies on the `dist` build of the site.
-	- If you use VSCode you can set this command up as your default build task.
-3. Start docker, `docker-compose up`
-4. Go to http://localhost:9005/
-
-### Start Docker
-
-Run `docker-compose up -d`.
-
-### View Docker Logs
-
-Run `docker-compose logs -f`.
-
-### Stop Docker
-
-Run `docker-compose down`.
+To build, serve and watch, run `npm run build:dev`. Open http://localhost:9999/. The page will reload on any changes.
 
 ## Build Time Renderer (BTR)
 
@@ -133,7 +110,7 @@ The `CodeBlock` widget takes two requires parameters (`path` and `language`) and
 
 **Designating a region**
 
-Defining a region in a file varies by language.
+Defining a region in a file varies by language. The region comments will never appear in a codeblock, as they are stripped out during the parsing.
 
 - `ts`
 	- **Start Region**: `// @start-region render`
