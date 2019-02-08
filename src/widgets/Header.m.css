@@ -127,6 +127,7 @@
 	width: 100%;
 }
 
+/* screen reader only - only visible to screen readers */
 .srOnly {
 	clip: rect(1px, 1px, 1px, 1px);
 	position: absolute !important;
