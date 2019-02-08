@@ -8,9 +8,9 @@ import Community from './pages/Community';
 import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
-import Menu from './widgets/Menu';
 import TutorialsLanding from './pages/TutorialsLanding';
 import TutorialsPage from './pages/TutorialsPage';
+import Header from './widgets/Header';
 
 import App from './App';
 import * as css from './App.m.css';
@@ -26,7 +26,7 @@ describe('App', () => {
 		const h = harness(() => <App />);
 		h.expect(() => (
 			<div classes={[css.root]}>
-				<Menu />
+				<Header />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />

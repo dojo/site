@@ -1,0 +1,226 @@
+.root {
+	--toggle-button-height: 20px;
+	--toggle-button-width: 26px;
+	--header-background-color: #212329;
+	--header-link-color: #999;
+	--shadow-color: rgba(0, 0, 0, 0.5);
+	--toggle-button-color: #d3d3d3;
+	--link-color: #fff;
+	--logo-width: 110px;
+	--logo-height: 48px;
+	position: fixed;
+	width: 100%;
+	background: var(--header-background-color);
+	display: flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: center;
+}
+
+.menu {
+}
+
+.menuList {
+	list-style: none;
+	display: flex;
+	padding: 0;
+	height: auto;
+	width: auto;
+	background: none;
+}
+
+.menuItem {
+	text-align: right;
+	margin: 10px;
+}
+
+.left {
+	display: flex;
+	align-items: center;
+	flex: 1 0 auto;
+}
+
+.link {
+	font-size: 0.9rem;
+	min-width: 140px;
+	text-align: center;
+	text-decoration: none;
+	color: var(--link-color);
+	box-sizing: border-box;
+	color: var(--header-link-color);
+	text-transform: uppercase;
+	transition: 0.1s ease-in-out;
+	transition-property: color, background-color;
+}
+
+.homeLink {
+}
+
+.selected {
+}
+
+.centerContainer {
+}
+
+.logo {
+	height: var(--logo-height);
+	width: var(--logo-width);
+}
+
+.backdrop {
+}
+
+.expanded .backdrop {
+	position: fixed;
+	display: block;
+	content: '';
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 998;
+	background: var(--shadow-color);
+	cursor: default;
+}
+
+.leftContainer {
+	margin: auto 10px;
+}
+
+.toggleButton {
+	text-align: left;
+	background: none;
+	font: inherit;
+	position: relative;
+	cursor: pointer;
+	height: var(--toggle-button-height);
+	width: var(--toggle-button-width);
+	z-index: 2;
+	top: calc(50 - var(--toggle-button-height));
+	border: none;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+
+.toggleBar {
+	margin-top: 0;
+}
+
+.toggleBar::after {
+	margin-top: calc(var(--toggle-button-height) / 2.5);
+}
+
+.toggleBar::before {
+	margin-top: calc(calc(var(--toggle-button-height) / 2.5) * -1);
+}
+
+.toggleBar,
+.toggleBar::after,
+.toggleBar::before {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: all 0.5s ease;
+	background: var(--toggle-button-color);
+	border-radius: 3px;
+	content: '';
+	height: calc(var(--toggle-button-height) / 5);
+	width: 100%;
+}
+
+/* screen reader only - only visible to screen readers */
+.srOnly {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.rightContainer {
+	display: none;
+	width: var(--toggle-button-width);
+	height: var(--toggle-button-height);
+	margin: auto 10px;
+}
+
+/* responsive */
+
+.responsive {
+}
+
+.responsive .menu {
+	position: fixed;
+	left: -200px;
+	top: 55px;
+	height: 100%;
+	overflow-x: visible;
+	overflow-y: scroll;
+	transition: left 0.3s ease, box-shadow 0.3s ease;
+	z-index: 999;
+}
+
+.responsive .menuList {
+	margin: 0;
+	padding: 2.5em 0 0;
+	box-shadow: -8px 0 8px var(--shadow-color);
+	min-height: 100%;
+	width: 200px;
+	background: var(--header-background-color);
+	display: block;
+}
+
+.responsive .centerContainer {
+	flex-grow: 2;
+	text-align: center;
+}
+
+.responsive .leftContainer {
+	flex-grow: 0;
+}
+
+.responsive .rightContainer {
+	display: block;
+	flex-grow: 0;
+}
+
+/* expanded */
+
+.expanded {
+}
+
+.expanded .toggleBar {
+	background: transparent;
+}
+
+.expanded .toggleBar::after,
+.expanded .toggleBar::before {
+	background: var(--toggle-button-color);
+	margin-top: 0;
+	top: 0;
+}
+
+.expanded .toggleBar::before {
+	transform: rotate(-45deg);
+}
+
+.expanded .toggleBar::after {
+	transform: rotate(45deg);
+}
+
+.expanded .menu {
+	left: 0;
+	outline: none;
+	box-shadow: 3px 0 12px var(--shadow-color);
+	z-index: 1000;
+}
+
+.expanded .menuList {
+	position: relative;
+	z-index: 1000;
+}
+
+.expanded .left {
+	z-index: 999;
+}
