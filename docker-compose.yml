@@ -8,5 +8,5 @@ services:
       - 9005:80
     volumes:
       - type: bind
-        source: ./output/dist
+        source: ./output/public
         target: /usr/local/apache2/htdocs/

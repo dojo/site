@@ -1,36 +1,45 @@
-=======
-# dojo.io site
+# dojo.io
 
-This project was generated with the [Dojo CLI](https://github.com/dojo/cli) & [Dojo CLI create app command](https://github.com/dojo/cli-create-app).
+Next generation dojo.io.
 
-## Build
+## Running dojo.io Locally
 
-Run `dojo build --mode dist` (the `mode` option defaults to `dist`) to create a production build for the project. The built artifacts will be stored in the `output/dist` directory.
+Build Time Rendering does not function properly with dojo's serve feature, so docker is used instead to serve up the static site (same as the Now deployments).
 
-## Content Build
+### Pre-requisites
 
-Run `npm run build:content` to build the content
+The only pre-requisite is to have [Docker](https://store.docker.com/editions/community/docker-ce-desktop-mac) installed, running and logged in with a valid Docker account.
 
-## Production Build
+### Install, Build and Start Docker
 
-Run `npm run build` to create a development build for the project. The built artifacts will be stored in the `output/dev` directory.
+1. Install, `npm install`
+2. Build the site once, `npm run build:docker`
+  - The docker build relies on the `dist` build of the site.
+	- If you use VSCode you can set this command up as your default build task.
+3. Start docker, `docker-compose up`
+4. Go to http://localhost:9005/
 
-## Development Build/Server
+### Start Docker
 
-Run `npm run dev` to create a development build and start a development server. By default the server runs on port `9999`, navigate to `http://localhost:9999/`.
+Run `docker-compose up -d`.
 
-## Running unit tests
+### View Docker Logs
 
-To run units tests in node only use `npm run test` which uses JIT (just in time) compilation.
+Run `docker-compose logs -f`.
 
-To run the unit tests against built bundles, first the run a test build with `dojo build --mode unit`. The build test artifacts are written to the `output/tests/unit` directory.
+### Stop Docker
 
-Then `dojo test -c local` to run the projects unit tests. These tests are located in the `tests/unit` directory. The `--watch` options can be used with the test build which means that `dojo test` can be re-run without needing to re-build the full application each time.
+Run `docker-compose down`.
 
-## Running functional tests
+## Content Pipeline
+Coming Soon
 
-To run the functional tests, first the run a test build with `dojo build --mode functional` and then `dojo test -f` to run the projects functional tests. These tests are located in the `tests/functional` directory.
+## Tests
 
-## Further help
+We use Jest for unit tests on the site.
 
-To get help for these commands and more, run `dojo` on the command line.
+Run all unit tests, `npm run test` or `npm test` or `jest`.
+
+## Now Deployments
+
+On submission of a PR, an automatic deployment of the site is made to `now.sh`. The PR will be updated with the URL to the deployment automatically. You can test this deployment prior by running `now` locally (install the now cli with `npm install -g now`).
