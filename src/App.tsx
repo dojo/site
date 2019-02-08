@@ -13,6 +13,13 @@ import TutorialsPage from './pages/TutorialsPage';
 
 import * as css from './App.m.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons/faGraduationCap';
+import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
+
+library.add(faCloudDownloadAlt, faGraduationCap, faListAlt);
+
 export default class App extends WidgetBase {
 	protected render() {
 		return (

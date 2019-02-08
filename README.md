@@ -155,6 +155,28 @@ You can add any Dojo widget to the handlers list by following the steps below.
 		- The handle to use is the lowercase version of the name you put in `handlers` with `docs-` added to the front.
 3. (`Optional`) If your widget needs custom parsing logic (**example**: `CodeBlock`), you can add a widget creation function to the `widgets` list in the `src/scripts/compiler.ts` file. Use the handle you put in `main.tsx` to register your widget creation function.
 
+## Fontawesome Icons Widget
+
+You can use the Fontawesome Icon widget to render any of the fontawesome icons, importing only those you need.
+
+1. Import the icon you need in the `src/App.tsx` file and add it to the library.
+	```
+	import { library } from '@fortawesome/fontawesome-svg-core';
+
+	import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';
+
+	library.add(faCloudDownloadAlt, faGraduationCap, faListAlt);
+	```
+	- On the import make sure to import from the specific icon path and not the index.
+		- **Correct**: `import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';`
+		- **Incorrect**: `import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons';`
+2. Use the `FontAwesomeIcon` widget anywhere in the app passing in the icon you want.
+	```
+	<FontAwesomeIcon icon="cloud-download-alt" />
+	```
+
+Other options (per FontAwesome) exist for changing the icons and are defined by the properties to the widget.
+
 ## Tests
 
 We use Jest for unit tests on the site.
