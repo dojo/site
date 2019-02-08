@@ -53,8 +53,7 @@ describe('Menu', () => {
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</span>
-					<span classes={[css.rightContainer]}>
-					</span>
+					<span classes={[css.rightContainer]} />
 				</div>
 				<nav
 					role="navigation"

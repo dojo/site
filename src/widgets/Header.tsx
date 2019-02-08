@@ -72,8 +72,7 @@ export default class Menu extends WidgetBase {
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</span>
-					<span classes={[css.rightContainer]}>
-					</span>
+					<span classes={[css.rightContainer]} />
 				</div>
 				<nav role="navigation" classes={[css.menu]} aria-expanded={!isSmall || expanded} aria-label="Main Menu">
 					<ul classes={[css.menuList]}>
