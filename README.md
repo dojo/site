@@ -175,7 +175,7 @@ You can use the Fontawesome Icon widget to render any of the fontawesome icons, 
 	<FontAwesomeIcon icon="cloud-download-alt" />
 	```
 
-The options (per FontAwesome) exist for changing the icons and are defined by the properties to the widget.
+Other options (per FontAwesome) exist for changing the icons and are defined by the properties to the widget.
 
 ## Tests
 
