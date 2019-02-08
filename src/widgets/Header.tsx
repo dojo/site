@@ -12,21 +12,21 @@ const pages = ['Blog', 'Tutorials', 'Examples', 'Playground', 'Community'];
 export default class Menu extends WidgetBase {
 	protected expanded = false;
 
-	protected smallPredicate(contentRect: ContentRect): boolean {
+	private smallPredicate(contentRect: ContentRect): boolean {
 		return contentRect.width < 768;
 	}
 
-	protected toggle() {
+	private toggle() {
 		this.expanded = !this.expanded;
 		this.invalidate();
 	}
 
-	protected close() {
+	private close() {
 		this.expanded = false;
 		this.invalidate();
 	}
 
-	protected onKeyDown(event: KeyboardEvent) {
+	private onKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			this.close();
 		}
