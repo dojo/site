@@ -1,0 +1,5 @@
+.root,
+.root:link,
+.root:visited {
+	text-decoration: none;
+}
