@@ -1,19 +1,14 @@
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import CardHeader from './CardHeader';
 import * as css from './CardHeader.m.css';
 
 describe('CardFooter', () => {
-	const baseAssertion = assertionTemplate(() => <div key="card-header" data-test="card-header" classes={css.root} />);
-
-	const header = (...children: DNode[]) => (
-		<header key="header" data-test="header" classes={css.root}>
-			{children}
-		</header>
-	);
+	const baseAssertion = assertionTemplate(() => (
+		<header key="card-header" data-test="card-header" classes={css.root} />
+	));
 
 	it('default renders', () => {
 		const h = harness(() => <CardHeader />);
@@ -28,7 +23,7 @@ describe('CardFooter', () => {
 				</CardHeader>
 			));
 
-			const assertion = baseAssertion.setChildren('@card-header', [header(<span>foo</span>)]);
+			const assertion = baseAssertion.setChildren('@card-header', [<span>foo</span>]);
 			h.expect(assertion);
 		});
 
@@ -39,7 +34,7 @@ describe('CardFooter', () => {
 				</CardHeader>
 			));
 
-			const assertion = baseAssertion.setChildren('@card-header', [header(<span>foo</span>)]);
+			const assertion = baseAssertion.setChildren('@card-header', [<span>foo</span>]);
 			h.expect(assertion);
 		});
 	});
@@ -47,7 +42,7 @@ describe('CardFooter', () => {
 	it('renders title', () => {
 		const h = harness(() => <CardHeader title="A title" />);
 
-		const assertion = baseAssertion.setChildren('@card-header', [header('A title')]);
+		const assertion = baseAssertion.setChildren('@card-header', ['A title']);
 		h.expect(assertion);
 	});
 
@@ -56,7 +51,8 @@ describe('CardFooter', () => {
 			const h = harness(() => <CardHeader title="A title" image="path/to/src.png" />);
 
 			const assertion = baseAssertion.setChildren('@card-header', [
-				header(<img src="path/to/src.png" classes={css.image} />, 'A title')
+				<img src="path/to/src.png" classes={css.image} />,
+				'A title'
 			]);
 			h.expect(assertion);
 		});
@@ -65,7 +61,8 @@ describe('CardFooter', () => {
 			const h = harness(() => <CardHeader title="A title" image={{ src: 'path/to/src.png' }} />);
 
 			const assertion = baseAssertion.setChildren('@card-header', [
-				header(<img src="path/to/src.png" classes={css.image} />, 'A title')
+				<img src="path/to/src.png" classes={css.image} />,
+				'A title'
 			]);
 			h.expect(assertion);
 		});
@@ -74,7 +71,8 @@ describe('CardFooter', () => {
 			const h = harness(() => <CardHeader title="A title" image={{ src: 'path/to/src.png', alt: 'an alt' }} />);
 
 			const assertion = baseAssertion.setChildren('@card-header', [
-				header(<img src="path/to/src.png" alt="an alt" classes={css.image} />, 'A title')
+				<img src="path/to/src.png" alt="an alt" classes={css.image} />,
+				'A title'
 			]);
 			h.expect(assertion);
 		});

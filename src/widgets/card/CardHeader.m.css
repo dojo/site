@@ -3,17 +3,16 @@
 .root {
 	display: flex;
 	flex-direction: row;
-	padding: var(--card-padding);
-}
-
-.root {
-	display: flex;
-	line-height: 30px;
+	align-items: center;
+	line-height: calc(var(--grid-size) * 3);
 	width: 100%;
+	box-sizing: border-box;
+	padding: var(--card-padding);
+	padding-bottom: 0;
 }
 
 .image {
-	max-width: 30px;
-	max-height: 30px;
+	width: calc(var(--grid-size) * 3);
+	height: calc(var(--grid-size) * 3);
 	padding: calc(var(--grid-size) / 2);
 }
