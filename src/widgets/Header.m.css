@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .root {
 	--toggle-button-height: 20px;
 	--toggle-button-width: 26px;
@@ -123,7 +125,7 @@
 	transform: translateY(-50%);
 	transition: all 0.5s ease;
 	background: var(--toggle-button-color);
-	border-radius: 3px;
+	border-radius: var(--border-radius);
 	content: '';
 	height: calc(var(--toggle-button-height) / 5);
 	width: 100%;
