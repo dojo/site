@@ -1,0 +1,25 @@
+@import '../../variables.css';
+
+:root {
+	--card-padding: calc(var(--grid-size) * 2);
+}
+
+.root {
+	border-radius: var(--border-radius);
+	background-color: var(--color-white);
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	background: #fff;
+	color: #666;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.content {
+	font-size: 0.875rem;
+	line-height: 1.4;
+	color: #999;
+	padding: var(--card-padding);
+	min-height: calc(var(--grid-size) * 13);
+	box-sizing: border-box;
+}

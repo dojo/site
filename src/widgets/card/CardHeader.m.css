@@ -1,0 +1,19 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: row;
+	padding: var(--card-padding);
+}
+
+.root {
+	display: flex;
+	line-height: 30px;
+	width: 100%;
+}
+
+.image {
+	max-width: 30px;
+	max-height: 30px;
+	padding: calc(var(--grid-size) / 2);
+}

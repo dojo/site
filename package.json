@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "build:dev": "dojo build -m=dev -w -s",
+    "build:dev": "dojo build -m=dev -s",
     "build:ci": "tsc && npm run build",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
