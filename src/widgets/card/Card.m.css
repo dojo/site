@@ -1,9 +1,5 @@
 @import '../../variables.css';
 
-:root {
-	width: 100;
-}
-
 .root {
 	border-radius: var(--border-radius);
 	background-color: var(--color-white);
@@ -19,7 +15,6 @@
 	font-size: 0.875rem;
 	line-height: 1.4;
 	color: #999;
-	padding: var(--card-padding);
-	min-height: calc(var(--grid-size) * 13);
+	padding: calc(var(--grid-size) * 1.5) calc(var(--grid-size) * 2) calc(var(--grid-size) * 2);
 	box-sizing: border-box;
 }
