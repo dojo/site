@@ -1,0 +1,19 @@
+@import '../../variables.css';
+
+.root {
+	display: grid;
+	grid-gap: calc(var(--grid-size) * 4);
+	grid-template-columns: calc((100% - calc(var(--grid-size) * 8)) * (1 / 3)) calc((100% - calc(var(--grid-size) * 8)) * (1 / 3)) calc((100% - calc(var(--grid-size) * 8)) * (1 / 3));
+}
+
+@media (max-width: 1240px) {
+	.root {
+		grid-template-columns: calc((100% - calc(var(--grid-size) * 8)) * (1 / 2)) calc((100% - calc(var(--grid-size) * 8)) * (1 / 2));
+	}
+}
+
+@media (max-width: 850px) {
+	.root {
+		grid-template-columns: 100%;
+	}
+}

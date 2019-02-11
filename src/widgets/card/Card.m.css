@@ -13,43 +13,13 @@
 	background: #fff;
 	color: #666;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-	padding: 20px;
-}
-
-.header {
-	display: flex;
-	flex-direction: row;
-	padding-bottom: var(--card-padding);
-}
-
-.header {
-	display: flex;
-	line-height: 30px;
-	width: 100%;
-}
-
-.header img {
-	max-width: 30px;
-	max-height: 30px;
-	margin-right: 5px;
-}
-
-.footer {
-	border-top: 1px solid var(--card-border-color);
-	flex-grow: 1;
-	background-color: var(--card-footer-background-color);
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	padding: var(--card-padding);
-}
-
-.footerButton {
-	margin-left: var(--grid-size);
 }
 
 .content {
 	font-size: 0.875rem;
 	line-height: 1.4;
 	color: #999;
+	padding: var(--card-padding);
+	min-height: calc(var(--grid-size) * 13);
+	box-sizing: border-box;
 }
