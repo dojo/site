@@ -15,6 +15,6 @@
 	font-size: 0.875rem;
 	line-height: 1.4;
 	color: #999;
-	padding: calc(var(--grid-size) * 1.5) calc(var(--grid-size) * 2) calc(var(--grid-size) * 2);
+	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
 	box-sizing: border-box;
 }
