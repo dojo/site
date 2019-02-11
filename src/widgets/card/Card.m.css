@@ -18,3 +18,8 @@
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
 	box-sizing: border-box;
 }
+
+.dark {
+	color: var(--color-white);
+	background-color: var(--dark-background-color);
+}

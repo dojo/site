@@ -8,15 +8,16 @@ import * as css from './Card.m.css';
 export interface CardProperties extends ThemedProperties {
 	header?: WNode;
 	footer?: WNode;
+	dark?: boolean;
 }
 
 @theme(css)
 export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
 	protected render() {
-		const { header, footer } = this.properties;
+		const { header, footer, dark = false } = this.properties;
 
 		return (
-			<div key="card" data-test="card" classes={this.theme(css.root)}>
+			<div key="card" data-test="card" classes={[this.theme(css.root), dark ? this.theme(css.dark) : null]}>
 				{header}
 				<div key="content" data-test="content" classes={this.theme(css.content)}>
 					{this.children}

@@ -2,10 +2,16 @@
 	/* Color Pallette */
 
 	--color-white: #ffffff;
+	--color-off-white: #f3f3f3;
+	--color-black: #000000;
+	--color-purple: #862790;
+	--color-red: #c42826;
+	--color-green: #2ab770;
 
 	--border-radius: 4px;
 	--grid-size: 10px;
-
 	--card-padding: calc(var(--grid-size) * 2);
 	--header-size: calc(var(--grid-size) * 8);
+
+	--dark-background-color: #141414;
 }
