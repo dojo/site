@@ -1,110 +1,108 @@
-import Card from './Card';
-import * as css from './Card.m.css';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
 
-interface CardOptions {
-	header?: DNode | DNode[] | string;
-	footer?: DNode | DNode[];
-}
+import CardHeader from './CardHeader';
+import CardIconHeader from './CardIconHeader';
+import Card from './Card';
+
+import * as css from './Card.m.css';
+import CardFooter from './CardFooter';
 
 describe('Card', () => {
-	const expected = function(options?: CardOptions, children: DNode | DNode[] = []) {
-		const { header = undefined, footer = undefined } = options || {};
+	const baseAssertion = assertionTemplate(() => (
+		<div key="card" data-test="card" classes={css.root}>
+			{content()}
+		</div>
+	));
 
+	const content = (...children: DNode[]) => {
 		return (
-			<div data-test="card" classes={css.root}>
-				{header && (
-					<header key="header" data-test="header" classes={css.header}>
-						{header}
-					</header>
-				)}
-				<div classes={css.content}>{children}</div>
-				{footer && (
-					<footer data-test="footer" classes={css.footer}>
-						{footer}
-					</footer>
-				)}
+			<div key="content" data-test="content" classes={css.content}>
+				{children}
 			</div>
 		);
 	};
 
 	it('default renders', () => {
 		const h = harness(() => <Card />);
-		h.expect(() => expected({}));
+		h.expect(baseAssertion);
 	});
+
+	class TestWidget extends WidgetBase {
+		protected render(): DNode {
+			return <div>Hello!</div>;
+		}
+	}
 
 	describe('header', () => {
-		it('renders a title', () => {
-			const h = harness(() => <Card title="foo" />);
-			h.expect(() => expected({ header: 'foo' }));
-		});
-
-		it('renders a title and image (object)', () => {
+		it('renders with header', () => {
 			const h = harness(() => (
-				<Card
-					title="foo"
-					image={{
-						src: 'somewhere',
-						alt: 'an image'
-					}}
-				/>
+				<Card>
+					<CardHeader>A header</CardHeader>
+					<h4>A subtitle</h4>
+					Some content
+				</Card>
 			));
-			h.expect(() => expected({ header: [<img src="somewhere" alt="an image" />, 'foo'] }));
+
+			const assertion = baseAssertion.setChildren('@card', [
+				<CardHeader>A header</CardHeader>,
+				content(<h4>A subtitle</h4>, 'Some content')
+			]);
+			h.expect(assertion);
 		});
 
-		it('renders a title and image (string)', () => {
-			const h = harness(() => <Card title="foo" image="somewhere" />);
-			h.expect(() => expected({ header: [<img src="somewhere" />, 'foo'] }));
-		});
+		it('renders with icon header', () => {
+			const h = harness(() => (
+				<Card>
+					<CardIconHeader icon="coffee" />
+					<h4>A subtitle</h4>
+					Some content
+				</Card>
+			));
 
-		it('renders provided header', () => {
-			const header = <h1>Some Header</h1>;
-
-			const h = harness(() => <Card header={header} />);
-			h.expect(() => expected({ header: header }));
-		});
-	});
-
-	describe('footer', () => {
-		it('renders a footer', () => {
-			const footer = <p>Some Footer</p>;
-
-			const h = harness(() => <Card footer={footer} />);
-			h.expect(() => expected({ footer: footer }));
-		});
-
-		test('with header', () => {
-			const header = <h1>Some Header</h1>;
-
-			const footer = <p>Some Footer</p>;
-
-			const h = harness(() => <Card header={header} footer={footer} />);
-			h.expect(() => expected({ header: header, footer: footer }));
-		});
-
-		test('with title', () => {
-			const footer = <p>Some Footer</p>;
-
-			const h = harness(() => <Card title="foo" image={{ src: 'somewhere' }} footer={footer} />);
-			h.expect(() => expected({ header: [<img src="somewhere" />, 'foo'], footer: footer }));
-		});
-
-		test('with title and image', () => {
-			const footer = <p>Some Footer</p>;
-
-			const h = harness(() => <Card title="foo" footer={footer} />);
-			h.expect(() => expected({ header: 'foo', footer: footer }));
+			const assertion = baseAssertion.setChildren('@card', [
+				<CardIconHeader icon="coffee" />,
+				content(<h4>A subtitle</h4>, 'Some content')
+			]);
+			h.expect(assertion);
 		});
 	});
 
-	it('renders children', () => {
+	it('renders with footer', () => {
 		const h = harness(() => (
 			<Card>
-				<span>foo</span>
+				<h4>A subtitle</h4>
+				Some content
+				<CardFooter>A footer</CardFooter>
 			</Card>
 		));
-		h.expect(() => expected({}, <span>foo</span>));
+
+		const assertion = baseAssertion.setChildren('@card', [
+			content(<h4>A subtitle</h4>, 'Some content'),
+			<CardFooter>A footer</CardFooter>
+		]);
+		h.expect(assertion);
+	});
+
+	it('renders unrecognized widgets as content', () => {
+		const h = harness(() => (
+			<Card>
+				<CardHeader>A header</CardHeader>
+				<h4>A subtitle</h4>
+				Some content
+				<CardFooter>A footer</CardFooter>
+				<TestWidget />
+			</Card>
+		));
+
+		const assertion = baseAssertion.setChildren('@card', [
+			<CardHeader>A header</CardHeader>,
+			content(<h4>A subtitle</h4>, 'Some content', <TestWidget />),
+			<CardFooter>A footer</CardFooter>
+		]);
+		h.expect(assertion);
 	});
 });

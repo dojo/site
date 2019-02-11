@@ -9,7 +9,7 @@ import * as css from './CardFooter.m.css';
 export default class CardFooter extends ThemedMixin(WidgetBase) {
 	protected render(): DNode {
 		return (
-			<footer data-test="footer" classes={this.theme(css.root)}>
+			<footer key="card-footer" data-test="footer" classes={this.theme(css.root)}>
 				{this.children}
 			</footer>
 		);

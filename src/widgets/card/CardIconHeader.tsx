@@ -16,13 +16,13 @@ export interface CardIconHeaderProperties {
 	background?: IconHeaderBackgroundColor;
 }
 
-const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
+export const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
 	blue: css.backgroundBlue,
 	black: css.backgroundBlack,
 	green: css.backgroundGreen,
 	purple: css.backgroundPurple,
 	orange: css.backgroundOrange
-}
+};
 
 @theme(css)
 export default class CardIconHeader extends ThemedMixin(WidgetBase)<CardIconHeaderProperties> {
@@ -30,7 +30,11 @@ export default class CardIconHeader extends ThemedMixin(WidgetBase)<CardIconHead
 		const { icon, background = 'blue' } = this.properties;
 
 		return (
-			<header key="header" data-test="header" classes={this.theme([css.root, colorClasses[background]])}>
+			<header
+				key="card-icon-header"
+				data-test="card-icon-header"
+				classes={this.theme([css.root, colorClasses[background]])}
+			>
 				<FontAwesomeIcon icon={icon} size="4x" />
 			</header>
 		);

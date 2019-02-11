@@ -21,12 +21,20 @@ export default class CardHeader extends ThemedMixin(WidgetBase)<CardHeaderProper
 		const { title, image } = this.properties;
 
 		return (
-			<div data-test="card-header" classes={this.theme(css.root)}>
+			<div key="card-header" data-test="card-header" classes={this.theme(css.root)}>
 				{title || (this.children && this.children.length > 0) ? (
 					<header key="header" data-test="header" classes={this.theme(css.root)}>
-						{(this.children && this.children.length > 0)
+						{this.children && this.children.length > 0
 							? this.children
-							: [image && <img classes={css.image} {...(typeof image === 'string' ? { src: image } : image)} />, title]}
+							: [
+									image && (
+										<img
+											classes={css.image}
+											{...(typeof image === 'string' ? { src: image } : image)}
+										/>
+									),
+									title
+							  ]}
 					</header>
 				) : null}
 			</div>

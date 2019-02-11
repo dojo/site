@@ -3,6 +3,9 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/Link';
 
 import Card from './Card';
+import CardHeader from './CardHeader';
+import CardFooter from './CardFooter';
+
 import LinkedCard from './LinkedCard';
 import * as css from './LinkedCard.m.css';
 
@@ -12,17 +15,28 @@ describe('Linked Card', () => {
 		h.expect(() => <Card />);
 	});
 
-	it('passes properties to child card', () => {
-		const cardFooter = <div>Some Footer</div>;
-		const h = harness(() => <LinkedCard title="foo" footer={cardFooter} />);
-		h.expect(() => <Card title="foo" footer={cardFooter} />);
+	it('passes children to Card', () => {
+		const h = harness(() => (
+			<LinkedCard>
+				<CardHeader>A header!</CardHeader>
+				Some other content
+				<CardFooter>A footer!</CardFooter>
+			</LinkedCard>
+		));
+		h.expect(() => (
+			<Card>
+				<CardHeader>A header!</CardHeader>
+				Some other content
+				<CardFooter>A footer!</CardFooter>
+			</Card>
+		));
 	});
 
 	it('renders a with href', () => {
-		const h = harness(() => <LinkedCard url="link/to/somewhere" title="foo" />);
+		const h = harness(() => <LinkedCard url="link/to/somewhere" />);
 		h.expect(() => (
 			<a classes={css.root} href="link/to/somewhere">
-				<Card title="foo" />
+				<Card />
 			</a>
 		));
 	});
@@ -36,13 +50,33 @@ describe('Linked Card', () => {
 		));
 	});
 
-	it('renders link widget to outlet with parameters', () => {
-		const parameters = { param1: 'something' };
-		const h = harness(() => <LinkedCard outlet="some-outlet" params={parameters} />);
-		h.expect(() => (
-			<Link classes={css.root} to="some-outlet" params={parameters}>
-				<Card />
-			</Link>
-		));
+	describe('outlet parameters', () => {
+		test('object', () => {
+			const parameters = { param1: 'something' };
+			const h = harness(() => <LinkedCard outlet="some-outlet" params={parameters} />);
+			h.expect(() => (
+				<Link classes={css.root} to="some-outlet" params={parameters}>
+					<Card />
+				</Link>
+			));
+		});
+
+		test('json string', () => {
+			const h = harness(() => <LinkedCard outlet="some-outlet" params={'{"param1":"something"}'} />);
+			h.expect(() => (
+				<Link classes={css.root} to="some-outlet" params={{ param1: 'something' }}>
+					<Card />
+				</Link>
+			));
+		});
+
+		test('bad json string', () => {
+			const h = harness(() => <LinkedCard outlet="some-outlet" params={"{param1: 'something'}"} />);
+			h.expect(() => (
+				<Link classes={css.root} to="some-outlet" params={undefined}>
+					<Card />
+				</Link>
+			));
+		});
 	});
 });
