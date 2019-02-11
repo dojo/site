@@ -40,9 +40,6 @@ export default class Card extends ThemedMixin(WidgetBase) {
 			}
 		});
 
-		console.log(knownChildren);
-		console.log(unknownChildren);
-
 		return (
 			<div data-test="card" classes={this.theme(css.root)}>
 				{knownChildren.header}

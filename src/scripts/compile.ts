@@ -44,8 +44,13 @@ export type WidgetBuilder = (type: string, props: any, children: any[]) => DNode
 export const handlers: Handler[] = [
 	{ type: 'Alert' },
 	{ type: 'Aside' },
+	{ type: 'Card' },
+	{ type: 'CardHeader' },
+	{ type: 'CardIconHeader', inline: true },
 	{ type: 'CodeBlock', inline: true },
-	{ type: 'CodeSandbox', inline: true }
+	{ type: 'CodeSandbox', inline: true },
+	{ type: 'Grid' },
+	{ type: 'LinkedCard' }
 ];
 
 export const widgets: WidgetBuilders = {
