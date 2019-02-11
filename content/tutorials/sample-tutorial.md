@@ -46,19 +46,19 @@ Danger alert
 
 [Grid]
 
-[LinkedCard outlet=tutorials-page, params="{ page: 'local-installation' }"]
+[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
 [CardIconHeader icon=cloud-download-alt]
 #### Local Installation
 Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.
 [/LinkedCard]
 
-[LinkedCard outlet=tutorials-page, params="{ page: 'local-installation' }"]
+[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
 [CardIconHeader icon=cloud-download-alt]
 #### Local Installation 2
 Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.
 [/LinkedCard]
 
-[LinkedCard outlet=tutorials-page, params="{ page: 'local-installation' }"]
+[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
 [CardIconHeader icon=cloud-download-alt]
 #### Local Installation 3
 Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.

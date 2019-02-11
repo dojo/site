@@ -3,17 +3,6 @@ import { DNode, WNode } from '@dojo/framework/widget-core/interfaces';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import * as css from './Card.m.css';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import CardHeader from './CardHeader';
-
-export interface CardProperties {
-	title?: string;
-	image?:
-		| {
-				src: string;
-				alt?: string;
-		  }
-		| string;
-}
 
 const recongizedChildWidgets: { [key: string]: string } = {
 	'CardHeader': 'header',
@@ -22,7 +11,7 @@ const recongizedChildWidgets: { [key: string]: string } = {
 };
 
 @theme(css)
-export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
+export default class Card extends ThemedMixin(WidgetBase) {
 	private _isRegonizedChild(child: DNode): string | undefined {
 		if (!child || typeof child === 'string') {
 			return undefined;
@@ -40,7 +29,6 @@ export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
 	}
 
 	protected render(): DNode {
-		const { title, image } = this.properties;
 		const knownChildren: { [key: string]: WNode } = {};
 		const unknownChildren: DNode[] = [];
 		this.children.map((child) => {
@@ -57,11 +45,7 @@ export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
 
 		return (
 			<div data-test="card" classes={this.theme(css.root)}>
-				{title || knownChildren.header ? (
-					knownChildren.header
-						? knownChildren.header
-						: <CardHeader image={image} title={title} />
-				) : null}
+				{knownChildren.header}
 				<div classes={this.theme(css.content)}>{unknownChildren}</div>
 				{knownChildren.footer}
 			</div>
