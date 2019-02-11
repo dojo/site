@@ -18,7 +18,7 @@ export interface LinkedCardProperties extends CardProperties {
 @theme(css)
 export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProperties> {
 	private _renderCard(cardProperties: CardProperties): DNode {
-		return <Card>{this.children}</Card>;
+		return <Card {...cardProperties}>{this.children}</Card>;
 	}
 
 	protected render(): DNode {

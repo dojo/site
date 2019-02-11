@@ -1,16 +1,35 @@
 {
 	"tutorials": [
 		{
-			"name": "Sample Tutorial",
-			"path": "./tutorials/sample-tutorial.md"
+			"name": "Getting Started",
+			"pages": [
+				{
+					"name": "Local Installation",
+					"path": "./tutorials/local-installation.md",
+					"icon": "cloud-download-alt",
+					"topic": "install",
+					"description": "Discover the basics of creating a Dojo application. Very long description on several lines for demonstration."
+				},
+				{
+					"name": "Sample Tutorial",
+					"path": "./tutorials/sample-tutorial.md",
+					"icon": "graduation-cap",
+					"topic": "widgets",
+					"description": "A simple tutorial"
+				}
+			]
 		},
 		{
-			"name": "Local Installation",
-			"path": "./tutorials/local-installation.md"
-		},
-		{
-			"name": "Another Tutorial",
-			"path": "./tutorials/another-tutorial.md"
+			"name": "Advanced",
+			"pages": [
+				{
+					"name": "Another Tutorial",
+					"path": "./tutorials/another-tutorial.md",
+					"icon": "list-alt",
+					"topic": "forms",
+					"description": "Another, more complicated, tutorial"
+				}
+			]
 		}
 	],
 	"roadmap": [

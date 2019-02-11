@@ -2,49 +2,68 @@ import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Link from '@dojo/framework/routing/Link';
 
-import { PageData } from './Section';
+import { subsections } from '../../scripts/section-list.block.spec';
 import SectionList from './SectionList';
 import * as css from './SectionList.m.css';
 
 describe('Section List', () => {
-	it('renders', () => {
-		const pages: PageData[] = [
-			{
-				name: 'Local Installation',
-				path: 'tutorials/local-installation'
-			},
-			{
-				name: 'Tutorial 2',
-				path: 'tutorials/tutorial-2'
-			}
-		];
-		const section = 'tutorials';
-		const currentPath = 'tutorials/local-installation';
+	const section = 'tutorials';
 
-		const h = harness(() => <SectionList pages={pages} section={section} currentPath={currentPath} />);
-		h.expect(() => (
-			<div key={`section-list-${section}`} classes={css.root}>
-				<ul classes={css.list}>
-					{pages.map((s) => {
-						const extraClasses: { [key: string]: string } = {};
-						if (s.path === currentPath) {
-							extraClasses.root = css.selected;
-						}
-
-						return (
-							<li key={`section-list-${section}-${s.path}`} classes={css.item}>
-								<Link
-									to={`${section}-page`}
-									params={{ page: s.path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '') }}
-									extraClasses={extraClasses}
-								>
-									{s.name}
-								</Link>
-							</li>
-						);
-					})}
-				</ul>
+	function expected(selected?: 'one' | 'two' | 'three') {
+		return (
+			<div key="section-list-tutorials" classes={css.root}>
+				<div key="subsection-list-Sub-Section 1" classes={css.subsection}>
+					<h5 classes={css.subsectionHeader}>Sub-Section 1</h5>
+					<ul classes={css.list}>
+						<li key="section-list-tutorials-path/to/one">
+							<Link
+								to="tutorials-page"
+								params={{ page: 'path/to/one' }}
+								classes={selected === 'one' ? [css.itemLink, css.selected] : [css.itemLink]}
+							>
+								one
+							</Link>
+						</li>
+						<li key="section-list-tutorials-path/to/two">
+							<Link
+								to="tutorials-page"
+								params={{ page: 'path/to/two' }}
+								classes={selected === 'two' ? [css.itemLink, css.selected] : [css.itemLink]}
+							>
+								two
+							</Link>
+						</li>
+					</ul>
+				</div>
+				<div key="subsection-list-Sub-Section 2" classes={css.subsection}>
+					<h5 classes={css.subsectionHeader}>Sub-Section 2</h5>
+					<ul classes={css.list}>
+						<li key="section-list-tutorials-path/to/three">
+							<Link
+								to="tutorials-page"
+								params={{ page: 'path/to/three' }}
+								classes={selected === 'three' ? [css.itemLink, css.selected] : [css.itemLink]}
+							>
+								three
+							</Link>
+						</li>
+					</ul>
+				</div>
 			</div>
-		));
+		);
+	}
+
+	it('renders default', () => {
+		const h = harness(() => <SectionList subsections={subsections} section={section} />);
+		h.expect(() => expected());
+	});
+
+	it('renders selected link', () => {
+		let selectedPath = 'path/to/two';
+		const h = harness(() => <SectionList subsections={subsections} section={section} currentPath={selectedPath} />);
+		h.expect(() => expected('two'));
+
+		selectedPath = 'path/to/three';
+		h.expect(() => expected('three'));
 	});
 });
