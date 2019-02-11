@@ -6,6 +6,7 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import * as css from './CardHeader.m.css';
 
 export interface CardHeaderProperties {
+	slot?: 'header';
 	title?: string;
 	image?:
 		| {

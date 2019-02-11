@@ -12,6 +12,7 @@ import * as css from './CardIconHeader.m.css';
 export type IconHeaderBackgroundColor = 'blue' | 'black' | 'green' | 'purple' | 'orange';
 
 export interface CardIconHeaderProperties {
+	slot?: 'header';
 	icon: IconName | IconLookup | [IconPrefix, IconName];
 	background?: IconHeaderBackgroundColor;
 }

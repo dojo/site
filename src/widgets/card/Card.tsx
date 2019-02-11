@@ -5,11 +5,7 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import * as css from './Card.m.css';
 
-const recongizedChildWidgets: { [key: string]: string } = {
-	CardHeader: 'header',
-	CardIconHeader: 'header',
-	CardFooter: 'footer'
-};
+const recongizedChildWidgets: string[] = ['header', 'footer'];
 
 @theme(css)
 export default class Card extends ThemedMixin(WidgetBase) {
@@ -18,9 +14,9 @@ export default class Card extends ThemedMixin(WidgetBase) {
 			return undefined;
 		}
 
-		if (child.type === '__WNODE_TYPE') {
-			const name = (child as any).widgetConstructor.name;
-			return recongizedChildWidgets[name] ? recongizedChildWidgets[name] : undefined;
+		const properties: any = child.properties;
+		if (properties.slot) {
+			return recongizedChildWidgets.includes(properties.slot) ? properties.slot : undefined;
 		}
 
 		return undefined;

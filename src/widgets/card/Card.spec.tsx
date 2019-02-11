@@ -31,7 +31,10 @@ describe('Card', () => {
 		h.expect(baseAssertion);
 	});
 
-	class TestWidget extends WidgetBase {
+	interface TestWidgetProperties {
+		slot?: string;
+	}
+	class TestWidget extends WidgetBase<TestWidgetProperties> {
 		protected render(): DNode {
 			return <div>Hello!</div>;
 		}
@@ -41,14 +44,14 @@ describe('Card', () => {
 		it('renders with header', () => {
 			const h = harness(() => (
 				<Card>
-					<CardHeader>A header</CardHeader>
+					<CardHeader slot="header">A header</CardHeader>
 					<h4>A subtitle</h4>
 					Some content
 				</Card>
 			));
 
 			const assertion = baseAssertion.setChildren('@card', [
-				<CardHeader>A header</CardHeader>,
+				<CardHeader slot="header">A header</CardHeader>,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
 			h.expect(assertion);
@@ -57,14 +60,14 @@ describe('Card', () => {
 		it('renders with icon header', () => {
 			const h = harness(() => (
 				<Card>
-					<CardIconHeader icon="coffee" />
+					<CardIconHeader slot="header" icon="coffee" />
 					<h4>A subtitle</h4>
 					Some content
 				</Card>
 			));
 
 			const assertion = baseAssertion.setChildren('@card', [
-				<CardIconHeader icon="coffee" />,
+				<CardIconHeader slot="header" icon="coffee" />,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
 			h.expect(assertion);
@@ -76,13 +79,13 @@ describe('Card', () => {
 			<Card>
 				<h4>A subtitle</h4>
 				Some content
-				<CardFooter>A footer</CardFooter>
+				<CardFooter slot="footer">A footer</CardFooter>
 			</Card>
 		));
 
 		const assertion = baseAssertion.setChildren('@card', [
 			content(<h4>A subtitle</h4>, 'Some content'),
-			<CardFooter>A footer</CardFooter>
+			<CardFooter slot="footer">A footer</CardFooter>
 		]);
 		h.expect(assertion);
 	});
@@ -90,18 +93,18 @@ describe('Card', () => {
 	it('renders unrecognized widgets as content', () => {
 		const h = harness(() => (
 			<Card>
-				<CardHeader>A header</CardHeader>
+				<CardHeader slot="header">A header</CardHeader>
 				<h4>A subtitle</h4>
 				Some content
-				<CardFooter>A footer</CardFooter>
-				<TestWidget />
+				<CardFooter slot="footer">A footer</CardFooter>
+				<TestWidget slot="something-random" />
 			</Card>
 		));
 
 		const assertion = baseAssertion.setChildren('@card', [
-			<CardHeader>A header</CardHeader>,
-			content(<h4>A subtitle</h4>, 'Some content', <TestWidget />),
-			<CardFooter>A footer</CardFooter>
+			<CardHeader slot="header">A header</CardHeader>,
+			content(<h4>A subtitle</h4>, 'Some content', <TestWidget slot="something-random" />),
+			<CardFooter slot="footer">A footer</CardFooter>
 		]);
 		h.expect(assertion);
 	});

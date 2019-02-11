@@ -5,8 +5,12 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import * as css from './CardFooter.m.css';
 
+interface CardFooterProperties {
+	slot?: 'footer';
+}
+
 @theme(css)
-export default class CardFooter extends ThemedMixin(WidgetBase) {
+export default class CardFooter extends ThemedMixin(WidgetBase)<CardFooterProperties> {
 	protected render(): DNode {
 		return (
 			<footer key="card-footer" data-test="footer" classes={this.theme(css.root)}>
