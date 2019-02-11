@@ -50,33 +50,13 @@ describe('Linked Card', () => {
 		));
 	});
 
-	describe('outlet parameters', () => {
-		test('object', () => {
-			const parameters = { param1: 'something' };
-			const h = harness(() => <LinkedCard outlet="some-outlet" params={parameters} />);
-			h.expect(() => (
-				<Link classes={css.root} to="some-outlet" params={parameters}>
-					<Card />
-				</Link>
-			));
-		});
-
-		test('json string', () => {
-			const h = harness(() => <LinkedCard outlet="some-outlet" params={'{"param1":"something"}'} />);
-			h.expect(() => (
-				<Link classes={css.root} to="some-outlet" params={{ param1: 'something' }}>
-					<Card />
-				</Link>
-			));
-		});
-
-		test('bad json string', () => {
-			const h = harness(() => <LinkedCard outlet="some-outlet" params={"{param1: 'something'}"} />);
-			h.expect(() => (
-				<Link classes={css.root} to="some-outlet" params={undefined}>
-					<Card />
-				</Link>
-			));
-		});
+	it('renders outlet with parameters', () => {
+		const parameters = { param1: 'something' };
+		const h = harness(() => <LinkedCard outlet="some-outlet" params={parameters} />);
+		h.expect(() => (
+			<Link classes={css.root} to="some-outlet" params={parameters}>
+				<Card />
+			</Link>
+		));
 	});
 });

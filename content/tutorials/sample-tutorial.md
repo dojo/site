@@ -43,25 +43,3 @@ Warning alert
 [Alert type="danger"]
 Danger alert
 [/Alert]
-
-[Grid]
-
-[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
-[CardIconHeader slot="header", icon=cloud-download-alt]
-#### Local Installation
-Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.
-[/LinkedCard]
-
-[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
-[CardIconHeader slot="header", icon=cloud-download-alt]
-#### Local Installation 2
-Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.
-[/LinkedCard]
-
-[LinkedCard outlet=tutorials-page, params="{"page":"local-installation"}"]
-[CardIconHeader slot="header", icon=cloud-download-alt]
-#### Local Installation 3
-Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.
-[/LinkedCard]
-
-[/Grid]

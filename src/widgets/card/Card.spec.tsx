@@ -1,4 +1,3 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
@@ -31,27 +30,17 @@ describe('Card', () => {
 		h.expect(baseAssertion);
 	});
 
-	interface TestWidgetProperties {
-		slot?: string;
-	}
-	class TestWidget extends WidgetBase<TestWidgetProperties> {
-		protected render(): DNode {
-			return <div>Hello!</div>;
-		}
-	}
-
 	describe('header', () => {
 		it('renders with header', () => {
 			const h = harness(() => (
-				<Card>
-					<CardHeader slot="header">A header</CardHeader>
+				<Card header={<CardHeader>A header</CardHeader>}>
 					<h4>A subtitle</h4>
 					Some content
 				</Card>
 			));
 
 			const assertion = baseAssertion.setChildren('@card', [
-				<CardHeader slot="header">A header</CardHeader>,
+				<CardHeader>A header</CardHeader>,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
 			h.expect(assertion);
@@ -59,15 +48,14 @@ describe('Card', () => {
 
 		it('renders with icon header', () => {
 			const h = harness(() => (
-				<Card>
-					<CardIconHeader slot="header" icon="coffee" />
+				<Card header={<CardIconHeader icon="coffee" />}>
 					<h4>A subtitle</h4>
 					Some content
 				</Card>
 			));
 
 			const assertion = baseAssertion.setChildren('@card', [
-				<CardIconHeader slot="header" icon="coffee" />,
+				<CardIconHeader icon="coffee" />,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
 			h.expect(assertion);
@@ -76,35 +64,15 @@ describe('Card', () => {
 
 	it('renders with footer', () => {
 		const h = harness(() => (
-			<Card>
+			<Card footer={<CardFooter>A footer</CardFooter>}>
 				<h4>A subtitle</h4>
 				Some content
-				<CardFooter slot="footer">A footer</CardFooter>
 			</Card>
 		));
 
 		const assertion = baseAssertion.setChildren('@card', [
 			content(<h4>A subtitle</h4>, 'Some content'),
-			<CardFooter slot="footer">A footer</CardFooter>
-		]);
-		h.expect(assertion);
-	});
-
-	it('renders unrecognized widgets as content', () => {
-		const h = harness(() => (
-			<Card>
-				<CardHeader slot="header">A header</CardHeader>
-				<h4>A subtitle</h4>
-				Some content
-				<CardFooter slot="footer">A footer</CardFooter>
-				<TestWidget slot="something-random" />
-			</Card>
-		));
-
-		const assertion = baseAssertion.setChildren('@card', [
-			<CardHeader slot="header">A header</CardHeader>,
-			content(<h4>A subtitle</h4>, 'Some content', <TestWidget slot="something-random" />),
-			<CardFooter slot="footer">A footer</CardFooter>
+			<CardFooter>A footer</CardFooter>
 		]);
 		h.expect(assertion);
 	});
