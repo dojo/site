@@ -7,7 +7,7 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
 
-const pages = ['Blog', 'Tutorials', 'Examples', 'Playground', 'Community'];
+const pages = ['Blog', 'Tutorials', 'Reference Guides', 'Examples', 'Playground', 'Community'];
 
 export default class Menu extends WidgetBase {
 	protected expanded = false;
@@ -79,9 +79,9 @@ export default class Menu extends WidgetBase {
 						{pages.map((page) => (
 							<li classes={[css.menuItem]}>
 								<Link
-									key={`${page.toLowerCase()}Link`}
+									key={`${page.toLowerCase().replace(' ', '-')}Link`}
 									onClick={this.close}
-									to={page.toLowerCase()}
+									to={page.toLowerCase().replace(' ', '-')}
 									classes={[css.link]}
 									activeClasses={[css.selected]}
 								>

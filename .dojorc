@@ -9,7 +9,9 @@
 				"tutorials/sample-tutorial",
 				"tutorials/local-installation",
 				"tutorials/another-tutorial",
-				"tutorials"
+				"tutorials",
+				"reference-guides/sample",
+				"reference-guides"
 			],
 			"puppeteerOptions": {
 				"args": [

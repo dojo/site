@@ -86,6 +86,17 @@ describe('Menu', () => {
 						</li>
 						<li classes={[css.menuItem]}>
 							<Link
+								key="reference-guidesLink"
+								onClick={() => {}}
+								to="reference-guides"
+								classes={[css.link]}
+								activeClasses={[css.selected]}
+							>
+								Reference Guides
+							</Link>
+						</li>
+						<li classes={[css.menuItem]}>
+							<Link
 								key="examplesLink"
 								onClick={() => {}}
 								to="examples"
