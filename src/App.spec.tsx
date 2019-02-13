@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Playground from './pages/Playground';
 import TutorialsLanding from './pages/TutorialsLanding';
 import TutorialsPage from './pages/TutorialsPage';
+import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
+import ReferenceGuidesPage from './pages/ReferenceGuidesPage';
 import Header from './widgets/Header';
 
 import App from './App';
@@ -43,6 +45,12 @@ describe('App', () => {
 						id="tutorials-page"
 						renderer={() => <TutorialsPage page="some-tutorial" />}
 					/>
+					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
+					<Outlet
+						key="reference-guides-page"
+						id="reference-guides-page"
+						renderer={() => <ReferenceGuidesPage page="some-reference-guide" />}
+					/>
 				</div>
 			</div>
 		));
@@ -59,6 +67,12 @@ describe('App', () => {
 			outlet: 'tutorials-page',
 			content: <TutorialsPage page="some-tutorial" />,
 			args: [{ params: { page: 'some-tutorial' } }]
+		},
+		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> },
+		{
+			outlet: 'reference-guides-page',
+			content: <ReferenceGuidesPage page="some-reference-guide" />,
+			args: [{ params: { page: 'some-reference-guide' } }]
 		}
 	];
 
