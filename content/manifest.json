@@ -32,6 +32,20 @@
 			]
 		}
 	],
+	"reference-guides": [
+		{
+			"name": "Basic",
+			"pages": [
+				{
+					"name": "Sample Reference Guide",
+					"path": "./reference-guides/sample.md",
+					"icon": "apple-alt",
+					"topic": "getting-started",
+					"description": "A sample reference guide"
+				}
+			]
+		}
+	],
 	"roadmap": [
 		{
 			"name": "Dojo Roadmap",
