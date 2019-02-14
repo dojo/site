@@ -15,7 +15,7 @@ const twitter = require('../assets/logo-twitter.svg');
 const discourse = require('../assets/logo-discourse.svg');
 const dojo = require('../assets/dojo-logo-black.svg');
 
-export const links  = [
+const links  = [
 	{
 		title: 'Code of Conduct',
 		url: 'https://github.com/dojo/framework/blob/master/CODE_OF_CONDUCT.md',
@@ -72,7 +72,7 @@ export const links  = [
 	}
 ];
 
-export const projects = [
+const projects = [
 	{
 		title: '@dojo/framework',
 		url: 'https://github.com/dojo/framework',
@@ -167,13 +167,13 @@ export default class Community extends ThemedMixin(WidgetBase) {
 			<div classes={[css.root]}>
 				<h2>Community Links</h2>
 
-				<Grid>{linkCards}</Grid>
+				<Grid key="links">{linkCards}</Grid>
 
 				<h2>Projects</h2>
 
 				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
-				<Grid>{projectCards}</Grid>
+				<Grid key="projects">{projectCards}</Grid>
 			</div>
 		);
 	}
