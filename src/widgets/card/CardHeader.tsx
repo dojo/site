@@ -9,7 +9,7 @@ export interface CardHeaderProperties {
 	image?: {
 		src: string;
 		alt?: string;
-	}
+	};
 }
 
 @theme(css)
@@ -19,12 +19,7 @@ export default class CardHeader extends ThemedMixin(WidgetBase)<CardHeaderProper
 
 		let children = this.children.length > 0 ? this.children : null;
 		if (!children && title) {
-			children = [
-				image && (
-					<img classes={css.image} src={image.src} alt={image.alt || title} />
-				),
-				title
-			];
+			children = [image && <img classes={css.image} src={image.src} alt={image.alt || title} />, title];
 		}
 
 		return (
@@ -32,5 +27,5 @@ export default class CardHeader extends ThemedMixin(WidgetBase)<CardHeaderProper
 				{children}
 			</header>
 		);
-    }
+	}
 }

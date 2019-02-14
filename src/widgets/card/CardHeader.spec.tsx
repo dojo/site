@@ -68,7 +68,7 @@ describe('CardHeader', () => {
 		});
 
 		it('does not render image if no title provided', () => {
-			const h = harness(() => <CardHeader image={{ src: "path/to/src.png" }} />);
+			const h = harness(() => <CardHeader image={{ src: 'path/to/src.png' }} />);
 
 			h.expect(baseAssertion);
 

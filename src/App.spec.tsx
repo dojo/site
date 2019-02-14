@@ -34,11 +34,7 @@ describe('App', () => {
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
-					<Outlet
-						key="community"
-						id="community"
-						renderer={() => <Community />}
-					/>
+					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
 					<Outlet
 						key="tutorials-page"

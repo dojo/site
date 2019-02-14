@@ -14,23 +14,20 @@ describe('Community Page', () => {
 					header={
 						<CardHeader
 							title="Code of Conduct"
-							image={ {
-								src: "test-file-stub",
-								alt: "Code of Conduct"
-							} }
+							image={{
+								src: 'test-file-stub',
+								alt: 'Code of Conduct'
+							}}
 						/>
 					}
 					url="https://github.com/dojo/framework/blob/master/CODE_OF_CONDUCT.md"
 				>
-				Read and understand our full Code of Conduct.
+					Read and understand our full Code of Conduct.
 				</LinkedCard>
 			));
 			h.expectPartial('@projects > *', () => (
-				<LinkedCard
-					header={ <CardHeader title="@dojo/framework" /> }
-					url="https://github.com/dojo/framework"
-				>
-				Dojo Framework. A Progressive Framework for Modern Web Apps
+				<LinkedCard header={<CardHeader title="@dojo/framework" />} url="https://github.com/dojo/framework">
+					Dojo Framework. A Progressive Framework for Modern Web Apps
 				</LinkedCard>
 			));
 		});

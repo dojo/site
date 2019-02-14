@@ -15,7 +15,7 @@ const twitter = require('../assets/logo-twitter.svg');
 const discourse = require('../assets/logo-discourse.svg');
 const dojo = require('../assets/dojo-logo-black.svg');
 
-const links  = [
+const links = [
 	{
 		title: 'Code of Conduct',
 		url: 'https://github.com/dojo/framework/blob/master/CODE_OF_CONDUCT.md',

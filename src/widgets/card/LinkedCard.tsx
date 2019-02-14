@@ -18,17 +18,21 @@ export interface LinkedCardProperties extends CardProperties {
 export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProperties> {
 	protected render() {
 		const { url, outlet, params, ...cardProperties } = this.properties;
-		const card = (<Card {...cardProperties}>{this.children}</Card>);
+		const card = <Card {...cardProperties}>{this.children}</Card>;
 
 		if (url) {
 			return (
-				<a classes={this.theme(css.root)} href={url}>{card}</a>
+				<a classes={this.theme(css.root)} href={url}>
+					{card}
+				</a>
 			);
 		}
 
 		if (outlet) {
 			return (
-				<Link classes={this.theme(css.root)} to={outlet} params={params}>{card}</Link>
+				<Link classes={this.theme(css.root)} to={outlet} params={params}>
+					{card}
+				</Link>
 			);
 		}
 		return card;
