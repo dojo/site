@@ -4,7 +4,7 @@ import Outlet from '@dojo/framework/routing/Outlet';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
 
 import Blog from './pages/Blog';
-import Community, { links, projects } from './pages/Community';
+import Community from './pages/Community';
 import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
@@ -34,11 +34,7 @@ describe('App', () => {
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
-					<Outlet
-						key="community"
-						id="community"
-						renderer={() => <Community links={links} projects={projects} />}
-					/>
+					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
 					<Outlet
 						key="tutorials-page"
@@ -61,7 +57,7 @@ describe('App', () => {
 		{ outlet: 'blog', content: <Blog /> },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
-		{ outlet: 'community', content: <Community links={links} projects={projects} /> },
+		{ outlet: 'community', content: <Community /> },
 		{ outlet: 'tutorials', content: <TutorialsLanding /> },
 		{
 			outlet: 'tutorials-page',

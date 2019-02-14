@@ -1,5 +1,5 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { DNode, WNode } from '@dojo/framework/widget-core/interfaces';
+import { WNode } from '@dojo/framework/widget-core/interfaces';
 import { ThemedMixin, theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
@@ -12,7 +12,7 @@ export interface CardProperties extends ThemedProperties {
 
 @theme(css)
 export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
-	protected render(): DNode {
+	protected render() {
 		const { header, footer } = this.properties;
 
 		return (

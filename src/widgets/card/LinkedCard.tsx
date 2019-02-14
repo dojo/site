@@ -1,5 +1,4 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { Params } from '@dojo/framework/routing/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
@@ -17,17 +16,14 @@ export interface LinkedCardProperties extends CardProperties {
 
 @theme(css)
 export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProperties> {
-	private _renderCard(cardProperties: CardProperties): DNode {
-		return <Card {...cardProperties}>{this.children}</Card>;
-	}
-
-	protected render(): DNode {
+	protected render() {
 		const { url, outlet, params, ...cardProperties } = this.properties;
+		const card = <Card {...cardProperties}>{this.children}</Card>;
 
 		if (url) {
 			return (
 				<a classes={this.theme(css.root)} href={url}>
-					{this._renderCard(cardProperties)}
+					{card}
 				</a>
 			);
 		}
@@ -35,10 +31,10 @@ export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProper
 		if (outlet) {
 			return (
 				<Link classes={this.theme(css.root)} to={outlet} params={params}>
-					{this._renderCard(cardProperties)}
+					{card}
 				</Link>
 			);
 		}
-		return this._renderCard(cardProperties);
+		return card;
 	}
 }

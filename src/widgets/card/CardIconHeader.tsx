@@ -1,5 +1,4 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
@@ -26,7 +25,7 @@ export const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
 
 @theme(css)
 export default class CardIconHeader extends ThemedMixin(WidgetBase)<CardIconHeaderProperties> {
-	protected render(): DNode {
+	protected render() {
 		const { icon, background = 'blue' } = this.properties;
 
 		return (
