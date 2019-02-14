@@ -18,15 +18,10 @@ export interface PageData {
 }
 
 export default class Section extends WidgetBase<SectionParameters> {
-	private _fetchSectionList() {
-		const { section } = this.properties;
-		return this.meta(Block).run(sectionList)(section);
-	}
-
 	protected render() {
 		let { path } = this.properties;
 		const { section } = this.properties;
-		const pages = this._fetchSectionList();
+		const pages = this.meta(Block).run(sectionList)(section) || [];
 
 		return (
 			<div classes={css.root}>

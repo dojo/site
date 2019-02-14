@@ -1,5 +1,4 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
@@ -17,7 +16,7 @@ export interface CardHeaderProperties {
 
 @theme(css)
 export default class CardHeader extends ThemedMixin(WidgetBase)<CardHeaderProperties> {
-	protected render(): DNode {
+	protected render() {
 		const { title, image } = this.properties;
 
 		return (
