@@ -3,10 +3,10 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
 
 import Grid from '../widgets/grid/Grid';
-import LinkedCard, { LinkedCardProperties } from '../widgets/card/LinkedCard';
+import LinkedCard from '../widgets/card/LinkedCard';
 
 import * as css from './Community.m.css';
-import CardHeader, { CardHeaderProperties } from '../widgets/card/CardHeader';
+import CardHeader from '../widgets/card/CardHeader';
 
 const conduct = require('../assets/icon-conduct.svg');
 const github = require('../assets/logo-github.svg');
@@ -15,11 +15,7 @@ const twitter = require('../assets/logo-twitter.svg');
 const discourse = require('../assets/logo-discourse.svg');
 const dojo = require('../assets/dojo-logo-black.svg');
 
-export interface SimpleLinkedCardProperties extends CardHeaderProperties, LinkedCardProperties {
-	description: string;
-}
-
-export const links: SimpleLinkedCardProperties[] = [
+const links = [
 	{
 		title: 'Code of Conduct',
 		url: 'https://github.com/dojo/framework/blob/master/CODE_OF_CONDUCT.md',
@@ -76,7 +72,7 @@ export const links: SimpleLinkedCardProperties[] = [
 	}
 ];
 
-export const projects: SimpleLinkedCardProperties[] = [
+const projects = [
 	{
 		title: '@dojo/framework',
 		url: 'https://github.com/dojo/framework',
@@ -154,37 +150,30 @@ export const projects: SimpleLinkedCardProperties[] = [
 	}
 ];
 
-interface CommunityProperties {
-	links: SimpleLinkedCardProperties[];
-	projects: SimpleLinkedCardProperties[];
-}
-
 @theme(css)
-export default class Community extends ThemedMixin(WidgetBase)<CommunityProperties> {
-	private _renderCard(params: SimpleLinkedCardProperties) {
-		const { description, title, url, image } = params;
-
-		return (
+export default class Community extends ThemedMixin(WidgetBase) {
+	protected render() {
+		const linkCards = links.map(({ description, title, url, image }) => (
 			<LinkedCard header={<CardHeader title={title} image={image} />} url={url}>
 				{description}
 			</LinkedCard>
-		);
-	}
-
-	protected render() {
-		const { links, projects } = this.properties;
-
+		));
+		const projectCards = projects.map(({ description, title, url }) => (
+			<LinkedCard header={<CardHeader title={title} />} url={url}>
+				{description}
+			</LinkedCard>
+		));
 		return (
 			<div classes={[css.root]}>
 				<h2>Community Links</h2>
 
-				<Grid>{links.map((link) => this._renderCard(link))}</Grid>
+				<Grid key="links">{linkCards}</Grid>
 
 				<h2>Projects</h2>
 
 				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
-				<Grid>{projects.map((project) => this._renderCard(project))}</Grid>
+				<Grid key="projects">{projectCards}</Grid>
 			</div>
 		);
 	}

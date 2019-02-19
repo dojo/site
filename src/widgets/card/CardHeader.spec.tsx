@@ -5,7 +5,7 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import CardHeader from './CardHeader';
 import * as css from './CardHeader.m.css';
 
-describe('CardFooter', () => {
+describe('CardHeader', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<header key="card-header" data-test="card-header" classes={css.root} />
 	));
@@ -47,21 +47,11 @@ describe('CardFooter', () => {
 	});
 
 	describe('image', () => {
-		it('renders title and image from string', () => {
-			const h = harness(() => <CardHeader title="A title" image="path/to/src.png" />);
-
-			const assertion = baseAssertion.setChildren('@card-header', [
-				<img src="path/to/src.png" classes={css.image} />,
-				'A title'
-			]);
-			h.expect(assertion);
-		});
-
 		it('renders title and image from object', () => {
 			const h = harness(() => <CardHeader title="A title" image={{ src: 'path/to/src.png' }} />);
 
 			const assertion = baseAssertion.setChildren('@card-header', [
-				<img src="path/to/src.png" classes={css.image} />,
+				<img src="path/to/src.png" alt="A title" classes={css.image} />,
 				'A title'
 			]);
 			h.expect(assertion);
@@ -78,7 +68,7 @@ describe('CardFooter', () => {
 		});
 
 		it('does not render image if no title provided', () => {
-			const h = harness(() => <CardHeader image="path/to/src.png" />);
+			const h = harness(() => <CardHeader image={{ src: 'path/to/src.png' }} />);
 
 			h.expect(baseAssertion);
 

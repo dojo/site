@@ -13,14 +13,9 @@ export interface SectionParameters {
 }
 
 export default class Section extends WidgetBase<SectionParameters> {
-	private _fetchSectionList() {
-		const { section } = this.properties;
-		return this.meta(Block).run(sectionList)(section) || [];
-	}
-
 	protected render() {
 		const { path, section } = this.properties;
-		const subsections = this._fetchSectionList();
+		const subsections = this.meta(Block).run(sectionList)(section) || [];
 
 		return (
 			<div classes={css.root}>
