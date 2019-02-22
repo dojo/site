@@ -266,7 +266,8 @@
 	.build {
 		width: calc(var(--grid-size) * 25);
 	}
-	.ethos, .cli {
+	.ethos,
+	.cli {
 		flex-direction: column;
 	}
 	.getGoing {
