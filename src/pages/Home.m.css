@@ -91,7 +91,7 @@
 .command {
 	font-family: monospace;
 	color: var(--color-off-white);
-	font-size: 1.375em;
+	font-size: 1rem;
 	display: flex;
 }
 
@@ -252,7 +252,7 @@
 		margin: 0;
 	}
 	.command {
-		font-size: 1em;
+		font-size: 0.8rem;
 	}
 	.commands {
 		width: 100%;

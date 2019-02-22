@@ -11,11 +11,7 @@
 	--border-radius: 4px;
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);
-<<<<<<< HEAD
-	--header-size: calc(var(--grid-size) * 8);
-=======
-	--header-size: calc(var(grid-size) * 10);
->>>>>>> Use variable for header size, adjust menu CSS accordingly
 
+	--header-size: calc(var(--grid-size) * 8);
 	--dark-background-color: #141414;
 }
