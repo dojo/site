@@ -9,28 +9,6 @@ import * as css from './Header.m.css';
 const pages = ['Blog', 'Tutorials', 'Reference Guides', 'Examples', 'Playground', 'Community'];
 
 export default class Menu extends WidgetBase {
-	// protected expanded = false;
-
-	// private smallPredicate(contentRect: ContentRect): boolean {
-	// 	return contentRect.width < 768;
-	// }
-
-	// private toggle() {
-	// 	this.expanded = !this.expanded;
-	// 	this.invalidate();
-	// }
-
-	// private close() {
-	// 	this.expanded = false;
-	// 	this.invalidate();
-	// }
-
-	// private onKeyDown(event: KeyboardEvent) {
-	// 	if (event.key === 'Escape') {
-	// 		this.close();
-	// 	}
-	// }
-
 	protected render() {
 		return (
 			<header key="root" classes={css.root}>
