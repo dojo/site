@@ -18,10 +18,12 @@
 	align-content: flex-start;
 	align-items: center;
 	padding-left: calc(100vw - 100%);
+	height: var(--header-size);
 }
 
 .menu {
 	margin-right: 20px;
+	overflow: hidden;
 }
 
 .menuList {
@@ -58,6 +60,8 @@
 }
 
 .homeLink {
+	display: flex;
+	justify-content: center;
 }
 
 .selected {
@@ -73,6 +77,7 @@
 
 .leftContainer {
 	margin: auto 10px;
+	display: flex;
 }
 
 .toggleButton {
@@ -147,10 +152,9 @@
 	.menu {
 		position: fixed;
 		left: -200px;
-		top: 55px;
+		top: var(--header-size);
 		height: 100%;
 		overflow-x: visible;
-		overflow-y: scroll;
 		transition: left 0.3s ease, box-shadow 0.3s ease;
 		z-index: 999;
 	}
@@ -199,9 +203,8 @@
 	}
 
 	.mainMenuToggle:checked ~ .menu {
-		left: 0 !important;
+		left: 0;
 		outline: none;
-		box-shadow: 3px 0 12px var(--shadow-color);
 		z-index: 1000;
 	}
 

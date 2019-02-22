@@ -7,4 +7,5 @@
 	--grid-size: 10px;
 
 	--card-padding: calc(var(--grid-size) * 2);
+	--header-size: calc(var(--grid-size) * 8);
 }
