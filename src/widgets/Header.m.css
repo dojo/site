@@ -17,9 +17,11 @@
 	justify-content: flex-start;
 	align-content: flex-start;
 	align-items: center;
+	padding-left: calc(100vw - 100%);
 }
 
 .menu {
+	margin-right: 20px;
 }
 
 .menuList {
