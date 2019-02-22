@@ -30,7 +30,6 @@
 }
 
 .hero {
-	background-image: url('http://localhost:3000/herobg.27UmsJ1S.png');
 	width: 100%;
 	height: calc(var(--grid-size) * 47.5);
 	color: var(--color-white);
@@ -98,7 +97,6 @@
 
 .commands {
 	width: 80%;
-	min-width: calc(var(--grid-size) * 60);
 	height: calc(var(--grid-size) * 16);
 	background: var(--dark-background-color);
 	white-space: nowrap;
@@ -239,4 +237,42 @@
 	background-color: var(--color-green);
 	color: var(--color-white);
 	text-align: center;
+}
+
+@media (max-width: 960px) {
+	.headline {
+		font-size: 20px;
+		width: 300px;
+	}
+	.ethosPoint {
+		width: initial;
+		margin: calc(var(--grid-size) * 2) calc(var(--grid-size) * 2.5) calc(var(--grid-size) * 2.5);
+	}
+	.ethos {
+		margin: 0;
+	}
+	.command {
+		font-size: 10px;
+	}
+	.commands {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0;
+		height: 62px;
+	}
+	.content {
+		padding: 0;
+	}
+	.build {
+		width: 200px;
+	}
+	.ethos, .cli {
+		flex-direction: column;
+	}
+	.getGoing {
+		padding: 0;
+	}
+	.codeContainer {
+		display: none;
+	}
 }

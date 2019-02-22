@@ -30,3 +30,4 @@ export const codeContainer: string;
 export const cli: string;
 export const result: string;
 export const check: string;
+export const content: string;
