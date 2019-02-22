@@ -13,7 +13,7 @@
 
 .build {
 	background: rgba(0, 0, 0, 0);
-	font-size: 14px;
+	font-size: 0.875em;
 	color: var(--color-white);
 	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
 	border-image-slice: 1;
@@ -91,7 +91,7 @@
 .command {
 	font-family: monospace;
 	color: var(--color-off-white);
-	font-size: 22px;
+	font-size: 1.375em;
 	display: flex;
 }
 
@@ -155,7 +155,7 @@
 
 .code {
 	background: var(--dark-background-color);
-	font-size: 14px;
+	font-size: 0.875em;
 	padding: calc(var(--grid-size) * 2.5);
 	width: calc(var(--grid-size) * 60);
 	max-width: calc(var(--grid-size) * 60);
@@ -241,8 +241,8 @@
 
 @media (max-width: 960px) {
 	.headline {
-		font-size: 20px;
-		width: 300px;
+		font-size: 1.25em;
+		width: calc(var(--grid-size) * 37.5);
 	}
 	.ethosPoint {
 		width: initial;
@@ -252,19 +252,19 @@
 		margin: 0;
 	}
 	.command {
-		font-size: 10px;
+		font-size: 1em;
 	}
 	.commands {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 0;
-		height: 62px;
+		height: calc(var(--grid-size) * 7);
 	}
 	.content {
 		padding: 0;
 	}
 	.build {
-		width: 200px;
+		width: calc(var(--grid-size) * 25);
 	}
 	.ethos, .cli {
 		flex-direction: column;
