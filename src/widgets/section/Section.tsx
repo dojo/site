@@ -12,20 +12,14 @@ export interface SectionParameters {
 	path?: string;
 }
 
-export interface PageData {
-	name: string;
-	path: string;
-}
-
 export default class Section extends WidgetBase<SectionParameters> {
 	protected render() {
-		let { path } = this.properties;
-		const { section } = this.properties;
-		const pages = this.meta(Block).run(sectionList)(section) || [];
+		const { path, section } = this.properties;
+		const subsections = this.meta(Block).run(sectionList)(section) || [];
 
 		return (
 			<div classes={css.root}>
-				<SectionList key={`list-${section}`} section={section} pages={pages} currentPath={path} />
+				<SectionList key={`list-${section}`} section={section} subsections={subsections} />
 				{path ? <Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} /> : null}
 			</div>
 		);

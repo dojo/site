@@ -11,9 +11,9 @@
 
 @media (max-width: 1240px) {
 	.root {
-		grid-template-columns: calc((100% - calc(var(--grid-size) * 8)) * (1 / 2)) calc(
-				(100% - calc(var(--grid-size) * 8)) * (1 / 2)
-			);
+		grid-template-columns:
+			calc((100% - calc(var(--grid-size) * 8)) * (1 / 2))
+			calc((100% - calc(var(--grid-size) * 8)) * (1 / 2));
 	}
 }
 

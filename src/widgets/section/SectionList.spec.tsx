@@ -1,50 +1,62 @@
+import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import Link from '@dojo/framework/routing/Link';
+import ActiveLink from '@dojo/framework/routing/ActiveLink';
 
-import { PageData } from './Section';
+import { subsections } from '../../scripts/section-list.block.spec';
 import SectionList from './SectionList';
 import * as css from './SectionList.m.css';
 
 describe('Section List', () => {
-	it('renders', () => {
-		const pages: PageData[] = [
-			{
-				name: 'Local Installation',
-				path: 'tutorials/local-installation'
-			},
-			{
-				name: 'Tutorial 2',
-				path: 'tutorials/tutorial-2'
-			}
-		];
-		const section = 'tutorials';
-		const currentPath = 'tutorials/local-installation';
+	const section = 'tutorials';
 
-		const h = harness(() => <SectionList pages={pages} section={section} currentPath={currentPath} />);
-		h.expect(() => (
-			<div key={`section-list-${section}`} classes={css.root}>
+	const baseAssertionTemplate = assertionTemplate(() => (
+		<div key="section-list-tutorials" classes={css.root}>
+			<div key="subsection-list-Sub-Section 1" classes={css.subsection}>
+				<h5 classes={css.subsectionHeader}>Sub-Section 1</h5>
 				<ul classes={css.list}>
-					{pages.map((s) => {
-						const extraClasses: { [key: string]: string } = {};
-						if (s.path === currentPath) {
-							extraClasses.root = css.selected;
-						}
-
-						return (
-							<li key={`section-list-${section}-${s.path}`} classes={css.item}>
-								<Link
-									to={`${section}-page`}
-									params={{ page: s.path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '') }}
-									extraClasses={extraClasses}
-								>
-									{s.name}
-								</Link>
-							</li>
-						);
-					})}
+					<li key="section-list-tutorials-path/to/one">
+						<ActiveLink
+							to="tutorials-page"
+							params={{ page: 'path/to/one' }}
+							classes={css.itemLink}
+							activeClasses={[css.selected]}
+						>
+							one
+						</ActiveLink>
+					</li>
+					<li key="section-list-tutorials-path/to/two">
+						<ActiveLink
+							to="tutorials-page"
+							params={{ page: 'path/to/two' }}
+							classes={css.itemLink}
+							activeClasses={[css.selected]}
+						>
+							two
+						</ActiveLink>
+					</li>
 				</ul>
 			</div>
-		));
+			<div key="subsection-list-Sub-Section 2" classes={css.subsection}>
+				<h5 classes={css.subsectionHeader}>Sub-Section 2</h5>
+				<ul classes={css.list}>
+					<li key="section-list-tutorials-path/to/three">
+						<ActiveLink
+							to="tutorials-page"
+							params={{ page: 'path/to/three' }}
+							classes={css.itemLink}
+							activeClasses={[css.selected]}
+						>
+							three
+						</ActiveLink>
+					</li>
+				</ul>
+			</div>
+		</div>
+	));
+
+	it('renders default', () => {
+		const h = harness(() => <SectionList subsections={subsections} section={section} />);
+		h.expect(baseAssertionTemplate);
 	});
 });

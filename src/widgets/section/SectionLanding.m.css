@@ -1,0 +1,39 @@
+@import '../../variables.css';
+
+.root {
+	padding: 60px 0;
+	width: 1199px;
+	margin: 0 auto;
+}
+
+.pageLink {
+	display: flex;
+}
+
+@media (max-width: 1240px) {
+	.root {
+		width: 786px;
+	}
+}
+
+@media (max-width: 850px) {
+	.root {
+		width: 373px;
+	}
+}
+
+@media (max-width: 350px) {
+	.root {
+		width: 90%;
+	}
+}
+
+.subsection {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: calc(var(--grid-size) * 7);
+}
+
+.title {
+	margin-bottom: 0.5rem;
+}

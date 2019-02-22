@@ -4,6 +4,7 @@
 	text-decoration: none;
 	display: flex;
 	transition: box-shadow 0.4s ease;
+	width: 100%;
 }
 
 .root:hover {

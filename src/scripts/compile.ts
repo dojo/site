@@ -4,6 +4,7 @@ import { readFileSync } from 'fs-extra';
 import { resolve } from 'path';
 
 import { regionBuilder } from './regions/parser';
+import { Subsection } from './section-list.block';
 
 const unified = require('unified');
 const macro = require('remark-macro')();
@@ -13,13 +14,8 @@ const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
 const all = require('mdast-util-to-hast/lib/all');
 
-export interface ManifestConfigFile {
-	name: string;
-	path: string;
-}
-
 export interface ManifestConfig {
-	[section: string]: ManifestConfigFile[];
+	[section: string]: Subsection[];
 }
 
 export interface BuildDetails {

@@ -19,8 +19,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons/faGraduationCap';
 import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
+import { faAppleAlt } from '@fortawesome/free-solid-svg-icons/faAppleAlt';
 
-library.add(faCloudDownloadAlt, faGraduationCap, faListAlt);
+library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faAppleAlt);
 
 export default class App extends WidgetBase {
 	protected render() {
