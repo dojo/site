@@ -5,8 +5,15 @@ const hero = require('../assets/herobg.png');
 import * as css from './Home.m.css';
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Card from '../widgets/card/Card';
+import Intersection from '@dojo/framework/widget-core/meta/Intersection';
+import has from '@dojo/framework/has/has';
 export default class Home extends WidgetBase {
 	protected render() {
+
+		const { isIntersecting } = this.meta(Intersection).get('cli');
+
+		const play = isIntersecting || has('build-time-render');
+
 		return (
 			<div classes={[css.root]}>
 				<div styles={{ backgroundImage: `url(${hero})` }} classes={[css.hero]}>
@@ -57,19 +64,19 @@ export default class Home extends WidgetBase {
 						Getting started with Dojo is simple. You can use your command line of choice and{' '}
 						<a href="https://www.npmjs.com">npm</a> to get going quickly.{' '}
 					</p>
-					<div classes={[css.cli]}>
+					<div key="cli" classes={[css.cli]}>
 						<Card dark={true} extraClasses={{ root: css.commands }}>
 							<div classes={css.command}>
-								<span classes={[css.commandOne]}>npm i @dojo/cli @dojo/cli-create-app -g</span>
-								<span classes={[css.blinkOne]}>|</span>
+								<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>npm i @dojo/cli @dojo/cli-create-app -g</span>
+								<span classes={[play ? css.blinkOne : null]}>|</span>
 							</div>
 							<div classes={css.command}>
-								<span classes={[css.commandTwo]}> dojo create app --name hello-world</span>
-								<span classes={[css.blinkTwo]}>|</span>
+								<span classes={[css.commandTwo, play ? css.commandTwoAnimation : null]}> dojo create app --name hello-world</span>
+								<span classes={[play ? css.blinkTwo : null]}>|</span>
 							</div>
 						</Card>
 						<div classes={[css.codeContainer]}>
-							<Card dark={true} extraClasses={{ root: css.code }}>
+							<Card dark={true} extraClasses={{ root: play ? css.code : css.hide }}>
 								<div classes={[css.codeline]}>
 									<span classes={[css.keyword]}>import</span>
 									<span classes={[css.variable]}>WidgetBase</span>
@@ -94,7 +101,7 @@ export default class Home extends WidgetBase {
 									<span>;</span>
 								</div>
 							</Card>
-							<Card extraClasses={{ root: css.result }}>
+							<Card extraClasses={{ root:  play ? css.result : css.hide }}>
 								<div classes={[css.check]}>✔</div>
 								<div>Success!</div>
 							</Card>

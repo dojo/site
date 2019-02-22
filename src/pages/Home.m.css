@@ -113,6 +113,9 @@
 	width: 0;
 	overflow: hidden;
 	display: inline-block;
+}
+
+.commandOneAnimation {
 	animation: typeOne 4s steps(46, end) 2s;
 	animation-fill-mode: forwards;
 }
@@ -127,6 +130,9 @@
 	width: 0;
 	overflow: hidden;
 	display: inline-block;
+}
+
+.commandTwoAnimation {
 	animation: typeTwo 4s steps(40, end) 7s;
 	animation-fill-mode: forwards;
 }
@@ -210,6 +216,10 @@
 	100% {
 		opacity: 1;
 	}
+}
+
+.hide {
+	opacity: 0;
 }
 
 .result {
