@@ -23,11 +23,6 @@ const topicColors: { [key: string]: IconHeaderBackgroundColor } = {
 };
 
 export default class SectionLanding extends WidgetBase<SectionLandingParameters> {
-	private _fetchSectionList() {
-		const { section } = this.properties;
-		return this.meta(Block).run(sectionList)(section) || [];
-	}
-
 	private _renderSubsection(subsection: Subsection): DNode {
 		const { pages, name } = subsection;
 
@@ -58,10 +53,9 @@ export default class SectionLanding extends WidgetBase<SectionLandingParameters>
 	}
 
 	protected render() {
-		return (
-			<div classes={css.root}>
-				{this._fetchSectionList().map((subsection) => this._renderSubsection(subsection))}
-			</div>
-		);
+		const { section } = this.properties;
+		const subsections = this.meta(Block).run(sectionList)(section) || [];
+
+		return <div classes={css.root}>{subsections.map((subsection) => this._renderSubsection(subsection))}</div>;
 	}
 }
