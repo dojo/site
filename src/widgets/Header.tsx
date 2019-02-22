@@ -12,25 +12,16 @@ export default class Menu extends WidgetBase {
 	protected render() {
 		return (
 			<header key="root" classes={css.root}>
-				<input id="mainMenuToggle" classes={css.mainMenuToggle} type="checkbox"/>
+				<input id="mainMenuToggle" classes={css.mainMenuToggle} type="checkbox" />
 				<div classes={[css.left]}>
 					<span classes={css.leftContainer}>
-						<label
-							for="mainMenuToggle"
-							key="toggleButton"
-							classes={css.toggleButton}
-						>
+						<label for="mainMenuToggle" key="toggleButton" classes={css.toggleButton}>
 							<span classes={css.srOnly}>Menu</span>
 							<div classes={css.toggleBar} />
 						</label>
 					</span>
 					<span classes={[css.centerContainer]}>
-						<Link
-							key="homeLink"
-							to="home"
-							classes={[css.homeLink]}
-							activeClasses={[css.selected]}
-						>
+						<Link key="homeLink" to="home" classes={[css.homeLink]} activeClasses={[css.selected]}>
 							<img classes={[css.logo]} alt="logo" src={logo} />
 						</Link>
 					</span>
