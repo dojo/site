@@ -1,26 +1,25 @@
 import sectionListBuild, { Subsection } from './section-list.block';
 import * as fs from 'fs-extra';
 import * as path from 'canonical-path';
-import { ManifestConfig } from './compile';
 
 jest.mock('fs-extra');
 jest.mock('canonical-path');
 
-export const manifestFile: ManifestConfig = {
+export const manifestFile: any = {
 	tutorials: [
 		{
 			name: 'Sub-Section 1',
 			pages: [
 				{
 					name: 'one',
-					path: 'path/to/one.md',
+					path: 'tutorials/path/to/one.md',
 					icon: 'cloud-download-alt',
 					topic: 'topic-one',
 					description: 'A first tutorial'
 				},
 				{
 					name: 'two',
-					path: 'path/to/two.md',
+					path: 'tutorials/path/to/two.md',
 					icon: 'graduation-cap',
 					topic: 'topic-two',
 					description: 'A second tutorial'
@@ -32,7 +31,7 @@ export const manifestFile: ManifestConfig = {
 			pages: [
 				{
 					name: 'three',
-					path: 'path/to/three.md',
+					path: 'tutorials/path/to/three.md',
 					icon: 'cloud-download-alt',
 					topic: 'topic-three',
 					description: 'A third tutorial'
@@ -46,7 +45,7 @@ export const manifestFile: ManifestConfig = {
 			pages: [
 				{
 					name: 'four',
-					path: 'path/to/four.md',
+					path: 'tutorials/path/to/four.md',
 					icon: 'cloud-download-alt',
 					topic: 'topic-four',
 					description: 'A first other page'
@@ -62,14 +61,16 @@ export const subsections: Subsection[] = [
 		pages: [
 			{
 				name: 'one',
-				path: 'path/to/one',
+				url: 'path/to/one',
+				path: 'tutorials/path/to/one',
 				icon: 'cloud-download-alt',
 				topic: 'topic-one',
 				description: 'A first tutorial'
 			},
 			{
 				name: 'two',
-				path: 'path/to/two',
+				url: 'path/to/two',
+				path: 'tutorials/path/to/two',
 				icon: 'graduation-cap',
 				topic: 'topic-two',
 				description: 'A second tutorial'
@@ -81,7 +82,8 @@ export const subsections: Subsection[] = [
 		pages: [
 			{
 				name: 'three',
-				path: 'path/to/three',
+				url: 'path/to/three',
+				path: 'tutorials/path/to/three',
 				icon: 'cloud-download-alt',
 				topic: 'topic-three',
 				description: 'A third tutorial'
@@ -118,9 +120,9 @@ describe('content compiler', () => {
 		expect(mockResolve).toHaveBeenCalledWith('content', 'manifest.json');
 		expect(mockReadJSONSync).toHaveBeenCalledWith('path/to/somewhere');
 		expect(mockParse).toHaveBeenCalledTimes(3);
-		expect(mockParse).toHaveBeenNthCalledWith(1, 'path/to/one.md');
-		expect(mockParse).toHaveBeenNthCalledWith(2, 'path/to/two.md');
-		expect(mockParse).toHaveBeenNthCalledWith(3, 'path/to/three.md');
+		expect(mockParse).toHaveBeenNthCalledWith(1, 'tutorials/path/to/one.md');
+		expect(mockParse).toHaveBeenNthCalledWith(2, 'tutorials/path/to/two.md');
+		expect(mockParse).toHaveBeenNthCalledWith(3, 'tutorials/path/to/three.md');
 
 		expect(result).toEqual(subsections);
 	});

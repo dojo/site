@@ -36,14 +36,14 @@ export default class SectionLanding extends WidgetBase<SectionLandingParameters>
 
 	private _renderPageCard(page: PageDefinition): DNode {
 		const { section } = this.properties;
-		const { name, path, description, icon, topic } = page;
+		const { name, url, path, description, icon, topic } = page;
 
 		return (
 			<div key={`${section}-page-${path}`} classes={css.pageLink}>
 				<LinkedCard
 					header={<CardIconHeader icon={icon} background={topicColors[topic]} />}
 					outlet={`${section}-page`}
-					params={{ page: path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '') }}
+					params={{ page: url }}
 				>
 					<h4 classes={css.title}>{name}</h4>
 					{description}

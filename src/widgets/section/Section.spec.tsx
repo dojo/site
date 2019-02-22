@@ -28,14 +28,16 @@ describe('Section', () => {
 			pages: [
 				{
 					name: 'one',
-					path: 'path/to/one',
+					url: 'path/to/one',
+					path: 'tutorials/path/to/one',
 					icon: 'cloud-download-alt',
 					topic: 'topic-one',
 					description: 'A first tutorial'
 				},
 				{
 					name: 'two',
-					path: 'path/to/two',
+					url: 'path/to/two',
+					path: 'tutorials/path/to/two',
 					icon: 'graduation-cap',
 					topic: 'topic-two',
 					description: 'A second tutorial'
@@ -47,7 +49,8 @@ describe('Section', () => {
 			pages: [
 				{
 					name: 'three',
-					path: 'path/to/three',
+					url: 'path/to/three',
+					path: 'tutorials/path/to/three',
 					icon: 'cloud-download-alt',
 					topic: 'topic-three',
 					description: 'A third tutorial'
@@ -86,7 +89,7 @@ describe('Section', () => {
 
 		h.expect(() => (
 			<div classes={css.root}>
-				<SectionList key={`list-${section}`} section={section} subsections={subsections} currentPath={path} />
+				<SectionList key={`list-${section}`} section={section} subsections={subsections} />
 				<Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} />
 			</div>
 		));
@@ -103,7 +106,7 @@ describe('Section', () => {
 		expect(mockSectionListBlock).toBeCalledWith(section);
 		h.expect(() => (
 			<div classes={css.root}>
-				<SectionList key={`list-${section}`} section={section} subsections={[]} currentPath={undefined} />
+				<SectionList key={`list-${section}`} section={section} subsections={[]} />
 			</div>
 		));
 	});
@@ -115,7 +118,7 @@ describe('Section', () => {
 
 		h.expect(() => (
 			<div classes={css.root}>
-				<SectionList key={`list-${section}`} section={section} subsections={[]} currentPath={undefined} />
+				<SectionList key={`list-${section}`} section={section} subsections={[]} />
 			</div>
 		));
 	});

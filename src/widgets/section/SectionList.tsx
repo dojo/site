@@ -1,6 +1,6 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import Link from '@dojo/framework/routing/Link';
+import ActiveLink from '@dojo/framework/routing/ActiveLink';
 
 import { Subsection, PageDefinition } from '../../scripts/section-list.block';
 
@@ -8,7 +8,6 @@ import * as css from './SectionList.m.css';
 
 export interface SectionListParameters {
 	section: string;
-	currentPath?: string;
 	subsections: Subsection[];
 }
 
@@ -25,21 +24,19 @@ export default class SectionList extends WidgetBase<SectionListParameters> {
 	}
 
 	private _renderPageLink(page: PageDefinition) {
-		const { section, currentPath = '' } = this.properties;
-		const { path, name } = page;
-
-		const extraClasses: string[] = [css.itemLink];
-		const normalizedPath = path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '');
-		const normalizedCurrentPath = currentPath.replace(new RegExp(`^(.\/|..\/)*${section}\/`), '');
-		if (normalizedPath === normalizedCurrentPath) {
-			extraClasses.push(css.selected);
-		}
+		const { section } = this.properties;
+		const { url, name } = page;
 
 		return (
-			<li key={`section-list-${section}-${path}`}>
-				<Link to={`${section}-page`} params={{ page: normalizedPath }} classes={extraClasses}>
+			<li key={`section-list-${section}-${url}`}>
+				<ActiveLink
+					to={`${section}-page`}
+					params={{ page: url }}
+					classes={css.itemLink}
+					activeClasses={[css.selected]}
+				>
 					{name}
-				</Link>
+				</ActiveLink>
 			</li>
 		);
 	}

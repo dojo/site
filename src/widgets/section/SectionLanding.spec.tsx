@@ -28,14 +28,16 @@ describe('Section Landing', () => {
 			pages: [
 				{
 					name: 'one',
-					path: 'path/to/one',
+					url: 'path/to/one',
+					path: 'tutorials/path/to/one',
 					icon: 'cloud-download-alt',
 					topic: 'topic-one',
 					description: 'A first tutorial'
 				},
 				{
 					name: 'two',
-					path: 'path/to/two',
+					url: 'path/to/two',
+					path: 'tutorials/path/to/two',
 					icon: 'graduation-cap',
 					topic: 'topic-two',
 					description: 'A second tutorial'
@@ -47,7 +49,8 @@ describe('Section Landing', () => {
 			pages: [
 				{
 					name: 'three',
-					path: 'path/to/three',
+					url: 'path/to/three',
+					path: 'tutorials/path/to/three',
 					icon: 'cloud-download-alt',
 					topic: 'widgets',
 					description: 'A third tutorial'
@@ -76,7 +79,7 @@ describe('Section Landing', () => {
 				<div key="subsection-Sub-Section 1" classes={css.subsection}>
 					<h2>Sub-Section 1</h2>
 					<Grid key="subsection-list-Sub-Section 1">
-						<div key="tutorials-page-path/to/one" classes={css.pageLink}>
+						<div key="tutorials-page-tutorials/path/to/one" classes={css.pageLink}>
 							<LinkedCard
 								header={<CardIconHeader icon="cloud-download-alt" background={undefined} />}
 								outlet="tutorials-page"
@@ -86,7 +89,7 @@ describe('Section Landing', () => {
 								A first tutorial
 							</LinkedCard>
 						</div>
-						<div key="tutorials-page-path/to/two" classes={css.pageLink}>
+						<div key="tutorials-page-tutorials/path/to/two" classes={css.pageLink}>
 							<LinkedCard
 								header={<CardIconHeader icon="graduation-cap" background={undefined} />}
 								outlet="tutorials-page"
@@ -101,7 +104,7 @@ describe('Section Landing', () => {
 				<div key="subsection-Sub-Section 2" classes={css.subsection}>
 					<h2>Sub-Section 2</h2>
 					<Grid key={`subsection-list-Sub-Section 2`}>
-						<div key="tutorials-page-path/to/three" classes={css.pageLink}>
+						<div key="tutorials-page-tutorials/path/to/three" classes={css.pageLink}>
 							<LinkedCard
 								header={<CardIconHeader icon="cloud-download-alt" background="orange" />}
 								outlet={`tutorials-page`}

@@ -19,7 +19,7 @@ export default class Section extends WidgetBase<SectionParameters> {
 
 		return (
 			<div classes={css.root}>
-				<SectionList key={`list-${section}`} section={section} subsections={subsections} currentPath={path} />
+				<SectionList key={`list-${section}`} section={section} subsections={subsections} />
 				{path ? <Page key={`page-${section}-${path.replace('/', '-')}`} path={path} hasSection={true} /> : null}
 			</div>
 		);

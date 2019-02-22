@@ -9,6 +9,7 @@ export interface Subsection {
 
 export interface PageDefinition {
 	name: string;
+	url: string;
 	path: string;
 	icon: IconName | IconLookup;
 	topic: string;
@@ -31,13 +32,17 @@ export default function(section: string) {
 
 	subsections = manifest[section].map(({ name, pages }) => ({
 		name,
-		pages: pages.map(({ name, path, icon, topic, description }: PageDefinition) => ({
-			name,
-			path: path.replace(parse(path).ext, ''),
-			icon,
-			topic,
-			description
-		}))
+		pages: pages.map(({ name, path: filePath, icon, topic, description }: PageDefinition) => {
+			const path = filePath.replace(parse(filePath).ext, '');
+			return {
+				name,
+				url: path.replace(new RegExp(`^(.\/|..\/)*${section}\/`), ''),
+				path,
+				icon,
+				topic,
+				description
+			};
+		})
 	}));
 
 	return subsections;
