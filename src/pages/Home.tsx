@@ -9,7 +9,6 @@ import Intersection from '@dojo/framework/widget-core/meta/Intersection';
 import has from '@dojo/framework/has/has';
 export default class Home extends WidgetBase {
 	protected render() {
-
 		const { isIntersecting } = this.meta(Intersection).get('cli');
 
 		const play = isIntersecting || has('build-time-render');
@@ -67,11 +66,16 @@ export default class Home extends WidgetBase {
 					<div key="cli" classes={[css.cli]}>
 						<Card dark={true} extraClasses={{ root: css.commands }}>
 							<div classes={css.command}>
-								<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>npm i @dojo/cli @dojo/cli-create-app -g</span>
+								<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>
+									npm i @dojo/cli @dojo/cli-create-app -g
+								</span>
 								<span classes={[play ? css.blinkOne : null]}>|</span>
 							</div>
 							<div classes={css.command}>
-								<span classes={[css.commandTwo, play ? css.commandTwoAnimation : null]}> dojo create app --name hello-world</span>
+								<span classes={[css.commandTwo, play ? css.commandTwoAnimation : null]}>
+									{' '}
+									dojo create app --name hello-world
+								</span>
 								<span classes={[play ? css.blinkTwo : null]}>|</span>
 							</div>
 						</Card>
@@ -101,7 +105,7 @@ export default class Home extends WidgetBase {
 									<span>;</span>
 								</div>
 							</Card>
-							<Card extraClasses={{ root:  play ? css.result : css.hide }}>
+							<Card extraClasses={{ root: play ? css.result : css.hide }}>
 								<div classes={[css.check]}>✔</div>
 								<div>Success!</div>
 							</Card>
