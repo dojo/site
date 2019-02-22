@@ -1,5 +1,6 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
+import { add } from '@dojo/framework/has/has';
 
 import Home from './Home';
 import * as css from './Home.m.css';
@@ -8,7 +9,9 @@ import Card from '../widgets/card/Card';
 const hero = require('../assets/herobg.png');
 
 describe('Home', () => {
+
 	it('renders', () => {
+		add('build-time-render', true, false);
 		const h = harness(() => <Home />);
 		h.expect(() => (
 			<div classes={[css.root]}>
@@ -60,14 +63,19 @@ describe('Home', () => {
 						Getting started with Dojo is simple. You can use your command line of choice and{' '}
 						<a href="https://www.npmjs.com">npm</a> to get going quickly.{' '}
 					</p>
-					<div classes={[css.cli]}>
+					<div key="cli" classes={[css.cli]}>
 						<Card dark={true} extraClasses={{ root: css.commands }}>
 							<div classes={css.command}>
-								<span classes={[css.commandOne]}>npm i @dojo/cli @dojo/cli-create-app -g</span>
+								<span classes={[css.commandOne, css.commandOneAnimation]}>
+									npm i @dojo/cli @dojo/cli-create-app -g
+								</span>
 								<span classes={[css.blinkOne]}>|</span>
 							</div>
 							<div classes={css.command}>
-								<span classes={[css.commandTwo]}> dojo create app --name hello-world</span>
+								<span classes={[css.commandTwo, css.commandTwoAnimation]}>
+									{' '}
+									dojo create app --name hello-world
+								</span>
 								<span classes={[css.blinkTwo]}>|</span>
 							</div>
 						</Card>
