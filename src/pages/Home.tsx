@@ -22,7 +22,7 @@ export default class Home extends WidgetBase {
 				<div classes={[css.ethos]}>
 					<Card extraClasses={{ root: css.ethosPoint }}>
 						<div classes={[css.ethosTitleContainer]}>
-							<span classes={css.productive}>
+							<span classes={[css.productive]}>
 								<FontAwesomeIcon icon="code-branch" />
 							</span>
 							<h3 classes={[css.ethosTitle]}>Productive</h3>
@@ -34,7 +34,7 @@ export default class Home extends WidgetBase {
 					</Card>
 					<Card extraClasses={{ root: css.ethosPoint }}>
 						<div classes={[css.ethosTitleContainer]}>
-							<span classes={css.adaptable}>
+							<span classes={[css.adaptable]}>
 								<FontAwesomeIcon icon="plug" />
 							</span>
 							<h3 classes={[css.ethosTitle]}>Adaptable</h3>
@@ -46,7 +46,7 @@ export default class Home extends WidgetBase {
 					</Card>
 					<Card extraClasses={{ root: css.ethosPoint }}>
 						<div classes={[css.ethosTitleContainer]}>
-							<span classes={css.inclusive}>
+							<span classes={[css.inclusive]}>
 								<FontAwesomeIcon icon="users" />
 							</span>
 							<h3 classes={[css.ethosTitle]}>Inclusive</h3>
@@ -65,13 +65,13 @@ export default class Home extends WidgetBase {
 					</p>
 					<div key="cli" classes={[css.cli]}>
 						<Card dark={true} extraClasses={{ root: css.commands }}>
-							<div classes={css.command}>
+							<div classes={[css.command]}>
 								<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>
 									npm i @dojo/cli @dojo/cli-create-app -g
 								</span>
 								<span classes={[play ? css.blinkOne : null]}>|</span>
 							</div>
-							<div classes={css.command}>
+							<div classes={[css.command]}>
 								<span classes={[css.commandTwo, play ? css.commandTwoAnimation : null]}>
 									{' '}
 									dojo create app --name hello-world
