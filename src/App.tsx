@@ -20,8 +20,11 @@ import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDow
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons/faGraduationCap';
 import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
 import { faAppleAlt } from '@fortawesome/free-solid-svg-icons/faAppleAlt';
+import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
+import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
+import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 
-library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faAppleAlt);
+library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faCodeBranch, faPlug, faUsers, faAppleAlt);
 
 export default class App extends WidgetBase {
 	protected render() {

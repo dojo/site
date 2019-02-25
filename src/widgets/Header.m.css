@@ -2,7 +2,6 @@
 
 .root {
 	--toggle-button-height: 20px;
-	--toggle-button-width: 26px;
 	--header-background-color: #212329;
 	--header-link-color: #999;
 	--shadow-color: rgba(0, 0, 0, 0.5);
@@ -22,7 +21,7 @@
 }
 
 .menu {
-	margin-right: 20px;
+	margin-right: var(--menu-offset);
 	overflow: hidden;
 }
 
@@ -147,6 +146,10 @@
 @media (max-width: 768px) {
 	.toggleButton {
 		display: inline-block;
+	}
+
+	.logo {
+		padding-right: calc(var(--menu-offset) + var(--toggle-button-width));
 	}
 
 	.menu {

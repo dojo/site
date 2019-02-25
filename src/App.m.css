@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 .root {
 	display: flex;
 	flex-direction: column;
@@ -6,6 +8,6 @@
 .content {
 	flex-grow: 1;
 	display: flex;
-	margin-top: 80px;
-	height: calc(100vh - 80px);
+	margin-top: var(--header-size);
+	height: calc(100vh - var(--header-size));
 }
