@@ -30,6 +30,7 @@
 }
 
 .hero {
+	background: var(--hero-background) ;
 	width: 100%;
 	height: calc(var(--grid-size) * 47.5);
 	color: var(--color-white);
