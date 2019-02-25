@@ -50,16 +50,16 @@
 	}
 }
 
-@media (min-width: 960px) {
+@media (min-width: 768px) {
 	.root {
-		padding: 40px 40px 60px 40px;
+		padding: var(--content-padding);
 		width: 300px !important;
 		border-right: 1px #e5e5e5 solid;
 	}
 }
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
 	.root {
-		width: 100vw;
+		display: none;
 	}
 }
