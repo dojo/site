@@ -5,13 +5,11 @@
 	flex-direction: column;
 	flex-grow: 1;
 	padding-top: 60px;
+	margin: 0px var(--content-border);
 }
 
 .content {
 	flex-grow: 1;
-	min-width: 900px;
-	width: 50%;
-	margin: 0 auto var(--header-size);
 }
 
 .contentShiftRight {
@@ -24,4 +22,10 @@
 	line-height: 1.5;
 	text-align: right;
 	padding: 1rem;
+}
+
+@media (max-width: 768px) {
+	.contentShiftRight {
+		margin-left: var(--content-border);
+	}
 }

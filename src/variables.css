@@ -12,6 +12,9 @@
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);
 
+
+	--content-border: calc(var(--grid-size) * 3);
+	--hero-background: #17191c;
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 8);

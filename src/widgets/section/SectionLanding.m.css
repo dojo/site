@@ -22,6 +22,12 @@
 	}
 }
 
+@media (max-width: 768px) {
+	.root {
+		padding: 60px var(--content-border);;
+	}
+}
+
 @media (max-width: 350px) {
 	.root {
 		width: 90%;
