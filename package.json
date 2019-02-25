@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "build:dev": "dojo build -m=dev -s",
+    "build:dev": "dojo build -m=dev -s -w",
     "build:ci": "tsc && npm run build",
     "lint:tslint": "tslint -p .",
     "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@dojo/cli": "5.0.0",
-    "@dojo/cli-build-app": "5.0.0",
+    "@dojo/cli-build-app": "5.0.1",
     "@dojo/scripts": "^3.1.0",
     "@dojo/webpack-contrib": "5.0.0",
     "@mapbox/rehype-prism": "^0.3.0",
