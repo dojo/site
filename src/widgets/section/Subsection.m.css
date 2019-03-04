@@ -1,15 +1,7 @@
 @import '../../variables.css';
 
-.pageLink {
-	display: flex;
-}
-
-.subsection {
+.root {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: calc(var(--grid-size) * 7);
-}
-
-.title {
-	margin-bottom: 0.5rem;
 }
