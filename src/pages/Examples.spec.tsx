@@ -48,7 +48,8 @@ describe('Examples', () => {
 				sandbox: true
 			}
 		]);
-		const h = harness(() => w(mockMetaMixin(Examples, mockMeta), {}));
+		const ExamplesMock = mockMetaMixin(Examples, mockMeta);
+		const h = harness(() => <ExamplesMock />);
 		h.expect(() => (
 			<Landing>
 				<Subsection>
