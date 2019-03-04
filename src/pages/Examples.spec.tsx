@@ -3,7 +3,6 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import harness from '@dojo/framework/testing/harness';
 import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/widget-core/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import { w } from '@dojo/framework/widget-core/d';
 
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Grid from '../widgets/grid/Grid';
