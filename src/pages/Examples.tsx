@@ -45,18 +45,19 @@ export default class Examples extends WidgetBase {
 				<Subsection>
 					<h2>Examples</h2>
 					<Grid>
-						{examples.map((example) => (
-							<div key={example.exampleName} classes={css.card}>
-								<LinkedCard
-									footer={this.renderCardFooter(example)}
-									header={this.renderCardHeader(example)}
-									url={`http://dojo.github.io/examples/${example.exampleName}/`}
-								>
-									<h4 classes={css.title}>{example.example.children}</h4>
-									{example.overview.children}
-								</LinkedCard>
-							</div>
-						))}
+						{examples &&
+							examples.map((example) => (
+								<div key={example.exampleName} classes={css.card}>
+									<LinkedCard
+										footer={this.renderCardFooter(example)}
+										header={this.renderCardHeader(example)}
+										url={`http://dojo.github.io/examples/${example.exampleName}/`}
+									>
+										<h4 classes={css.title}>{example.example.children}</h4>
+										{example.overview.children}
+									</LinkedCard>
+								</div>
+							))}
 					</Grid>
 				</Subsection>
 			</Landing>
