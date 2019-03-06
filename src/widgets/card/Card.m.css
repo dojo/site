@@ -17,6 +17,8 @@
 	color: #999;
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
 	box-sizing: border-box;
+	flex-grow: 1;
+	flex-shrink: 1;
 }
 
 .dark {

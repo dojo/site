@@ -12,7 +12,8 @@
 				"tutorials/another-tutorial",
 				"tutorials",
 				"reference-guides/sample",
-				"reference-guides"
+				"reference-guides",
+				"examples"
 			],
 			"puppeteerOptions": {
 				"args": [

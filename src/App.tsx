@@ -23,8 +23,9 @@ import { faAppleAlt } from '@fortawesome/free-solid-svg-icons/faAppleAlt';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
 import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
+import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
 
-library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faCodeBranch, faPlug, faUsers, faAppleAlt);
+library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faCodeBranch, faPlug, faUsers, faAppleAlt, faLaptopCode);
 
 export default class App extends WidgetBase {
 	protected render() {

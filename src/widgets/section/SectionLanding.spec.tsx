@@ -8,6 +8,8 @@ import Block from '@dojo/framework/widget-core/meta/Block';
 import * as sectionListBlock from '../../scripts/section-list.block';
 import Grid from '../grid/Grid';
 import LinkedCard from '../card/LinkedCard';
+import Landing from '../Landing';
+import Subsection from '../section/Subsection';
 
 import SectionLanding from './SectionLanding';
 import * as css from './SectionLanding.m.css';
@@ -75,8 +77,8 @@ describe('Section Landing', () => {
 
 	function expected() {
 		return (
-			<div classes={css.root}>
-				<div key="subsection-Sub-Section 1" classes={css.subsection}>
+			<Landing>
+				<Subsection>
 					<h2>Sub-Section 1</h2>
 					<Grid key="subsection-list-Sub-Section 1">
 						<div key="tutorials-page-tutorials/path/to/one" classes={css.pageLink}>
@@ -100,8 +102,8 @@ describe('Section Landing', () => {
 							</LinkedCard>
 						</div>
 					</Grid>
-				</div>
-				<div key="subsection-Sub-Section 2" classes={css.subsection}>
+				</Subsection>
+				<Subsection>
 					<h2>Sub-Section 2</h2>
 					<Grid key={`subsection-list-Sub-Section 2`}>
 						<div key="tutorials-page-tutorials/path/to/three" classes={css.pageLink}>
@@ -115,8 +117,8 @@ describe('Section Landing', () => {
 							</LinkedCard>
 						</div>
 					</Grid>
-				</div>
-			</div>
+				</Subsection>
+			</Landing>
 		);
 	}
 
@@ -133,7 +135,7 @@ describe('Section Landing', () => {
 
 		const h = harness(() => w(mockMetaMixin(SectionLanding, mockMeta), { section: 'tutorials' }));
 
-		h.expect(() => <div classes={css.root} />);
+		h.expect(() => <Landing />);
 	});
 
 	it('renders empty section landing when section list block returns undefined', () => {
@@ -141,6 +143,6 @@ describe('Section Landing', () => {
 
 		const h = harness(() => w(mockMetaMixin(SectionLanding, mockMeta), { section: 'tutorials' }));
 
-		h.expect(() => <div classes={css.root} />);
+		h.expect(() => <Landing />);
 	});
 });
