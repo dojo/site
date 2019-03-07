@@ -107,7 +107,7 @@ describe('content compiler', () => {
 
 		const readFileStub = jest
 			.spyOn(fs, 'readFile')
-			.mockReturnValueOnce(Promise.resolve(new Buffer(mockMarkupContent)));
+			.mockReturnValueOnce(Promise.resolve(Buffer.from(mockMarkupContent)));
 
 		const registeredHandlers = compiler.registerHandlers(mockHandlers);
 		const content = await compiler.getLocalFile(mockTutorialSourcePath);
