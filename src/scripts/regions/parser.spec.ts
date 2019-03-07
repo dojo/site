@@ -129,12 +129,9 @@ describe('region parser', () => {
 		);
 
 		expect(lefAlignStub).toBeCalledTimes(1);
-		expect(lefAlignStub.mock.calls[0]).toEqual([regionContentsCommentsStripped.split('\n')]);
+		expect(lefAlignStub).toHaveBeenCalledWith(regionContentsCommentsStripped.split('\n'));
 
-		expect(mockW).toBeCalledTimes(1);
-		expect(mockW.mock.calls[0][0]).toBe(type);
-		expect(mockW.mock.calls[0][1]).toEqual(propsWithTSX);
-		expect(mockW.mock.calls[0][2]).toEqual([fromMarkdownOutput]);
+		expect(mockW).toHaveBeenCalledWith(type, propsWithTSX, [fromMarkdownOutput]);
 
 		// Proper run without language provided
 		parser.regionBuilder(type, propsWithRegion, []);
