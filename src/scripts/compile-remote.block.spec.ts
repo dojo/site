@@ -32,7 +32,7 @@ describe('content compiler', () => {
 		mockFromMarkdown.mockRestore();
 	});
 
-	it('should proces', async () => {
+	it('should process', async () => {
 		const expectedResult = 'page content';
 		mockFromMarkdown.mockReturnValueOnce(expectedResult);
 
@@ -49,7 +49,7 @@ describe('content compiler', () => {
 		expect(mockFromMarkdown).toHaveBeenCalledWith('github page content', registeredHandlers);
 	});
 
-	it('should proces relative to list page', async () => {
+	it('should process relative to list page', async () => {
 		const expectedResult = 'page content';
 		mockFromMarkdown.mockReturnValueOnce(expectedResult);
 

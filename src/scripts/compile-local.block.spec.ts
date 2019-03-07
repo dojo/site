@@ -24,7 +24,7 @@ describe('content compiler', () => {
 		mockFromMarkdown.mockResolvedValue('page content');
 	});
 
-	it('should proces', async () => {
+	it('should process', async () => {
 		mockJoin.mockReturnValueOnce(`/path/to/content/${filePath}`);
 
 		const expectedResult = 'page one content';
@@ -43,7 +43,7 @@ describe('content compiler', () => {
 		expect(mockJoin).toHaveBeenCalledTimes(1);
 	});
 
-	it('should proces with different locale', async () => {
+	it('should process with different locale', async () => {
 		mockJoin.mockReturnValueOnce(`/path/to/content/:locale:/${filePath}`);
 
 		const expectedResult = 'page one content';
@@ -62,7 +62,7 @@ describe('content compiler', () => {
 		expect(mockJoin).toHaveBeenCalledTimes(1);
 	});
 
-	it('should proces without locale (defaulting to en-US)', async () => {
+	it('should process without locale (defaulting to en-US)', async () => {
 		mockJoin.mockReturnValueOnce(`/path/to/content/:locale:/${filePath}`);
 
 		const expectedResult = 'page one content';
