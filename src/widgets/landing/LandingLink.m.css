@@ -1,0 +1,9 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+}
+
+.title {
+	margin-bottom: 0.5rem;
+}

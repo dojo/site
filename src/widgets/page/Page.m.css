@@ -1,0 +1,29 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding-top: var(--content-top-padding);
+	padding: var(--content-padding);
+	margin: 0px var(--content-border);
+}
+
+.content {
+	flex-grow: 1;
+	min-width: 900px;
+	width: 50%;
+	margin: 0 auto 80px;
+}
+
+.footer {
+	color: #999 !important;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	text-align: right;
+	padding: 1rem;
+}
+
+.contentShiftRight {
+	margin-left: calc(var(--grid-size) * 45);
+}

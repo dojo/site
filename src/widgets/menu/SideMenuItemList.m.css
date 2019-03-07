@@ -1,0 +1,9 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	padding-left: 20px;
+	margin: 0;
+}

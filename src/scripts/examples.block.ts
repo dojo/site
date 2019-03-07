@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/widget-core/interfaces';
 import { fromMarkdown } from './compile';
 

@@ -76,4 +76,11 @@ describe('Card', () => {
 		]);
 		h.expect(assertion);
 	});
+
+	it('renders dark card', () => {
+		const h = harness(() => <Card dark />);
+
+		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark]);
+		h.expect(assertion);
+	});
 });

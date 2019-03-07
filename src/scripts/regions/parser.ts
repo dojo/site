@@ -1,4 +1,3 @@
-import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { w, v } from '@dojo/framework/widget-core/d';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
@@ -39,7 +38,7 @@ const regionMatchers: { [key: string]: RegionMatcherFactory } = {
 
 export const REGION_GROUP_MATCHER = '\\s*^(.[\\s\\S]*)$';
 
-export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps): DNode => {
+export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps) => {
 	let { path, region, language = 'ts' } = props;
 	if (path === undefined) {
 		return v('p', ['Invalid file path']);
@@ -82,11 +81,11 @@ export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBloc
 	}
 };
 
-export const stripRegionComments = (lines: string[], regionCommentMatcher: RegExp): string[] => {
+export const stripRegionComments = (lines: string[], regionCommentMatcher: RegExp) => {
 	return lines.filter((line) => !line.match(regionCommentMatcher));
 };
 
-export const leftAlign = (lines: string[]): string[] => {
+export const leftAlign = (lines: string[]) => {
 	let indent = Number.MAX_VALUE;
 	lines.forEach((line) => {
 		const lineIndent = line.search(/\S/);

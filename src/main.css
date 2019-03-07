@@ -82,6 +82,10 @@ h6 {
 	margin-top: 40px;
 }
 
+pre {
+	white-space: pre-wrap;
+}
+
 a {
 	color: #0f6ecd;
 }
