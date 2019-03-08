@@ -11,19 +11,17 @@ export interface RemotePageProperties {
 	repo: string;
 	branch?: string;
 	path: string;
-	relativeUrl?: string;
 	hasLeftSideMenu?: boolean;
 }
 
 export default class RemotePage extends WidgetBase<RemotePageProperties> {
 	protected render() {
-		const { repo, branch, path, relativeUrl, hasLeftSideMenu = false } = this.properties;
+		const { repo, branch, path, hasLeftSideMenu = false } = this.properties;
 
 		const content: any = this.meta(Block).run(compiler)({
 			repo,
 			branch,
 			path,
-			relativeUrl,
 			locale: i18n.locale
 		});
 

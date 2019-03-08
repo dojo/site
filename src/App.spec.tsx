@@ -9,9 +9,9 @@ import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
 import TutorialsLanding from './pages/TutorialsLanding';
+import Tutorials from './pages/tutorials/Tutorials';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
-import Tutorials from './pages/tutorials/Tutorials';
 import Header from './widgets/Header';
 
 import App from './App';

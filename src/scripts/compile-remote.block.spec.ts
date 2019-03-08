@@ -49,24 +49,6 @@ describe('content compiler', () => {
 		expect(mockFromMarkdown).toHaveBeenCalledWith('github page content', registeredHandlers);
 	});
 
-	it('should process relative to list page', async () => {
-		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
-
-		const result = await compilerBuild({
-			repo: 'dojo/framework',
-			path: 'docs/:locale:/i18n/index.md',
-			relativeUrl: 'basic-usage',
-			locale: 'en-US'
-		});
-
-		expect(result).toEqual(expectedResult);
-		expect(mockFetch).toHaveBeenCalledWith(
-			'https://raw.githubusercontent.com/dojo/framework/master/docs/en/i18n/basic-usage.md'
-		);
-		expect(mockFromMarkdown).toHaveBeenCalledWith('github page content', registeredHandlers);
-	});
-
 	it('should process with different locale', async () => {
 		const expectedResult = 'page content';
 		mockFromMarkdown.mockReturnValueOnce(expectedResult);

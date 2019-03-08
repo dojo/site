@@ -16,8 +16,8 @@ describe('ReferenceGuidesPage', () => {
 
 	const baseAssertionTemplate = assertionTemplate(() => (
 		<Section>
-			<ReferenceGuideMenu route={route} repo={repo} branch={undefined} path={path} page={page} />
-			<RemotePage repo={repo} branch={undefined} path={path} relativeUrl={page} hasLeftSideMenu />
+			<ReferenceGuideMenu route={route} repo={repo} branch={undefined} path={path} />
+			<RemotePage repo={repo} branch={undefined} path={path} hasLeftSideMenu />
 		</Section>
 	));
 
