@@ -39,7 +39,7 @@ describe('content compiler', () => {
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
 			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		expect(result).toEqual(expectedResult);
@@ -74,7 +74,7 @@ describe('content compiler', () => {
 			repo: 'dojo/framework',
 			branch: 'branch',
 			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		expect(result).toEqual(expectedResult);

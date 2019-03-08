@@ -80,7 +80,7 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 export const fromMarkdown = (
 	content: string,
 	registeredHandlers: { [type: string]: HandlerFunction }
-): DNode | DNode[] => {
+): DNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(macro.transformer)

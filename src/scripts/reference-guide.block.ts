@@ -1,6 +1,8 @@
 import { isVNode, v } from '@dojo/framework/widget-core/d';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
 
+import { toString } from '../util/to-string';
+
 import compileRemote, { CompileRemoteBlockOptions } from './compile-remote.block';
 
 export interface ReferenceGuideBlockOptions extends CompileRemoteBlockOptions {
@@ -8,36 +10,34 @@ export interface ReferenceGuideBlockOptions extends CompileRemoteBlockOptions {
 }
 
 export type SupplementalPageLookup = { [header: string]: DNode };
+export interface SupplementalHeaders {
+	title: string;
+	param: string;
+};
 
-export default async function(options: ReferenceGuideBlockOptions): Promise<SupplementalPageLookup | string[]> {
+export default async function(options: ReferenceGuideBlockOptions) {
 	const { headersOnly = false } = options;
 
-	let content = await compileRemote(options);
-	content = Array.isArray(content) ? content : [content];
+	const content = await compileRemote(options);
 
 	// Unwrap content's outer div
-	const nodes = content.reduce<DNode[]>((array, node) => {
-		if (isVNode(node) && node.tag === 'div' && node.children) {
-			array.push(...node.children);
-		}
-		else {
-			array.push(node);
-		}
-		return array;
-	}, []);
+	const nodes = isVNode(content) && content.children ? content.children : [];
 
 	return headersOnly ? getHeaders(nodes) : getPages(nodes);
 }
 
 function getHeaders(nodes: DNode[]) {
-	const headers: string[] = [];
+	const headers: SupplementalHeaders[] = [];
 
 	nodes.map((node) => {
-		if (isVNode(node) && node.tag === 'h1' && node.children && node.children.length === 1) {
-			const child = node.children[0];
-			if (typeof child === 'string') {
-				headers.push(child.trim());
-			}
+		if (isVNode(node) && node.tag === 'h1') {
+			const title = toString(node).trim();
+			const param = title.toLocaleLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/ /g, '-');
+
+			headers.push({
+				title,
+				param
+			});
 		}
 	});
 
@@ -56,13 +56,7 @@ function getPages(nodes: DNode[]) {
 				pages[pageName] = v('div', {}, page);
 			}
 
-			if (node.children && node.children.length === 1) {
-				const child = node.children[0];
-				if (typeof child === 'string') {
-					pageName = child.trim().toLocaleLowerCase().replace(/[^a-z]/g, '-');
-				}
-			}
-			
+			pageName = toString(node).trim().toLocaleLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/ /g, '-');
 			page = undefined;
 			page = [node];
 		}

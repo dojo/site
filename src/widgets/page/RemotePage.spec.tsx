@@ -19,7 +19,7 @@ describe('Page', () => {
 	it('renders without left menu', () => {
 		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en' });
 
 		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
 	});
@@ -27,7 +27,7 @@ describe('Page', () => {
 	it('renders with left menu', () => {
 		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" hasLeftSideMenu />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en' });
 
 		h.expect(() => <Page hasLeftSideMenu>Some content</Page>);
 	});
@@ -39,20 +39,7 @@ describe('Page', () => {
 			repo: 'dojo/framework',
 			branch: 'branch',
 			path: 'path/to/file.md',
-			locale: 'en-US'
-		});
-
-		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
-	});
-
-	it('renders with relative url', () => {
-		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" relativeUrl="basic-usage" />);
-
-		expect(mockCompiler).toHaveBeenCalledWith({
-			repo: 'dojo/framework',
-			path: 'path/to/file.md',
-			relativeUrl: 'basic-usage',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
