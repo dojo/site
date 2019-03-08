@@ -15,7 +15,7 @@
 				"reference-guides/i18n/basic-usage",
 				"reference-guides/i18n/working-with-message-bundles",
 				"reference-guides/i18n/internationalizing-a-dojo-application",
-				"reference-guides/i18n/advanced-formatting--cldr",
+				"reference-guides/i18n/advanced-formatting-cldr",
 				"reference-guides/i18n/standalone-api",
 				"reference-guides",
 				"examples"
