@@ -10,6 +10,7 @@
 	--color-purple: #862790;
 	--color-red: #c42826;
 	--color-green: #2ab770;
+	--color-blue: #2db5f9;
 	--color-border: rgba(0, 0, 0, 0.1);
 	--color-light-gray: #999;
 	--color-gray: #555;
@@ -37,6 +38,7 @@
 
 	--content-top-padding: calc(var(--grid-size) * 6);
 	--content-padding: calc(var(--grid-size) * 3);
+	--console-background-color: #141414;
 }
 
 @media (max-width: 768px) {
@@ -45,4 +47,5 @@
 		--content-top-padding: var(--grid-size);
 		--content-padding: var(--grid-size);
 	}
+	
 }
