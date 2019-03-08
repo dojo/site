@@ -8,10 +8,10 @@ import Blog from './pages/Blog';
 import Examples from './pages/Examples';
 import Playground from './pages/Playground';
 import Community from './pages/Community';
+import Tutorials from './pages/tutorials/Tutorials';
 import TutorialsLanding from './pages/TutorialsLanding';
-import TutorialsPage from './pages/TutorialsPage';
+import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
-import ReferenceGuidesPage from './pages/ReferenceGuidesPage';
 
 import * as css from './App.m.css';
 
@@ -20,12 +20,23 @@ import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDow
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons/faGraduationCap';
 import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
 import { faAppleAlt } from '@fortawesome/free-solid-svg-icons/faAppleAlt';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
 import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
 
-library.add(faCloudDownloadAlt, faGraduationCap, faListAlt, faCodeBranch, faPlug, faUsers, faAppleAlt, faLaptopCode);
+library.add(
+	faCloudDownloadAlt,
+	faGraduationCap,
+	faListAlt,
+	faAppleAlt,
+	faGlobe,
+	faCodeBranch,
+	faPlug,
+	faUsers,
+	faLaptopCode
+);
 
 export default class App extends WidgetBase {
 	protected render() {
@@ -39,17 +50,9 @@ export default class App extends WidgetBase {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
-					<Outlet
-						key="tutorials-page"
-						id="tutorials-page"
-						renderer={(matchDetails) => <TutorialsPage page={matchDetails.params.page} />}
-					/>
+					<Tutorials />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<Outlet
-						key="reference-guides-page"
-						id="reference-guides-page"
-						renderer={(matchDetails) => <ReferenceGuidesPage page={matchDetails.params.page} />}
-					/>
+					<ReferenceGuides />
 				</div>
 			</div>
 		);

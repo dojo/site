@@ -5,6 +5,7 @@ import { INLINE_C_MATCHER } from './region-matchers/inline-c';
 import * as d from '@dojo/framework/widget-core/d';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import { v } from '@dojo/framework/widget-core/d';
 
 export const regionName = 'RegionName';
 
@@ -28,192 +29,52 @@ const regionContentsLeftAlligned = `protected render() {
 	return {div};
 }`;
 
-export const fromMarkdownOutput: DNode<DefaultWidgetBaseInterface> = {
-	tag: 'pre',
-	originalProperties: {},
-	children: [
-		{
-			tag: 'code',
-			originalProperties: {},
-			children: [
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['protected'],
-					properties: { class: 'token keyword', key: 'compiled-2' },
-					type: '__VNODE_TYPE'
-				},
-				' ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['render'],
-					properties: { class: 'token function', key: 'compiled-3' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['('],
-					properties: { class: 'token punctuation', key: 'compiled-4' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: [')'],
-					properties: { class: 'token punctuation', key: 'compiled-5' },
-					type: '__VNODE_TYPE'
-				},
-				' ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['{'],
-					properties: { class: 'token punctuation', key: 'compiled-6' },
-					type: '__VNODE_TYPE'
-				},
-				'\n    ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['const'],
-					properties: { class: 'token keyword', key: 'compiled-7' },
-					type: '__VNODE_TYPE'
-				},
-				' div ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['='],
-					properties: { class: 'token operator', key: 'compiled-8' },
-					type: '__VNODE_TYPE'
-				},
-				' ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: [
-						{
-							tag: 'span',
-							originalProperties: {},
-							children: [
-								{
-									tag: 'span',
-									originalProperties: {},
-									children: ['<'],
-									properties: { class: 'token punctuation', key: 'compiled-9' },
-									type: '__VNODE_TYPE'
-								},
-								'div'
-							],
-							properties: { class: 'token tag', key: 'compiled-10' },
-							type: '__VNODE_TYPE'
-						},
-						{
-							tag: 'span',
-							originalProperties: {},
-							children: ['>'],
-							properties: { class: 'token punctuation', key: 'compiled-11' },
-							type: '__VNODE_TYPE'
-						}
-					],
-					properties: { class: 'token tag', key: 'compiled-12' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['Test content'],
-					properties: { class: 'token plain-text', key: 'compiled-13' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: [
-						{
-							tag: 'span',
-							originalProperties: {},
-							children: [
-								{
-									tag: 'span',
-									originalProperties: {},
-									children: ['</'],
-									properties: { class: 'token punctuation', key: 'compiled-14' },
-									type: '__VNODE_TYPE'
-								},
-								'div'
-							],
-							properties: { class: 'token tag', key: 'compiled-15' },
-							type: '__VNODE_TYPE'
-						},
-						{
-							tag: 'span',
-							originalProperties: {},
-							children: ['>'],
-							properties: { class: 'token punctuation', key: 'compiled-16' },
-							type: '__VNODE_TYPE'
-						}
-					],
-					properties: { class: 'token tag', key: 'compiled-17' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: [';'],
-					properties: { class: 'token punctuation', key: 'compiled-18' },
-					type: '__VNODE_TYPE'
-				},
-				'\n\n    ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['return'],
-					properties: { class: 'token keyword', key: 'compiled-19' },
-					type: '__VNODE_TYPE'
-				},
-				' ',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['{'],
-					properties: { class: 'token punctuation', key: 'compiled-20' },
-					type: '__VNODE_TYPE'
-				},
-				'div',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['}'],
-					properties: { class: 'token punctuation', key: 'compiled-21' },
-					type: '__VNODE_TYPE'
-				},
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: [';'],
-					properties: { class: 'token punctuation', key: 'compiled-22' },
-					type: '__VNODE_TYPE'
-				},
-				'\n',
-				{
-					tag: 'span',
-					originalProperties: {},
-					children: ['}'],
-					properties: { class: 'token punctuation', key: 'compiled-23' },
-					type: '__VNODE_TYPE'
-				},
-				'\n'
-			],
-			properties: { class: 'language-tsx', key: 'compiled-24' },
-			type: '__VNODE_TYPE'
-		}
-	],
-	properties: { class: 'language-tsx', key: 'compiled-25' },
-	type: '__VNODE_TYPE'
-};
+export const fromMarkdownOutput: DNode<DefaultWidgetBaseInterface> = v(
+	'pre',
+	{ class: 'language-tsx', key: 'compiled-25' },
+	[
+		v('code', { class: 'language-tsx', key: 'compiled-24' }, [
+			v('span', { class: 'token keyword', key: 'compiled-2' }, ['protected']),
+			' ',
+			v('span', { class: 'token function', key: 'compiled-3' }, ['render']),
+			v('span', { class: 'token punctuation', key: 'compiled-4' }, ['(']),
+			v('span', { class: 'token punctuation', key: 'compiled-5' }, [')']),
+			' ',
+			v('span', { class: 'token punctuation', key: 'compiled-6' }, ['{']),
+			'\n    ',
+			v('span', { class: 'token keyword', key: 'compiled-7' }, ['const']),
+			' div ',
+			v('span', { class: 'token operator', key: 'compiled-8' }, ['=']),
+			' ',
+			v('span', { class: 'token tag', key: 'compiled-12' }, [
+				v('span', { class: 'token tag', key: 'compiled-10' }, [
+					v('span', { class: 'token punctuation', key: 'compiled-9' }, ['<']),
+					'div'
+				]),
+				v('span', { class: 'token punctuation', key: 'compiled-11' }, ['>'])
+			]),
+			v('span', { class: 'token plain-text', key: 'compiled-13' }, ['Test content']),
+			v('span', { class: 'token tag', key: 'compiled-17' }, [
+				v('span', { class: 'token tag', key: 'compiled-15' }, [
+					v('span', { class: 'token punctuation', key: 'compiled-14' }, ['</']),
+					'div'
+				]),
+				v('span', { class: 'token punctuation', key: 'compiled-16' }, ['>'])
+			]),
+			v('span', { class: 'token punctuation', key: 'compiled-18' }, [';']),
+			'\n\n    ',
+			v('span', { class: 'token keyword', key: 'compiled-19' }, ['return']),
+			' ',
+			v('span', { class: 'token punctuation', key: 'compiled-20' }, ['{']),
+			'div',
+			v('span', { class: 'token punctuation', key: 'compiled-21' }, ['}']),
+			v('span', { class: 'token punctuation', key: 'compiled-22' }, [';']),
+			'\n',
+			v('span', { class: 'token punctuation', key: 'compiled-23' }, ['}']),
+			'\n'
+		])
+	]
+);
 
 const region = `	// @start-region RegionName
 ${regionContents}
@@ -268,12 +129,9 @@ describe('region parser', () => {
 		);
 
 		expect(lefAlignStub).toBeCalledTimes(1);
-		expect(lefAlignStub.mock.calls[0]).toEqual([regionContentsCommentsStripped.split('\n')]);
+		expect(lefAlignStub).toHaveBeenCalledWith(regionContentsCommentsStripped.split('\n'));
 
-		expect(mockW).toBeCalledTimes(1);
-		expect(mockW.mock.calls[0][0]).toBe(type);
-		expect(mockW.mock.calls[0][1]).toEqual(propsWithTSX);
-		expect(JSON.stringify(mockW.mock.calls[0][2])).toEqual(JSON.stringify([fromMarkdownOutput]));
+		expect(mockW).toHaveBeenCalledWith(type, propsWithTSX, [fromMarkdownOutput]);
 
 		// Proper run without language provided
 		parser.regionBuilder(type, propsWithRegion, []);
@@ -283,7 +141,7 @@ describe('region parser', () => {
 		// Proper run without region provided
 		parser.regionBuilder(type, props, []);
 		expect(mockW).toBeCalledTimes(3);
-		expect(JSON.stringify(mockW.mock.calls[2][1])).toEqual(JSON.stringify(propsWithTSWithoutRegion));
+		expect(mockW.mock.calls[2][1]).toEqual(propsWithTSWithoutRegion);
 
 		lefAlignStub.mockRestore();
 		stripRegionCommentsStub.mockRestore();

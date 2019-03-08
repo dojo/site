@@ -1,10 +1,11 @@
 import { v, w } from '@dojo/framework/widget-core/d';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
-import { readFileSync } from 'fs-extra';
+import { readFile } from 'fs-extra';
 import { resolve } from 'path';
 
 import { regionBuilder } from './regions/parser';
-import { Subsection } from './section-list.block';
+
+import linkCleanup from './link-cleanup';
 
 const unified = require('unified');
 const macro = require('remark-macro')();
@@ -13,16 +14,6 @@ const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
 const all = require('mdast-util-to-hast/lib/all');
-
-export interface ManifestConfig {
-	[section: string]: Subsection[];
-}
-
-export interface BuildDetails {
-	[section: string]: {
-		[filePath: string]: string;
-	};
-}
 
 export interface Handler {
 	type: string;
@@ -86,21 +77,34 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 	}, {});
 };
 
-export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): any => {
+export const fromMarkdown = (
+	content: string,
+	registeredHandlers: { [type: string]: HandlerFunction }
+): DNode | DNode[] => {
 	const pipeline = unified()
-		.use(remarkParse)
+		.use(remarkParse, { commonmark: true })
 		.use(macro.transformer)
 		.use(remark2rehype, { handlers: registeredHandlers })
+		.use(linkCleanup)
 		.use(rehypePrism, { ignoreMissing: false });
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
-	return toH(pragma, result);
+	const hNodes = toH(pragma, result);
+	return hNodes;
 };
 
-export const processMarkdown = (path: string, registeredHandlers: { [type: string]: HandlerFunction }): any => {
+export const getLocalFile = async (path: string): Promise<string> => {
 	path = resolve(__dirname, path);
-	const content = readFileSync(path, 'utf-8');
+	return await readFile(path, 'utf-8');
+};
 
-	return fromMarkdown(content, registeredHandlers);
+export const setLocale = (path: string, inputLocale: string) => {
+	let locale = inputLocale;
+	const localeMatch = /([a-z]+)-\S+/g.exec(locale);
+	if (localeMatch && localeMatch.length === 2) {
+		locale = localeMatch[1];
+	}
+
+	return path.replace(/:locale:/g, locale);
 };

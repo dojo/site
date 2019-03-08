@@ -9,9 +9,9 @@ import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
 import TutorialsLanding from './pages/TutorialsLanding';
-import TutorialsPage from './pages/TutorialsPage';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
-import ReferenceGuidesPage from './pages/ReferenceGuidesPage';
+import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
+import Tutorials from './pages/tutorials/Tutorials';
 import Header from './widgets/Header';
 
 import App from './App';
@@ -36,17 +36,9 @@ describe('App', () => {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
-					<Outlet
-						key="tutorials-page"
-						id="tutorials-page"
-						renderer={() => <TutorialsPage page="some-tutorial" />}
-					/>
+					<Tutorials />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<Outlet
-						key="reference-guides-page"
-						id="reference-guides-page"
-						renderer={() => <ReferenceGuidesPage page="some-reference-guide" />}
-					/>
+					<ReferenceGuides />
 				</div>
 			</div>
 		));
@@ -59,17 +51,7 @@ describe('App', () => {
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'community', content: <Community /> },
 		{ outlet: 'tutorials', content: <TutorialsLanding /> },
-		{
-			outlet: 'tutorials-page',
-			content: <TutorialsPage page="some-tutorial" />,
-			args: [{ params: { page: 'some-tutorial' } }]
-		},
-		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> },
-		{
-			outlet: 'reference-guides-page',
-			content: <ReferenceGuidesPage page="some-reference-guide" />,
-			args: [{ params: { page: 'some-reference-guide' } }]
-		}
+		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> }
 	];
 
 	it('outlets render contents', () => {

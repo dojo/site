@@ -11,7 +11,12 @@
 				"tutorials/local-installation",
 				"tutorials/another-tutorial",
 				"tutorials",
-				"reference-guides/sample",
+				"reference-guides/i18n/introduction",
+				"reference-guides/i18n/basic-usage",
+				"reference-guides/i18n/bundles",
+				"reference-guides/i18n/i18n-dojo-apps",
+				"reference-guides/i18n/formatting",
+				"reference-guides/i18n/standalone",
 				"reference-guides",
 				"examples"
 			],

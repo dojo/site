@@ -6,9 +6,9 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Grid from '../widgets/grid/Grid';
-import Landing from '../widgets/Landing';
+import Landing from '../widgets/landing/Landing';
+import LandingSubsection from '../widgets/landing/LandingSubsection';
 import LinkedCard from '../widgets/card/LinkedCard';
-import Subsection from '../widgets/section/Subsection';
 
 import Examples from './Examples';
 import * as css from './Examples.m.css';
@@ -51,7 +51,7 @@ describe('Examples', () => {
 		const h = harness(() => <ExamplesMock />);
 		h.expect(() => (
 			<Landing>
-				<Subsection>
+				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
 						<div key="name" classes={css.card}>
@@ -87,7 +87,7 @@ describe('Examples', () => {
 							</LinkedCard>
 						</div>
 					</Grid>
-				</Subsection>
+				</LandingSubsection>
 			</Landing>
 		));
 	});

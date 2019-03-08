@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/widget-core/interfaces';
 import { fromMarkdown } from './compile';
 
@@ -35,7 +35,7 @@ export default async function(): Promise<ExampleMeta[]> {
 			[keys[1]]: fromMarkdown(data[1], {}),
 			[keys[2]]: fromMarkdown(data[2], {}),
 			[keys[3]]: data.length === keys.length,
-			[keys[4]]: fromMarkdown(data[4], {}),
+			[keys[4]]: fromMarkdown(data.length === keys.length ? data[4] : data[3], {}),
 			exampleName
 		};
 	});

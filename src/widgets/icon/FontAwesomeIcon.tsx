@@ -21,7 +21,7 @@ export function objectWithKey(key: string, value: any) {
 
 export type IconSize = 'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x';
 
-export function abstractElementToVNode(abstractElement: AbstractElement, level = 0): VNode {
+export function abstractElementToVNode(abstractElement: AbstractElement, level = 0) {
 	let children: VNode[] = [];
 	if (abstractElement.children) {
 		children = abstractElement.children.map(

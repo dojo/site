@@ -1,0 +1,14 @@
+@import '../../variables.css';
+
+.root {
+	font-size: 0.95rem;
+	line-height: 1.65;
+	color: #999;
+	padding: calc(var(--grid-size) / 2) 0;
+	display: block;
+	text-decoration: none;
+}
+
+.root.selected {
+	color: #333;
+}

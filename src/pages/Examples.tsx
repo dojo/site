@@ -4,9 +4,9 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Grid from '../widgets/grid/Grid';
-import Landing from '../widgets/Landing';
+import Landing from '../widgets/landing/Landing';
+import LandingSubsection from '../widgets/landing/LandingSubsection';
 import LinkedCard from '../widgets/card/LinkedCard';
-import Subsection from '../widgets/section/Subsection';
 import getExamples, { ExampleMeta } from '../scripts/examples.block';
 
 import * as css from './Examples.m.css';
@@ -42,7 +42,7 @@ export default class Examples extends WidgetBase {
 
 		return (
 			<Landing>
-				<Subsection>
+				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
 						{examples &&
@@ -59,7 +59,7 @@ export default class Examples extends WidgetBase {
 								</div>
 							))}
 					</Grid>
-				</Subsection>
+				</LandingSubsection>
 			</Landing>
 		);
 	}

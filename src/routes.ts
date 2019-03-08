@@ -25,15 +25,23 @@ export default [
 		outlet: 'tutorials'
 	},
 	{
-		path: 'tutorials/{page}',
-		outlet: 'tutorials-page'
+		path: 'tutorials/local-installation',
+		outlet: 'tutorial-local-installation'
+	},
+	{
+		path: 'tutorials/sample-tutorial',
+		outlet: 'tutorial-sample-tutorial'
+	},
+	{
+		path: 'tutorials/another-tutorial',
+		outlet: 'tutorial-another-tutorial'
 	},
 	{
 		path: 'reference-guides',
 		outlet: 'reference-guides'
 	},
 	{
-		path: 'reference-guides/{page}',
-		outlet: 'reference-guides-page'
+		path: 'reference-guides/i18n/{page}',
+		outlet: 'reference-guide-i18n'
 	}
 ];

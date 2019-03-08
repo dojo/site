@@ -1,7 +1,17 @@
-import { w } from '@dojo/framework/widget-core/d';
+import { w, v } from '@dojo/framework/widget-core/d';
 import * as fs from 'fs-extra';
 import { resolve } from 'path';
 import * as compiler from './compile';
+import Aside from '../widgets/content/Aside';
+import CodeSandbox from '../widgets/code/CodeSandbox';
+
+const fetch = require('node-fetch').default;
+jest.mock('node-fetch');
+
+const textReturn = jest.fn();
+let fetchReturn: any = {
+	text: textReturn
+};
 
 export const mockHandlers: compiler.Handler[] = [
 	{ type: 'Aside' },
@@ -21,16 +31,6 @@ const mockHandlersOutput: { [type: string]: compiler.HandlerFunction } = {
 	Metadata: (h, node) => h(node)
 };
 
-const mockManifestJson = {
-	tutorials: [
-		{
-			name: 'Another Tutorial',
-			path: './tutorials/another-tutorial.md'
-		}
-	]
-};
-
-const mockManifestJsonPath = '../../content/manifest.json';
 const mockTutorialSourcePath = '../../content/tutorials/another-tutorial.md';
 const mockExampleFile = '../../content/examples/tutorial-2-finished/src/widgets/App.tsx';
 
@@ -41,6 +41,12 @@ mockBuildJson.tutorials[mockExampleFile] = './tutorials/another-tutorial.md';
 
 const mockMarkupContent = `# Another Tutorial
 
+[absolute link to another page!](https://example.com/)
+
+[link to another page!](./other-page.md)
+
+[link to another page with anchor!](./other-page.md#anchor)
+
 ## Aside
 [Aside title="Another tutorial"]
 I am another tutorial
@@ -50,105 +56,67 @@ I am another tutorial
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
 
-const mockFromMarkupOutput = {
-	tag: 'div',
-	deferredPropertiesCallback: undefined,
-	originalProperties: {},
-	children: [
-		{
-			tag: 'h1',
-			deferredPropertiesCallback: undefined,
-			originalProperties: {},
-			children: ['Another Tutorial'],
-			properties: {
-				key: 'compiled-2'
-			},
-			type: '__VNODE_TYPE'
-		},
-		`
+const mockFromMarkupOutput = v('div', { key: 'compiled-14' }, [
+	v('h1', { key: 'compiled-2' }, ['Another Tutorial']),
+	`
 `,
-		{
-			tag: 'h2',
-			deferredPropertiesCallback: undefined,
-			originalProperties: {},
-			children: ['Aside'],
-			properties: {
-				key: 'compiled-3'
-			},
-			type: '__VNODE_TYPE'
-		},
-		`
+	v('p', { key: 'compiled-4' }, [
+		v('a', { href: 'https://example.com/', key: 'compiled-3', target: '_blank' }, [
+			'absolute link to another page!'
+		])
+	]),
+	`
 `,
-		{
-			children: [
-				{
-					tag: 'p',
-					deferredPropertiesCallback: undefined,
-					originalProperties: {},
-					children: ['I am another tutorial'],
-					properties: {
-						key: 'compiled-4'
-					},
-					type: '__VNODE_TYPE'
-				}
-			],
-			widgetConstructor: 'docs-aside',
-			properties: {
-				title: 'Another tutorial',
-				key: 'compiled-5'
-			},
-			type: '__WNODE_TYPE'
-		},
-		`
+	v('p', { key: 'compiled-6' }, [v('a', { href: './other-page', key: 'compiled-5' }, ['link to another page!'])]),
+	`
 `,
-		{
-			tag: 'h2',
-			deferredPropertiesCallback: undefined,
-			originalProperties: {},
-			children: ['CodeSandbox Embed'],
-			properties: {
-				key: 'compiled-6'
-			},
-			type: '__VNODE_TYPE'
-		},
-		`
+	v('p', { key: 'compiled-8' }, [
+		v('a', { href: './other-page', key: 'compiled-7' }, ['link to another page with anchor!'])
+	]),
+	`
 `,
-		{
-			children: [],
-			widgetConstructor: 'docs-codesandbox',
-			properties: {
-				url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc',
-				key: 'compiled-7'
-			},
-			type: '__WNODE_TYPE'
-		}
-	],
-	properties: {
-		key: 'compiled-8'
-	},
-	type: '__VNODE_TYPE'
-};
+	v('h2', { key: 'compiled-9' }, ['Aside']),
+	`
+`,
+	w<Aside>('docs-aside', { title: 'Another tutorial', key: 'compiled-11' }, [
+		v('p', { key: 'compiled-10' }, ['I am another tutorial'])
+	]),
+	`
+`,
+	v('h2', { key: 'compiled-12' }, ['CodeSandbox Embed']),
+	`
+`,
+	w<CodeSandbox>(
+		'docs-codesandbox',
+		{ url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc', key: 'compiled-13' },
+		[]
+	)
+]);
 
 describe('content compiler', () => {
-	jest.mock(mockManifestJsonPath, () => mockManifestJson);
 	jest.mock('fs-extra');
 
 	beforeEach(() => {
 		jest.resetAllMocks();
+
+		fetch.mockResolvedValue(fetchReturn);
 	});
 
-	it('should compile file', () => {
+	it('should compile file', async () => {
 		const path = resolve(__dirname, mockTutorialSourcePath);
 
-		const readFileSyncStub = jest.spyOn(fs, 'readFileSync').mockReturnValueOnce(mockMarkupContent);
+		const readFileStub = jest
+			.spyOn(fs, 'readFile')
+			.mockReturnValueOnce(Promise.resolve(Buffer.from(mockMarkupContent)));
 
 		const registeredHandlers = compiler.registerHandlers(mockHandlers);
-		const output = compiler.processMarkdown(mockTutorialSourcePath, registeredHandlers);
+		const content = await compiler.getLocalFile(mockTutorialSourcePath);
+		const output = compiler.fromMarkdown(content, registeredHandlers);
 
 		expect(output).toEqual(mockFromMarkupOutput);
 
-		expect(readFileSyncStub).toBeCalledTimes(1);
-		expect(readFileSyncStub.mock.calls[0]).toEqual([path, 'utf-8']);
+		expect(readFileStub).toBeCalledTimes(1);
+		expect(readFileStub.mock.calls[0]).toEqual([path, 'utf-8']);
 	});
 
 	it('should register handlers', () => {
@@ -162,14 +130,7 @@ describe('content compiler', () => {
 
 		const vnode = compiler.pragma(tag, props, ['text']);
 
-		expect(vnode).toEqual({
-			tag: 'div',
-			deferredPropertiesCallback: undefined,
-			originalProperties: {},
-			children: ['text'],
-			properties: { class: 'some-class', key: 'compiled-9' },
-			type: '__VNODE_TYPE'
-		});
+		expect(vnode).toEqual(v('div', { class: 'some-class', key: 'compiled-15' }, ['text']));
 	});
 
 	it('should build a wnode', () => {
@@ -178,12 +139,7 @@ describe('content compiler', () => {
 
 		const wnode = compiler.pragma(tag, props, ['text']);
 
-		expect(wnode).toEqual({
-			children: ['text'],
-			widgetConstructor: 'docs-aside',
-			properties: { title: 'some title', key: 'compiled-10' },
-			type: '__WNODE_TYPE'
-		});
+		expect(wnode).toEqual(w<Aside>('docs-aside', { title: 'some title', key: 'compiled-16' }, ['text']));
 	});
 
 	it('should build a docs-codeblock widget', () => {
@@ -200,5 +156,22 @@ describe('content compiler', () => {
 		expect(wnode).toEqual(expectedOutput);
 
 		regionBuilderStub.mockRestore();
+	});
+
+	describe('set locale', () => {
+		it('should replace :locale: with locale indicated', async () => {
+			const url = '/path/to/:locale:/file.md';
+
+			expect(compiler.setLocale(url, 'en')).toBe('/path/to/en/file.md');
+			expect(compiler.setLocale(url, 'fr')).toBe('/path/to/fr/file.md');
+		});
+
+		it('should parse langauge from locale string', async () => {
+			expect(compiler.setLocale('/path/to/:locale:/file.md', 'en-US')).toBe('/path/to/en/file.md');
+		});
+
+		it('should not change non-locale url', async () => {
+			expect(compiler.setLocale('/path/to/file.md', 'en')).toBe('/path/to/file.md');
+		});
 	});
 });
