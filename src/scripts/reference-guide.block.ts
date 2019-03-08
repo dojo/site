@@ -13,7 +13,7 @@ export type SupplementalPageLookup = { [header: string]: DNode };
 export interface SupplementalHeaders {
 	title: string;
 	param: string;
-};
+}
 
 export default async function(options: ReferenceGuideBlockOptions) {
 	const { headersOnly = false } = options;
@@ -32,7 +32,10 @@ function getHeaders(nodes: DNode[]) {
 	nodes.map((node) => {
 		if (isVNode(node) && node.tag === 'h1') {
 			const title = toString(node).trim();
-			const param = title.toLocaleLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/ /g, '-');
+			const param = title
+				.toLocaleLowerCase()
+				.replace(/[^a-z0-9 ]/g, '')
+				.replace(/ /g, '-');
 
 			headers.push({
 				title,
@@ -56,11 +59,14 @@ function getPages(nodes: DNode[]) {
 				pages[pageName] = v('div', {}, page);
 			}
 
-			pageName = toString(node).trim().toLocaleLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/ /g, '-');
+			pageName = toString(node)
+				.trim()
+				.toLocaleLowerCase()
+				.replace(/[^a-z0-9 ]/g, '')
+				.replace(/ /g, '-');
 			page = undefined;
 			page = [node];
-		}
-		else if (page) {
+		} else if (page) {
 			page.push(node);
 		}
 	});

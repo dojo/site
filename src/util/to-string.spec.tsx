@@ -9,15 +9,15 @@ describe('to string', () => {
 	});
 
 	test('complex node', () => {
-		expect(toString(
-			<div>
-				{w('docs-alert', {}, [
-					<div>vnode text inside widget</div>
-				])}
-				<p> followed by a vnode</p>
-				<div />
-			</div>
-		)).toBe('vnode text inside widget followed by a vnode');
+		expect(
+			toString(
+				<div>
+					{w('docs-alert', {}, [<div>vnode text inside widget</div>])}
+					<p> followed by a vnode</p>
+					<div />
+				</div>
+			)
+		).toBe('vnode text inside widget followed by a vnode');
 	});
 
 	it('returns an empty string if node is undefined', () => {

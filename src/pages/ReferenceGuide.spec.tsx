@@ -13,11 +13,8 @@ import Page from '../widgets/page/Page';
 
 describe('ReferenceGuidesPage', () => {
 	const mockReferenceGuideBlock = jest.spyOn(referenceGuideBlock, 'default').mockReturnValue({
-		'some-page': [
-			<h1>A page</h1>,
-			<p>Some content</p>
-		]
-	}	as any);
+		'some-page': [<h1>A page</h1>, <p>Some content</p>]
+	} as any);
 
 	switchLocale('en-US');
 
@@ -27,7 +24,7 @@ describe('ReferenceGuidesPage', () => {
 	const page = 'basic-usage';
 
 	const baseAssertionTemplate = assertionTemplate(() => (
-		<Section key='section'>
+		<Section key="section">
 			<ReferenceGuideMenu route={route} repo={repo} branch={undefined} path={path} />
 		</Section>
 	));
@@ -37,22 +34,26 @@ describe('ReferenceGuidesPage', () => {
 			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page={page} />
 		));
 
-		h.expect(baseAssertionTemplate.append('@section', [
-			<RemotePage repo={repo} branch={undefined} path={`${path}/${page}.md`} hasLeftSideMenu />
-		]));
+		h.expect(
+			baseAssertionTemplate.append('@section', [
+				<RemotePage repo={repo} branch={undefined} path={`${path}/${page}.md`} hasLeftSideMenu />
+			])
+		);
 	});
 
 	it('renders supplemental page', () => {
 		const h = harness(() => (
-			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page='some-page' />
+			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page="some-page" />
 		));
 
-		h.expect(baseAssertionTemplate.append('@section', [
-			<Page hasLeftSideMenu>
-				<h1>A page</h1>
-				<p>Some content</p>
-			</Page>
-		]));
+		h.expect(
+			baseAssertionTemplate.append('@section', [
+				<Page hasLeftSideMenu>
+					<h1>A page</h1>
+					<p>Some content</p>
+				</Page>
+			])
+		);
 
 		expect(mockReferenceGuideBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
@@ -64,7 +65,7 @@ describe('ReferenceGuidesPage', () => {
 
 	it('renders blank on unknown page', () => {
 		const h = harness(() => (
-			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page='unknown-page' />
+			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page="unknown-page" />
 		));
 
 		h.expect(baseAssertionTemplate);

@@ -28,55 +28,44 @@ Test page
 `;
 
 const expectedOutput: SupplementalPageLookup = {
-	'page-1': (
-		v('div', {}, [
-			v('h1', { key: 'compiled-3' }, ['Page 1']),
-			`
+	'page-1': v('div', {}, [
+		v('h1', { key: 'compiled-3' }, ['Page 1']),
+		`
 `,
-			v('p', { key: 'compiled-4' }, ['Some content for page 1']),
-			`
+		v('p', { key: 'compiled-4' }, ['Some content for page 1']),
+		`
 `
-		])
-	),
-	'page-2': (
-		v('div', {}, [
-			v('h1', { key: 'compiled-5' }, ['Page 2']),
-			`
+	]),
+	'page-2': v('div', {}, [
+		v('h1', { key: 'compiled-5' }, ['Page 2']),
+		`
 `,
-			v('p', { key: 'compiled-6' }, ['Some content for page 2']),
-			`
+		v('p', { key: 'compiled-6' }, ['Some content for page 2']),
+		`
 `,
-			v('p', { key: 'compiled-8' }, [
-				v('a', { key: 'compiled-7', href: 'https://example.com', target: '_blank' }, ['A link!'])
-			]),
-			`
+		v('p', { key: 'compiled-8' }, [
+			v('a', { key: 'compiled-7', href: 'https://example.com', target: '_blank' }, ['A link!'])
+		]),
+		`
 `
-		])
-	),
-	'page-3-a-complicated-name': (
-		v('div', {}, [
-			v('h1', { key: 'compiled-9' }, ['Page 3: A complicated name!']),
-			`
+	]),
+	'page-3-a-complicated-name': v('div', {}, [
+		v('h1', { key: 'compiled-9' }, ['Page 3: A complicated name!']),
+		`
 `,
-			v('p', { key: 'compiled-10' }, ['Even more content.']),
-			`
+		v('p', { key: 'compiled-10' }, ['Even more content.']),
+		`
 `,
-			v('p', { key: 'compiled-11' }, ['This time for page 3!']),
-			`
+		v('p', { key: 'compiled-11' }, ['This time for page 3!']),
+		`
 `
-		])
-	),
-	'test-test-code': (
-		v('div', {}, [
-			v('h1', { key: 'compiled-13' }, [
-				'Test ',
-				v('code', { key: 'compiled-12' }, ['Test Code']),
-			]),
-			`
+	]),
+	'test-test-code': v('div', {}, [
+		v('h1', { key: 'compiled-13' }, ['Test ', v('code', { key: 'compiled-12' }, ['Test Code'])]),
+		`
 `,
-			v('p', { key: 'compiled-14' }, ['Test page'])
-		])
-	)
+		v('p', { key: 'compiled-14' }, ['Test page'])
+	])
 };
 
 const expectedHeaderOnlyOutput = [

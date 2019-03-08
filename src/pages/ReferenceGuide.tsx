@@ -28,7 +28,7 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 		});
 
 		if (pages && pages[page]) {
-			return <Page hasLeftSideMenu>{pages[page]}</Page>
+			return <Page hasLeftSideMenu>{pages[page]}</Page>;
 		}
 	}
 
@@ -36,11 +36,13 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 		const { route, repo, branch, path, page } = this.properties;
 
 		return (
-			<Section key='section'>
+			<Section key="section">
 				<ReferenceGuideMenu route={route} repo={repo} branch={branch} path={path} />
 				{page === 'introduction' || page === 'basic-usage' ? (
 					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} hasLeftSideMenu />
-				): this._renderSupplementalPage()}
+				) : (
+					this._renderSupplementalPage()
+				)}
 			</Section>
 		);
 	}

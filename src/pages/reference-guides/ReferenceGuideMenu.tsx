@@ -37,9 +37,18 @@ export default class ReferenceGuideMenu extends I18nMixin(WidgetBase)<ReferenceG
 			<SideMenu>
 				<SideMenuSection>
 					<SideMenuItemList>
-						<SideMenuItem to={route} params={{ page: 'introduction' }}>{messages.introduction}</SideMenuItem>
-						<SideMenuItem to={route} params={{ page: 'basic-usage' }}>{messages.basicUsage}</SideMenuItem>
-						{pages && pages.map((page) => <SideMenuItem to={route} params={{ page: page.param }}>{page.title}</SideMenuItem>)}
+						<SideMenuItem to={route} params={{ page: 'introduction' }}>
+							{messages.introduction}
+						</SideMenuItem>
+						<SideMenuItem to={route} params={{ page: 'basic-usage' }}>
+							{messages.basicUsage}
+						</SideMenuItem>
+						{pages &&
+							pages.map((page) => (
+								<SideMenuItem to={route} params={{ page: page.param }}>
+									{page.title}
+								</SideMenuItem>
+							))}
 					</SideMenuItemList>
 				</SideMenuSection>
 			</SideMenu>

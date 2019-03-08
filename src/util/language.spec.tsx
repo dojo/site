@@ -1,4 +1,4 @@
-import { getLanguageFromLocale } from "./language";
+import { getLanguageFromLocale } from './language';
 
 describe('content compiler', () => {
 	it('parses language string from locale', () => {

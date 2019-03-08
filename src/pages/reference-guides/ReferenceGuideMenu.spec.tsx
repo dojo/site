@@ -54,9 +54,7 @@ describe('Reference Guide Menu', () => {
 	));
 
 	it('renders', () => {
-		const h = harness(() => (
-			<ReferenceGuideMenu route="outlet" repo="dojo/framework" path="path/to" />
-		));
+		const h = harness(() => <ReferenceGuideMenu route="outlet" repo="dojo/framework" path="path/to" />);
 
 		h.expect(baseAssertion);
 
