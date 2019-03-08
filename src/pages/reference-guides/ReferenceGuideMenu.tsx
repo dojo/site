@@ -5,6 +5,7 @@ import Block from '@dojo/framework/widget-core/meta/Block';
 import i18n from '@dojo/framework/i18n/i18n';
 
 import referenceGuideBlock from '../../scripts/reference-guide.block';
+import { getLanguageFromLocale } from '../../util/language';
 import SideMenu from '../../widgets/menu/SideMenu';
 import SideMenuSection from '../../widgets/menu/SideMenuSection';
 import SideMenuItem from '../../widgets/menu/SideMenuItem';
@@ -28,7 +29,7 @@ export default class ReferenceGuideMenu extends I18nMixin(WidgetBase)<ReferenceG
 			repo,
 			branch,
 			path: `${path}/supplemental.md`,
-			locale: i18n.locale,
+			locale: getLanguageFromLocale(i18n.locale),
 			headersOnly: true
 		});
 

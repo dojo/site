@@ -53,7 +53,6 @@ function getPages(nodes: DNode[]) {
 		// Start new page
 		if (isVNode(node) && node.tag === 'h1') {
 			if (page && pageName) {
-				console.log('Page: ', page);
 				pages[pageName] = v('div', {}, page);
 			}
 
@@ -73,7 +72,6 @@ function getPages(nodes: DNode[]) {
 	});
 
 	if (page && pageName) {
-		console.log('Page: ', page);
 		pages[pageName] = v('div', {}, page);
 	}
 

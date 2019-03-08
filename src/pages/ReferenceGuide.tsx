@@ -5,6 +5,7 @@ import i18n from '@dojo/framework/i18n/i18n';
 
 import { CompileRemoteBlockOptions } from '../scripts/compile-remote.block';
 import referenceGuideBlock from '../scripts/reference-guide.block';
+import { getLanguageFromLocale } from '../util/language';
 import RemotePage from '../widgets/page/RemotePage';
 import Section from '../widgets/section/Section';
 import Page from '../widgets/page/Page';
@@ -23,7 +24,7 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 			repo,
 			branch,
 			path: `${path}/supplemental.md`,
-			locale: i18n.locale
+			locale: getLanguageFromLocale(i18n.locale)
 		});
 
 		if (pages && pages[page]) {
