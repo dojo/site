@@ -8,7 +8,7 @@ export default class Features extends WidgetBase {
 		return (
             <section classes={[css.root]}>
                 <div classes={[css.featureRow, css.featureOne]}>
-                    <h1 classes={[css.featureTitle]}>A Complete Platform</h1>
+                    <h1 classes={[css.featureTitle]}>A Complete Framework</h1>
                     <Card depth={4} extraClasses={{ root: css.featureCardRight }}>
                         <ul classes={[css.featurePoints]}>
                             <li>
@@ -67,7 +67,7 @@ export default class Features extends WidgetBase {
                     <h1 classes={[css.featureTitle]}>Leverage the Platform</h1>
                 </div>
                 <div classes={[css.featureRow, css.featureThree]}>
-                    <h1 classes={[css.featureTitle]}>Building for Everyone</h1>
+                    <h1 classes={[css.featureTitle]}>Build for Everyone</h1>
                     <Card depth={4} extraClasses={{ root: css.featureCardRight }}>
                         <ul classes={[css.featurePoints]}>
                             <li>

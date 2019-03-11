@@ -12,7 +12,7 @@ import CardFooter from './CardFooter';
 
 describe('Card', () => {
 	const baseAssertion = assertionTemplate(() => (
-		<div key="card" data-test="card" classes={[css.root, null]}>
+		<div key="card" data-test="card" classes={[css.root, null, null]}>
 			{content()}
 		</div>
 	));
