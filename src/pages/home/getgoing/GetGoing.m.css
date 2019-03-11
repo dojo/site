@@ -185,9 +185,10 @@
 @media (max-width: 960px) {
 	.root {
 		padding: 0;
+		height: initial;
 	}
 	.command {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 	}
 	.commands {
 		width: 100%;
