@@ -8,7 +8,7 @@
 	--logo-width: calc(var(--grid-size) * 11);
 	--logo-height: calc(var(--grid-size) * 4.8);
 	position: fixed;
-	background: var(--header-background-color);
+	background: var(--dark-background-color);
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
