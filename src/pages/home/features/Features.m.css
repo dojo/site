@@ -1,0 +1,81 @@
+@import '../../../variables.css';
+
+.root {}
+
+.featureOne {
+	background: linear-gradient(110deg, var(--color-red), var(--color-purple));
+}
+
+.featureTwo {
+	background: var(--dark-background-color);
+}
+
+.featureThree {
+	background: linear-gradient(110deg, var(--color-purple), var(--color-blue));
+
+}
+
+.featureRow {
+	flex-direction: row;
+	display: flex;
+}
+
+.featureCardRight {
+	max-width: 750px;
+	height: 550px;
+	margin: 100px auto 100px 0px
+}
+
+.featureCardLeft {
+	max-width: 750px;
+	height: 550px;
+	margin: 100px 0 100px auto;
+}
+
+.featurePoints {
+	font-size: 22px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	list-style-type: none;
+	margin: 0;
+	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
+}
+
+.featurePoints > li {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.featureTitle {
+	color: white;
+	width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 960px) {
+	.featureRow {
+		flex-direction: column;
+	}
+	.featureTitle {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		width: 100%;
+		text-align: center;
+	}
+	.featureTwo {
+		flex-direction: column-reverse;
+	}
+	.featureCardLeft {
+		height: 100%;
+		width: inherit;
+		margin: 25px;
+	}
+	.featureCardRight {
+		width: inherit;
+		margin: 25px;
+		height: 100%;
+	}
+}

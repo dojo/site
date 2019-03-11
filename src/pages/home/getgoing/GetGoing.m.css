@@ -1,0 +1,205 @@
+@import '../../../variables.css';
+
+.root {
+	margin: calc(var(--grid-size) * 2.5);
+	padding: calc(var(--grid-size) * 2.5);
+	margin-bottom: calc(var(--grid-size) * 5);
+}
+
+.headline {
+	margin-top: calc(var(--grid-size) * 2.5);
+	margin-bottom: calc(var(--grid-size) * 2.5);
+}
+
+.command {
+	font-family: monospace;
+	color: var(--color-off-white);
+	font-size: 1rem;
+	display: flex;
+}
+
+.commands {
+	width: 80%;
+	height: calc(var(--grid-size) * 16);
+	background: var(--console-background-color);
+	white-space: nowrap;
+	padding: calc(var(--grid-size) * 2.5);
+}
+
+@keyframes typeOne {
+	to {
+		width: 24em;
+	}
+}
+
+.commandOne {
+	width: 0;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.commandOneAnimation {
+	animation: typeOne 4s steps(46, end) 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes typeTwo {
+	to {
+		width: 21em;
+	}
+}
+
+.commandTwo {
+	width: 0;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.commandTwoAnimation {
+	animation: typeTwo 4s steps(40, end) 7s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes blink {
+	to {
+		opacity: 1;
+	}
+}
+
+.blinkOne {
+	opacity: 0;
+	animation-fill-mode: forwards; /** Disappear on finish **/
+	animation: blink 1s linear 0s 5;
+}
+
+.blinkTwo {
+	opacity: 0;
+	animation: blink 1s linear 7s infinite;
+}
+
+.code::selection {
+	color: var(--color-white);
+	color: var(--console-background-color);
+}
+
+.code {
+	background: var(--console-background-color);
+	font-size: 0.875em;
+	padding: calc(var(--grid-size) * 2.5);
+	width: calc(var(--grid-size) * 60);
+	max-width: calc(var(--grid-size) * 60);
+	height: calc(var(--grid-size) * 30);
+	margin-left: calc(var(--grid-size) * 12.5);
+	opacity: 0;
+	animation: fadeIn 1s linear 11s;
+	animation-fill-mode: forwards;
+}
+
+.keyword,
+.variable {
+	margin-right: 7px;
+}
+
+.keyword {
+	color: #c775df;
+}
+
+.variable {
+	color: #e26b70;
+}
+
+.string {
+	color: #97c475;
+}
+
+.codeline {
+	font-family: monospace;
+	color: var(--color-white);
+	overflow: hidden;
+	white-space: nowrap;
+	margin-bottom: 2px;
+}
+
+.codeContainer {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.cli {
+	display: flex;
+	flex-direction: row;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.hide {
+	opacity: 0;
+}
+
+.resultContent {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.result {
+	color: var(--color-black);
+	background-color: var(--color-white);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	left: calc(var(--grid-size) * 17.5);
+	position: absolute;
+	width: calc(var(--grid-size) * 35);
+	height: calc(var(--grid-size) * 25);
+	top: calc(var(--grid-size) * 7.5);
+	opacity: 0;
+	animation: fadeIn 1s linear 12s;
+	animation-fill-mode: forwards;
+}
+
+.check {
+	width: calc(var(--grid-size) * 5);
+	height: calc(var(--grid-size) * 5);
+	line-height: calc(var(--grid-size) * 5);
+	border-radius: 100%;
+	background-color: var(--color-green);
+	color: var(--color-white);
+	text-align: center;
+}
+
+@media (max-width: 960px) {
+	.root {
+		padding: 0;
+	}
+	.command {
+		font-size: 0.8rem;
+	}
+	.commands {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0;
+		height: calc(var(--grid-size) * 7);
+	}
+	.content {
+		padding: 0;
+	}
+	.cli {
+		flex-direction: column;
+	}
+	.codeContainer {
+		display: none;
+	}
+}
