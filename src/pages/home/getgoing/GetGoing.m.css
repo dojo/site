@@ -22,7 +22,7 @@
 .commands {
 	width: 80%;
 	height: calc(var(--grid-size) * 22);
-	background: var(--console-background-color);
+	background: var(--darker-background-color);
 	white-space: nowrap;
 	padding: calc(var(--grid-size) * 2.5);
 }
@@ -80,11 +80,11 @@
 
 .code::selection {
 	color: var(--color-white);
-	color: var(--console-background-color);
+	color: var(--darker-background-color);
 }
 
 .code {
-	background: var(--console-background-color);
+	background: var(--darker-background-color);
 	font-size: 0.875em;
 	padding: calc(var(--grid-size) * 2.5);
 	width: calc(var(--grid-size) * 60);

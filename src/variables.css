@@ -25,6 +25,8 @@
 	--link-color-hover: var(--color-dark-blue);
 
 	--header-background-color: #212329;
+	--dark-background-color: #212329;
+	--darker-background-color: #141414;
 
 	--border-radius: 4px;
 	--grid-size: 10px;
