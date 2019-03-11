@@ -1,9 +1,10 @@
 @import '../../../variables.css';
 
 .root {
+	height: calc(var(--grid-size) * 45);
 	margin: calc(var(--grid-size) * 2.5);
 	padding: calc(var(--grid-size) * 2.5);
-	margin-bottom: calc(var(--grid-size) * 5);
+	margin-bottom: calc(var(--grid-size) * 9);
 }
 
 .headline {
@@ -121,6 +122,7 @@
 }
 
 .codeContainer {
+	z-index: -1;
 	position: relative;
 	width: 100%;
 	display: flex;
