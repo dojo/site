@@ -18,7 +18,7 @@ export default class GetGoing extends WidgetBase {
 					Getting started with Dojo is simple. You can use your command line of choice and <a href="https://www.npmjs.com">npm</a> to get going quickly.
 				</p>
 				<div key="cli" classes={[css.cli]}>
-					<Card dark={true} extraClasses={{ root: css.commands }}>
+					<Card depth={4} dark={true} extraClasses={{ root: css.commands }}>
 						<div classes={[css.command]}>
 							<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>
 								npm i @dojo/cli @dojo/cli-create-app -g

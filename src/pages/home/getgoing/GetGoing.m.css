@@ -21,7 +21,7 @@
 
 .commands {
 	width: 80%;
-	height: calc(var(--grid-size) * 16);
+	height: calc(var(--grid-size) * 22);
 	background: var(--console-background-color);
 	white-space: nowrap;
 	padding: calc(var(--grid-size) * 2.5);
@@ -29,7 +29,7 @@
 
 @keyframes typeOne {
 	to {
-		width: 24em;
+		width: 25em;
 	}
 }
 
@@ -40,13 +40,13 @@
 }
 
 .commandOneAnimation {
-	animation: typeOne 4s steps(46, end) 2s;
+	animation: typeOne 4s steps(46, end) 1s;
 	animation-fill-mode: forwards;
 }
 
 @keyframes typeTwo {
 	to {
-		width: 21em;
+		width: 22em;
 	}
 }
 
@@ -57,7 +57,7 @@
 }
 
 .commandTwoAnimation {
-	animation: typeTwo 4s steps(40, end) 7s;
+	animation: typeTwo 4s steps(40, end) 6s;
 	animation-fill-mode: forwards;
 }
 
