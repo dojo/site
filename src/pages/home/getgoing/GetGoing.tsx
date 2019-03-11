@@ -15,8 +15,8 @@ export default class GetGoing extends WidgetBase {
 			<section classes={[css.root]}>
 				<h2>Get Going Quickly</h2>
 				<p classes={[css.headline]}>
-					Getting started with Dojo is simple. You can use your command line of choice and{' '}
-					<a href="https://www.npmjs.com">npm</a> to get going quickly.{' '}
+					Getting started with Dojo is simple. You can use your command line of choice and
+					<a href="https://www.npmjs.com">npm</a> to get going quickly.
 				</p>
 				<div key="cli" classes={[css.cli]}>
 					<Card dark={true} extraClasses={{ root: css.commands }}>
@@ -28,7 +28,6 @@ export default class GetGoing extends WidgetBase {
 						</div>
 						<div classes={[css.command]}>
 							<span classes={[css.commandTwo, play ? css.commandTwoAnimation : null]}>
-								{' '}
 								dojo create app --name hello-world
 							</span>
 							<span classes={[play ? css.blinkTwo : null]}>|</span>

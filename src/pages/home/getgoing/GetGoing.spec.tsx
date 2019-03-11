@@ -13,8 +13,8 @@ describe('GetGoing', () => {
 			<section classes={[css.root]}>
 				<h2>Get Going Quickly</h2>
 				<p classes={[css.headline]}>
-					Getting started with Dojo is simple. You can use your command line of choice and{' '}
-					<a href="https://www.npmjs.com">npm</a> to get going quickly.{' '}
+					Getting started with Dojo is simple. You can use your command line of choice and
+					<a href="https://www.npmjs.com">npm</a> to get going quickly.
 				</p>
 				<div key="cli" classes={[css.cli]}>
 					<Card dark={true} extraClasses={{ root: css.commands }}>
@@ -26,7 +26,6 @@ describe('GetGoing', () => {
 						</div>
 						<div classes={[css.command]}>
 							<span classes={[css.commandTwo, css.commandTwoAnimation]}>
-								{' '}
 								dojo create app --name hello-world
 							</span>
 							<span classes={[css.blinkTwo]}>|</span>
