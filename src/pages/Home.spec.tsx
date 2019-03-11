@@ -16,7 +16,7 @@ describe('Home', () => {
 		h.expect(() => (
 			<main classes={[css.root]}>
 				<Hero />
-				<Ethos/>
+				<Ethos />
 				<GetGoing />
 				<Features />
 			</main>

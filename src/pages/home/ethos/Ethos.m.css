@@ -37,7 +37,6 @@
 	flex-direction: row;
 }
 
-
 @media (max-width: 960px) {
 	.root {
 		flex-direction: column;

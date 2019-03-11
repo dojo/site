@@ -6,7 +6,6 @@ import Hero from './GetGoing';
 import Card from '../../../widgets/card/Card';
 
 describe('GetGoing', () => {
-
 	it('renders', () => {
 		add('build-time-render', true, false);
 		const h = harness(() => <Hero />);
@@ -59,10 +58,12 @@ describe('GetGoing', () => {
 								<span>;</span>
 							</div>
 						</Card>
-						<Card extraClasses={{
-							root: css.result,
-							content: css.resultContent 
-						}}>
+						<Card
+							extraClasses={{
+								root: css.result,
+								content: css.resultContent
+							}}
+						>
 							<div classes={[css.check]}>✔</div>
 							<div>Success!</div>
 						</Card>

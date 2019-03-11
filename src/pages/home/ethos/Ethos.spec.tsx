@@ -7,7 +7,6 @@ import Card from '../../../widgets/card/Card';
 import FontAwesomeIcon from '../../../widgets/icon/FontAwesomeIcon';
 
 describe('Ethos', () => {
-
 	it('renders', () => {
 		add('build-time-render', true, false);
 		const h = harness(() => <Ethos />);
@@ -45,8 +44,8 @@ describe('Ethos', () => {
 						<h3 classes={[css.ethosTitle]}>Inclusive</h3>
 					</div>
 					<div>
-						Demand for accessibility and internationalization are required for enterprise web
-						applications. Dojo supports inclusivity and provides both.
+						Demand for accessibility and internationalization are required for enterprise web applications.
+						Dojo supports inclusivity and provides both.
 					</div>
 				</Card>
 			</section>

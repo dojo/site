@@ -12,7 +12,7 @@ export default class Home extends WidgetBase {
 		return (
 			<main classes={[css.root]}>
 				<Hero />
-				<Ethos/>
+				<Ethos />
 				<GetGoing />
 				<Features />
 			</main>

@@ -18,11 +18,15 @@ export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
 		const { header, footer, dark = false, depth = 1 } = this.properties;
 
 		return (
-			<div key="card" data-test="card" classes={[
-				this.theme(css.root), 
-				dark ? this.theme(css.dark) : null,
-				depth === 4 ? this.theme(css.depth4) : null
-			]}>
+			<div
+				key="card"
+				data-test="card"
+				classes={[
+					this.theme(css.root),
+					dark ? this.theme(css.dark) : null,
+					depth === 4 ? this.theme(css.depth4) : null
+				]}
+			>
 				{header}
 				<div key="content" data-test="content" classes={this.theme(css.content)}>
 					{this.children}

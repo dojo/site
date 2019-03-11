@@ -1,6 +1,7 @@
 @import '../../../variables.css';
 
-.root {}
+.root {
+}
 
 .featureOne {
 	background: linear-gradient(110deg, var(--color-red), var(--color-purple));
@@ -12,7 +13,6 @@
 
 .featureThree {
 	background: linear-gradient(110deg, var(--color-purple), var(--color-blue));
-
 }
 
 .featureRow {
@@ -23,7 +23,7 @@
 .featureCardRight {
 	max-width: 750px;
 	height: 550px;
-	margin: 100px auto 100px 0px
+	margin: 100px auto 100px 0px;
 }
 
 .featureCardLeft {
@@ -50,9 +50,9 @@
 .featureTitle {
 	color: white;
 	width: 45%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 @media (max-width: 960px) {
