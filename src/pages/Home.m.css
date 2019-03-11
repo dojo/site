@@ -253,7 +253,7 @@
 @media (max-width: 960px) {
 	.headline {
 		font-size: 1.25em;
-		width: calc(var(--grid-size) * 37.5);
+		width: calc(var(--grid-size) * 30);
 	}
 	.ethosPoint {
 		width: initial;
