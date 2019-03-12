@@ -8,8 +8,6 @@ import Community from './pages/Community';
 import Examples from './pages/Examples';
 import Home from './pages/Home';
 import Playground from './pages/Playground';
-import TutorialsLanding from './pages/TutorialsLanding';
-import Tutorials from './pages/tutorials/Tutorials';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import Header from './widgets/Header';
@@ -35,8 +33,6 @@ describe('App', () => {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
-					<Tutorials />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />
 				</div>
@@ -50,7 +46,6 @@ describe('App', () => {
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'community', content: <Community /> },
-		{ outlet: 'tutorials', content: <TutorialsLanding /> },
 		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> }
 	];
 
