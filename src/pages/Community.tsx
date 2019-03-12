@@ -2,7 +2,6 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
 
-import Grid from '../widgets/grid/Grid';
 import LinkedCard from '../widgets/card/LinkedCard';
 
 import * as css from './Community.m.css';
@@ -13,7 +12,6 @@ const github = require('../assets/logo-github.svg');
 const discord = require('../assets/logo-discord.svg');
 const twitter = require('../assets/logo-twitter.svg');
 const discourse = require('../assets/logo-discourse.svg');
-const dojo = require('../assets/dojo-logo-black.svg');
 
 const links = [
 	{
@@ -60,15 +58,6 @@ const links = [
 			alt: 'Discourse'
 		},
 		description: 'Questions asked and answered.'
-	},
-	{
-		title: 'Examples',
-		url: 'https://dojo.github.io/examples/',
-		image: {
-			src: dojo,
-			alt: 'Dojo Examples'
-		},
-		description: 'Dojo projects and more.'
 	}
 ];
 
@@ -154,12 +143,25 @@ const projects = [
 export default class Community extends ThemedMixin(WidgetBase) {
 	protected render() {
 		const linkCards = links.map(({ description, title, url, image }) => (
-			<LinkedCard header={<CardHeader title={title} image={image} />} url={url}>
-				{description}
-			</LinkedCard>
+			<a href={url} title={description} classes={css.link} target="_blank">
+				<img classes={css.linkImage} {...image} />
+				{title}
+			</a>
 		));
 		const projectCards = projects.map(({ description, title, url }) => (
-			<LinkedCard header={<CardHeader title={title} />} url={url}>
+			<LinkedCard
+				header={<CardHeader title={title} />}
+				url={url}
+				classes={{
+					'dojo.io/Card': {
+						root: [css.card],
+						content: [css.cardContent]
+					},
+					'dojo.io/LinkedCard': {
+						root: [css.cardLink]
+					}
+				}}
+			>
 				{description}
 			</LinkedCard>
 		));
@@ -167,13 +169,17 @@ export default class Community extends ThemedMixin(WidgetBase) {
 			<div classes={[css.root]}>
 				<h2>Community Links</h2>
 
-				<Grid key="links">{linkCards}</Grid>
+				<div key="links" classes={css.linkTable}>
+					{linkCards}
+				</div>
 
 				<h2>Projects</h2>
 
 				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
 
-				<Grid key="projects">{projectCards}</Grid>
+				<div key="projects" classes={css.cardTable}>
+					{projectCards}
+				</div>
 			</div>
 		);
 	}

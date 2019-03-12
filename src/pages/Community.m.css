@@ -1,5 +1,9 @@
 @import '../variables.css';
 
+:root {
+	--color-maroon: 165, 39, 91;
+}
+
 .root {
 	padding: var(--content-top-padding) var(--content-padding);
 	width: 960px;
@@ -16,4 +20,75 @@
 	.root {
 		width: 300px;
 	}
+}
+
+.link {
+	height: 60px;
+	display: flex;
+	align-items: center;
+	width: 150px;
+	background-color: #f6f6f6;
+	color: rgb(141, 120, 132);
+	border-color: #f6f6f6;
+	width: 20%;
+	margin-left: var(--grid-size);
+	border-radius: calc(var(--grid-size) * 3.5);
+	padding-left: calc(var(--grid-size) * 1.5);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.link:hover {
+	color: #63545c;
+	box-shadow: 0 0 12px rgba(var(--color-maroon), 0.2), 0 0 8px rgba(var(--color-maroon), 0.2),
+		0 4px 18px rgba(var(--color-maroon), 0.2);
+	transform: translateY(-1px);
+	transition: all 0.3s;
+}
+
+.link:first-child {
+	margin-left: 0;
+}
+
+.link:hover > .linkImage {
+	opacity: 1;
+}
+
+.linkImage {
+	width: calc(var(--grid-size) * 4);
+	height: calc(var(--grid-size) * 4);
+	margin-right: var(--grid-size);
+	opacity: 0.75;
+}
+
+.linkTable {
+	display: flex;
+}
+
+.card {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.cardLink {
+	border: 1px solid rgba(10, 16, 20, 0.075);
+}
+
+.cardLink:hover {
+	text-decoration: none;
+	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
+	border-image-slice: 1;
+	border-width: 1px;
+	box-shadow: 0 0px 12px rgba(var(--color-maroon), 0.4), 0 0 8px rgba(var(--color-maroon), 0.2),
+		0 6px 18px rgba(var(--color-maroon), 0.2);
+	transform: translateY(-1px);
+	transition: all 0.3s;
+}
+
+.cardContent {
+	padding-top: 0;
+}
+
+.cardTable {
+	box-shadow: 0 2px 8px 0 rgba(10, 16, 20, 0.27);
 }

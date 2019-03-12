@@ -17,6 +17,7 @@
 	align-content: flex-start;
 	align-items: center;
 	height: var(--header-size);
+	z-index: 10;
 }
 
 .menu {
