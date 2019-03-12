@@ -88,7 +88,7 @@ export const getFrontmatter = (content: string): { [key: string]: string } => {
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
-	const node = result.children.find((node: WNode) => node.type === 'yaml');
+	const node = result.children.find((node: any) => node.type === 'yaml');
 	return node && node.data.parsedValue;
 };
 
