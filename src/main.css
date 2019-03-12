@@ -35,12 +35,12 @@ blockquote > p {
 	margin: 0;
 }
 
-pre[class*=language-] {
+pre[class*='language-'] {
 	border-radius: 3px;
 	box-shadow: rgba(10, 16, 20, 0.24) 0px 2px 2px, rgba(10, 16, 20, 0.12) 0px 0px 2px;
 }
 
-blockquote + pre[class*=language-] {
+blockquote + pre[class*='language-'] {
 	margin-top: 0;
 	border-radius: 0 0 3px 3px;
 }
