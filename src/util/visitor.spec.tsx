@@ -4,7 +4,7 @@ import { DNode } from '@dojo/framework/widget-core/interfaces';
 import visitor from './visitor';
 import { isVNode } from '@dojo/framework/widget-core/d';
 
-describe('content compiler', () => {
+describe('visitor', () => {
 	it('removes undefined nodes from the response', () => {
 		const input = (
 			<ul>

@@ -166,10 +166,6 @@ describe('content compiler', () => {
 			expect(compiler.setLocale(url, 'fr')).toBe('/path/to/fr/file.md');
 		});
 
-		it('should parse langauge from locale string', async () => {
-			expect(compiler.setLocale('/path/to/:locale:/file.md', 'en-US')).toBe('/path/to/en/file.md');
-		});
-
 		it('should not change non-locale url', async () => {
 			expect(compiler.setLocale('/path/to/file.md', 'en')).toBe('/path/to/file.md');
 		});

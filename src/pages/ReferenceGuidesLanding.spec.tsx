@@ -8,15 +8,10 @@ import LandingSubsection from '../widgets/landing/LandingSubsection';
 import Grid from '../widgets/grid/Grid';
 import LandingLink from '../widgets/landing/LandingLink';
 
-import * as compiler from '../scripts/compile-remote.block';
-import Alert from '../widgets/content/Alert';
-
 import bundle from './ReferenceGuidesLanding.nls';
 import ReferenceGuidesLanding from './ReferenceGuidesLanding';
 
 describe('ReferenceGuidesLanding', () => {
-	const mockRemoteCompiler = jest.spyOn(compiler, 'default');
-
 	switchLocale('en-US');
 
 	const messages = bundle.messages;
@@ -40,46 +35,8 @@ describe('ReferenceGuidesLanding', () => {
 	));
 
 	it('renders', () => {
-		mockRemoteCompiler.mockReturnValueOnce((
-			<ul>
-				{undefined}
-				<li />
-				<li>
-					<a href="https://example.com">Absolute link</a>
-				</li>
-				<Alert>Random Widget</Alert>
-				<li>
-					<a href="./introduction">Introduction</a>
-				</li>
-				<li>
-					<a href="./basic-usage">Basic Usage</a>
-				</li>
-			</ul>
-		) as any);
-
 		const h = harness(() => <ReferenceGuidesLanding />);
 
 		h.expect(baseAssertion);
-
-		expect(mockRemoteCompiler).toHaveBeenCalledWith({
-			repo: 'dojo/framework',
-			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
-		});
-	});
-
-	it('renders empty when compiler response is undefined', () => {
-		mockRemoteCompiler.mockReturnValueOnce(undefined as any);
-
-		const h = harness(() => <ReferenceGuidesLanding />);
-
-		const assertion = baseAssertion.setProperty('~i18nLink', 'params', { page: '' });
-		h.expect(assertion);
-
-		expect(mockRemoteCompiler).toHaveBeenCalledWith({
-			repo: 'dojo/framework',
-			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
-		});
 	});
 });
