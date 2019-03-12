@@ -10,13 +10,12 @@
 	--logo-width: 110px;
 	--logo-height: 48px;
 	position: fixed;
-	width: 100%;
+	width: 100vw;
 	background: var(--header-background-color);
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;
 	align-items: center;
-	padding-left: calc(100vw - 100%);
 	height: var(--header-size);
 }
 
@@ -75,7 +74,7 @@
 }
 
 .leftContainer {
-	margin: auto 10px;
+	margin: auto calc(var(--grid-size) * 2);
 	display: flex;
 }
 
@@ -132,7 +131,7 @@
 
 .rightContainer {
 	display: none;
-	width: var(--toggle-button-width);
+	width: calc(var(--toggle-button-width) + calc(var(--grid-size) * 2));
 	height: var(--toggle-button-height);
 	margin: auto 10px;
 }
@@ -146,10 +145,6 @@
 @media (max-width: 768px) {
 	.toggleButton {
 		display: inline-block;
-	}
-
-	.logo {
-		padding-right: calc(var(--menu-offset) + var(--toggle-button-width));
 	}
 
 	.menu {
