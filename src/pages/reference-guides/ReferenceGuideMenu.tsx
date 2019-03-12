@@ -4,7 +4,7 @@ import I18nMixin, { I18nProperties } from '@dojo/framework/widget-core/mixins/I1
 import Block from '@dojo/framework/widget-core/meta/Block';
 import i18n from '@dojo/framework/i18n/i18n';
 
-import referenceGuideBlock, { SupplementalHeaders } from '../../scripts/reference-guide.block';
+import compileRemoteHeaders, { SupplementalHeaders } from '../../scripts/compile-remote-headers.block';
 import { getLanguageFromLocale } from '../../util/language';
 import SideMenu from '../../widgets/menu/SideMenu';
 import SideMenuSection from '../../widgets/menu/SideMenuSection';
@@ -25,7 +25,7 @@ export default class ReferenceGuideMenu extends I18nMixin(WidgetBase)<ReferenceG
 		const { route, repo, branch, path } = this.properties;
 		const { messages } = this.localizeBundle(bundle);
 
-		const pages: SupplementalHeaders[] = this.meta(Block).run(referenceGuideBlock)({
+		const pages: SupplementalHeaders[] = this.meta(Block).run(compileRemoteHeaders)({
 			repo,
 			branch,
 			path: `${path}/supplemental.md`,

@@ -3,7 +3,7 @@ import { switchLocale } from '@dojo/framework/i18n/i18n';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
-import * as referenceGuideBlock from '../../scripts/reference-guide.block';
+import * as compileRemoteHeaders from '../../scripts/compile-remote-headers.block';
 import SideMenu from '../../widgets/menu/SideMenu';
 import SideMenuSection from '../../widgets/menu/SideMenuSection';
 import SideMenuItem from '../../widgets/menu/SideMenuItem';
@@ -12,7 +12,7 @@ import SideMenuItemList from '../../widgets/menu/SideMenuItemList';
 import ReferenceGuideMenu from './ReferenceGuideMenu';
 
 describe('Reference Guide Menu', () => {
-	const mockReferenceGuideBlock = jest.spyOn(referenceGuideBlock, 'default').mockReturnValue([
+	const mockReferenceGuideBlock = jest.spyOn(compileRemoteHeaders, 'default').mockReturnValue([
 		{
 			title: 'Test 1',
 			param: 'test-1'

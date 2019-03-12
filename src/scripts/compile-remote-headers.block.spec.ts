@@ -1,7 +1,7 @@
 import { v } from '@dojo/framework/widget-core/d';
 import * as fetch from 'node-fetch';
 
-import referenceGuideBlock, { SupplementalPageLookup } from './reference-guide.block';
+import referenceGuideBlock, { SupplementalPageLookup } from './compile-remote-headers.block';
 
 const mockReadme = `
 Top content
@@ -87,7 +87,7 @@ const expectedHeaderOnlyOutput = [
 	}
 ];
 
-describe('reference guide compiler', () => {
+describe('compile remote headers block', () => {
 	const mockFetch = jest.spyOn(fetch, 'default');
 	const mockText = jest.fn();
 
