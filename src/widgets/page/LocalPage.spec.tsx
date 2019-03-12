@@ -19,7 +19,7 @@ describe('Page', () => {
 	it('renders without left menu', () => {
 		const h = harness(() => <LocalPage path="path/to/file.md" />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
 
 		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
 	});
@@ -27,7 +27,7 @@ describe('Page', () => {
 	it('renders with left menu', () => {
 		const h = harness(() => <LocalPage path="path/to/file.md" hasLeftSideMenu />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
 
 		h.expect(() => <Page hasLeftSideMenu>Some content</Page>);
 	});

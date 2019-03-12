@@ -8,8 +8,6 @@ import Blog from './pages/Blog';
 import Examples from './pages/Examples';
 import Playground from './pages/Playground';
 import Community from './pages/Community';
-import Tutorials from './pages/tutorials/Tutorials';
-import TutorialsLanding from './pages/TutorialsLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 
@@ -49,8 +47,6 @@ export default class App extends WidgetBase {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="tutorials" id="tutorials" renderer={() => <TutorialsLanding />} />
-					<Tutorials />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />
 				</div>

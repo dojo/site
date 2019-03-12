@@ -15,7 +15,7 @@ export default class ReferenceGuides extends WidgetBase {
 					return (
 						<ReferenceGuide
 							repo="dojo/framework"
-							path="docs/:locale:/i18n/index.md"
+							path="docs/:locale:/i18n"
 							route="reference-guide-i18n"
 							page={page}
 						/>

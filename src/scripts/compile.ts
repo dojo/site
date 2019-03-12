@@ -77,10 +77,7 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 	}, {});
 };
 
-export const fromMarkdown = (
-	content: string,
-	registeredHandlers: { [type: string]: HandlerFunction }
-): DNode | DNode[] => {
+export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): DNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(macro.transformer)
@@ -99,12 +96,6 @@ export const getLocalFile = async (path: string): Promise<string> => {
 	return await readFile(path, 'utf-8');
 };
 
-export const setLocale = (path: string, inputLocale: string) => {
-	let locale = inputLocale;
-	const localeMatch = /([a-z]+)-\S+/g.exec(locale);
-	if (localeMatch && localeMatch.length === 2) {
-		locale = localeMatch[1];
-	}
-
+export const setLocale = (path: string, locale: string) => {
 	return path.replace(/:locale:/g, locale);
 };
