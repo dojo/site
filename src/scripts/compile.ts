@@ -1,5 +1,5 @@
 import { v, w } from '@dojo/framework/widget-core/d';
-import { DNode, WNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 import { readFile } from 'fs-extra';
 import { resolve } from 'path';
 
