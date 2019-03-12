@@ -1,5 +1,5 @@
 import { v, w } from '@dojo/framework/widget-core/d';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode, WNode } from '@dojo/framework/widget-core/interfaces';
 import { readFile } from 'fs-extra';
 import { resolve } from 'path';
 
@@ -14,6 +14,8 @@ const toH = require('hast-to-hyperscript');
 const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
 const all = require('mdast-util-to-hast/lib/all');
+const frontmatter = require('remark-frontmatter');
+const parseFrontmatter = require('remark-parse-yaml');
 
 export interface Handler {
 	type: string;
@@ -32,7 +34,8 @@ export const handlers: Handler[] = [
 	{ type: 'Alert' },
 	{ type: 'Aside' },
 	{ type: 'CodeBlock', inline: true },
-	{ type: 'CodeSandbox', inline: true }
+	{ type: 'CodeSandbox', inline: true },
+	{ type: 'BlogImage', inline: true }
 ];
 
 export const widgets: WidgetBuilders = {
@@ -77,12 +80,25 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 	}, {});
 };
 
+export const getFrontmatter = (content: string): { [key: string]: string } => {
+	const pipeline = unified()
+		.use(remarkParse, { commonmark: true })
+		.use(frontmatter, 'yaml')
+		.use(parseFrontmatter);
+
+	const nodes = pipeline.parse(content);
+	const result = pipeline.runSync(nodes);
+	const node = result.children.find((node: WNode) => node.type === 'yaml');
+	return node && node.data.parsedValue;
+};
+
 export const fromMarkdown = (
 	content: string,
 	registeredHandlers: { [type: string]: HandlerFunction }
 ): DNode | DNode[] => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
+		.use(frontmatter, 'yaml')
 		.use(macro.transformer)
 		.use(remark2rehype, { handlers: registeredHandlers })
 		.use(linkCleanup)
