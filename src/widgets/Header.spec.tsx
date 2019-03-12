@@ -35,16 +35,6 @@ describe('Menu', () => {
 						</li>
 						<li classes={[css.menuItem]}>
 							<Link
-								key="tutorialsLink"
-								to="tutorials"
-								classes={[css.link]}
-								activeClasses={[css.selected]}
-							>
-								Tutorials
-							</Link>
-						</li>
-						<li classes={[css.menuItem]}>
-							<Link
 								key="reference-guidesLink"
 								to="reference-guides"
 								classes={[css.link]}
