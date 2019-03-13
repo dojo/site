@@ -16,6 +16,10 @@
 	margin: 0 auto 80px;
 }
 
+.content > *:last-child {
+	margin-bottom: 0;
+}
+
 .footer {
 	color: #999 !important;
 	font-size: 0.875rem;
