@@ -1,9 +1,5 @@
 @import '../variables.css';
 
-:root {
-	--color-maroon: 165, 39, 91;
-}
-
 .root {
 	padding: var(--content-top-padding) var(--content-padding);
 	width: 960px;
@@ -40,8 +36,7 @@
 
 .link:hover {
 	color: #63545c;
-	box-shadow: 0 0 12px rgba(var(--color-maroon), 0.2), 0 0 8px rgba(var(--color-maroon), 0.2),
-		0 4px 18px rgba(var(--color-maroon), 0.2);
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
 	transform: translateY(-1px);
 	transition: all 0.3s;
 }
@@ -71,18 +66,17 @@
 }
 
 .cardLink {
+	position: relative;
 	border: 1px solid rgba(10, 16, 20, 0.075);
 }
 
 .cardLink:hover {
 	text-decoration: none;
-	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
-	border-image-slice: 1;
-	border-width: 1px;
-	box-shadow: 0 0px 12px rgba(var(--color-maroon), 0.4), 0 0 8px rgba(var(--color-maroon), 0.2),
-		0 6px 18px rgba(var(--color-maroon), 0.2);
+	border: 1px solid rgba(10, 16, 20, 0.25);
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.2), 0 0 8px rgba(0, 0, 0, 0.1), 0 6px 18px rgba(0, 0, 0, 0.1);
 	transform: translateY(-1px);
 	transition: all 0.3s;
+	z-index: 5;
 }
 
 .cardContent {
@@ -91,4 +85,17 @@
 
 .cardTable {
 	box-shadow: 0 2px 8px 0 rgba(10, 16, 20, 0.27);
+}
+
+.cardLinkIcon {
+	height: calc(var(--grid-size) * 4);
+	position: absolute;
+	right: calc(var(--grid-size) * 3);
+	top: calc(50% - calc(var(--grid-size) * 2));
+	transition: all 0.3s;
+	opacity: 0;
+}
+
+.cardLink:hover .cardLinkIcon {
+	opacity: 1;
 }

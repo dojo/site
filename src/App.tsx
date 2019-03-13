@@ -23,6 +23,7 @@ import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
 import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
 
 library.add(
 	faCloudDownloadAlt,
@@ -33,7 +34,8 @@ library.add(
 	faCodeBranch,
 	faPlug,
 	faUsers,
-	faLaptopCode
+	faLaptopCode,
+	faExternalLinkAlt
 );
 
 export default class App extends WidgetBase {

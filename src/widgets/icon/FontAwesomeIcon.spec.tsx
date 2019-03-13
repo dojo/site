@@ -101,7 +101,7 @@ describe('FontAwesomeIcon', () => {
 		const viewBox = [0, 0, renderedIcon.icon[0], renderedIcon.icon[1]].join(' ');
 
 		return useAbstractElementToVNode
-			? renderedIcon.abstract.map((element) => abstractElementToVNode(element))
+			? renderedIcon.abstract.map((element) => abstractElementToVNode(element, css.root))
 			: [
 					<svg
 						aria-hidden="true"
@@ -120,7 +120,7 @@ describe('FontAwesomeIcon', () => {
 	}
 
 	test('abstractElementToVNode', () => {
-		expect(abstractElementToVNode(mockAbstractElement)).toEqual(mockTSX);
+		expect(abstractElementToVNode(mockAbstractElement, css.root)).toEqual(mockTSX);
 	});
 
 	describe('objectWithKey', () => {

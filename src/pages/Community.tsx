@@ -3,9 +3,10 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
 
 import LinkedCard from '../widgets/card/LinkedCard';
+import CardHeader from '../widgets/card/CardHeader';
+import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 
 import * as css from './Community.m.css';
-import CardHeader from '../widgets/card/CardHeader';
 
 const conduct = require('../assets/icon-conduct.svg');
 const github = require('../assets/logo-github.svg');
@@ -163,6 +164,11 @@ export default class Community extends ThemedMixin(WidgetBase) {
 				}}
 			>
 				{description}
+				<FontAwesomeIcon
+					icon="external-link-alt"
+					size="2x"
+					classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.cardLinkIcon] } }}
+				/>
 			</LinkedCard>
 		));
 		return (

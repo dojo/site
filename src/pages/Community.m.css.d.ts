@@ -6,3 +6,4 @@ export const card: string;
 export const cardLink: string;
 export const cardContent: string;
 export const cardTable: string;
+export const cardLinkIcon: string;

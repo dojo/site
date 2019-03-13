@@ -3,6 +3,7 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import LinkedCard from '../widgets/card/LinkedCard';
 import CardHeader from '../widgets/card/CardHeader';
+import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 
 import * as css from './Community.m.css';
 import Community from './Community';
@@ -37,6 +38,11 @@ describe('Community Page', () => {
 					}}
 				>
 					Dojo Framework. A Progressive Framework for Modern Web Apps
+					<FontAwesomeIcon
+						icon="external-link-alt"
+						size="2x"
+						classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.cardLinkIcon] } }}
+					/>
 				</LinkedCard>
 			));
 		});

@@ -1,6 +1,7 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { VNode } from '@dojo/framework/widget-core/interfaces';
+import { VNode, SupportedClassName } from '@dojo/framework/widget-core/interfaces';
 import { v } from '@dojo/framework/widget-core/d';
+import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
 
 import {
 	icon,
@@ -21,11 +22,11 @@ export function objectWithKey(key: string, value: any) {
 
 export type IconSize = 'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x';
 
-export function abstractElementToVNode(abstractElement: AbstractElement, level = 0) {
+export function abstractElementToVNode(abstractElement: AbstractElement, rootTheme: SupportedClassName, level = 0) {
 	let children: VNode[] = [];
 	if (abstractElement.children) {
 		children = abstractElement.children.map(
-			(child) => (typeof child === 'string' ? child : abstractElementToVNode(child, level + 1))
+			(child) => (typeof child === 'string' ? child : abstractElementToVNode(child, rootTheme, level + 1))
 		);
 	}
 
@@ -35,16 +36,16 @@ export function abstractElementToVNode(abstractElement: AbstractElement, level =
 	}
 	if (level === 0) {
 		if (attributes.classes) {
-			attributes.classes.push(css.root);
+			attributes.classes.push(rootTheme);
 		} else {
-			attributes.classes = css.root;
+			attributes.classes = rootTheme;
 		}
 	}
 
 	return v(abstractElement.tag, attributes, children);
 }
 
-export interface FontAwesomeIconProperties {
+export interface FontAwesomeIconProperties extends ThemedProperties {
 	icon: IconName | IconLookup | [IconPrefix, IconName];
 	spin?: boolean;
 	pulse?: boolean;
@@ -62,7 +63,8 @@ export interface FontAwesomeIconProperties {
 	title?: string;
 }
 
-export default class FontAwesomeIcon extends WidgetBase<FontAwesomeIconProperties> {
+@theme(css)
+export default class FontAwesomeIcon extends ThemedMixin(WidgetBase)<FontAwesomeIconProperties> {
 	normalizeIconArgs(icon: IconName | IconLookup | [IconPrefix, IconName]): IconLookup {
 		if (typeof icon === 'string') {
 			return { prefix: 'fas', iconName: icon };
@@ -134,6 +136,6 @@ export default class FontAwesomeIcon extends WidgetBase<FontAwesomeIconPropertie
 		}
 
 		const { abstract: abstractElements } = renderedIcon;
-		return abstractElements.map((abstractElement) => abstractElementToVNode(abstractElement));
+		return abstractElements.map((abstractElement) => abstractElementToVNode(abstractElement, this.theme(css.root)));
 	}
 }
