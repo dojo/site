@@ -73,7 +73,7 @@
 .cardLink:hover {
 	text-decoration: none;
 	border: 1px solid rgba(10, 16, 20, 0.25);
-	box-shadow: 0 0 12px rgba(0, 0, 0, 0.2), 0 0 8px rgba(0, 0, 0, 0.1), 0 6px 18px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.15), 0 0 8px rgba(0, 0, 0, 0.05), 0 6px 18px rgba(0, 0, 0, 0.05);
 	transform: translateY(-1px);
 	transition: all 0.3s;
 	z-index: 5;
