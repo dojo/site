@@ -17,3 +17,7 @@ export interface TextNode extends HastNode {
 export function isElementNode(child: HastNode): child is ElementNode {
 	return Boolean(child.type === 'element');
 }
+
+export function isTextNode(child: HastNode): child is TextNode {
+	return Boolean(child.type === 'text');
+}

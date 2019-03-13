@@ -17,6 +17,10 @@ export default [
 		outlet: 'playground'
 	},
 	{
+		path: 'roadmap',
+		outlet: 'roadmap'
+	},
+	{
 		path: 'community',
 		outlet: 'community'
 	},

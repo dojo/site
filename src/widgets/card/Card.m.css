@@ -6,15 +6,13 @@
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	background: #fff;
-	color: #666;
+	background: var(--color-white);
+	color: var(--color-dark-gray);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .content {
-	font-size: 0.875rem;
-	line-height: 1.4;
-	color: #999;
+	color: var(--color-light-gray);
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
 	box-sizing: border-box;
 	flex-grow: 1;

@@ -6,7 +6,7 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
 
-const pages = ['Blog', 'Reference Guides', 'Examples', 'Playground', 'Community'];
+const pages = ['Blog', 'Reference Guides', 'Examples', 'Playground', 'Roadmap', 'Community'];
 
 export default class Menu extends WidgetBase {
 	protected render() {

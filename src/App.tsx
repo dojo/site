@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Examples from './pages/Examples';
 import Playground from './pages/Playground';
+import Roadmap from './pages/Roadmap';
 import Community from './pages/Community';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
@@ -23,6 +24,8 @@ import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
 import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
+import { faBoxOpen } from '@fortawesome/free-solid-svg-icons/faBoxOpen';
+import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 
 library.add(
 	faCloudDownloadAlt,
@@ -33,7 +36,9 @@ library.add(
 	faCodeBranch,
 	faPlug,
 	faUsers,
-	faLaptopCode
+	faLaptopCode,
+	faBoxOpen,
+	faBox
 );
 
 export default class App extends WidgetBase {
@@ -46,6 +51,7 @@ export default class App extends WidgetBase {
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />

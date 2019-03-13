@@ -1,4 +1,4 @@
-import { HastNode, isElementNode } from './util';
+import { HastNode, isElementNode, isTextNode } from './util';
 
 const visit = require('unist-util-visit');
 
@@ -21,6 +21,18 @@ export default function() {
 		const externalMatch = /^http[s]?:\/\/[\S]+$/g.exec(node.properties.href);
 		if (externalMatch) {
 			node.properties.target = '_blank';
+		}
+
+		// Make github links prettier
+		if (node.children && node.children.length === 1) {
+			const child = node.children[0];
+			if (isTextNode(child)) {
+				const match = /http[s]?:\/\/github.com\/[^\/]+\/[^\/]+\/[^\/]+\/([0-9]+)/g.exec(child.value);
+				if (match && match.length === 2) {
+					child.value = `#${match[1]}`;
+				}
+				return node;
+			}
 		}
 	}
 }
