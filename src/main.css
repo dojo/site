@@ -42,7 +42,7 @@ pre[class*='language-'] {
 }
 
 pre[class*='language-']:last-child {
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
 }
 
 blockquote + pre[class*='language-'] {
