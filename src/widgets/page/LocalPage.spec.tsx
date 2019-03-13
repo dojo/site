@@ -31,4 +31,12 @@ describe('Page', () => {
 
 		h.expect(() => <Page hasLeftSideMenu>Some content</Page>);
 	});
+
+	it('renders only content without Page widget', () => {
+		const h = harness(() => <LocalPage path="path/to/file.md" warpInPage={false} />);
+
+		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
+
+		h.expect(() => 'Some content');
+	});
 });

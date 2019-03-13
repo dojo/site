@@ -1,15 +1,13 @@
-export interface HastNode {
-	type: 'element' | 'text';
-}
+export type HastNode = ElementNode | TextNode;
 
-export interface ElementNode extends HastNode {
+export interface ElementNode {
 	type: 'element';
 	tagName: string;
 	properties: { [key: string]: string };
 	children: HastNode[];
 }
 
-export interface TextNode extends HastNode {
+export interface TextNode {
 	type: 'text';
 	value: string;
 }

@@ -25,7 +25,7 @@ const timelineEntries: TimelineEntry[] = [
 	},
 	{
 		title: 'Dojo 5',
-		date: 'Junuary 2019',
+		date: 'January 2019',
 		file: 'dojo-5.0.0-release.md',
 		released: true
 	}
@@ -36,7 +36,7 @@ export default class Roadmap extends WidgetBase {
 		return (
 			<Page classes={{ 'dojo.io/Page': { root: [css.root], content: [css.pageContent] } }}>
 				<h1 classes={css.header}>What's coming up</h1>
-				<div classes={css.timeline}>
+				<div key="timeline" classes={css.timeline}>
 					{timelineEntries.map((entry) => (
 						<div classes={[css.timelineEntry, entry.released ? css.released : null]}>
 							<div classes={css.timelineDate}>{entry.date}</div>
