@@ -39,30 +39,12 @@ describe('content compiler', () => {
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
 			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		expect(result).toEqual(expectedResult);
 		expect(mockFetch).toHaveBeenCalledWith(
 			'https://raw.githubusercontent.com/dojo/framework/master/docs/en/i18n/index.md'
-		);
-		expect(mockFromMarkdown).toHaveBeenCalledWith('github page content', registeredHandlers);
-	});
-
-	it('should process relative to list page', async () => {
-		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
-
-		const result = await compilerBuild({
-			repo: 'dojo/framework',
-			path: 'docs/:locale:/i18n/index.md',
-			relativeUrl: 'basic-usage',
-			locale: 'en-US'
-		});
-
-		expect(result).toEqual(expectedResult);
-		expect(mockFetch).toHaveBeenCalledWith(
-			'https://raw.githubusercontent.com/dojo/framework/master/docs/en/i18n/basic-usage.md'
 		);
 		expect(mockFromMarkdown).toHaveBeenCalledWith('github page content', registeredHandlers);
 	});
@@ -92,7 +74,7 @@ describe('content compiler', () => {
 			repo: 'dojo/framework',
 			branch: 'branch',
 			path: 'docs/:locale:/i18n/index.md',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		expect(result).toEqual(expectedResult);

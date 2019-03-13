@@ -21,22 +21,6 @@ export default [
 		outlet: 'community'
 	},
 	{
-		path: 'tutorials',
-		outlet: 'tutorials'
-	},
-	{
-		path: 'tutorials/local-installation',
-		outlet: 'tutorial-local-installation'
-	},
-	{
-		path: 'tutorials/sample-tutorial',
-		outlet: 'tutorial-sample-tutorial'
-	},
-	{
-		path: 'tutorials/another-tutorial',
-		outlet: 'tutorial-another-tutorial'
-	},
-	{
 		path: 'reference-guides',
 		outlet: 'reference-guides'
 	},

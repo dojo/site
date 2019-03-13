@@ -17,9 +17,19 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 		const { route, repo, branch, path, page } = this.properties;
 
 		return (
-			<Section>
-				<ReferenceGuideMenu route={route} repo={repo} branch={branch} path={path} page={page} />
-				<RemotePage repo={repo} branch={branch} path={path} relativeUrl={page} hasLeftSideMenu />
+			<Section key="section">
+				<ReferenceGuideMenu route={route} repo={repo} branch={branch} path={path} />
+				{page === 'introduction' || page === 'basic-usage' ? (
+					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} hasLeftSideMenu />
+				) : (
+					<RemotePage
+						repo={repo}
+						branch={branch}
+						path={`${path}/supplemental.md`}
+						header={page}
+						hasLeftSideMenu
+					/>
+				)}
 			</Section>
 		);
 	}

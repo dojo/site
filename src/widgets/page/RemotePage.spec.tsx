@@ -1,7 +1,8 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
-import * as compiler from '../../scripts/compile-remote.block';
+import * as compileRemoteBlock from '../../scripts/compile-remote.block';
+import * as compileRemoteHeadersBlock from '../../scripts/compile-remote-headers.block';
 
 import Page from './Page';
 import RemotePage from './RemotePage';
@@ -14,12 +15,19 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 jest.mock('../../scripts/compile-remote.block');
 
 describe('Page', () => {
-	const mockCompiler = jest.spyOn(compiler, 'default').mockReturnValue('Some content' as any);
+	const mockCompileRemoteBlock = jest.spyOn(compileRemoteBlock, 'default').mockReturnValue('Some content' as any);
+	const mockCompileRemoteHeadersBlock = jest.spyOn(compileRemoteHeadersBlock, 'default').mockReturnValue({
+		'some-page': [<h1>A page</h1>, <p>Some content</p>]
+	} as any);
 
 	it('renders without left menu', () => {
 		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
+			repo: 'dojo/framework',
+			path: 'path/to/file.md',
+			locale: 'en'
+		});
 
 		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
 	});
@@ -27,7 +35,11 @@ describe('Page', () => {
 	it('renders with left menu', () => {
 		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" hasLeftSideMenu />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({ repo: 'dojo/framework', path: 'path/to/file.md', locale: 'en-US' });
+		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
+			repo: 'dojo/framework',
+			path: 'path/to/file.md',
+			locale: 'en'
+		});
 
 		h.expect(() => <Page hasLeftSideMenu>Some content</Page>);
 	});
@@ -35,26 +47,64 @@ describe('Page', () => {
 	it('renders with branch', () => {
 		const h = harness(() => <RemotePage repo="dojo/framework" branch="branch" path="path/to/file.md" />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({
+		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
 			branch: 'branch',
 			path: 'path/to/file.md',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
 		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
 	});
 
-	it('renders with relative url', () => {
-		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" relativeUrl="basic-usage" />);
+	it('renders from header', () => {
+		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" header="some-page" />);
 
-		expect(mockCompiler).toHaveBeenCalledWith({
+		expect(mockCompileRemoteHeadersBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
+			branch: undefined,
 			path: 'path/to/file.md',
-			relativeUrl: 'basic-usage',
-			locale: 'en-US'
+			locale: 'en'
 		});
 
-		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
+		h.expect(() => (
+			<Page hasLeftSideMenu={false}>
+				<h1>A page</h1>
+				<p>Some content</p>
+			</Page>
+		));
+	});
+
+	it('renders blank with bad header', () => {
+		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" header="bad-header" />);
+
+		expect(mockCompileRemoteHeadersBlock).toHaveBeenCalledWith({
+			repo: 'dojo/framework',
+			branch: undefined,
+			path: 'path/to/file.md',
+			locale: 'en'
+		});
+
+		h.expect(() => <Page hasLeftSideMenu={false} />);
+	});
+
+	it('renders from header with branch', () => {
+		const h = harness(() => (
+			<RemotePage repo="dojo/framework" branch="branch" path="path/to/file.md" header="some-page" />
+		));
+
+		expect(mockCompileRemoteHeadersBlock).toHaveBeenCalledWith({
+			repo: 'dojo/framework',
+			branch: 'branch',
+			path: 'path/to/file.md',
+			locale: 'en'
+		});
+
+		h.expect(() => (
+			<Page hasLeftSideMenu={false}>
+				<h1>A page</h1>
+				<p>Some content</p>
+			</Page>
+		));
 	});
 });

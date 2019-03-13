@@ -3,7 +3,7 @@ import { switchLocale } from '@dojo/framework/i18n/i18n';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
-import * as compiler from '../../scripts/compile-remote.block';
+import * as compileRemoteHeaders from '../../scripts/compile-remote-headers.block';
 import SideMenu from '../../widgets/menu/SideMenu';
 import SideMenuSection from '../../widgets/menu/SideMenuSection';
 import SideMenuItem from '../../widgets/menu/SideMenuItem';
@@ -12,22 +12,20 @@ import SideMenuItemList from '../../widgets/menu/SideMenuItemList';
 import ReferenceGuideMenu from './ReferenceGuideMenu';
 
 describe('Reference Guide Menu', () => {
-	const mockRemoteCompiler = jest.spyOn(compiler, 'default').mockReturnValue((
-		<ul>
-			<h2>Misc Node</h2>
-			<li>
-				<p>
-					<a href="./introduction">Introduction</a>
-				</p>
-			</li>
-			<li>
-				<a href="./basic-usage">Basic Usage</a>
-			</li>
-			<li>
-				<a href="https://example.com">Absolute link</a>
-			</li>
-		</ul>
-	) as any);
+	const mockReferenceGuideBlock = jest.spyOn(compileRemoteHeaders, 'default').mockReturnValue([
+		{
+			title: 'Test 1',
+			param: 'test-1'
+		},
+		{
+			title: 'Page 2',
+			param: 'page-2'
+		},
+		{
+			title: 'Advanced Details 3',
+			param: 'advanced-details-3'
+		}
+	] as any);
 
 	switchLocale('en-US');
 
@@ -35,31 +33,37 @@ describe('Reference Guide Menu', () => {
 		<SideMenu>
 			<SideMenuSection>
 				<SideMenuItemList>
-					<h2>Misc Node</h2>
 					<SideMenuItem to="outlet" params={{ page: 'introduction' }}>
 						Introduction
 					</SideMenuItem>
 					<SideMenuItem to="outlet" params={{ page: 'basic-usage' }}>
 						Basic Usage
 					</SideMenuItem>
-					<SideMenuItem to="https://example.com">Absolute link</SideMenuItem>
+					<SideMenuItem to="outlet" params={{ page: 'test-1' }}>
+						Test 1
+					</SideMenuItem>
+					<SideMenuItem to="outlet" params={{ page: 'page-2' }}>
+						Page 2
+					</SideMenuItem>
+					<SideMenuItem to="outlet" params={{ page: 'advanced-details-3' }}>
+						Advanced Details 3
+					</SideMenuItem>
 				</SideMenuItemList>
 			</SideMenuSection>
 		</SideMenu>
 	));
 
 	it('renders', () => {
-		const h = harness(() => (
-			<ReferenceGuideMenu route="outlet" repo="dojo/framework" path="path/to/file.md" page="basic-usage" />
-		));
+		const h = harness(() => <ReferenceGuideMenu route="outlet" repo="dojo/framework" path="path/to" />);
 
 		h.expect(baseAssertion);
 
-		expect(mockRemoteCompiler).toHaveBeenCalledWith({
+		expect(mockReferenceGuideBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
 			branch: undefined,
-			path: 'path/to/file.md',
-			locale: 'en-US'
+			path: 'path/to/supplemental.md',
+			locale: 'en',
+			headersOnly: true
 		});
 	});
 });
