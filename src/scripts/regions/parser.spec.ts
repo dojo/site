@@ -1,5 +1,6 @@
 import { DefaultWidgetBaseInterface, DNode } from '@dojo/framework/widget-core/interfaces';
 
+import * as compiler from '../compile';
 import * as parser from './parser';
 import { INLINE_C_MATCHER } from './region-matchers/inline-c';
 import * as d from '@dojo/framework/widget-core/d';
@@ -31,46 +32,46 @@ const regionContentsLeftAlligned = `protected render() {
 
 export const fromMarkdownOutput: DNode<DefaultWidgetBaseInterface> = v(
 	'pre',
-	{ class: 'language-tsx', key: 'compiled-25' },
+	{ class: 'language-tsx', key: 'compiledKey' },
 	[
-		v('code', { class: 'language-tsx', key: 'compiled-24' }, [
-			v('span', { class: 'token keyword', key: 'compiled-2' }, ['protected']),
+		v('code', { class: 'language-tsx', key: 'compiledKey' }, [
+			v('span', { class: 'token keyword', key: 'compiledKey' }, ['protected']),
 			' ',
-			v('span', { class: 'token function', key: 'compiled-3' }, ['render']),
-			v('span', { class: 'token punctuation', key: 'compiled-4' }, ['(']),
-			v('span', { class: 'token punctuation', key: 'compiled-5' }, [')']),
+			v('span', { class: 'token function', key: 'compiledKey' }, ['render']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, ['(']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, [')']),
 			' ',
-			v('span', { class: 'token punctuation', key: 'compiled-6' }, ['{']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, ['{']),
 			'\n    ',
-			v('span', { class: 'token keyword', key: 'compiled-7' }, ['const']),
+			v('span', { class: 'token keyword', key: 'compiledKey' }, ['const']),
 			' div ',
-			v('span', { class: 'token operator', key: 'compiled-8' }, ['=']),
+			v('span', { class: 'token operator', key: 'compiledKey' }, ['=']),
 			' ',
-			v('span', { class: 'token tag', key: 'compiled-12' }, [
-				v('span', { class: 'token tag', key: 'compiled-10' }, [
-					v('span', { class: 'token punctuation', key: 'compiled-9' }, ['<']),
+			v('span', { class: 'token tag', key: 'compiledKey' }, [
+				v('span', { class: 'token tag', key: 'compiledKey' }, [
+					v('span', { class: 'token punctuation', key: 'compiledKey' }, ['<']),
 					'div'
 				]),
-				v('span', { class: 'token punctuation', key: 'compiled-11' }, ['>'])
+				v('span', { class: 'token punctuation', key: 'compiledKey' }, ['>'])
 			]),
-			v('span', { class: 'token plain-text', key: 'compiled-13' }, ['Test content']),
-			v('span', { class: 'token tag', key: 'compiled-17' }, [
-				v('span', { class: 'token tag', key: 'compiled-15' }, [
-					v('span', { class: 'token punctuation', key: 'compiled-14' }, ['</']),
+			v('span', { class: 'token plain-text', key: 'compiledKey' }, ['Test content']),
+			v('span', { class: 'token tag', key: 'compiledKey' }, [
+				v('span', { class: 'token tag', key: 'compiledKey' }, [
+					v('span', { class: 'token punctuation', key: 'compiledKey' }, ['</']),
 					'div'
 				]),
-				v('span', { class: 'token punctuation', key: 'compiled-16' }, ['>'])
+				v('span', { class: 'token punctuation', key: 'compiledKey' }, ['>'])
 			]),
-			v('span', { class: 'token punctuation', key: 'compiled-18' }, [';']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, [';']),
 			'\n\n    ',
-			v('span', { class: 'token keyword', key: 'compiled-19' }, ['return']),
+			v('span', { class: 'token keyword', key: 'compiledKey' }, ['return']),
 			' ',
-			v('span', { class: 'token punctuation', key: 'compiled-20' }, ['{']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, ['{']),
 			'div',
-			v('span', { class: 'token punctuation', key: 'compiled-21' }, ['}']),
-			v('span', { class: 'token punctuation', key: 'compiled-22' }, [';']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, ['}']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, [';']),
 			'\n',
-			v('span', { class: 'token punctuation', key: 'compiled-23' }, ['}']),
+			v('span', { class: 'token punctuation', key: 'compiledKey' }, ['}']),
 			'\n'
 		])
 	]
@@ -97,8 +98,11 @@ ${regionContentsLeftAlligned}
 `;
 
 describe('region parser', () => {
+	const mockGetCompiledKey = jest.spyOn(compiler, 'getCompiledKey');
+
 	beforeEach(() => {
 		jest.resetAllMocks();
+		mockGetCompiledKey.mockReturnValue('compiledKey');
 	});
 
 	it('should extract region', () => {

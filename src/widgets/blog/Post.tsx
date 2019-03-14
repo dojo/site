@@ -1,7 +1,6 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import Block from '@dojo/framework/widget-core/meta/Block';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import i18n from '@dojo/framework/i18n/i18n';
 import Link from '@dojo/framework/routing/Link';
 
 import compiler from '../../scripts/compile-blog-post.block';
@@ -18,7 +17,6 @@ export default class Post extends WidgetBase<PostProperties> {
 		const { excerpt, path } = this.properties;
 		const post: any = this.meta(Block).run(compiler)({
 			excerpt,
-			locale: i18n.locale,
 			path
 		});
 

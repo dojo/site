@@ -39,7 +39,10 @@ const mockBuildJson: { [section: string]: { [filePath: string]: string } } = {
 };
 mockBuildJson.tutorials[mockExampleFile] = './tutorials/another-tutorial.md';
 
-const mockMarkupContent = `# Another Tutorial
+const mockMarkupContent = `---
+key: value
+---
+# Another Tutorial
 
 [absolute link to another page!](https://example.com/)
 
@@ -60,58 +63,60 @@ I am another tutorial
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
 
-const mockFromMarkupOutput = v('div', { key: 'compiled-17' }, [
-	v('h1', { key: 'compiled-2' }, ['Another Tutorial']),
+const mockFromMarkupOutput = v('div', { key: 'compiledKey' }, [
+	v('h1', { key: 'compiledKey' }, ['Another Tutorial']),
 	`
 `,
-	v('p', { key: 'compiled-4' }, [
-		v('a', { href: 'https://example.com/', key: 'compiled-3', target: '_blank' }, [
+	v('p', { key: 'compiledKey' }, [
+		v('a', { href: 'https://example.com/', key: 'compiledKey', target: '_blank' }, [
 			'absolute link to another page!'
 		])
 	]),
 	`
 `,
-	v('p', { key: 'compiled-6' }, [v('a', { href: './other-page', key: 'compiled-5' }, ['link to another page!'])]),
+	v('p', { key: 'compiledKey' }, [v('a', { href: './other-page', key: 'compiledKey' }, ['link to another page!'])]),
 	`
 `,
-	v('p', { key: 'compiled-8' }, [
-		v('a', { href: './other-page', key: 'compiled-7' }, ['link to another page with anchor!'])
+	v('p', { key: 'compiledKey' }, [
+		v('a', { href: './other-page', key: 'compiledKey' }, ['link to another page with anchor!'])
 	]),
 	`
 `,
-	v('p', { key: 'compiled-9' }, ['A github link']),
+	v('p', { key: 'compiledKey' }, ['A github link']),
 	`
 `,
-	v('p', { key: 'compiled-11' }, [
-		v('a', { href: 'https://github.com/dojo/framework/pull/1', key: 'compiled-10', target: '_blank' }, ['#1'])
+	v('p', { key: 'compiledKey' }, [
+		v('a', { href: 'https://github.com/dojo/framework/pull/1', key: 'compiledKey', target: '_blank' }, ['#1'])
 	]),
 	`
 `,
-	v('h2', { key: 'compiled-12' }, ['Aside']),
+	v('h2', { key: 'compiledKey' }, ['Aside']),
 	`
 `,
-	w<Aside>('docs-aside', { title: 'Another tutorial', key: 'compiled-14' }, [
-		v('p', { key: 'compiled-13' }, ['I am another tutorial'])
+	w<Aside>('docs-aside', { title: 'Another tutorial', key: 'compiledKey' }, [
+		v('p', { key: 'compiledKey' }, ['I am another tutorial'])
 	]),
 	`
 `,
-	v('h2', { key: 'compiled-15' }, ['CodeSandbox Embed']),
+	v('h2', { key: 'compiledKey' }, ['CodeSandbox Embed']),
 	`
 `,
 	w<CodeSandbox>(
 		'docs-codesandbox',
-		{ url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc', key: 'compiled-16' },
+		{ url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc', key: 'compiledKey' },
 		[]
 	)
 ]);
 
 describe('content compiler', () => {
 	jest.mock('fs-extra');
+	const mockGetCompiledKey = jest.spyOn(compiler, 'getCompiledKey');
 
 	beforeEach(() => {
 		jest.resetAllMocks();
 
 		fetch.mockResolvedValue(fetchReturn);
+		mockGetCompiledKey.mockReturnValue('compiledKey');
 	});
 
 	it('should compile file', async () => {
@@ -142,7 +147,7 @@ describe('content compiler', () => {
 
 		const vnode = compiler.pragma(tag, props, ['text']);
 
-		expect(vnode).toEqual(v('div', { class: 'some-class', key: 'compiled-18' }, ['text']));
+		expect(vnode).toEqual(v('div', { class: 'some-class', key: 'compiledKey' }, ['text']));
 	});
 
 	it('should build a wnode', () => {
@@ -151,7 +156,7 @@ describe('content compiler', () => {
 
 		const wnode = compiler.pragma(tag, props, ['text']);
 
-		expect(wnode).toEqual(w<Aside>('docs-aside', { title: 'some title', key: 'compiled-19' }, ['text']));
+		expect(wnode).toEqual(w<Aside>('docs-aside', { title: 'some title', key: 'compiledKey' }, ['text']));
 	});
 
 	it('should build a docs-codeblock widget', () => {
@@ -180,6 +185,27 @@ describe('content compiler', () => {
 
 		it('should not change non-locale url', async () => {
 			expect(compiler.setLocale('/path/to/file.md', 'en')).toBe('/path/to/file.md');
+		});
+	});
+
+	describe('get meta data', () => {
+		it('should return return meta data from markdown content', () => {
+			expect(compiler.getFrontmatter(mockMarkupContent)).toEqual({
+				key: 'value'
+			});
+		});
+	});
+
+	// Should be the last test as its restores the get compiled key mock
+	describe('get compiled key', () => {
+		it('should return unique keys', () => {
+			mockGetCompiledKey.mockRestore();
+
+			expect(compiler.getCompiledKey()).toBe('compiled-0');
+			expect(compiler.getCompiledKey()).toBe('compiled-1');
+			expect(compiler.getCompiledKey()).toBe('compiled-2');
+			expect(compiler.getCompiledKey()).toBe('compiled-3');
+			expect(compiler.getCompiledKey()).toBe('compiled-4');
 		});
 	});
 });
