@@ -28,10 +28,12 @@
 	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
 	transform: translateY(-1px);
 	transition: all 0.3s;
+	text-decoration: none;
 }
 
 .link:hover > .linkImage {
 	opacity: 1;
+	transition: all 0.3s;
 }
 
 .linkImage {
@@ -66,7 +68,6 @@
 	transform: translateY(-1px);
 	transition: all 0.3s;
 	z-index: 5;
-	text-decoration: none;
 }
 
 .card .cardContent {
