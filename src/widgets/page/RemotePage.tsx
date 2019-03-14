@@ -15,11 +15,12 @@ export interface RemotePageProperties {
 	path: string;
 	header?: string;
 	hasLeftSideMenu?: boolean;
+	warpInPage?: boolean;
 }
 
 export default class RemotePage extends WidgetBase<RemotePageProperties> {
 	protected render() {
-		const { repo, branch, path, header, hasLeftSideMenu = false } = this.properties;
+		const { repo, branch, path, header, hasLeftSideMenu = false, warpInPage = true } = this.properties;
 
 		let content: any;
 		const locale = getLanguageFromLocale(i18n.locale);
@@ -45,6 +46,10 @@ export default class RemotePage extends WidgetBase<RemotePageProperties> {
 				path,
 				locale
 			});
+		}
+
+		if (!warpInPage) {
+			return content;
 		}
 
 		return <Page hasLeftSideMenu={hasLeftSideMenu}>{content}</Page>;

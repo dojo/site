@@ -11,6 +11,7 @@ import Playground from './pages/Playground';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import Header from './widgets/Header';
+import Roadmap from './pages/Roadmap';
 
 import App from './App';
 import * as css from './App.m.css';
@@ -32,6 +33,7 @@ describe('App', () => {
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />
@@ -45,6 +47,7 @@ describe('App', () => {
 		{ outlet: 'blog', content: <Blog /> },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
+		{ outlet: 'roadmap', content: <Roadmap /> },
 		{ outlet: 'community', content: <Community /> },
 		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> }
 	];

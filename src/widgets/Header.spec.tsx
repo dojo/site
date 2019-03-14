@@ -59,6 +59,11 @@ describe('Menu', () => {
 							</Link>
 						</li>
 						<li classes={[css.menuItem]}>
+							<Link key="roadmapLink" to="roadmap" classes={[css.link]} activeClasses={[css.selected]}>
+								Roadmap
+							</Link>
+						</li>
+						<li classes={[css.menuItem]}>
 							<Link
 								key="communityLink"
 								to="community"

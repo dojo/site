@@ -5,6 +5,7 @@
 			"paths": [
 				"blog",
 				"home",
+				"roadmap",
 				"community",
 				"playground",
 				"reference-guides/i18n/introduction",
