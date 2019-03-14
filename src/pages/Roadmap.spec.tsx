@@ -100,7 +100,7 @@ describe('Roadmap Page', () => {
 	});
 
 	it('renders empty timeline if block returns undefined', () => {
-		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue(undefined);
+		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue(undefined as any);
 
 		const h = harness(() => <Roadmap />);
 
