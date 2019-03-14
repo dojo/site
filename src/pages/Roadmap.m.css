@@ -98,3 +98,40 @@
 .released .timelineMarker {
 	background: var(--color-green);
 }
+
+@media(max-width: 400px) {
+	.header {
+		font-size: 2rem;
+	}
+}
+
+@media(max-width: 910px) {
+	.root {
+		padding: 0;
+	}
+
+	.pageContent {
+		min-width: calc(100% - 20px);
+	}
+
+	.timelineDetails {
+		border-left: none;
+    margin-left: 0;
+		padding-left: 0;
+	}
+
+	.timelineDate {
+		position: absolute;
+    right: 42px;
+		z-index: 6;
+	}
+
+	.timelineMarker {
+		right: 15px;
+		left: unset;
+	}
+
+	.timelineEntry .cardHeader {
+		font-size: 20px;
+	}
+}
