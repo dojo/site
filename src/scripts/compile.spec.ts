@@ -47,6 +47,10 @@ const mockMarkupContent = `# Another Tutorial
 
 [link to another page with anchor!](./other-page.md#anchor)
 
+A github link
+
+[https://github.com/dojo/framework/pull/1](https://github.com/dojo/framework/pull/1)
+
 ## Aside
 [Aside title="Another tutorial"]
 I am another tutorial
@@ -56,7 +60,7 @@ I am another tutorial
 [CodeSandbox url=https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc]
 `;
 
-const mockFromMarkupOutput = v('div', { key: 'compiled-14' }, [
+const mockFromMarkupOutput = v('div', { key: 'compiled-17' }, [
 	v('h1', { key: 'compiled-2' }, ['Another Tutorial']),
 	`
 `,
@@ -75,20 +79,28 @@ const mockFromMarkupOutput = v('div', { key: 'compiled-14' }, [
 	]),
 	`
 `,
-	v('h2', { key: 'compiled-9' }, ['Aside']),
+	v('p', { key: 'compiled-9' }, ['A github link']),
 	`
 `,
-	w<Aside>('docs-aside', { title: 'Another tutorial', key: 'compiled-11' }, [
-		v('p', { key: 'compiled-10' }, ['I am another tutorial'])
+	v('p', { key: 'compiled-11' }, [
+		v('a', { href: 'https://github.com/dojo/framework/pull/1', key: 'compiled-10', target: '_blank' }, ['#1'])
 	]),
 	`
 `,
-	v('h2', { key: 'compiled-12' }, ['CodeSandbox Embed']),
+	v('h2', { key: 'compiled-12' }, ['Aside']),
+	`
+`,
+	w<Aside>('docs-aside', { title: 'Another tutorial', key: 'compiled-14' }, [
+		v('p', { key: 'compiled-13' }, ['I am another tutorial'])
+	]),
+	`
+`,
+	v('h2', { key: 'compiled-15' }, ['CodeSandbox Embed']),
 	`
 `,
 	w<CodeSandbox>(
 		'docs-codesandbox',
-		{ url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc', key: 'compiled-13' },
+		{ url: 'https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc', key: 'compiled-16' },
 		[]
 	)
 ]);
@@ -130,7 +142,7 @@ describe('content compiler', () => {
 
 		const vnode = compiler.pragma(tag, props, ['text']);
 
-		expect(vnode).toEqual(v('div', { class: 'some-class', key: 'compiled-15' }, ['text']));
+		expect(vnode).toEqual(v('div', { class: 'some-class', key: 'compiled-18' }, ['text']));
 	});
 
 	it('should build a wnode', () => {
@@ -139,7 +151,7 @@ describe('content compiler', () => {
 
 		const wnode = compiler.pragma(tag, props, ['text']);
 
-		expect(wnode).toEqual(w<Aside>('docs-aside', { title: 'some title', key: 'compiled-16' }, ['text']));
+		expect(wnode).toEqual(w<Aside>('docs-aside', { title: 'some title', key: 'compiled-19' }, ['text']));
 	});
 
 	it('should build a docs-codeblock widget', () => {

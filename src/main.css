@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import './variables.css';
 
 html {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -36,13 +36,22 @@ blockquote > p {
 }
 
 pre[class*='language-'] {
-	border-radius: 3px;
+	border-radius: 3px !important;
 	box-shadow: rgba(10, 16, 20, 0.24) 0px 2px 2px, rgba(10, 16, 20, 0.12) 0px 0px 2px;
+	margin-bottom: 2em !important;
+}
+
+pre[class*='language-']:last-child {
+	margin-bottom: 0 !important;
 }
 
 blockquote + pre[class*='language-'] {
 	margin-top: 0;
 	border-radius: 0 0 3px 3px;
+}
+
+pre {
+	white-space: pre-wrap;
 }
 
 /* Headings
@@ -53,11 +62,10 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 20px 0;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: normal;
 	color: #333;
-	text-transform: none;
+	font-weight: 600;
+	line-height: 1.25;
+	margin-bottom: calc(var(--grid-size) * 2);
 }
 
 /*
@@ -103,10 +111,17 @@ h6 {
 	margin-top: 40px;
 }
 
-pre {
-	white-space: pre-wrap;
-}
-
 a {
 	color: #0f6ecd;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul {
+	padding-left: 2em;
+	margin-top: 0;
+	margin-bottom: 16px;
 }

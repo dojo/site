@@ -1,13 +1,12 @@
 import Block from '@dojo/framework/widget-core/meta/Block';
+import Link from '@dojo/framework/routing/Link';
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import harness from '@dojo/framework/testing/harness';
 import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/widget-core/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
-import Landing from '../widgets/landing/Landing';
-import Post from '../widgets/blog/Post';
-
-import Blog from './Blog';
+import LandingSubsection from '../landing/LandingSubsection';
+import Post from './Post';
 
 const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
 	return class extends Base {
@@ -31,17 +30,30 @@ const mockMeta = jest.fn().mockImplementation((input: any) => {
 	}
 });
 
-describe('Blog', () => {
+describe('Post', () => {
 	it('renders', () => {
-		mockCompileBlock.mockReturnValueOnce(['a', 'b', 'c']);
-		const BlogMock = mockMetaMixin(Blog, mockMeta);
-		const h = harness(() => <BlogMock />);
+		mockCompileBlock.mockReturnValueOnce({
+			meta: {
+				author: 'author',
+				date: 'date',
+				title: 'title'
+			},
+			content: 'content'
+		});
+		const PostMock = mockMetaMixin(Post, mockMeta);
+		const h = harness(() => <PostMock path="path" />);
 		h.expect(() => (
-			<Landing>
-				<Post path="a" excerpt />
-				<Post path="b" excerpt />
-				<Post path="c" excerpt />
-			</Landing>
+			<LandingSubsection title="title">
+				<p>
+					{'author'} {'date'}
+				</p>
+				content
+				<p>
+					<Link to="some-outlet" params={undefined}>
+						READ MORE
+					</Link>
+				</p>
+			</LandingSubsection>
 		));
 	});
 });

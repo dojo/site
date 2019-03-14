@@ -4,12 +4,15 @@
 	--color-white: #ffffff;
 	--color-off-white: #f3f3f3;
 	--color-black: #000000;
+	--color-blue: #009dff;
 	--color-purple: #862790;
 	--color-red: #c42826;
 	--color-green: #2ab770;
 	--color-border: rgba(0, 0, 0, 0.1);
-	--color-copy: #999;
-	--color-dark-copy: #555;
+	--color-light-gray: #999;
+	--color-dark-gray: #555;
+	--color-copy: var(--color-light-gray);
+	--color-dark-copy: var(--color-dark-gray);
 
 	--border-radius: 4px;
 	--grid-size: 10px;
