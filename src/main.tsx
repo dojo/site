@@ -8,6 +8,7 @@ import Alert from './widgets/content/Alert';
 import Aside from './widgets/content/Aside';
 import CodeBlock from './widgets/code/CodeBlock';
 import CodeSandbox from './widgets/code/CodeSandbox';
+import BlogImage from './widgets/blog/Image';
 
 import routes from './routes';
 import App from './App';
@@ -20,6 +21,7 @@ registry.define('docs-alert', Alert);
 registry.define('docs-aside', Aside);
 registry.define('docs-codeblock', CodeBlock);
 registry.define('docs-codesandbox', CodeSandbox);
+registry.define('docs-blogimage', BlogImage);
 
 const r = renderer(() => <App />);
 const domNode = document.getElementById('root') as HTMLElement;
