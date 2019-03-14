@@ -99,13 +99,13 @@
 	background: var(--color-green);
 }
 
-@media(max-width: 400px) {
+@media (max-width: 400px) {
 	.header {
 		font-size: 2rem;
 	}
 }
 
-@media(max-width: 910px) {
+@media (max-width: 910px) {
 	.root {
 		padding: 0;
 	}
@@ -116,13 +116,13 @@
 
 	.timelineDetails {
 		border-left: none;
-    margin-left: 0;
+		margin-left: 0;
 		padding-left: 0;
 	}
 
 	.timelineDate {
 		position: absolute;
-    right: 42px;
+		right: 42px;
 		z-index: 6;
 	}
 
