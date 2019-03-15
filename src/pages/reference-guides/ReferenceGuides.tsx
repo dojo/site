@@ -14,6 +14,7 @@ export default class ReferenceGuides extends WidgetBase {
 					const { page } = matchDetails.params;
 					return (
 						<ReferenceGuide
+							name="i18n"
 							repo="dojo/framework"
 							path="docs/:locale:/i18n"
 							route="reference-guide-i18n"

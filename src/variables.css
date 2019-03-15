@@ -11,18 +11,30 @@
 	--color-border: rgba(0, 0, 0, 0.1);
 	--color-light-gray: #999;
 	--color-dark-gray: #555;
+
+	--header-link-color: var(--color-light-gray);
 	--color-copy: var(--color-light-gray);
 	--color-dark-copy: var(--color-dark-gray);
+	--link-color: var(--color-white);
 
 	--border-radius: 4px;
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);
 
-	--content-top-padding: calc(var(--grid-size) * 6);
-	--content-padding: calc(var(--grid-size) * 3);
 	--hero-background: #17191c;
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 8);
 	--dark-background-color: #141414;
+
+	--content-top-padding: calc(var(--grid-size) * 6);
+	--content-padding: calc(var(--grid-size) * 3);
+}
+
+@media (max-width: 768px) {
+	:root {
+		--header-size: calc(var(--grid-size) * 6);
+		--content-top-padding: var(--grid-size);
+		--content-padding: var(--grid-size);
+	}
 }

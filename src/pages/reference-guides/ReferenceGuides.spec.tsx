@@ -24,6 +24,7 @@ describe('Tutorials', () => {
 					const { page } = matchDetails.params;
 					return (
 						<ReferenceGuide
+							name="i18n"
 							repo="dojo/framework"
 							path="docs/:locale:/i18n"
 							route="reference-guide-i18n"
@@ -40,6 +41,7 @@ describe('Tutorials', () => {
 			outlet: 'reference-guide-i18n',
 			content: (
 				<ReferenceGuide
+					name="i18n"
 					repo="dojo/framework"
 					path="docs/:locale:/i18n"
 					route="reference-guide-i18n"

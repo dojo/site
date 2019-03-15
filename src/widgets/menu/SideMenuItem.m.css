@@ -1,6 +1,11 @@
 @import '../../variables.css';
 
 .root {
+	position: relative;
+	text-transform: none;
+}
+
+.link {
 	font-size: 0.95rem;
 	line-height: 1.65;
 	color: #999;
@@ -9,6 +14,26 @@
 	text-decoration: none;
 }
 
-.root.selected {
+.link:hover,
+.link:focus {
+	text-decoration: none;
+}
+
+.dropdownLink.selected,
+.link.selected {
 	color: #333;
+}
+
+.dropdownLink.selectedInverse,
+.link.selectedInverse {
+	color: #fff;
+}
+
+.dropdownLink {
+	display: flex;
+	align-items: center;
+}
+
+.dropdownIcon {
+	margin-left: auto;
 }

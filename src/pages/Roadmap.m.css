@@ -106,14 +106,6 @@
 }
 
 @media (max-width: 910px) {
-	.root {
-		padding: 0;
-	}
-
-	.pageContent {
-		min-width: calc(100% - 20px);
-	}
-
 	.timelineDetails {
 		border-left: none;
 		margin-left: 0;
