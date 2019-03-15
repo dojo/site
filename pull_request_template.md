@@ -7,9 +7,9 @@
 This PR touches:
 
 - [ ] Content
+- [ ] Content Pipeline
 - [ ] Frontend
 - [ ] Infrastructure
-- [ ] Integration Tests
 
 ### Tests
 
