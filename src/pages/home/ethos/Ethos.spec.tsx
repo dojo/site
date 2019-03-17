@@ -1,6 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import { add } from '@dojo/framework/has/has';
 import * as css from './Ethos.m.css';
 import Ethos from './Ethos';
 import Card from '../../../widgets/card/Card';
@@ -8,7 +7,6 @@ import FontAwesomeIcon from '../../../widgets/icon/FontAwesomeIcon';
 
 describe('Ethos', () => {
 	it('renders', () => {
-		add('build-time-render', true, false);
 		const h = harness(() => <Ethos />);
 		h.expect(() => (
 			<section classes={[css.root]}>

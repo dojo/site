@@ -5,5 +5,7 @@ export const featureThree: string;
 export const featureRow: string;
 export const featureCardRight: string;
 export const featureCardLeft: string;
+export const featureContent: string;
+export const topFeaturePoint: string;
 export const featurePoints: string;
 export const featureTitle: string;

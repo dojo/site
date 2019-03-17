@@ -1,22 +1,20 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import { add } from '@dojo/framework/has/has';
 import * as css from './Features.m.css';
 import Features from './Features';
 import Card from '../../../widgets/card/Card';
 
 describe('Features', () => {
 	it('renders', () => {
-		add('build-time-render', true, false);
 		const h = harness(() => <Features />);
 		h.expect(() => (
 			<section classes={[css.root]}>
 				<div classes={[css.featureRow, css.featureOne]}>
 					<h1 classes={[css.featureTitle]}>A Complete Framework</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Widgets</h3>
+								<h3 classes={[css.topFeaturePoint]}>Widgets</h3>
 								<div>
 									Write reusable, reactive, components for your page. Dojo allows composition of
 									complex user interfaces via it's widget system.
@@ -40,10 +38,10 @@ describe('Features', () => {
 					</Card>
 				</div>
 				<div classes={[css.featureRow, css.featureTwo]}>
-					<Card depth={4} extraClasses={{ root: css.featureCardLeft }}>
+				<Card depth={4} extraClasses={{ root: css.featureCardLeft, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Centering Modern Standards</h3>
+								<h3 classes={[css.topFeaturePoint]}>Centering Modern Standards</h3>
 								<div>
 									Dojo encourages the usage of Browser APIs like ResizeObserver and
 									IntersectionObserver, rather than reinventing the wheel.
@@ -69,10 +67,10 @@ describe('Features', () => {
 				</div>
 				<div classes={[css.featureRow, css.featureThree]}>
 					<h1 classes={[css.featureTitle]}>Build for Everyone</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Internationalization</h3>
+								<h3 classes={[css.topFeaturePoint]}>Internationalization</h3>
 								<div>
 									Dojo provides the tools to allow you to internationalize your application with ease.
 								</div>

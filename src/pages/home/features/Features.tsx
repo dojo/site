@@ -9,10 +9,10 @@ export default class Features extends WidgetBase {
 			<section classes={[css.root]}>
 				<div classes={[css.featureRow, css.featureOne]}>
 					<h1 classes={[css.featureTitle]}>A Complete Framework</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Widgets</h3>
+								<h3 classes={[css.topFeaturePoint]}>Widgets</h3>
 								<div>
 									Write reusable, reactive, components for your page. Dojo allows composition of
 									complex user interfaces via it's widget system.
@@ -36,10 +36,10 @@ export default class Features extends WidgetBase {
 					</Card>
 				</div>
 				<div classes={[css.featureRow, css.featureTwo]}>
-					<Card depth={4} extraClasses={{ root: css.featureCardLeft }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardLeft, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Centering Modern Standards</h3>
+								<h3 classes={[css.topFeaturePoint]}>Centering Modern Standards</h3>
 								<div>
 									Dojo encourages the usage of Browser APIs like ResizeObserver and
 									IntersectionObserver, rather than reinventing the wheel.
@@ -65,10 +65,10 @@ export default class Features extends WidgetBase {
 				</div>
 				<div classes={[css.featureRow, css.featureThree]}>
 					<h1 classes={[css.featureTitle]}>Build for Everyone</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
-								<h3>Internationalization</h3>
+								<h3 classes={[css.topFeaturePoint]}>Internationalization</h3>
 								<div>
 									Dojo provides the tools to allow you to internationalize your application with ease.
 								</div>

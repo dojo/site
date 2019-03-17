@@ -83,4 +83,11 @@ describe('Card', () => {
 		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark, null]);
 		h.expect(assertion);
 	});
+
+	it('renders depth 4 card', () => {
+		const h = harness(() => <Card dark depth={4} />);
+
+		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark, css.depth4]);
+		h.expect(assertion);
+	});
 });

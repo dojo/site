@@ -22,35 +22,39 @@
 
 .featureCardRight {
 	max-width: 750px;
-	height: 550px;
+	min-height: 500px;
 	margin: 100px auto 100px 0px;
 }
 
 .featureCardLeft {
 	max-width: 750px;
-	height: 550px;
+	min-height: 500px;
 	margin: 100px 0 100px auto;
 }
 
+.featureContent {
+	display: flex;
+}
+
+.topFeaturePoint {
+	margin-top: 0;
+}
+
 .featurePoints {
-	font-size: 22px;
+	font-size: 1.2em;
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	justify-content: center;
 	list-style-type: none;
 	margin: 0;
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
-}
-
-.featurePoints > li {
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
 .featureTitle {
 	color: white;
 	width: 45%;
 	display: flex;
+	text-align: center;
 	justify-content: center;
 	align-items: center;
 }
@@ -62,7 +66,6 @@
 	.featureTitle {
 		margin: 50px auto;
 		width: 80%;
-		text-align: center;
 	}
 	.featureTwo {
 		flex-direction: column-reverse;
