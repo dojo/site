@@ -48,7 +48,9 @@ export default class Menu extends WidgetBase {
 							page === 'Reference Guides' && (
 								<SideMenuItem
 									name={page}
-									classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly] } }}
+									classes={{
+										'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly], link: [css.link] }
+									}}
 									inverse
 								>
 									<ReferenceGuideMenu
@@ -67,7 +69,8 @@ export default class Menu extends WidgetBase {
 										root: [
 											css.menuItem,
 											page === 'Reference Guides' ? css.noSmallScreen : undefined
-										]
+										],
+										link: [css.link]
 									}
 								}}
 								inverse

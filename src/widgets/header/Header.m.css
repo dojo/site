@@ -47,16 +47,7 @@
 }
 
 .link {
-	font-size: 0.9rem;
-	min-width: calc(var(--grid-size) * 14);
-	text-align: center;
-	text-decoration: none;
-	color: var(--link-color);
-	box-sizing: border-box;
-	color: var(--header-link-color);
 	text-transform: uppercase;
-	transition: 0.1s ease-in-out;
-	transition-property: color, background-color;
 }
 
 .homeLink {

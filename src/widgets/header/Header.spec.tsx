@@ -84,14 +84,14 @@ describe('Menu', () => {
 				<SideMenuItemList classes={{ 'dojo.io/SideMenuItemList': { root: [css.menuList] } }}>
 					<SideMenuItem
 						to="blog"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
 					>
 						Blog
 					</SideMenuItem>
 					<SideMenuItem
 						name="Reference Guides"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly], link: [css.link] } }}
 						inverse
 					>
 						<ReferenceGuideMenu
@@ -104,35 +104,35 @@ describe('Menu', () => {
 					</SideMenuItem>
 					<SideMenuItem
 						to="reference-guides"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.noSmallScreen] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.noSmallScreen], link: [css.link] } }}
 						inverse
 					>
 						Reference Guides
 					</SideMenuItem>
 					<SideMenuItem
 						to="examples"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
 					>
 						Examples
 					</SideMenuItem>
 					<SideMenuItem
 						to="playground"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
 					>
 						Playground
 					</SideMenuItem>
 					<SideMenuItem
 						to="roadmap"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
 					>
 						Roadmap
 					</SideMenuItem>
 					<SideMenuItem
 						to="community"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined] } }}
+						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
 					>
 						Community
