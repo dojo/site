@@ -45,7 +45,7 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 					classes={{ 'dojo.io/FontAwesomeIcon': { root: this.theme([css.dropdownIcon]) } }}
 				/>
 			</a>,
-			this._dropDownOpen && this.children
+			<div classes={[css.children, this._dropDownOpen ? css.expanded : css.collapsed]}>{this.children}</div>
 		];
 	}
 

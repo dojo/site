@@ -70,21 +70,23 @@ describe('Side Menu Item', () => {
 						classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.dropdownIcon] } }}
 					/>
 				</a>
+				<div assertion-key='children' classes={[css.children, css.collapsed]}>Dropdown children</div>
 			</li>
 		));
 
 		it('renders', () => {
 			const h = harness(() => <SideMenuItem name="A link">Dropdown children</SideMenuItem>);
 
-			const initialAssertion = baseDropdownAssertion.prepend('@link', ['A link']);
+			const initialAssertion = baseDropdownAssertion
+				.prepend('@link', ['A link']);
 
 			h.expect(initialAssertion);
 
 			h.trigger('@link', 'onclick');
 
 			const openAssertion = initialAssertion
-				.append('@menu-item', ['Dropdown children'])
-				.setProperty('@toggleIcon', 'icon', 'chevron-down');
+				.setProperty('@toggleIcon', 'icon', 'chevron-down')
+				.setProperty('~children', 'classes', [css.children, css.expanded]);
 
 			h.expect(openAssertion);
 

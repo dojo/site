@@ -4,3 +4,6 @@ export const dropdownLink: string;
 export const selected: string;
 export const selectedInverse: string;
 export const dropdownIcon: string;
+export const children: string;
+export const expanded: string;
+export const collapsed: string;
