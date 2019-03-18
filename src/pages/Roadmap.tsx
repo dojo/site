@@ -1,38 +1,25 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import Block from '@dojo/framework/widget-core/meta/Block';
 import { tsx } from '@dojo/framework/widget-core/tsx';
+import i18n from '@dojo/framework/i18n/i18n';
 
+import roadmapMetadataBlock, { RoadmapMetaData } from '../scripts/roadmap-metadata.block';
 import Card from '../widgets/card/Card';
 import CardHeader from '../widgets/card/CardHeader';
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import LocalPage from '../widgets/page/LocalPage';
 import Page from '../widgets/page/Page';
+import { getLanguageFromLocale } from '../util/language';
 
 import * as css from './Roadmap.m.css';
 
-interface TimelineEntry {
-	title: string;
-	date: string;
-	file: string;
-	released: boolean;
-}
-
-const timelineEntries: TimelineEntry[] = [
-	{
-		title: 'Dojo 6',
-		date: 'Q2 2019',
-		file: 'dojo-6.0.0-release.md',
-		released: false
-	},
-	{
-		title: 'Dojo 5',
-		date: 'January 2019',
-		file: 'dojo-5.0.0-release.md',
-		released: true
-	}
-];
-
 export default class Roadmap extends WidgetBase {
 	protected render() {
+		const timelineEntries: RoadmapMetaData[] =
+			(this.meta(Block).run(roadmapMetadataBlock)({
+				locale: getLanguageFromLocale(i18n.locale)
+			}) as any) || [];
+
 		return (
 			<Page classes={{ 'dojo.io/Page': { root: [css.root], content: [css.pageContent] } }}>
 				<h1 classes={css.header}>What's coming up</h1>
@@ -56,7 +43,7 @@ export default class Roadmap extends WidgetBase {
 									}
 									classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 								>
-									<LocalPage path={`roadmap/${entry.file}`} warpInPage={false} />
+									<LocalPage path={entry.file} warpInPage={false} />
 								</Card>
 							</div>
 						</div>
