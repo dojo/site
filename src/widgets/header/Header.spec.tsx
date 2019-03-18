@@ -91,7 +91,9 @@ describe('Menu', () => {
 					</SideMenuItem>
 					<SideMenuItem
 						name="Reference Guides"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly], link: [css.link] } }}
+						classes={{
+							'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly], link: [css.link] }
+						}}
 						inverse
 					>
 						<ReferenceGuideMenu
@@ -104,7 +106,9 @@ describe('Menu', () => {
 					</SideMenuItem>
 					<SideMenuItem
 						to="reference-guides"
-						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, css.noSmallScreen], link: [css.link] } }}
+						classes={{
+							'dojo.io/SideMenuItem': { root: [css.menuItem, css.noSmallScreen], link: [css.link] }
+						}}
 						inverse
 					>
 						Reference Guides

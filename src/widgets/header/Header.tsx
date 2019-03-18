@@ -49,7 +49,10 @@ export default class Menu extends WidgetBase {
 								<SideMenuItem
 									name={page}
 									classes={{
-										'dojo.io/SideMenuItem': { root: [css.menuItem, css.smallScreenOnly], link: [css.link] }
+										'dojo.io/SideMenuItem': {
+											root: [css.menuItem, css.smallScreenOnly],
+											link: [css.link]
+										}
 									}}
 									inverse
 								>
