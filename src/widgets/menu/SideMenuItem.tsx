@@ -33,7 +33,7 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 		}
 
 		return [
-			<a
+			<button
 				key="link"
 				classes={this.theme([css.link, css.dropdownLink, activeClass])}
 				onclick={() => this._toggleDropDown()}
@@ -44,7 +44,7 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 					icon={this._dropDownOpen ? 'chevron-down' : 'chevron-right'}
 					classes={{ 'dojo.io/FontAwesomeIcon': { root: this.theme([css.dropdownIcon]) } }}
 				/>
-			</a>,
+			</button>,
 			<div classes={[css.children, this._dropDownOpen ? css.expanded : css.collapsed]}>{this.children}</div>
 		];
 	}

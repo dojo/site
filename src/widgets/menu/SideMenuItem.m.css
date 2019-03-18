@@ -32,6 +32,10 @@
 .dropdownLink {
 	display: flex;
 	align-items: center;
+	background: none;
+	outline: none;
+	border: none;
+	width: 100%;
 }
 
 .dropdownIcon {
