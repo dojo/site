@@ -39,14 +39,13 @@
 }
 
 .children {
-
 }
 
 .children.expanded {
 	visibility: visible;
 	opacity: 1;
 	max-height: 4000px;
-	transition: visibility .5s,opacity .5s,max-height .5s;
+	transition: visibility 0.5s, opacity 0.5s, max-height 0.5s;
 	transition-timing-function: ease-in-out;
 }
 
@@ -55,6 +54,6 @@
 	visibility: hidden;
 	opacity: 0;
 	max-height: 1px;
-	transition: visibility 275ms,opacity 275ms,max-height 280ms;
+	transition: visibility 275ms, opacity 275ms, max-height 280ms;
 	transition-timing-function: ease-out;
 }
