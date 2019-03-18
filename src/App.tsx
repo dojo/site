@@ -24,6 +24,7 @@ import { faCodeBranch } from '@fortawesome/free-solid-svg-icons/faCodeBranch';
 import { faPlug } from '@fortawesome/free-solid-svg-icons/faPlug';
 import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
 import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons/faBoxOpen';
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
@@ -39,6 +40,7 @@ library.add(
 	faPlug,
 	faUsers,
 	faLaptopCode,
+	faExternalLinkAlt,
 	faBoxOpen,
 	faBox,
 	faChevronRight,

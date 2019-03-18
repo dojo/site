@@ -35,7 +35,7 @@ describe('Linked Card', () => {
 	it('renders a with href', () => {
 		const h = harness(() => <LinkedCard url="link/to/somewhere" />);
 		h.expect(() => (
-			<a classes={css.root} href="link/to/somewhere">
+			<a classes={css.root} href="link/to/somewhere" target="_blank">
 				<Card />
 			</a>
 		));

@@ -6,10 +6,11 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import Landing from '../widgets/landing/Landing';
 import Post from '../widgets/blog/Post';
 import compiler from '../scripts/compile-blog-index.block';
+import { getLanguageFromLocale } from '../util/language';
 
 export default class Blog extends WidgetBase {
 	protected render() {
-		const paths: any = this.meta(Block).run(compiler)({ locale: i18n.locale });
+		const paths: any = this.meta(Block).run(compiler)({ locale: getLanguageFromLocale(i18n.locale) });
 
 		return <Landing>{paths && paths.map((path: string) => <Post path={path} excerpt />)}</Landing>;
 	}

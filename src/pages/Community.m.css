@@ -6,14 +6,124 @@
 	margin: 0 auto;
 }
 
+.link {
+	height: 60px;
+	display: flex;
+	align-items: center;
+	width: 150px;
+	background-color: #f6f6f6;
+	color: rgb(141, 120, 132);
+	border-color: #f6f6f6;
+	width: 20%;
+	border-radius: calc(var(--grid-size) * 3.5);
+	padding-left: calc(var(--grid-size) * 1.5);
+	text-decoration: none;
+	text-transform: uppercase;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.link:hover {
+	color: #63545c;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+	transform: translateY(-1px);
+	transition: all 0.3s;
+	text-decoration: none;
+}
+
+.link:hover > .linkImage {
+	opacity: 1;
+	transition: all 0.3s;
+}
+
+.linkImage {
+	width: calc(var(--grid-size) * 4);
+	height: calc(var(--grid-size) * 4);
+	margin-right: var(--grid-size);
+	opacity: 0.65;
+}
+
+.linkTable {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns:
+		calc((100% - 40px) / 5) calc((100% - 40px) / 5) calc((100% - 40px) / 5) calc((100% - 40px) / 5)
+		calc((100% - 40px) / 5);
+}
+
+.card {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.cardLink {
+	position: relative;
+	border: 1px solid rgba(10, 16, 20, 0.075);
+}
+
+.cardLink:hover {
+	text-decoration: none;
+	border: 1px solid rgba(10, 16, 20, 0.25);
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.15), 0 0 8px rgba(0, 0, 0, 0.05), 0 6px 18px rgba(0, 0, 0, 0.05);
+	transform: translateY(-1px);
+	transition: all 0.3s;
+	z-index: 5;
+}
+
+.card .cardContent {
+	padding-top: 0;
+}
+
+.cardTable {
+	box-shadow: 0 2px 8px 0 rgba(10, 16, 20, 0.27);
+	margin-bottom: calc(var(--grid-size) * 2);
+}
+
+.cardLinkIcon {
+	height: calc(var(--grid-size) * 4);
+	position: absolute;
+	right: calc(var(--grid-size) * 3);
+	top: calc(50% - calc(var(--grid-size) * 2));
+	transition: all 0.3s;
+	opacity: 0;
+}
+
+.cardLink:hover .cardLinkIcon {
+	opacity: 1;
+}
+
 @media (max-width: 1050px) {
 	.root {
-		width: 640px;
+		width: 80%;
+	}
+
+	.linkTable {
+		grid-template-columns: calc((100% - 20px) / 3) calc((100% - 20px) / 3) calc((100% - 20px) / 3);
 	}
 }
 
 @media (max-width: 700px) {
 	.root {
-		width: 300px;
+		width: 90%;
+		padding: 0;
+	}
+
+	.linkTable {
+		grid-template-columns: calc((100% - 10px) / 2) calc((100% - 10px) / 2);
+	}
+
+	.linkImage {
+		opacity: 1;
+	}
+
+	.cardLink:hover .cardLinkIcon {
+		opacity: 0;
+	}
+}
+
+@media (max-width: 410px) {
+	.linkImage {
+		width: calc(var(--grid-size) * 3);
+		height: calc(var(--grid-size) * 3);
 	}
 }
