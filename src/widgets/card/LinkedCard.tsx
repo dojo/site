@@ -22,7 +22,7 @@ export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProper
 
 		if (url) {
 			return (
-				<a classes={this.theme(css.root)} href={url}>
+				<a classes={this.theme(css.root)} href={url} target="_blank">
 					{card}
 				</a>
 			);

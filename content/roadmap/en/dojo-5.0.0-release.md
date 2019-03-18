@@ -1,3 +1,9 @@
+---
+title: Dojo 5
+date: January 2019
+released: true
+---
+
 The Dojo framework 5.0.0 release.
 
 ### Breaking Changes

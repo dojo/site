@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { regionBuilder } from './regions/parser';
 
 import linkCleanup from './link-cleanup';
+import { RootNode, isYamlNode } from './util';
 
 const unified = require('unified');
 const macro = require('remark-macro')();
@@ -83,16 +84,16 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 	}, {});
 };
 
-export const getFrontmatter = (content: string): { [key: string]: string } => {
+export const getMetaData = (content: string) => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(frontmatter, 'yaml')
 		.use(parseFrontmatter);
 
-	const nodes = pipeline.parse(content);
-	const result = pipeline.runSync(nodes);
-	const node = result.children.find((node: any) => node.type === 'yaml');
-	return node && node.data.parsedValue;
+	const nodes: RootNode = pipeline.parse(content);
+	const result: RootNode = pipeline.runSync(nodes);
+	const node = result.children.find(isYamlNode);
+	return node ? node.data.parsedValue : {};
 };
 
 export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): DNode => {
@@ -104,13 +105,12 @@ export const fromMarkdown = (content: string, registeredHandlers: { [type: strin
 		.use(linkCleanup)
 		.use(rehypePrism, { ignoreMissing: false });
 
-	const nodes = pipeline.parse(content);
-	const result = pipeline.runSync(nodes);
-	const hNodes = toH(pragma, result);
-	return hNodes;
+	const nodes: RootNode = pipeline.parse(content);
+	const result: RootNode = pipeline.runSync(nodes);
+	return toH(pragma, result);
 };
 
-export const getLocalFile = async (path: string): Promise<string> => {
+export const getLocalFile = async (path: string) => {
 	path = resolve(__dirname, path);
 	return await readFile(path, 'utf-8');
 };
