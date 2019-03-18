@@ -63,13 +63,13 @@ describe('Side Menu Item', () => {
 	describe('dropdown link', () => {
 		const baseDropdownAssertion = assertionTemplate(() => (
 			<li key="menu-item" classes={css.root}>
-				<a key="link" classes={[css.link, css.dropdownLink, undefined]} onclick={() => {}}>
+				<button key="link" classes={[css.link, css.dropdownLink, undefined]} onclick={() => {}}>
 					<FontAwesomeIcon
 						key="toggleIcon"
 						icon="chevron-right"
 						classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.dropdownIcon] } }}
 					/>
-				</a>
+				</button>
 				<div assertion-key="children" classes={[css.children, css.collapsed]}>
 					Dropdown children
 				</div>
