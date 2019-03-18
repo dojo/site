@@ -44,9 +44,12 @@ export const widgets: WidgetBuilders = {
 };
 
 let key = 0;
+export const getCompiledKey = () => {
+	return `compiled-${key++}`;
+};
 
 export const pragma = (tag: string, props: any = {}, children: any[]) => {
-	props.key = `compiled-${key++}`;
+	props.key = getCompiledKey();
 	if (tag.substr(0, 1) === tag.substr(0, 1).toUpperCase()) {
 		const type = `docs-${tag.toLowerCase()}`;
 		if (widgets[type]) {

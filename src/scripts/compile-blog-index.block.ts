@@ -1,8 +1,5 @@
-import { basename } from 'path';
-import { join } from 'canonical-path';
-import { readdir } from 'fs';
-
-import { setLocale } from './compile';
+import { join, basename } from 'canonical-path';
+import { readdir } from 'fs-extra';
 
 const CONTENT_PATH = join(__dirname, '../../content/blog');
 
@@ -10,13 +7,11 @@ interface CompileBlogIndex {
 	locale?: string;
 }
 
-export default async function(options: CompileBlogIndex): Promise<any> {
+export default async function(options: CompileBlogIndex) {
 	const { locale = 'en' } = options;
-	const contentPath = setLocale(CONTENT_PATH, locale);
+	const contentPath = join(CONTENT_PATH, locale);
 
-	return new Promise((resolve) => {
-		readdir(contentPath, (err, files) => {
-			resolve(files.map((file) => `blog/${basename(file)}`));
-		});
-	});
+	const files = await readdir(contentPath);
+
+	return files.map((file) => join('blog', locale, basename(file)));
 }

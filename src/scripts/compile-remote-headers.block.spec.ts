@@ -1,6 +1,8 @@
 import { v } from '@dojo/framework/widget-core/d';
 import * as fetch from 'node-fetch';
 
+import * as compiler from './compile';
+
 import referenceGuideBlock, { SupplementalPageLookup } from './compile-remote-headers.block';
 
 const mockReadme = `
@@ -29,42 +31,42 @@ Test page
 
 const expectedOutput: SupplementalPageLookup = {
 	'page-1': v('div', {}, [
-		v('h1', { key: 'compiled-3' }, ['Page 1']),
+		v('h1', { key: 'compiledKey' }, ['Page 1']),
 		`
 `,
-		v('p', { key: 'compiled-4' }, ['Some content for page 1']),
+		v('p', { key: 'compiledKey' }, ['Some content for page 1']),
 		`
 `
 	]),
 	'page-2': v('div', {}, [
-		v('h1', { key: 'compiled-5' }, ['Page 2']),
+		v('h1', { key: 'compiledKey' }, ['Page 2']),
 		`
 `,
-		v('p', { key: 'compiled-6' }, ['Some content for page 2']),
+		v('p', { key: 'compiledKey' }, ['Some content for page 2']),
 		`
 `,
-		v('p', { key: 'compiled-8' }, [
-			v('a', { key: 'compiled-7', href: 'https://example.com', target: '_blank' }, ['A link!'])
+		v('p', { key: 'compiledKey' }, [
+			v('a', { key: 'compiledKey', href: 'https://example.com', target: '_blank' }, ['A link!'])
 		]),
 		`
 `
 	]),
 	'page-3-a-complicated-name': v('div', {}, [
-		v('h1', { key: 'compiled-9' }, ['Page 3: A complicated name!']),
+		v('h1', { key: 'compiledKey' }, ['Page 3: A complicated name!']),
 		`
 `,
-		v('p', { key: 'compiled-10' }, ['Even more content.']),
+		v('p', { key: 'compiledKey' }, ['Even more content.']),
 		`
 `,
-		v('p', { key: 'compiled-11' }, ['This time for page 3!']),
+		v('p', { key: 'compiledKey' }, ['This time for page 3!']),
 		`
 `
 	]),
 	'test-test-code': v('div', {}, [
-		v('h1', { key: 'compiled-13' }, ['Test ', v('code', { key: 'compiled-12' }, ['Test Code'])]),
+		v('h1', { key: 'compiledKey' }, ['Test ', v('code', { key: 'compiledKey' }, ['Test Code'])]),
 		`
 `,
-		v('p', { key: 'compiled-14' }, ['Test page'])
+		v('p', { key: 'compiledKey' }, ['Test page'])
 	])
 };
 
@@ -89,6 +91,7 @@ const expectedHeaderOnlyOutput = [
 
 describe('compile remote headers block', () => {
 	const mockFetch = jest.spyOn(fetch, 'default');
+	const mockGetCompiledKey = jest.spyOn(compiler, 'getCompiledKey');
 	const mockText = jest.fn();
 
 	beforeEach(() => {
@@ -98,6 +101,7 @@ describe('compile remote headers block', () => {
 			text: mockText
 		} as any);
 		mockText.mockResolvedValue(Promise.resolve(mockReadme));
+		mockGetCompiledKey.mockReturnValue('compiledKey');
 	});
 
 	it('should return pages lookup', async () => {
