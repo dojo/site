@@ -190,7 +190,7 @@ describe('content compiler', () => {
 
 	describe('get meta data', () => {
 		it('should return return meta data from markdown content', () => {
-			expect(compiler.getFrontmatter(mockMarkupContent)).toEqual({
+			expect(compiler.getMetaData(mockMarkupContent)).toEqual({
 				key: 'value'
 			});
 		});
