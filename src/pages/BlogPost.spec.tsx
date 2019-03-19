@@ -6,7 +6,9 @@ import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/wi
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import LandingSubsection from '../widgets/landing/LandingSubsection';
+
 import Post from './BlogPost';
+import * as css from './BlogPost.m.css';
 
 const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
 	return class extends Base {
@@ -31,25 +33,28 @@ const mockMeta = jest.fn().mockImplementation((input: any) => {
 });
 
 describe('Post', () => {
-	it('renders', () => {
+	it('renders index page style', () => {
 		mockCompileBlock.mockReturnValueOnce({
 			meta: {
 				author: 'author',
-				date: 'date',
+				date: '2018-10-15 12:00:00',
 				title: 'title'
 			},
 			content: 'content'
 		});
 		const PostMock = mockMetaMixin(Post, mockMeta);
-		const h = harness(() => <PostMock path="path" />);
+		const h = harness(() => <PostMock path="path" excerpt />);
 		h.expect(() => (
-			<LandingSubsection title="title">
-				<p>
-					{'author'} {'date'}
+			<LandingSubsection classes={{ "dojo.io/LandingSubsection": { root: [css.root] } }}>
+				<Link to="blog-post" params={{ path: 'path' }} classes={css.headerLink}>
+					<h1>title</h1>
+				</Link>
+				<p classes={css.meta}>
+					{'author'} {'October 15, 2018, 12:00 PM'}
 				</p>
 				content
 				<p>
-					<Link to="some-outlet" params={undefined}>
+					<Link to="blog-post" params={{ path: 'path' }} classes={css.readMoreLink}>
 						READ MORE
 					</Link>
 				</p>
