@@ -49,7 +49,7 @@ export default class Post extends WidgetBase<PostProperties> {
 				<p>
 					<Link to="blog-post" params={{
 						path: path.replace('blog/en/', '').replace('.md', '')
-					}}>
+					}} classes={css.readMoreLink}>
 						READ MORE
 					</Link>
 				</p>
@@ -66,7 +66,12 @@ export default class Post extends WidgetBase<PostProperties> {
 			}
 
 			return (
-				<LandingSubsection title={post.meta.title} classes={{ "dojo.io/LandingSubsection": { root: [css.root] } }}>
+				<LandingSubsection classes={{ "dojo.io/LandingSubsection": { root: [css.root] } }}>
+					<Link to="blog-post" params={{
+						path: path.replace('blog/en/', '').replace('.md', '')
+					}} classes={css.headerLink}>
+						<h1>{post.meta.title}</h1>
+					</Link>
 					{postContent}
 					{readMoreLink}
 				</LandingSubsection>
