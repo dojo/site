@@ -1,0 +1,9 @@
+@import '../variables.css';
+
+.root {
+
+}
+
+.meta {
+	color: var(--color-light-gray);
+}

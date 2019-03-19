@@ -5,7 +5,7 @@ import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/wi
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import Landing from '../widgets/landing/Landing';
-import Post from '../widgets/blog/Post';
+import Post from './BlogPost';
 
 import Blog from './Blog';
 

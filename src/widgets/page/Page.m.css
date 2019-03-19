@@ -12,14 +12,13 @@
 
 .content {
 	flex-grow: 1;
-	min-width: 900px;
-	width: 50%;
+	width: 1000px;
 	margin: 0 auto 80px;
 }
 
 .footer {
 	color: #999 !important;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 1.5;
 	text-align: right;
 	padding: 1rem;

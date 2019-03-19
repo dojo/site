@@ -5,8 +5,8 @@ import harness from '@dojo/framework/testing/harness';
 import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/widget-core/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
-import LandingSubsection from '../landing/LandingSubsection';
-import Post from './Post';
+import LandingSubsection from '../widgets/landing/LandingSubsection';
+import Post from './BlogPost';
 
 const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
 	return class extends Base {
