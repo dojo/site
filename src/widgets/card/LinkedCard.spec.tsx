@@ -35,18 +35,20 @@ describe('Linked Card', () => {
 	it('renders a with href', () => {
 		const h = harness(() => <LinkedCard url="link/to/somewhere" />);
 		h.expect(() => (
-			<a classes={css.root} href="link/to/somewhere" target="_blank">
+			<div classes={css.root}>
+				<a classes={css.link} href="link/to/somewhere" target="_blank" />
 				<Card />
-			</a>
+			</div>
 		));
 	});
 
 	it('renders link widget to outlet', () => {
 		const h = harness(() => <LinkedCard outlet="some-outlet" />);
 		h.expect(() => (
-			<Link classes={css.root} to="some-outlet" params={undefined}>
+			<div classes={css.root}>
+				<Link classes={css.link} to="some-outlet" params={undefined} />
 				<Card />
-			</Link>
+			</div>
 		));
 	});
 
@@ -54,9 +56,10 @@ describe('Linked Card', () => {
 		const parameters = { param1: 'something' };
 		const h = harness(() => <LinkedCard outlet="some-outlet" params={parameters} />);
 		h.expect(() => (
-			<Link classes={css.root} to="some-outlet" params={parameters}>
+			<div classes={css.root}>
+				<Link classes={css.link} to="some-outlet" params={parameters} />
 				<Card />
-			</Link>
+			</div>
 		));
 	});
 });
