@@ -38,27 +38,28 @@ export default class Examples extends WidgetBase {
 	);
 
 	protected render() {
-		const examples: ExampleMeta[] = (this.meta(Block).run(getExamples)() as any);
+		const examples: ExampleMeta[] = this.meta(Block).run(getExamples)() as any;
 
 		return (
 			<Landing>
 				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
-						{examples && examples.map((example) => {
-							return (
-								<div key={example.exampleName} classes={css.card}>
-									<LinkedCard
-										footer={this.renderCardFooter(example)}
-										header={this.renderCardHeader(example)}
-										url={example.demo}
-									>
-										<h4 classes={css.title}>{example.example.children}</h4>
-										{example.overview.children}
-									</LinkedCard>
-								</div>
-							);
-						})}
+						{examples &&
+							examples.map((example) => {
+								return (
+									<div key={example.exampleName} classes={css.card}>
+										<LinkedCard
+											footer={this.renderCardFooter(example)}
+											header={this.renderCardHeader(example)}
+											url={example.demo}
+										>
+											<h4 classes={css.title}>{example.example.children}</h4>
+											{example.overview.children}
+										</LinkedCard>
+									</div>
+								);
+							})}
 					</Grid>
 				</LandingSubsection>
 			</Landing>

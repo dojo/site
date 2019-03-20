@@ -43,9 +43,7 @@ const expectedOutput: ExampleMeta[] = [
 	{
 		exampleName: 'example3',
 		example: v('p', { key: 'compiledKey' }, ['Example 3']),
-		code: v('p', { key: 'compiledKey' }, [
-			v('a', { key: 'compiledKey', href: './example3' }, ['Link'])
-		]),
+		code: v('p', { key: 'compiledKey' }, [v('a', { key: 'compiledKey', href: './example3' }, ['Link'])]),
 		demo: '',
 		sandbox: false,
 		overview: v('p', { key: 'compiledKey' }, ['A third example with no demo'])
