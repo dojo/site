@@ -14,7 +14,7 @@ export default class LandingSubsection extends ThemedMixin(WidgetBase)<LandingSu
 		const { title } = this.properties;
 
 		return (
-			<div key="landingSubsection" classes={css.root}>
+			<div key="landingSubsection" classes={this.theme(css.root)}>
 				{title && <h2>{title}</h2>}
 				{this.children}
 			</div>

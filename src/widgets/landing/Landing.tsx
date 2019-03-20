@@ -1,10 +1,12 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
-import { WidgetProperties } from '@dojo/framework/widget-core/interfaces';
+import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
+
 import * as css from './Landing.m.css';
 
-export default class Landing extends WidgetBase<WidgetProperties> {
+@theme(css)
+export default class Landing extends ThemedMixin(WidgetBase)<ThemedProperties> {
 	protected render() {
-		return <div classes={css.root}>{this.children}</div>;
+		return <div classes={this.theme(css.root)}>{this.children}</div>;
 	}
 }
