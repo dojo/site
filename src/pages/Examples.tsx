@@ -38,26 +38,29 @@ export default class Examples extends WidgetBase {
 	);
 
 	protected render() {
-		const examples = (this.meta(Block).run(getExamples)() as any) as ExampleMeta[];
+		const examples: ExampleMeta[] = (this.meta(Block).run(getExamples)() as any) || [];
 
 		return (
 			<Landing>
 				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
-						{examples &&
-							examples.map((example) => (
+						{examples.map((example) => {
+							const demoUrl = example.demo || `http://dojo.github.io/examples/${example.exampleName}/`;
+							console.log(demoUrl);
+							return (
 								<div key={example.exampleName} classes={css.card}>
 									<LinkedCard
 										footer={this.renderCardFooter(example)}
 										header={this.renderCardHeader(example)}
-										url={`http://dojo.github.io/examples/${example.exampleName}/`}
+										url={demoUrl}
 									>
 										<h4 classes={css.title}>{example.example.children}</h4>
 										{example.overview.children}
 									</LinkedCard>
 								</div>
-							))}
+							);
+						})}
 					</Grid>
 				</LandingSubsection>
 			</Landing>
