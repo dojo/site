@@ -7,19 +7,18 @@
 	padding-top: var(--content-top-padding);
 	padding: var(--content-padding);
 	padding-bottom: 0;
-	margin: 0px var(--content-border);
+	margin: 0 var(--content-border);
 }
 
 .content {
 	flex-grow: 1;
-	min-width: 900px;
-	width: 50%;
-	margin: 0 auto 80px;
+	width: calc(var(--grid-size) * 100);
+	margin: 0 auto calc(var(--grid-size) * 8);
 }
 
 .footer {
-	color: #999 !important;
-	font-size: 16px;
+	color: var(--color-light-gray);
+	font-size: 14px;
 	line-height: 1.5;
 	text-align: right;
 	padding: 1rem;
