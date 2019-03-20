@@ -4,6 +4,8 @@
 			"root": "root",
 			"paths": [
 				"blog",
+				"blog/version-4-dojo",
+				"blog/version-5-dojo",
 				"home",
 				"roadmap",
 				"community",
