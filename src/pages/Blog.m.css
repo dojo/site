@@ -1,3 +1,5 @@
+@import "../variables.css";
+
 .root {
-	width: 1000px !important;
+	width: calc(var(--grid-size) * 100) !important;
 }
