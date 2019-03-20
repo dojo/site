@@ -12,6 +12,7 @@ Some junk
 |---|---|---|---|---|
 |  TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
 |  TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  |  |    Feature-enhanced version of TodoMVC built using Dojo packages. |
+|  Example 3 | [Link](./example3) | No demo |  | A third example with no demo |
 
 Some other junk
 `;
@@ -21,9 +22,7 @@ const expectedOutput: ExampleMeta[] = [
 		exampleName: 'todo-mvc',
 		example: v('p', { key: 'compiledKey' }, ['TodoMVC']),
 		code: v('p', { key: 'compiledKey' }, [v('a', { key: 'compiledKey', href: './todo-mvc' }, ['Link'])]),
-		demo: v('p', { key: 'compiledKey' }, [
-			v('a', { key: 'compiledKey', target: '_blank', href: 'https://dojo.github.io/examples/todo-mvc' }, ['Link'])
-		]),
+		demo: 'https://dojo.github.io/examples/todo-mvc',
 		sandbox: true,
 		overview: v('p', { key: 'compiledKey' }, [
 			'Reference implementation of ',
@@ -37,15 +36,19 @@ const expectedOutput: ExampleMeta[] = [
 		code: v('p', { key: 'compiledKey' }, [
 			v('a', { key: 'compiledKey', href: './todo-mvc-kitchensink' }, ['Link'])
 		]),
-		demo: v('p', { key: 'compiledKey' }, [
-			v(
-				'a',
-				{ key: 'compiledKey', target: '_blank', href: 'https://dojo.github.io/examples/todo-mvc-kitchensink' },
-				['Link']
-			)
-		]),
+		demo: 'https://dojo.github.io/examples/todo-mvc-kitchensink',
 		sandbox: false,
 		overview: v('p', { key: 'compiledKey' }, ['Feature-enhanced version of TodoMVC built using Dojo packages.'])
+	},
+	{
+		exampleName: 'example3',
+		example: v('p', { key: 'compiledKey' }, ['Example 3']),
+		code: v('p', { key: 'compiledKey' }, [
+			v('a', { key: 'compiledKey', href: './example3' }, ['Link'])
+		]),
+		demo: '',
+		sandbox: false,
+		overview: v('p', { key: 'compiledKey' }, ['A third example with no demo'])
 	}
 ];
 
