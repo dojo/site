@@ -38,7 +38,7 @@ describe('Blog', () => {
 		const BlogMock = mockMetaMixin(Blog, mockMeta);
 		const h = harness(() => <BlogMock />);
 		h.expect(() => (
-			<Landing classes={{ "dojo.io/Landing": { "root": [css.root] } }}>
+			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<Post path="a" excerpt />
 				<Post path="b" excerpt />
 				<Post path="c" excerpt />

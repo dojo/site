@@ -47,9 +47,13 @@ export default class Post extends WidgetBase<PostProperties> {
 
 			const readMoreLink = excerpt && (
 				<p>
-					<Link to="blog-post" params={{
-						path: path.replace('blog/en/', '').replace('.md', '')
-					}} classes={css.readMoreLink}>
+					<Link
+						to="blog-post"
+						params={{
+							path: path.replace('blog/en/', '').replace('.md', '')
+						}}
+						classes={css.readMoreLink}
+					>
 						READ MORE
 					</Link>
 				</p>
@@ -57,7 +61,7 @@ export default class Post extends WidgetBase<PostProperties> {
 
 			if (standalone) {
 				return (
-					<Page classes={{ "dojo.io/Page": { root: [css.root] } }}>
+					<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
 						<h1>{post.meta.title}</h1>
 						{postContent}
 						{readMoreLink}
@@ -66,10 +70,14 @@ export default class Post extends WidgetBase<PostProperties> {
 			}
 
 			return (
-				<LandingSubsection classes={{ "dojo.io/LandingSubsection": { root: [css.root] } }}>
-					<Link to="blog-post" params={{
-						path: path.replace('blog/en/', '').replace('.md', '')
-					}} classes={css.headerLink}>
+				<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
+					<Link
+						to="blog-post"
+						params={{
+							path: path.replace('blog/en/', '').replace('.md', '')
+						}}
+						classes={css.headerLink}
+					>
 						<h1>{post.meta.title}</h1>
 					</Link>
 					{postContent}

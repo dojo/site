@@ -14,7 +14,7 @@ export default async function(options: CompileBlogIndex) {
 	const contentPath = join(CONTENT_PATH, locale);
 
 	const files = await readdir(contentPath);
-	const blogs: { sortDate: Date, file: string }[] = [];
+	const blogs: { sortDate: Date; file: string }[] = [];
 
 	for (let file of files) {
 		const content = await getLocalFile(join(contentPath, file));

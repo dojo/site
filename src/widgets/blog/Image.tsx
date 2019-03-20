@@ -15,7 +15,7 @@ interface ImageProperties extends ThemedProperties {
 export default class Image extends ThemedMixin(WidgetBase)<ImageProperties> {
 	render() {
 		const { alt, height, path, width } = this.properties;
-		 return (
+		return (
 			<img classes={this.theme(css.root)} alt={alt} height={height} src={`/assets/blog/${path}`} width={width} />
 		);
 	}

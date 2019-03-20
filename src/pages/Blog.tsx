@@ -12,6 +12,10 @@ export default class Blog extends WidgetBase {
 	protected render() {
 		const paths: any = this.meta(Block).run(compileBlogIndexBlock)({ locale: 'en' });
 
-		return <Landing classes={{ "dojo.io/Landing": { root: [css.root] } }}>{paths && paths.map((path: string) => <Post path={path} excerpt />)}</Landing>;
+		return (
+			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
+				{paths && paths.map((path: string) => <Post path={path} excerpt />)}
+			</Landing>
+		);
 	}
 }

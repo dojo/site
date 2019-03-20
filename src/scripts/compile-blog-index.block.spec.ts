@@ -1,18 +1,51 @@
 import * as fs from 'fs-extra';
 
+import * as compiler from './compile';
 import compileBlogIndexBlock from './compile-blog-index.block';
 
 const files = ['file1.md', 'file2.md', 'file3.md'];
+
+const file1 = `
+---
+title: Blog Title 1
+date: 2018-10-15 12:00:00
+author: Paul Shannon
+---
+## Blog Title 1
+`;
+
+const file2 = `
+---
+title: Blog Title 2
+date: 2017-06-30 18:00:00
+author: Paul Shannon
+---
+## Blog Title 2
+`;
+
+const file3 = `
+---
+title: Blog Title 3
+date: 2017-01-05 08:00:00
+author: Paul Shannon
+---
+## Blog Title 3
+`;
 
 const expectedOutput = ['blog/en/file1.md', 'blog/en/file2.md', 'blog/en/file3.md'];
 
 describe('compile block index block', () => {
 	const mockReaddir = jest.spyOn(fs, 'readdir');
+	const mockGetLocalFile = jest.spyOn(compiler, 'getLocalFile');
 
 	beforeEach(() => {
 		jest.resetAllMocks();
 
 		mockReaddir.mockReturnValue(Promise.resolve(files));
+		mockGetLocalFile
+			.mockReturnValueOnce(Promise.resolve(file1))
+			.mockReturnValueOnce(Promise.resolve(file2))
+			.mockReturnValueOnce(Promise.resolve(file3));
 	});
 
 	it('returns a list of file paths for files in the the blog folder', async () => {

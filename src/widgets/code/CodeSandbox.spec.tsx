@@ -32,9 +32,9 @@ describe('CodeSandbox', () => {
 
 		const mockMeta = jest.fn().mockImplementation((input: any) => {
 			if (Intersection) {
-					return {
-							get: mockIntersectionGet
-					};
+				return {
+					get: mockIntersectionGet
+				};
 			}
 		});
 
@@ -59,7 +59,6 @@ describe('CodeSandbox', () => {
 	});
 
 	it('does not render during build-time-rendering', () => {
-
 		add('build-time-render', true, true);
 		const url = 'https://codesandbox.io/embed/dummy';
 
