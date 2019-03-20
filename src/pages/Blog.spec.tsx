@@ -5,9 +5,10 @@ import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/wi
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import Landing from '../widgets/landing/Landing';
-import Post from '../widgets/blog/Post';
+import Post from './BlogPost';
 
 import Blog from './Blog';
+import * as css from './Blog.m.css';
 
 const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
 	return class extends Base {
@@ -37,7 +38,7 @@ describe('Blog', () => {
 		const BlogMock = mockMetaMixin(Blog, mockMeta);
 		const h = harness(() => <BlogMock />);
 		h.expect(() => (
-			<Landing>
+			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<Post path="a" excerpt />
 				<Post path="b" excerpt />
 				<Post path="c" excerpt />

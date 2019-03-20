@@ -4,6 +4,7 @@ import Outlet from '@dojo/framework/routing/Outlet';
 import { DNode } from '@dojo/framework/widget-core/interfaces';
 
 import Blog from './pages/Blog';
+import BlogPosts from './pages/blog/BlogPosts';
 import Community from './pages/Community';
 import Examples from './pages/Examples';
 import Home from './pages/Home';
@@ -31,6 +32,7 @@ describe('App', () => {
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<BlogPosts />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />

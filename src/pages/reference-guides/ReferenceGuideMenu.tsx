@@ -2,11 +2,9 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import I18nMixin, { I18nProperties } from '@dojo/framework/widget-core/mixins/I18n';
 import Block from '@dojo/framework/widget-core/meta/Block';
-import i18n from '@dojo/framework/i18n/i18n';
 import Router from '@dojo/framework/routing/Router';
 
 import compileRemoteHeaders, { SupplementalHeaders } from '../../scripts/compile-remote-headers.block';
-import { getLanguageFromLocale } from '../../util/language';
 import SideMenu from '../../widgets/menu/SideMenu';
 import SideMenuSection from '../../widgets/menu/SideMenuSection';
 import SideMenuItem from '../../widgets/menu/SideMenuItem';
@@ -42,7 +40,7 @@ export default class ReferenceGuideMenu extends I18nMixin(WidgetBase)<ReferenceG
 			repo,
 			branch,
 			path: `${path}/supplemental.md`,
-			locale: getLanguageFromLocale(i18n.locale),
+			locale: 'en',
 			headersOnly: true
 		}) as any;
 

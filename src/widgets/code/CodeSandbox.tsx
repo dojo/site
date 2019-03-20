@@ -19,14 +19,12 @@ export default class CodeSandbox extends WidgetBase<CodeSandboxProperties> {
 			if (isIntersecting) {
 				this._src = `${url}?autoresize=1&hidenavigation=1`;
 			}
-		} else {
-			this._src = `${url}?autoresize=1&hidenavigation=1`;
-		}
 
-		return (
-			<div key="root" classes={[css.root]}>
-				<iframe classes={[css.root]} src={this._src} />
-			</div>
-		);
+			return (
+				<div key="root" classes={[css.root]}>
+					<iframe classes={[css.root]} src={this._src} />
+				</div>
+			);
+		}
 	}
 }

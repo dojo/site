@@ -5,6 +5,7 @@ import Outlet from '@dojo/framework/routing/Outlet';
 import Header from './widgets/header/Header';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
+import BlogPosts from './pages/blog/BlogPosts';
 import Examples from './pages/Examples';
 import Playground from './pages/Playground';
 import Roadmap from './pages/Roadmap';
@@ -55,6 +56,7 @@ export default class App extends WidgetBase {
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<BlogPosts />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
