@@ -4,7 +4,6 @@ import * as fs from 'fs-extra';
 import { resolve } from 'path';
 
 import * as compiler from './compile';
-import { RootNode } from './util';
 
 import Aside from '../widgets/content/Aside';
 import CodeSandbox from '../widgets/code/CodeSandbox';
