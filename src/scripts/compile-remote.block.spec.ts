@@ -13,6 +13,7 @@ describe('content compiler', () => {
 		CodeSandbox: () => {}
 	};
 	const mockRegisterHandlers = jest.spyOn(compiler, 'registerHandlers');
+	const mockToDNodes = jest.spyOn(compiler, 'toDNodes');
 	const mockFromMarkdown = jest.spyOn(compiler, 'fromMarkdown');
 	const mockFetch = jest.spyOn(fetch, 'default');
 	const mockText = jest.fn();
@@ -25,16 +26,12 @@ describe('content compiler', () => {
 			text: mockText
 		} as any);
 		mockText.mockResolvedValue(Promise.resolve(githubContent));
-		mockFromMarkdown.mockResolvedValue('page content');
-	});
-
-	afterAll(() => {
-		mockFromMarkdown.mockRestore();
+		mockToDNodes.mockResolvedValue('page content');
 	});
 
 	it('should process', async () => {
 		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
@@ -51,7 +48,7 @@ describe('content compiler', () => {
 
 	it('should process with different locale', async () => {
 		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
@@ -68,7 +65,7 @@ describe('content compiler', () => {
 
 	it('should process with different branch', async () => {
 		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
@@ -86,7 +83,7 @@ describe('content compiler', () => {
 
 	it('should process without locale (defaulting to en-US)', async () => {
 		const expectedResult = 'page content';
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			repo: 'dojo/framework',
