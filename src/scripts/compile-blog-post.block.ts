@@ -12,7 +12,7 @@ interface CompileBlogPost {
 export default async function(options: CompileBlogPost): Promise<any> {
 	const { path } = options;
 
-	let contentPath = join(CONTENT_PATH, path);
+	const contentPath = join(CONTENT_PATH, path);
 
 	let rawContent = await getLocalFile(contentPath);
 	rawContent = options.excerpt ? rawContent.split('<!-- more -->')[0] : rawContent;

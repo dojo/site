@@ -1,7 +1,11 @@
 import { w, v } from '@dojo/framework/widget-core/d';
+
 import * as fs from 'fs-extra';
 import { resolve } from 'path';
+
 import * as compiler from './compile';
+import { RootNode } from './util';
+
 import Aside from '../widgets/content/Aside';
 import CodeSandbox from '../widgets/code/CodeSandbox';
 
@@ -131,6 +135,23 @@ describe('content compiler', () => {
 		const output = compiler.fromMarkdown(content, registeredHandlers);
 
 		expect(output).toEqual(mockFromMarkupOutput);
+
+		expect(readFileStub).toBeCalledTimes(1);
+		expect(readFileStub.mock.calls[0]).toEqual([path, 'utf-8']);
+	});
+
+	it('should skip dnode conversion step', async () => {
+		const path = resolve(__dirname, mockTutorialSourcePath);
+
+		const readFileStub = jest
+			.spyOn(fs, 'readFile')
+			.mockReturnValueOnce(Promise.resolve(Buffer.from(mockMarkupContent)));
+
+		const registeredHandlers = compiler.registerHandlers(mockHandlers);
+		const content = await compiler.getLocalFile(mockTutorialSourcePath);
+		const output = compiler.processMarkdown(content, registeredHandlers, false) as RootNode;
+
+		expect(output.type).toBe('root'); // Should be a root node instead of a VNode
 
 		expect(readFileStub).toBeCalledTimes(1);
 		expect(readFileStub.mock.calls[0]).toEqual([path, 'utf-8']);
