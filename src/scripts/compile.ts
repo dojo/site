@@ -96,11 +96,11 @@ export const getMetaData = (content: string) => {
 	return node ? node.data.parsedValue : {};
 };
 
-export const processMarkdown = (
-	content: string,
-	registeredHandlers: { [type: string]: HandlerFunction },
-	compileToDNode = true
-): DNode | RootNode => {
+export const toDNodes = (node: RootNode): DNode => {
+	return toH(pragma, node);
+};
+
+export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): RootNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(frontmatter, 'yaml')
@@ -112,15 +112,7 @@ export const processMarkdown = (
 	const nodes: RootNode = pipeline.parse(content);
 	const result: RootNode = pipeline.runSync(nodes);
 
-	if (!compileToDNode) {
-		return result;
-	}
-
-	return toH(pragma, result);
-};
-
-export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): DNode => {
-	return processMarkdown(content, registeredHandlers) as DNode;
+	return result;
 };
 
 export const getLocalFile = async (path: string) => {

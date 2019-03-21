@@ -132,7 +132,7 @@ describe('content compiler', () => {
 
 		const registeredHandlers = compiler.registerHandlers(mockHandlers);
 		const content = await compiler.getLocalFile(mockTutorialSourcePath);
-		const output = compiler.fromMarkdown(content, registeredHandlers);
+		const output = compiler.toDNodes(compiler.fromMarkdown(content, registeredHandlers));
 
 		expect(output).toEqual(mockFromMarkupOutput);
 
@@ -149,7 +149,7 @@ describe('content compiler', () => {
 
 		const registeredHandlers = compiler.registerHandlers(mockHandlers);
 		const content = await compiler.getLocalFile(mockTutorialSourcePath);
-		const output = compiler.processMarkdown(content, registeredHandlers, false) as RootNode;
+		const output = compiler.fromMarkdown(content, registeredHandlers);
 
 		expect(output.type).toBe('root'); // Should be a root node instead of a VNode
 

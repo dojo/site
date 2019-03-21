@@ -4,7 +4,7 @@ import { Feed } from 'feed';
 import { join } from 'path';
 import { outputFileSync } from 'fs-extra';
 
-import { registerHandlers, handlers, processMarkdown } from './compile';
+import { registerHandlers, handlers, fromMarkdown } from './compile';
 import { BlogFile } from './compile-blog-index.block';
 
 const unified = require('unified');
@@ -40,16 +40,12 @@ export function createBlogFeed(files: BlogFile[], contentRoot: string) {
 	});
 
 	for (const file of files) {
-		const fullContentProcessed = processMarkdown(file.content, registerHandlers(handlers), false);
+		const fullContentProcessed = fromMarkdown(file.content, registerHandlers(handlers));
 		const fullContent = unified()
 			.use(stringify)
 			.stringify(fullContentProcessed);
 
-		const descriptionProcessed = processMarkdown(
-			file.content.split('<!-- more -->')[0],
-			registerHandlers(handlers),
-			false
-		);
+		const descriptionProcessed = fromMarkdown(file.content.split('<!-- more -->')[0], registerHandlers(handlers));
 		const description = unified()
 			.use(stringify)
 			.stringify(descriptionProcessed);

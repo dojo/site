@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { registerHandlers, handlers, fromMarkdown, setLocale } from './compile';
+import { registerHandlers, handlers, fromMarkdown, setLocale, toDNodes } from './compile';
 
 export interface CompileRemoteBlockOptions {
 	repo: string;
@@ -17,5 +17,5 @@ export default async function(options: CompileRemoteBlockOptions) {
 	const response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}`);
 	const content = await response.text();
 
-	return fromMarkdown(content, registerHandlers(handlers));
+	return toDNodes(fromMarkdown(content, registerHandlers(handlers)));
 }

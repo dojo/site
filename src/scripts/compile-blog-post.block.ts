@@ -1,6 +1,6 @@
 import { join } from 'canonical-path';
 
-import { registerHandlers, handlers, fromMarkdown, getLocalFile, getMetaData } from './compile';
+import { registerHandlers, handlers, fromMarkdown, getLocalFile, getMetaData, toDNodes } from './compile';
 
 const CONTENT_PATH = join(__dirname, '../../content');
 
@@ -17,7 +17,7 @@ export default async function(options: CompileBlogPost): Promise<any> {
 	let rawContent = await getLocalFile(contentPath);
 	rawContent = options.excerpt ? rawContent.split('<!-- more -->')[0] : rawContent;
 
-	const content = await fromMarkdown(rawContent, registerHandlers(handlers));
+	const content = toDNodes(fromMarkdown(rawContent, registerHandlers(handlers)));
 	const meta = await getMetaData(rawContent);
 	return { content, meta };
 }
