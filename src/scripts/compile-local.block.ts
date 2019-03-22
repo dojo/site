@@ -1,6 +1,6 @@
 import { join } from 'canonical-path';
 
-import { registerHandlers, handlers, fromMarkdown, setLocale, getLocalFile } from './compile';
+import { registerHandlers, handlers, fromMarkdown, setLocale, getLocalFile, toDNodes } from './compile';
 
 const CONTENT_PATH = join(__dirname, '../../content');
 
@@ -16,5 +16,5 @@ export default async function(options: CompileLocalBlockOptions) {
 	contentPath = setLocale(contentPath, locale);
 
 	const content = await getLocalFile(contentPath);
-	return fromMarkdown(content, registerHandlers(handlers));
+	return toDNodes(fromMarkdown(content, registerHandlers(handlers)));
 }
