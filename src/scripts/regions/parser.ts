@@ -2,7 +2,7 @@ import { w, v } from '@dojo/framework/widget-core/d';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
 
-import { WidgetBuilder, fromMarkdown } from '../compile';
+import { WidgetBuilder, fromMarkdown, toDNodes } from '../compile';
 
 import { BLOCK_C_MATCHER } from './region-matchers/block-c';
 import { INLINE_C_MATCHER } from './region-matchers/inline-c';
@@ -75,7 +75,7 @@ export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBloc
 	if (code !== undefined) {
 		code = leftAlign(stripRegionComments(code.split('\n'), regionMatcherFactory.regionCommentMatcher)).join('\n');
 		const wProps: any = { path, region, language };
-		return w(type, wProps, [fromMarkdown('```' + `${language}\n${code}\n` + '```', {})]);
+		return w(type, wProps, [toDNodes(fromMarkdown('```' + `${language}\n${code}\n` + '```', {}))]);
 	} else {
 		return v('p', ['Could not load region']);
 	}

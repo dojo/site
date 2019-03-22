@@ -7,13 +7,12 @@
 	flex-direction: column;
 	flex-grow: 1;
 	background: var(--color-white);
-	color: var(--color-dark-gray);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 	position: relative;
 }
 
 .content {
-	color: var(--color-light-gray);
+	color: var(--font-color);
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
 	box-sizing: border-box;
 	flex-grow: 1;
@@ -21,6 +20,6 @@
 }
 
 .dark {
-	color: var(--color-white);
+	color: var(--font-color-inverse);
 	background-color: var(--dark-background-color);
 }

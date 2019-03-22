@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 5.0.0
-date: 2019-01-29 08:00:00
+date: 2019-01-29T08:00:00.000Z
 author: Anthony Gubler
 ---
 
@@ -8,8 +8,7 @@ author: Anthony Gubler
 
 We're excited to announce the 5.0.0 release of Dojo. This version builds on previous releases with a vast array of bug fixes and improvements throughout the framework.
 
-[BlogImage path="version-5-dojo/featured.png"]
-
+![Announcing Dojo 5.0.0](/assets/blog/version-5-dojo/featured.png)
 <!-- more -->
 
 ### Conditional Polyfills - Serving Less JavaScript

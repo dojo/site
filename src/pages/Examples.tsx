@@ -26,12 +26,17 @@ export default class Examples extends WidgetBase {
 			{sandbox && (
 				<a
 					href={`https://codesandbox.io/s/github/dojo/examples/tree/master/${exampleName}`}
+					target="_blank"
 					classes={css.linkBtn}
 				>
 					<FontAwesomeIcon icon="laptop-code" />
 				</a>
 			)}
-			<a href={`https://github.com/dojo/examples/tree/master/${exampleName}`} classes={css.linkBtn}>
+			<a
+				href={`https://github.com/dojo/examples/tree/master/${exampleName}`}
+				target="_blank"
+				classes={css.linkBtn}
+			>
 				<FontAwesomeIcon icon="code-branch" />
 			</a>
 		</div>
@@ -41,7 +46,7 @@ export default class Examples extends WidgetBase {
 		const examples: ExampleMeta[] = this.meta(Block).run(getExamples)() as any;
 
 		return (
-			<Landing>
+			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
@@ -49,6 +54,7 @@ export default class Examples extends WidgetBase {
 							examples.map((example) => (
 								<div key={example.exampleName} classes={css.card}>
 									<LinkedCard
+										classes={{ 'dojo.io/Card': { content: [css.cardContent] } }}
 										footer={this.renderCardFooter(example)}
 										header={this.renderCardHeader(example)}
 										url={example.demo}

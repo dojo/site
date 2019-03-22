@@ -62,7 +62,7 @@ export default class Post extends WidgetBase<PostProperties> {
 			if (standalone) {
 				return (
 					<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
-						<h1>{post.meta.title}</h1>
+						<h1 classes={css.header}>{post.meta.title}</h1>
 						{postContent}
 						{readMoreLink}
 					</Page>
@@ -78,7 +78,7 @@ export default class Post extends WidgetBase<PostProperties> {
 						}}
 						classes={css.headerLink}
 					>
-						<h1>{post.meta.title}</h1>
+						<h1 classes={css.header}>{post.meta.title}</h1>
 					</Link>
 					{postContent}
 					{readMoreLink}
