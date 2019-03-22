@@ -3,13 +3,16 @@
 .root {
 	display: flex;
 	flex-direction: row;
-	margin-left: calc(var(--grid-size) * 2.5);
-	margin-right: calc(var(--grid-size) * 2.5);
+	margin: calc(var(--grid-size) * 2.5);
 }
 
 .ethosPoint {
 	width: calc(100% / 3);
 	margin: calc(var(--grid-size) * 5) calc(var(--grid-size) * 2.5) calc(var(--grid-size) * 2.5);
+	padding: 0;
+}
+
+.ethosContent {
 	padding: calc(var(--grid-size) * 2.5);
 }
 

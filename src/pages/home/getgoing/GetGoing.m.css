@@ -3,7 +3,7 @@
 .root {
 	height: calc(var(--grid-size) * 45);
 	margin: calc(var(--grid-size) * 2.5);
-	padding: calc(var(--grid-size) * 2.5);
+	padding: 0 calc(var(--grid-size) * 2.5);
 	margin-bottom: calc(var(--grid-size) * 9);
 }
 
@@ -20,7 +20,8 @@
 }
 
 .commands {
-	width: 80%;
+	width: 90%;
+	min-width: 400px;
 	height: calc(var(--grid-size) * 22);
 	background: var(--darker-background-color);
 	white-space: nowrap;
@@ -87,13 +88,12 @@
 	background: var(--darker-background-color);
 	font-size: 0.875em;
 	padding: calc(var(--grid-size) * 2.5);
-	width: calc(var(--grid-size) * 60);
 	max-width: calc(var(--grid-size) * 60);
 	height: calc(var(--grid-size) * 30);
-	margin-left: calc(var(--grid-size) * 12.5);
 	opacity: 0;
 	animation: fadeIn 1s linear 11s;
 	animation-fill-mode: forwards;
+	width: calc(var(--grid-size) * 20);
 }
 
 .keyword,
@@ -127,6 +127,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	margin-left: calc(var(--grid-size) * 2.5);
 }
 
 .cli {
@@ -144,7 +145,7 @@
 }
 
 .hide {
-	opacity: 0;
+	display: none;
 }
 
 .resultContent {
@@ -162,7 +163,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	left: calc(var(--grid-size) * 17.5);
 	position: absolute;
 	width: calc(var(--grid-size) * 35);
 	height: calc(var(--grid-size) * 25);

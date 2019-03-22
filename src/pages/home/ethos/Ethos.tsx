@@ -8,7 +8,7 @@ export default class Ethos extends WidgetBase {
 	protected render() {
 		return (
 			<section classes={[css.root]}>
-				<Card extraClasses={{ root: css.ethosPoint }}>
+				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.productive]}>
 							<FontAwesomeIcon icon="code-branch" />
@@ -20,7 +20,7 @@ export default class Ethos extends WidgetBase {
 						sustainability and code management.
 					</div>
 				</Card>
-				<Card extraClasses={{ root: css.ethosPoint }}>
+				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.adaptable]}>
 							<FontAwesomeIcon icon="plug" />
@@ -32,7 +32,7 @@ export default class Ethos extends WidgetBase {
 						solutions available today on the open web.
 					</div>
 				</Card>
-				<Card extraClasses={{ root: css.ethosPoint }}>
+				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.inclusive]}>
 							<FontAwesomeIcon icon="users" />

@@ -70,7 +70,8 @@ export default class Features extends WidgetBase {
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Internationalization</h3>
 								<div>
-									Dojo provides the tools to allow you to internationalize your application with ease.
+									Dojo provides the tools to allow you to internationalize your application with ease,
+									serving your web app in the language of your users.
 								</div>
 							</li>
 							<li>

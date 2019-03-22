@@ -21,19 +21,22 @@
 }
 
 .featureCardRight {
-	max-width: 750px;
-	min-height: 500px;
-	margin: 100px auto 100px 0px;
+	min-height: calc(var(--grid-size) * 40);
+	width: 45%;
+	margin: calc(var(--grid-size) * 10) calc(var(--grid-size) * 20) calc(var(--grid-size) * 10) 0px;
+	padding: calc(var(--grid-size) * 3.5);
 }
 
 .featureCardLeft {
-	max-width: 750px;
-	min-height: 500px;
-	margin: 100px 0 100px auto;
+	min-height: calc(var(--grid-size) * 40);
+	width: 45%;
+	margin: calc(var(--grid-size) * 10) 0 calc(var(--grid-size) * 10) calc(var(--grid-size) * 20);
+	padding: calc(var(--grid-size) * 3.5);
 }
 
 .featureContent {
 	display: flex;
+	padding: 0;
 }
 
 .topFeaturePoint {
@@ -47,7 +50,7 @@
 	justify-content: center;
 	list-style-type: none;
 	margin: 0;
-	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
+	padding: 0;
 }
 
 .featureTitle {
@@ -57,6 +60,7 @@
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	margin: calc(var(--grid-size) * 2.5);
 }
 
 @media (max-width: 960px) {
@@ -64,7 +68,7 @@
 		flex-direction: column;
 	}
 	.featureTitle {
-		margin: 50px auto;
+		margin: calc(var(--grid-size) * 5) auto calc(var(--grid-size) * 2.5) auto;
 		width: 80%;
 	}
 	.featureTwo {
@@ -73,11 +77,15 @@
 	.featureCardLeft {
 		height: 100%;
 		width: inherit;
-		margin: 25px;
+		margin: calc(var(--grid-size) * 2.5);
+		margin-bottom: calc(var(--grid-size) * 5);
+		max-width: initial;
 	}
 	.featureCardRight {
 		width: inherit;
-		margin: 25px;
+		margin: calc(var(--grid-size) * 2.5);
 		height: 100%;
+		margin-bottom: calc(var(--grid-size) * 5);
+		max-width: initial;
 	}
 }
