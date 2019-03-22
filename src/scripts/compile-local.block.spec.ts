@@ -14,6 +14,7 @@ describe('content compiler', () => {
 	};
 	const mockRegisterHandlers = jest.spyOn(compiler, 'registerHandlers');
 	const mockGetLocalFile = jest.spyOn(compiler, 'getLocalFile');
+	const mockToDNodes = jest.spyOn(compiler, 'toDNodes');
 	const mockFromMarkdown = jest.spyOn(compiler, 'fromMarkdown');
 	const mockJoin = jest.spyOn(path, 'join');
 
@@ -21,15 +22,15 @@ describe('content compiler', () => {
 		jest.resetAllMocks();
 
 		mockRegisterHandlers.mockReturnValue(registeredHandlers);
-		mockFromMarkdown.mockResolvedValue('page content');
+		mockToDNodes.mockResolvedValue('page content');
 	});
 
 	it('should process', async () => {
 		mockJoin.mockReturnValueOnce(`/path/to/content/${filePath}`);
 
-		const expectedResult = 'page one content';
+		const expectedResult = '<p>page one content</p>';
 		mockGetLocalFile.mockReturnValueOnce(Promise.resolve(expectedResult));
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			path: 'path/to/one.md',
@@ -48,7 +49,7 @@ describe('content compiler', () => {
 
 		const expectedResult = 'page one content';
 		mockGetLocalFile.mockReturnValueOnce(Promise.resolve(expectedResult));
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			path: 'path/to/one.md',
@@ -67,7 +68,7 @@ describe('content compiler', () => {
 
 		const expectedResult = 'page one content';
 		mockGetLocalFile.mockReturnValueOnce(Promise.resolve(expectedResult));
-		mockFromMarkdown.mockReturnValueOnce(expectedResult);
+		mockToDNodes.mockReturnValueOnce(expectedResult);
 
 		const result = await compilerBuild({
 			path: 'path/to/one.md'
