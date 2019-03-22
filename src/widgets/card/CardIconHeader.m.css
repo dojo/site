@@ -4,7 +4,7 @@
 	padding: calc(var(--grid-size) * 7) 0;
 	display: flex;
 	justify-content: center;
-	color: #fff;
+	color: var(--color-white);
 	border-radius: var(--border-radius) var(--border-radius) 0 0;
 	transition: background 0.4s ease;
 	min-width: 60px;

@@ -3,12 +3,12 @@
 .root {
 	font-size: 0.95rem;
 	line-height: 1.65;
-	color: #999;
+	color: var(--color-light-gray);
 	padding: calc(var(--grid-size) / 2) 0;
 	display: block;
 	text-decoration: none;
 }
 
 .root.selected {
-	color: #333;
+	color:var(--color-dark-gray);;
 }

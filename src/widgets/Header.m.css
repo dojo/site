@@ -3,10 +3,8 @@
 .root {
 	--toggle-button-height: 20px;
 	--header-background-color: #212329;
-	--header-link-color: #999;
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
-	--link-color: #fff;
 	--logo-width: 110px;
 	--logo-height: 48px;
 	position: fixed;
@@ -51,12 +49,15 @@
 	min-width: 140px;
 	text-align: center;
 	text-decoration: none;
-	color: var(--link-color);
 	box-sizing: border-box;
-	color: var(--header-link-color);
+	color: var(--font-color-inverse);
 	text-transform: uppercase;
 	transition: 0.1s ease-in-out;
 	transition-property: color, background-color;
+}
+
+.link:hover {
+	color: var(--font-color-inverse-hover);
 }
 
 .homeLink {
