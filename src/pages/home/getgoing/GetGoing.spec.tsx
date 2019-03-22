@@ -17,7 +17,7 @@ describe('GetGoing', () => {
 					<a href="https://www.npmjs.com">npm</a> to get going quickly.
 				</p>
 				<div key="cli" classes={[css.cli]}>
-					<Card dark={true} extraClasses={{ root: css.commands }}>
+					<Card dark={true} extraClasses={{ root: css.commands, content: css.commandsContent }}>
 						<div classes={[css.command]}>
 							<span classes={[css.commandOne, css.commandOneAnimation]}>
 								npm i @dojo/cli @dojo/cli-create-app -g

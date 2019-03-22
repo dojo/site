@@ -11,7 +11,7 @@ describe('Features', () => {
 			<section classes={[css.root]}>
 				<div classes={[css.featureRow, css.featureOne]}>
 					<h1 classes={[css.featureTitle]}>A Complete Framework</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Widgets</h3>
@@ -38,7 +38,7 @@ describe('Features', () => {
 					</Card>
 				</div>
 				<div classes={[css.featureRow, css.featureTwo]}>
-					<Card depth={4} extraClasses={{ root: css.featureCardLeft, content: css.featureContent }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardLeft }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Centering Modern Standards</h3>
@@ -67,12 +67,13 @@ describe('Features', () => {
 				</div>
 				<div classes={[css.featureRow, css.featureThree]}>
 					<h1 classes={[css.featureTitle]}>Build for Everyone</h1>
-					<Card depth={4} extraClasses={{ root: css.featureCardRight, content: css.featureContent }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardRight }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Internationalization</h3>
 								<div>
-									Dojo provides the tools to allow you to internationalize your application with ease.
+									Dojo provides the tools to allow you to internationalize your application with ease,
+									serving your web app in the language of your users.
 								</div>
 							</li>
 							<li>
