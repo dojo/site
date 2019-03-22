@@ -48,7 +48,7 @@ describe('Post', () => {
 		h.expect(() => (
 			<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
 				<Link to="blog-post" params={{ path: 'path' }} classes={css.headerLink}>
-					<h1>title</h1>
+					<h1 classes={css.header}>title</h1>
 				</Link>
 				<p classes={css.meta}>
 					{'author'} {'October 15, 2018, 12:00 PM'}
@@ -76,7 +76,7 @@ describe('Post', () => {
 		const h = harness(() => <PostMock path="path" standalone />);
 		h.expect(() => (
 			<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
-				<h1>title</h1>
+				<h1 classes={css.header}>title</h1>
 				<p classes={css.meta}>
 					{'author'} {'October 15, 2018, 12:00 PM'}
 				</p>
