@@ -46,7 +46,7 @@
 	}
 	.ethosPoint {
 		width: initial;
-		margin: calc(var(--grid-size) * 2) calc(var(--grid-size) * 2.5) calc(var(--grid-size) * 2.5);
+		margin: calc(var(--grid-size) * 2) 0;
 	}
 	.ethos {
 		margin: 0;
