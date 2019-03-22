@@ -43,7 +43,7 @@ export default class Examples extends WidgetBase {
 	);
 
 	protected render() {
-		const examples = (this.meta(Block).run(getExamples)() as any) as ExampleMeta[];
+		const examples: ExampleMeta[] = this.meta(Block).run(getExamples)() as any;
 
 		return (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
@@ -57,7 +57,7 @@ export default class Examples extends WidgetBase {
 										classes={{ 'dojo.io/Card': { content: [css.cardContent] } }}
 										footer={this.renderCardFooter(example)}
 										header={this.renderCardHeader(example)}
-										url={`http://dojo.github.io/examples/${example.exampleName}/`}
+										url={example.demo}
 									>
 										<h4 classes={css.title}>{example.example.children}</h4>
 										{example.overview.children}

@@ -84,7 +84,7 @@ describe('Examples', () => {
 										}}
 									/>
 								}
-								url="http://dojo.github.io/examples/name/"
+								url="demo"
 							>
 								<h4 classes={css.title} />
 							</LinkedCard>
