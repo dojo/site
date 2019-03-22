@@ -11,7 +11,7 @@ import SideMenuItem from './SideMenuItem';
 describe('Side Menu Item', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<li key="menu-item" classes={css.root}>
-			<ActiveLink key="link" to="outlet" params={undefined} classes={css.link} activeClasses={[css.selected]}>
+			<ActiveLink key="link" to="outlet" params={undefined} classes={[css.link]} activeClasses={[css.selected]}>
 				A link
 			</ActiveLink>
 		</li>
@@ -42,7 +42,9 @@ describe('Side Menu Item', () => {
 				</SideMenuItem>
 			));
 
-			const assertion = baseAssertion.setProperty('@link', 'activeClasses', [css.selectedInverse]);
+			const assertion = baseAssertion
+				.setProperty('@link', 'activeClasses', [css.selected])
+				.setProperty('@link', 'classes', [css.link, css.inverse]);
 			h.expect(assertion);
 		});
 	});
@@ -63,7 +65,7 @@ describe('Side Menu Item', () => {
 	describe('dropdown link', () => {
 		const baseDropdownAssertion = assertionTemplate(() => (
 			<li key="menu-item" classes={css.root}>
-				<button key="link" classes={[css.link, css.dropdownLink, undefined]} onclick={() => {}}>
+				<button key="link" classes={[css.link, css.dropdownLink]} onclick={() => {}}>
 					<FontAwesomeIcon
 						key="toggleIcon"
 						icon="chevron-right"
@@ -125,7 +127,7 @@ describe('Side Menu Item', () => {
 
 			const assertion = baseDropdownAssertion
 				.prepend('@link', ['A link'])
-				.setProperty('@link', 'classes', [css.link, css.dropdownLink, css.selectedInverse]);
+				.setProperty('@link', 'classes', [css.link, css.dropdownLink, css.selected, css.inverse]);
 
 			h.expect(assertion);
 		});

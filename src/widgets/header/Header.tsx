@@ -8,6 +8,7 @@ const logo = require('../../assets/logo.svg');
 import ReferenceGuideMenu from '../../pages/reference-guides/ReferenceGuideMenu';
 import SideMenuItemList from '../menu/SideMenuItemList';
 import SideMenuItem from '../menu/SideMenuItem';
+import { toSlug } from '../../util/to-slug';
 
 import * as css from './Header.m.css';
 
@@ -66,7 +67,7 @@ export default class Menu extends WidgetBase {
 								</SideMenuItem>
 							),
 							<SideMenuItem
-								to={page.toLowerCase().replace(' ', '-')}
+								to={toSlug(page)}
 								classes={{
 									'dojo.io/SideMenuItem': {
 										root: [

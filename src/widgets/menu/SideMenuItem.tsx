@@ -5,6 +5,7 @@ import ActiveLink from '@dojo/framework/routing/ActiveLink';
 import { Params } from '@dojo/framework/routing/interfaces';
 
 import FontAwesomeIcon from '../icon/FontAwesomeIcon';
+import { toSlug } from '../../util/to-slug';
 
 import * as css from './SideMenuItem.m.css';
 
@@ -27,17 +28,16 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 		const { name = '', inverse = false } = this.properties;
 
 		const url = window.location.pathname;
-		let activeClass: string | undefined = undefined;
-		if (name !== '' && new RegExp(name.toLowerCase().replace(' ', '-'), 'g').test(url)) {
-			activeClass = inverse ? css.selectedInverse : css.selected;
+		let linkClasses: string[] = [css.link, css.dropdownLink];
+		if (name !== '' && url.includes(toSlug(name))) {
+			linkClasses.push(css.selected);
+		}
+		if (inverse) {
+			linkClasses.push(css.inverse);
 		}
 
 		return [
-			<button
-				key="link"
-				classes={this.theme([css.link, css.dropdownLink, activeClass])}
-				onclick={() => this._toggleDropDown()}
-			>
+			<button key="link" classes={this.theme(linkClasses)} onclick={() => this._toggleDropDown()}>
 				{name}
 				<FontAwesomeIcon
 					key="toggleIcon"
@@ -52,6 +52,11 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 	protected render() {
 		const { to, params, inverse = false } = this.properties;
 
+		let linkClasses: string[] = [css.link];
+		if (inverse) {
+			linkClasses.push(css.inverse);
+		}
+
 		return (
 			<li key="menu-item" classes={this.theme(css.root)}>
 				{to ? (
@@ -64,8 +69,8 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 							key="link"
 							to={to}
 							params={params}
-							classes={this.theme(css.link)}
-							activeClasses={this.theme([inverse ? css.selectedInverse : css.selected])}
+							classes={this.theme(linkClasses)}
+							activeClasses={this.theme([css.selected])}
 						>
 							{this.children}
 						</ActiveLink>

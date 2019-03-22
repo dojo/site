@@ -23,6 +23,8 @@
 	--link-color: var(--color-blue);
 	--link-color-hover: var(--color-dark-blue);
 
+	--header-background-color: #212329;
+
 	--border-radius: 4px;
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);

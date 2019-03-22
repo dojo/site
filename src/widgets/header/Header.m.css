@@ -4,7 +4,6 @@
 	--toggle-button-height: calc(var(--grid-size) * 2);
 	--header-background-color: #212329;
 	--shadow-color: rgba(0, 0, 0, 0.5);
-	--header-background-color: #212329;
 	--toggle-button-color: #d3d3d3;
 	--logo-width: calc(var(--grid-size) * 11);
 	--logo-height: calc(var(--grid-size) * 4.8);

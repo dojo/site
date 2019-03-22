@@ -8,11 +8,17 @@
 .link {
 	font-size: 0.95rem;
 	line-height: 1.65;
+	background-color: var(--color-white);
 	color: var(--color-light-gray);
 	padding: calc(var(--grid-size) / 2) 0;
 	display: inline-block;
 	text-decoration: none;
 	position: relative;
+}
+
+.link.inverse {
+	background-color: var(--header-background-color);
+	color: var(--font-color-inverse);
 }
 
 .root.selected {
@@ -21,28 +27,11 @@
 
 .link:hover,
 .link:focus {
+	color: var(--font-color-hover);
 	text-decoration: none;
 }
 
-.link::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 100%;
-	border-bottom: 1px solid var(--color-dark-gray);
-	transition: right 0.3s ease-out;
-}
-
-.link:hover::before {
-	right: 0;
-}
-
 @media (max-width: 768px) {
-	.link::before {
-		content: none;
-	}
-
 	.link:hover {
 		color: var(--color-light-gray);
 	}
@@ -50,12 +39,13 @@
 
 .dropdownLink.selected,
 .link.selected {
-	color: #333;
+	color: var(--font-color-hover);
 }
 
-.dropdownLink.selectedInverse,
-.link.selectedInverse {
-	color: #fff;
+.dropdownLink.selected.inverse,
+.link.selected.inverse {
+	color: var(--font-color-inverse-hover);
+	background-color: var(--header-background-color);
 }
 
 .dropdownLink {
