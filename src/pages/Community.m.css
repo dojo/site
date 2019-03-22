@@ -12,7 +12,7 @@
 	align-items: center;
 	width: 150px;
 	background-color: #f6f6f6;
-	color: rgb(141, 120, 132);
+	color: var(--font-color);
 	border-color: #f6f6f6;
 	width: 20%;
 	border-radius: calc(var(--grid-size) * 3.5);
@@ -24,7 +24,7 @@
 }
 
 .link:hover {
-	color: #63545c;
+	color: var(--font-color-hover);
 	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
 	transform: translateY(-1px);
 	transition: all 0.3s;

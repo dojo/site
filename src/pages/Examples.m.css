@@ -44,7 +44,7 @@
 
 .linkBtn {
 	border-left: 1px solid var(--color-border);
-	color: var(--color-copy);
+	color: var(--font-color);
 	display: inline-block;
 	padding: calc(var(--card-padding) / 2) var(--card-padding);
 	position: relative;
@@ -53,7 +53,7 @@
 
 .linkBtn:hover {
 	box-shadow: 0 0 2px 0 var(--color-border);
-	color: var(--color-dark-copy);
+	color: var(--font-color-hover);
 }
 
 .root .cardContent {

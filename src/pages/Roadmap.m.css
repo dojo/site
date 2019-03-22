@@ -53,7 +53,7 @@
 }
 
 .timelineEntry:not(.released) .timelineDate {
-	color: var(--color-dark-gray);
+	color: var(--color-gray);
 	font-weight: 600;
 }
 
