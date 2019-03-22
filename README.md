@@ -1,6 +1,28 @@
 # dojo.io
 
+[![Build Status](https://travis-ci.org/dojo/site.svg?branch=master)](https://travis-ci.org/dojo/site)
+
 Next generation dojo.io.
+
+- [Running dojo.io Locally](#running-dojoio-locally)
+- [Build Time Renderer (BTR)](#build-time-renderer-btr)
+- [Code Splitting](#code-splitting)
+- [Content Pipeline](#content-pipeline)
+	- [Markdown Compiler](#markdown-compiler)
+	- [Available Widgets](#available-widgets)
+		- [Alert](#alert)
+		- [Aside](#aside)
+		- [CodeBlock](#codeblock)
+		- [CodeSandbox](#codesandbox)
+	- [Adding New Widgets](#adding-new-widgets)
+- [Adding Content](#adding-content)
+	- [Blog Post](#blog-post)
+	- [Tutorial](#tutorial)
+	- [Reference Guide](#reference-guide)
+	- [Roadmap Entry](#roadmap-entry)
+- [Fontawesome Icons Widget](#fontawesome-icons-widget)
+- [Tests](#tests)
+- [Now Deployments](#now-deployments)
 
 ## Running dojo.io Locally
 
@@ -20,20 +42,9 @@ Each route defined in the `.dojorc` file for BTR should have its own unique `Out
 
 In Dojo 5, a new feature was introduced to the Build Time Renderer called `Blocks`. `Blocks` allow us to run nodejs code during the BTR process, cache the results in the javascript output, and render them in the client. This forms the basis of the content pipeline.
 
-In the content pipeline there are two Blocks at current (found under `src/scripts`):
+The site's Blocks can be found under `src/scripts`, labeled with a `.block.ts` extension.
 
-- `SectionList`
-- `Compile`
-
-Both Blocks start by reading the `manifest.json` file under `content`.
-
-### SectionList
-
-SectionList reads the `manifest.json` file, pulls out a section and returns a list of pages (grouped by subsection). This is used for generating menus within a section (**example**: Tutorials).
-
-![Tutorials Menu](./docs/tutorials-menu.png)
-
-### Compile
+### Markdown Compiler
 
 Compile tasks a path to a markdown file, relative to the `content` path, as an input. The markdown file is then run through `remark`, which converts it to HTML and looks for specially designated tags to convert to Dojo widgets. This is used for generating entire pages from markdown.
 
@@ -154,6 +165,140 @@ You can add any Dojo widget to the handlers list by following the steps below.
 	2. Define your widget in the registry: `registry.define('docs-alert', Alert);`
 		- The handle to use is the lowercase version of the name you put in `handlers` with `docs-` added to the front.
 3. (`Optional`) If your widget needs custom parsing logic (**example**: `CodeBlock`), you can add a widget creation function to the `widgets` list in the `src/scripts/compiler.ts` file. Use the handle you put in `main.tsx` to register your widget creation function.
+
+## Adding Content
+
+### Blog Post
+
+1. Add a markdown file to the `content/blog/en` folder, in the following format.
+	> content/blog/en/new-post.md
+	```markdown
+	---
+	title: New Post
+	date: 2019-03-22T12:00:00.000Z
+	author: The Author
+	---
+	## New Post
+
+	The description to show on the blog index page.
+
+	![The image for the blog](/assets/blog/title-of-blog/featured.png)
+	<!-- more -->
+	
+	## Another header in the blog after the break
+	
+	More content for the blog after the break
+	```
+2. Add a path for the blog to the `.dojorc` file.
+	**Example**: `"blog/new-post",`
+
+### Tutorial
+
+Coming soon.
+
+### Reference Guide
+
+1. Reference Guides should be added to the repository of the referenced content (most likely `dojo/framework`). The reference guide should consist of the following 3 files:
+
+	- `introduction.md`
+	- `basic-usage.md`
+	- `supplemental.md`
+
+	Pages will be generated for the introduction and basic usage files, and one page for each top level header (`h1`) in the supplemental file.
+2. Add page paths (for introduction, basic usage and each top level header (`h1`) in supplemental) to the `.dojorc` file.
+
+	**Example**:
+	> .dojo.rc
+	```json
+	"reference-guides/i18n/introduction",
+	"reference-guides/i18n/basic-usage",
+	"reference-guides/i18n/working-with-message-bundles",
+	"reference-guides/i18n/internationalizing-a-dojo-application",
+	"reference-guides/i18n/advanced-formatting-cldr",
+	"reference-guides/i18n/standalone-api",
+	```
+3. Add a route for the reference guide to `routes.ts`.
+	**Example**:
+	> src/routes.ts
+	```ts
+	{
+		path: 'reference-guides/i18n/{page}',
+		outlet: 'reference-guide-i18n'
+	}
+	```
+4. Add an outlet for the route to the `ReferenceGuides` widget.
+	**Example**:
+	> src/pages/reference-guides/ReferenceGuides.tsx
+	```ts
+	<Outlet
+		key="reference-guide-i18n"
+		id="reference-guide-i18n"
+		renderer={(matchDetails) => {
+			const { page } = matchDetails.params;
+			return (
+				<ReferenceGuide
+					name="i18n"
+					repo="dojo/framework"
+					path="docs/:locale:/i18n"
+					route="reference-guide-i18n"
+					page={page}
+				/>
+			);
+		}}
+	/>
+	```
+5. Add a landing link to the `ReferenceGuidesLanding` widget in `src/pages`.
+	**Example**:
+	> src/pages/ReferenceGuidesLanding.tsx
+	```ts
+	<LandingLink
+		title={messages.i18n}
+		icon="globe"
+		to="reference-guide-i18n"
+		params={{ page: 'introduction' }}
+	>
+		{messages.i18nDescription}
+	</LandingLink>
+	```
+6. Add a menu entry to the `Header` widget for use in the hamburger menu on mobile.
+	**Example**:
+	> src/widgets/header/Header.tsx
+	```
+	<ReferenceGuideMenu
+		name="i18n"
+		route="reference-guide-i18n"
+		repo="dojo/framework"
+		path="docs/:locale:/i18n"
+		standaloneMenu={false}
+	/>
+	```
+
+### Roadmap Entry
+
+Add a markdown file to the `content/roadmap/en` folder, in the following format.
+> content/blog/en/new-post.md
+```markdown
+---
+title: Dojo 6
+date: Q2 2019
+released: false
+---
+
+Features coming in Dojo X
+
+- A feature
+- A shiny feature
+- A shinier feature
+- The shiniest feature
+```
+
+#### Dates
+
+Dates in the roadmap section can be of two formats:
+1. Quarter format. **Example**: Q2 2019, **Parsed Value**: June 30, 2019 23:59 GMT
+2. Month format. **Example**: January 2019, **Parsed Value**: January 31, 2019 23:59 GMT
+
+The entries will be sorted by the parsed date. If the date cannot be parsed, it will be sorted to the top of the roadmap.
 
 ## Fontawesome Icons Widget
 
