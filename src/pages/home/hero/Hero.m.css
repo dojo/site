@@ -40,7 +40,7 @@
 @media (max-width: 960px) {
 	.headline {
 		font-size: 1.25em;
-		width: calc(var(--grid-size) * 37.5);
+		width: calc(var(--grid-size) * 28);
 	}
 	.build {
 		width: calc(var(--grid-size) * 25);

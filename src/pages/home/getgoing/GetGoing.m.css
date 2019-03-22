@@ -21,7 +21,6 @@
 
 .commands {
 	width: 90%;
-	min-width: 400px;
 	height: calc(var(--grid-size) * 22);
 	background: var(--darker-background-color);
 	white-space: nowrap;
@@ -163,7 +162,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
+	position: absolute !important;
 	width: calc(var(--grid-size) * 35);
 	height: calc(var(--grid-size) * 25);
 	top: calc(var(--grid-size) * 7.5);
@@ -196,13 +195,26 @@
 		padding: 0;
 		height: calc(var(--grid-size) * 7);
 	}
-	.content {
-		padding: 0;
-	}
 	.cli {
 		flex-direction: column;
 	}
 	.codeContainer {
 		display: none;
+	}
+	@keyframes typeOne {
+		to {
+			width: 23em;
+		}
+	}
+	@keyframes typeTwo {
+		to {
+			width: 20em;
+		}
+	}
+}
+
+@media (max-width: 340px) {
+	.commandsContent {
+		padding: var(--grid-size) !important;
 	}
 }

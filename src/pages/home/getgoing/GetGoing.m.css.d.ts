@@ -23,4 +23,4 @@ export const hide: string;
 export const resultContent: string;
 export const result: string;
 export const check: string;
-export const content: string;
+export const commandsContent: string;

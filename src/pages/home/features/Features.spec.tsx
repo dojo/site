@@ -38,7 +38,7 @@ describe('Features', () => {
 					</Card>
 				</div>
 				<div classes={[css.featureRow, css.featureTwo]}>
-				<Card depth={4} extraClasses={{ root: css.featureCardLeft, content: css.featureContent }}>
+					<Card depth={4} extraClasses={{ root: css.featureCardLeft, content: css.featureContent }}>
 						<ul classes={[css.featurePoints]}>
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Centering Modern Standards</h3>

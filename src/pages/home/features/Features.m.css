@@ -80,6 +80,7 @@
 		margin: calc(var(--grid-size) * 2.5);
 		margin-bottom: calc(var(--grid-size) * 5);
 		max-width: initial;
+		padding: 0;
 	}
 	.featureCardRight {
 		width: inherit;
@@ -87,5 +88,6 @@
 		height: 100%;
 		margin-bottom: calc(var(--grid-size) * 5);
 		max-width: initial;
+		padding: 0;
 	}
 }
