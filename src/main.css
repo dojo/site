@@ -9,7 +9,7 @@ html {
 	line-height: 1.65;
 	-webkit-text-size-adjust: 100%;
 	background: var(--color-white);
-	color: #666;
+	color: var(--font-color);
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 
 /* Code */
 blockquote {
-	color: #c1c1c1;
+	color: var(--color-white);
 	font-size: 12px;
 	font-weight: 500;
 	text-align: left;
@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-	color: #333;
+	color: var(--font-color);
 	font-weight: normal;
 	line-height: 1.25;
 	margin-bottom: calc(var(--grid-size) * 2);
@@ -159,11 +159,12 @@ h6 {
 }
 
 a {
-	color: #0f6ecd;
+	color: var(--link-color);
 	text-decoration: none;
 }
 
 a:hover {
+	color: var(--link-color-hover);
 	text-decoration: underline;
 }
 
@@ -171,4 +172,8 @@ ul {
 	padding-left: 2em;
 	margin-top: 0;
 	margin-bottom: 16px;
+}
+
+img {
+	max-width: 100%;
 }

@@ -15,7 +15,7 @@ import App from './App';
 
 const registry = new Registry();
 
-registerRouterInjector(routes, registry, { HistoryManager: StateHistory });
+const router = registerRouterInjector(routes, registry, { HistoryManager: StateHistory });
 
 registry.define('docs-alert', Alert);
 registry.define('docs-aside', Aside);
@@ -26,3 +26,5 @@ registry.define('docs-blogimage', BlogImage);
 const r = renderer(() => <App />);
 const domNode = document.getElementById('root') as HTMLElement;
 r.mount({ registry, domNode });
+
+router.on('nav', () => scroll(0, 0));

@@ -2,20 +2,26 @@
 	/* Color Pallette */
 
 	--color-white: #ffffff;
-	--color-off-white: #f3f3f3;
+	--color-off-white: #ccc;
 	--color-black: #000000;
-	--color-blue: #009dff;
+	--color-light-blue: #009dff;
+	--color-blue: #0f6ecd;
+	--color-dark-blue: #0a4784;
 	--color-purple: #862790;
 	--color-red: #c42826;
 	--color-green: #2ab770;
 	--color-border: rgba(0, 0, 0, 0.1);
 	--color-light-gray: #999;
-	--color-dark-gray: #555;
+	--color-gray: #555;
+	--color-dark-gray: #333;
+	--color-black: #000;
 
-	--header-link-color: var(--color-light-gray);
-	--color-copy: var(--color-light-gray);
-	--color-dark-copy: var(--color-dark-gray);
-	--link-color: var(--color-white);
+	--font-color: var(--color-dark-gray);
+	--font-color-hover: var(--color-black);
+	--font-color-inverse: var(--color-off-white);
+	--font-color-inverse-hover: var(--color-white);
+	--link-color: var(--color-blue);
+	--link-color-hover: var(--color-dark-blue);
 
 	--border-radius: 4px;
 	--grid-size: 10px;

@@ -1,12 +1,14 @@
 import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/widget-core/interfaces';
-import { fromMarkdown } from './compile';
+import { select } from '@dojo/framework/testing/support/selector';
+
+import { fromMarkdown, toDNodes } from './compile';
 
 const README_URL = 'https://raw.githubusercontent.com/dojo/examples/master/README.md';
 
 export interface ExampleMeta {
 	code: VNode;
-	demo: VNode;
+	demo: string;
 	example: VNode;
 	exampleName: string;
 	overview: VNode;
@@ -30,12 +32,18 @@ export default async function(): Promise<ExampleMeta[]> {
 			.map((value) => value.trim())
 			.filter((value) => value);
 		const exampleName = data[1].replace(/((^\[Link\]\(\.\/)|(\)$))/g, '');
+		const demoLink = select('a', toDNodes(fromMarkdown(data[2], {})));
+		let demoUrl = '';
+		if (demoLink && demoLink.length === 1) {
+			demoUrl = (demoLink[0].properties as any).href;
+		}
+
 		return {
-			[keys[0]]: fromMarkdown(data[0], {}),
-			[keys[1]]: fromMarkdown(data[1], {}),
-			[keys[2]]: fromMarkdown(data[2], {}),
+			[keys[0]]: toDNodes(fromMarkdown(data[0], {})),
+			[keys[1]]: toDNodes(fromMarkdown(data[1], {})),
+			[keys[2]]: demoUrl,
 			[keys[3]]: data.length === keys.length,
-			[keys[4]]: fromMarkdown(data.length === keys.length ? data[4] : data[3], {}),
+			[keys[4]]: toDNodes(fromMarkdown(data.length === keys.length ? data[4] : data[3], {})),
 			exampleName
 		};
 	});

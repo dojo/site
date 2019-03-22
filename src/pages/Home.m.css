@@ -91,7 +91,7 @@
 
 .command {
 	font-family: monospace;
-	color: var(--color-off-white);
+	color: var(--font-color-inverse);
 	font-size: 1rem;
 	display: flex;
 }

@@ -3,3 +3,9 @@
 .root {
 	width: calc(var(--grid-size) * 100) !important;
 }
+
+@media (max-width: 1000px) {
+	.root {
+		min-width: 90vw;
+	}
+}

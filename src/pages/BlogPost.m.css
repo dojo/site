@@ -9,9 +9,10 @@
 }
 
 .headerLink,
+.headerLink .header,
 .readMoreLink {
+	color: var(--font-color);
 	position: relative;
-	color: var(--color-light-gray);
 	text-decoration: none;
 }
 
@@ -21,16 +22,24 @@
 	bottom: 0;
 	left: 0;
 	right: 100%;
-	border-bottom: 1px solid var(--color-dark-gray);
+	border-bottom: 1px solid var(--color-gray);
 	transition: right 0.3s ease-out;
 }
 
 .headerLink:hover,
+.headerLink:hover .header,
 .readMoreLink:hover {
-	color: var(--color-dark-gray);
+	color: var(--font-color-hover);
 	text-decoration: none;
 }
 
 .readMoreLink:hover::before {
 	right: 0;
+}
+
+@media (max-width: 1000px) {
+	.root {
+		width: 90vw;
+		margin: 0 auto;
+	}
 }

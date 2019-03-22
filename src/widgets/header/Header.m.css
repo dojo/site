@@ -2,6 +2,7 @@
 
 .root {
 	--toggle-button-height: calc(var(--grid-size) * 2);
+	--header-background-color: #212329;
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--header-background-color: #212329;
 	--toggle-button-color: #d3d3d3;
@@ -66,6 +67,10 @@
 
 .link:hover::before {
 	right: 0;
+}
+
+.link:hover {
+	color: var(--font-color-inverse-hover);
 }
 
 .homeLink {
@@ -258,6 +263,6 @@
 	}
 
 	.link:hover {
-		color: inherit;
+		color: var(--color-light-gray);
 	}
 }

@@ -8,15 +8,15 @@
 .link {
 	font-size: 0.95rem;
 	line-height: 1.65;
-	color: #999;
+	color: var(--color-light-gray);
 	padding: calc(var(--grid-size) / 2) 0;
 	display: inline-block;
 	text-decoration: none;
 	position: relative;
 }
 
-.link:hover {
-	color: #333;
+.root.selected {
+	color: var(--color-dark-gray);
 }
 
 .link:hover,
@@ -44,7 +44,7 @@
 	}
 
 	.link:hover {
-		color: inherit;
+		color: var(--color-light-gray);
 	}
 }
 

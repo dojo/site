@@ -50,22 +50,25 @@ describe('Examples', () => {
 		const ExamplesMock = mockMetaMixin(Examples, mockMeta);
 		const h = harness(() => <ExamplesMock />);
 		h.expect(() => (
-			<Landing>
+			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<LandingSubsection>
 					<h2>Examples</h2>
 					<Grid>
 						<div key="name" classes={css.card}>
 							<LinkedCard
+								classes={{ 'dojo.io/Card': { content: [css.cardContent] } }}
 								footer={
 									<div classes={css.footer}>
 										<a
 											href="https://codesandbox.io/s/github/dojo/examples/tree/master/name"
+											target="_blank"
 											classes={css.linkBtn}
 										>
 											<FontAwesomeIcon icon="laptop-code" />
 										</a>
 										<a
 											href="https://github.com/dojo/examples/tree/master/name"
+											target="_blank"
 											classes={css.linkBtn}
 										>
 											<FontAwesomeIcon icon="code-branch" />
@@ -81,7 +84,7 @@ describe('Examples', () => {
 										}}
 									/>
 								}
-								url="http://dojo.github.io/examples/name/"
+								url="demo"
 							>
 								<h4 classes={css.title} />
 							</LinkedCard>

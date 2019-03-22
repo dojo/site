@@ -29,13 +29,13 @@
 }
 
 @media (max-width: 768px) {
-	.content {
+	.root .content {
 		min-width: 90vw;
 		margin: 0 auto;
 		max-width: 90vw;
 	}
 
-	.contentShiftRight {
+	.root .contentShiftRight {
 		margin-left: 0;
 		width: 100vw;
 		padding: 0;
