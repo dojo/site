@@ -56,6 +56,16 @@ pre {
 	white-space: pre-wrap;
 }
 
+@media (max-width: 768px) {
+	blockquote {
+		padding: 5px 15px;
+	}
+
+	pre[class*='language-'] {
+		font-size: 14px;
+	}
+}
+
 /* Headings
 ========================================================================== */
 h1,
@@ -113,6 +123,41 @@ h6 {
 	margin-top: 40px;
 }
 
+@media (max-width: 768px) {
+	h1 {
+		font-size: 24px;
+	}
+
+	h2 {
+		font-size: 22px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	h4 {
+		font-size: 18px;
+	}
+
+	h5 {
+		font-size: 16px;
+	}
+
+	h6 {
+		font-size: 14px;
+	}
+
+	* + h1,
+	* + h2,
+	* + h3,
+	* + h4,
+	* + h5,
+	* + h6 {
+		margin-top: 25px;
+	}
+}
+
 a {
 	color: var(--link-color);
 	text-decoration: none;
@@ -127,4 +172,8 @@ ul {
 	padding-left: 2em;
 	margin-top: 0;
 	margin-bottom: 16px;
+}
+
+img {
+	max-width: 100%;
 }

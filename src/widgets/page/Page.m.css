@@ -27,3 +27,18 @@
 .contentShiftRight {
 	margin-left: calc(var(--grid-size) * 45);
 }
+
+@media (max-width: 768px) {
+	.root .content {
+		min-width: 90vw;
+		margin: 0 auto;
+		max-width: 90vw;
+	}
+
+	.root.contentShiftRight {
+		margin-left: 0;
+		width: 100vw;
+		padding: 0;
+		padding-top: var(--grid-size);
+	}
+}

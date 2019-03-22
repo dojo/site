@@ -23,15 +23,26 @@
 	--link-color: var(--color-blue);
 	--link-color-hover: var(--color-dark-blue);
 
+	--header-background-color: #212329;
+
 	--border-radius: 4px;
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);
 
-	--content-top-padding: calc(var(--grid-size) * 6);
-	--content-padding: calc(var(--grid-size) * 3);
 	--hero-background: #17191c;
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 8);
 	--dark-background-color: #141414;
+
+	--content-top-padding: calc(var(--grid-size) * 6);
+	--content-padding: calc(var(--grid-size) * 3);
+}
+
+@media (max-width: 768px) {
+	:root {
+		--header-size: calc(var(--grid-size) * 6);
+		--content-top-padding: var(--grid-size);
+		--content-padding: var(--grid-size);
+	}
 }

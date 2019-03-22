@@ -1,12 +1,12 @@
-@import '../variables.css';
+@import '../../variables.css';
 
 .root {
-	--toggle-button-height: 20px;
+	--toggle-button-height: calc(var(--grid-size) * 2);
 	--header-background-color: #212329;
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
-	--logo-width: 110px;
-	--logo-height: 48px;
+	--logo-width: calc(var(--grid-size) * 11);
+	--logo-height: calc(var(--grid-size) * 4.8);
 	position: fixed;
 	width: 100vw;
 	background: var(--header-background-color);
@@ -31,11 +31,13 @@
 	height: auto;
 	width: auto;
 	background: none;
+	flex-direction: row;
 }
 
 .menuItem {
 	text-align: right;
-	margin: 10px;
+	margin: var(--grid-size);
+	text-transform: uppercase;
 }
 
 .left {
@@ -45,15 +47,25 @@
 }
 
 .link {
-	font-size: 0.9rem;
-	min-width: 140px;
-	text-align: center;
-	text-decoration: none;
-	box-sizing: border-box;
-	color: var(--font-color-inverse);
 	text-transform: uppercase;
-	transition: 0.1s ease-in-out;
-	transition-property: color, background-color;
+}
+
+.link::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 100%;
+	border-bottom: 1px solid var(--color-dark-gray);
+	transition: right 0.3s ease-out;
+}
+
+.link:hover {
+	color: var(--color-white);
+}
+
+.link:hover::before {
+	right: 0;
 }
 
 .link:hover {
@@ -136,7 +148,7 @@
 	display: none;
 	width: calc(var(--toggle-button-width) + calc(var(--grid-size) * 2));
 	height: var(--toggle-button-height);
-	margin: auto 10px;
+	margin: auto var(--grid-size);
 }
 
 .mainMenuToggle {
@@ -144,20 +156,34 @@
 	clip: rect(0, 0, 0, 0);
 }
 
+.smallScreenOnly {
+	display: none;
+}
+
 /* small screen */
 @media (max-width: 768px) {
+	.noSmallScreen {
+		display: none;
+	}
+
+	.smallScreenOnly {
+		display: list-item;
+	}
+
 	.toggleButton {
 		display: inline-block;
 	}
 
 	.menu {
 		position: fixed;
-		left: -200px;
+		left: -70vw;
 		top: var(--header-size);
 		height: 100%;
 		overflow-x: visible;
 		transition: left 0.3s ease, box-shadow 0.3s ease;
 		z-index: 999;
+		margin: 0;
+		opacity: 0.95;
 	}
 
 	.menuList {
@@ -165,9 +191,22 @@
 		padding: 2.5em 0 0;
 		box-shadow: -8px 0 8px var(--shadow-color);
 		min-height: 100%;
-		width: 200px;
+		width: 70vw;
 		background: var(--header-background-color);
 		display: block;
+		padding: var(--grid-size) calc(var(--grid-size) * 2);
+		box-sizing: border-box;
+	}
+
+	.menuItem {
+		text-transform: uppercase;
+		text-align: left;
+		margin: 0;
+	}
+
+	.dummyLink {
+		line-height: 1.65;
+		padding: calc(var(--grid-size) / 2) 0;
 	}
 
 	.centerContainer {
@@ -216,5 +255,13 @@
 
 	.mainMenuToggle:checked ~ .left {
 		z-index: 999;
+	}
+
+	.link::before {
+		content: none;
+	}
+
+	.link:hover {
+		color: var(--color-light-gray);
 	}
 }

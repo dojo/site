@@ -8,6 +8,7 @@ import Section from '../widgets/section/Section';
 
 import ReferenceGuideMenu from './reference-guides/ReferenceGuideMenu';
 import ReferenceGuide from './ReferenceGuide';
+import * as css from './ReferenceGuide.m.css';
 
 describe('ReferenceGuidesPage', () => {
 	switchLocale('en-US');
@@ -19,13 +20,15 @@ describe('ReferenceGuidesPage', () => {
 
 	const baseAssertionTemplate = assertionTemplate(() => (
 		<Section key="section">
-			<ReferenceGuideMenu route={route} repo={repo} branch={undefined} path={path} />
+			<div classes={css.menu}>
+				<ReferenceGuideMenu name="i18n" route={route} repo={repo} branch={undefined} path={path} />
+			</div>
 		</Section>
 	));
 
 	it('renders', () => {
 		const h = harness(() => (
-			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page={page} />
+			<ReferenceGuide name="i18n" route={route} repo={repo} branch={undefined} path={path} page={page} />
 		));
 
 		h.expect(
@@ -37,7 +40,7 @@ describe('ReferenceGuidesPage', () => {
 
 	it('renders supplemental page', () => {
 		const h = harness(() => (
-			<ReferenceGuide route={route} repo={repo} branch={undefined} path={path} page="some-page" />
+			<ReferenceGuide name="i18n" route={route} repo={repo} branch={undefined} path={path} page="some-page" />
 		));
 
 		h.expect(

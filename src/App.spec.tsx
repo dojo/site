@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import Playground from './pages/Playground';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
-import Header from './widgets/Header';
+import Header from './widgets/header/Header';
 import Roadmap from './pages/Roadmap';
 
 import App from './App';

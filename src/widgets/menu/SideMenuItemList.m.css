@@ -4,6 +4,12 @@
 	display: flex;
 	flex-direction: column;
 	list-style: none;
-	padding-left: 20px;
+	padding-left: calc(var(--grid-size) * 2);
 	margin: 0;
+}
+
+@media (max-width: 768px) {
+	.root {
+		padding-left: var(--grid-size);
+	}
 }

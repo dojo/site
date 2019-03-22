@@ -81,7 +81,7 @@
 .timelineMarker {
 	position: absolute;
 	left: calc(var(--grid-size) * -2);
-	top: calc(var(--grid-size) * 3.4);
+	top: calc(var(--grid-size) * 3);
 	border-radius: 50%;
 	width: calc(var(--grid-size) * 3.9);
 	height: calc(var(--grid-size) * 3.9);
@@ -89,10 +89,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 1;
 }
 
 .timelineEntry:first-child .timelineMarker {
-	top: calc(var(--grid-size) * 1.9);
+	top: calc(var(--grid-size) * 1.5);
 }
 
 .released .timelineMarker {
@@ -106,14 +107,6 @@
 }
 
 @media (max-width: 910px) {
-	.root {
-		padding: 0;
-	}
-
-	.pageContent {
-		min-width: calc(100% - 20px);
-	}
-
 	.timelineDetails {
 		border-left: none;
 		margin-left: 0;

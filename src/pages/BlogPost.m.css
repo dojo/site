@@ -36,3 +36,10 @@
 .readMoreLink:hover::before {
 	right: 0;
 }
+
+@media (max-width: 1000px) {
+	.root {
+		width: 90vw;
+		margin: 0 auto;
+	}
+}

@@ -2,7 +2,7 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Outlet from '@dojo/framework/routing/Outlet';
 
-import Header from './widgets/Header';
+import Header from './widgets/header/Header';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogPosts from './pages/blog/BlogPosts';
@@ -28,6 +28,8 @@ import { faLaptopCode } from '@fortawesome/free-solid-svg-icons/faLaptopCode';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons/faExternalLinkAlt';
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons/faBoxOpen';
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 
 library.add(
 	faCloudDownloadAlt,
@@ -41,7 +43,9 @@ library.add(
 	faLaptopCode,
 	faExternalLinkAlt,
 	faBoxOpen,
-	faBox
+	faBox,
+	faChevronRight,
+	faChevronDown
 );
 
 export default class App extends WidgetBase {
