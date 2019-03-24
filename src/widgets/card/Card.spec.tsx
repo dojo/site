@@ -12,7 +12,7 @@ import CardFooter from './CardFooter';
 
 describe('Card', () => {
 	const baseAssertion = assertionTemplate(() => (
-		<div key="card" data-test="card" classes={[css.root, null]}>
+		<div key="card" data-test="card" classes={[css.root, null, null]}>
 			{content()}
 		</div>
 	));
@@ -80,7 +80,14 @@ describe('Card', () => {
 	it('renders dark card', () => {
 		const h = harness(() => <Card dark />);
 
-		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark]);
+		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark, null]);
+		h.expect(assertion);
+	});
+
+	it('renders depth 4 card', () => {
+		const h = harness(() => <Card dark depth={4} />);
+
+		const assertion = baseAssertion.setProperty('@card', 'classes', [css.root, css.dark, css.depth4]);
 		h.expect(assertion);
 	});
 });

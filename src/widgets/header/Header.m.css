@@ -2,14 +2,13 @@
 
 .root {
 	--toggle-button-height: calc(var(--grid-size) * 2);
-	--header-background-color: #212329;
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
 	--logo-width: calc(var(--grid-size) * 11);
 	--logo-height: calc(var(--grid-size) * 4.8);
 	position: fixed;
-	width: 100vw;
 	background: var(--header-background-color);
+	width: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-content: flex-start;
@@ -184,6 +183,7 @@
 		z-index: 999;
 		margin: 0;
 		opacity: 0.95;
+		background: var(--responsive-header-background-color);
 	}
 
 	.menuList {
@@ -192,7 +192,6 @@
 		box-shadow: -8px 0 8px var(--shadow-color);
 		min-height: 100%;
 		width: 70vw;
-		background: var(--header-background-color);
 		display: block;
 		padding: var(--grid-size) calc(var(--grid-size) * 2);
 		box-sizing: border-box;

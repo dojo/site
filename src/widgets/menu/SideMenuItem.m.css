@@ -35,6 +35,9 @@
 	.link:hover {
 		color: var(--color-light-gray);
 	}
+	.link.inverse {
+		background-color: var(--responsive-header-background-color);
+	}
 }
 
 .dropdownLink.selected,

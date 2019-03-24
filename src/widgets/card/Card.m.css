@@ -11,6 +11,10 @@
 	position: relative;
 }
 
+.depth4 {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
 .content {
 	color: var(--font-color);
 	padding: calc(var(--grid-size) * 1.5) var(--card-padding) var(--card-padding);
