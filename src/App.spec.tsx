@@ -16,6 +16,7 @@ import Roadmap from './pages/Roadmap';
 
 import App from './App';
 import * as css from './App.m.css';
+import Footer from './widgets/footer/Footer';
 
 interface Page {
 	outlet: string;
@@ -40,6 +41,7 @@ describe('App', () => {
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />
 				</div>
+				<Footer />
 			</div>
 		));
 	});
