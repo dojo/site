@@ -9,5 +9,5 @@
 	flex-grow: 1;
 	display: flex;
 	margin-top: var(--header-size);
-	min-height: calc(100vh - var(--header-size));
+	min-height: calc(100vh - calc(var(--header-size) + var(--footer-size)));
 }

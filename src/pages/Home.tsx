@@ -7,6 +7,7 @@ import Ethos from './home/ethos/Ethos';
 import Hero from './home/hero/Hero';
 import Features from './home/features/Features';
 import GetGoing from './home/getgoing/GetGoing';
+
 export default class Home extends WidgetBase {
 	protected render() {
 		return (

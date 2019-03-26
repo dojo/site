@@ -9,9 +9,6 @@ describe('Page', () => {
 	const baseAssertionTemplate = assertionTemplate(() => (
 		<div {...{ '~key': 'root' }} classes={[css.root, undefined]}>
 			<div classes={css.content}>Some Content</div>
-			<footer classes={css.footer}>
-				<span>{`© ${new Date().getFullYear()} JS Foundation, All Rights Reserved.`}</span>
-			</footer>
 		</div>
 	));
 

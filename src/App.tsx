@@ -30,6 +30,7 @@ import { faBoxOpen } from '@fortawesome/free-solid-svg-icons/faBoxOpen';
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
+import Footer from './widgets/footer/Footer';
 
 library.add(
 	faCloudDownloadAlt,
@@ -64,6 +65,7 @@ export default class App extends WidgetBase {
 					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
 					<ReferenceGuides />
 				</div>
+				<Footer />
 			</div>
 		);
 	}

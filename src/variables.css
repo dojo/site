@@ -37,6 +37,7 @@
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 8);
+	--footer-size: calc(var(--grid-size) * 4.5);
 
 	--content-top-padding: calc(var(--grid-size) * 6);
 	--content-padding: calc(var(--grid-size) * 3);
