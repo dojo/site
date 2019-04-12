@@ -177,3 +177,34 @@ ul {
 img {
 	max-width: 100%;
 }
+
+/*
+ * Tables
+ */
+@media (max-width: 850px) {
+	thead {
+		display: none;
+	}
+
+	tbody {
+		display: flex;
+		flex-direction: column;
+	}
+
+	tr {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: var(--grid-size);
+	}
+
+	td {
+		margin-bottom: var(--grid-size);
+	}
+
+	td:first-child {
+		font-size: 1.1rem;
+		font-weight: bold;
+		color: var(--color-black);
+		margin-bottom: 0;
+	}
+}
