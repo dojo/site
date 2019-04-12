@@ -1,9 +1,11 @@
 @import '../../variables.css';
 
 .root {
-	position: fixed;
-	top: calc(var(--grid-size) * 8);
-	bottom: calc(var(--grid-size) * 4.4);
+	position: relative;
+	height: 100%;
+	top: 0;
+	background-color: var(--color-white);
+	bottom: 0;
 	left: 0;
 	box-sizing: border-box;
 	overflow: auto;
@@ -11,10 +13,4 @@
 	width: calc(var(--grid-size) * 45);
 	border-right: 1px solid #e5e5e5;
 	word-break: break-word;
-}
-
-@media (max-width: 850px) {
-	.root {
-		bottom: calc(var(--grid-size) * 3.9);
-	}
 }

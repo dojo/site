@@ -8,13 +8,12 @@ import Page from './Page';
 
 export interface LocalPageProperties {
 	path: string;
-	hasLeftSideMenu?: boolean;
 	warpInPage?: boolean;
 }
 
 export default class LocalPage extends WidgetBase<LocalPageProperties> {
 	protected render() {
-		const { path, hasLeftSideMenu = false, warpInPage = true } = this.properties;
+		const { path, warpInPage = true } = this.properties;
 
 		const content: any = this.meta(Block).run(compiler)({
 			path,
@@ -25,6 +24,6 @@ export default class LocalPage extends WidgetBase<LocalPageProperties> {
 			return content;
 		}
 
-		return <Page hasLeftSideMenu={hasLeftSideMenu}>{content}</Page>;
+		return <Page>{content}</Page>;
 	}
 }

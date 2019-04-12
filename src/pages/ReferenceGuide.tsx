@@ -24,14 +24,13 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 					<ReferenceGuideMenu name={name} route={route} repo={repo} branch={branch} path={path} />
 				</div>
 				{page === 'introduction' || page === 'basic-usage' ? (
-					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} hasLeftSideMenu />
+					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} />
 				) : (
 					<RemotePage
 						repo={repo}
 						branch={branch}
 						path={`${path}/supplemental.md`}
 						header={page}
-						hasLeftSideMenu
 					/>
 				)}
 			</Section>

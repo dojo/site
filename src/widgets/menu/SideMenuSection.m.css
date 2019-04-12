@@ -4,6 +4,10 @@
 	margin-bottom: calc(var(--grid-size) * 3);
 }
 
+.root.fixed {
+	position: fixed;
+}
+
 .title {
 	color: var(--color-dark-gray);
 	padding: calc(var(--grid-size) / 2) 0;
