@@ -181,7 +181,36 @@ img {
 /*
  * Tables
  */
+table {
+	border-collapse: collapse;
+	box-shadow: rgba(10, 16, 20, 0.24) 0px 2px 2px, rgba(10, 16, 20, 0.12) 0px 0px 2px;
+}
+
+thead {
+	background-color: #3b3f4a;
+}
+
+th {
+	text-align: left;
+	font-weight: bold;
+	color: white;
+	padding: 10px 15px;
+}
+
+tr {
+	border-bottom: 1px solid rgba(10, 16, 20, 0.12);
+}
+
+td {
+	text-align: left;
+	padding: 10px 15px;
+}
+
 @media (max-width: 850px) {
+	table {
+		box-shadow: none;
+	}
+
 	thead {
 		display: none;
 	}
@@ -194,11 +223,13 @@ img {
 	tr {
 		display: flex;
 		flex-direction: column;
-		margin-bottom: var(--grid-size);
+		margin-bottom: 0.5em;
+		border-bottom: none;
 	}
 
 	td {
-		margin-bottom: var(--grid-size);
+		margin-bottom: 0.5em;
+		padding: 0;
 	}
 
 	td:first-child {
