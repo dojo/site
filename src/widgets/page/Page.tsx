@@ -3,7 +3,7 @@ import { tsx } from '@dojo/framework/widget-core/tsx';
 import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
 import * as css from './Page.m.css';
 
-export interface PageProperties extends ThemedProperties { }
+export interface PageProperties extends ThemedProperties {}
 
 @theme(css)
 export default class Page extends ThemedMixin(WidgetBase)<PageProperties> {

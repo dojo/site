@@ -26,12 +26,7 @@ export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties>
 				{page === 'introduction' || page === 'basic-usage' ? (
 					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} />
 				) : (
-					<RemotePage
-						repo={repo}
-						branch={branch}
-						path={`${path}/supplemental.md`}
-						header={page}
-					/>
+					<RemotePage repo={repo} branch={branch} path={`${path}/supplemental.md`} header={page} />
 				)}
 			</Section>
 		);
