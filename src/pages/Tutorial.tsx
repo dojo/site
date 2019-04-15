@@ -17,7 +17,7 @@ export default class Tutorial extends WidgetBase<TutorialPageProperties> {
 		return (
 			<Section>
 				<TutorialMenu />
-				<LocalPage path={path} hasLeftSideMenu />
+				<LocalPage path={path} />
 			</Section>
 		);
 	}

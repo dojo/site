@@ -106,7 +106,7 @@ describe('Reference Guide Menu', () => {
 
 	const baseStandaloneAssertion = assertionTemplate(() => (
 		<SideMenu>
-			<SideMenuSection>{menuItems()}</SideMenuSection>
+			<SideMenuSection fixed>{menuItems()}</SideMenuSection>
 		</SideMenu>
 	));
 
