@@ -22,6 +22,22 @@ export default class ReferenceGuides extends WidgetBase {
 						/>
 					);
 				}}
+			/>,
+			<Outlet
+				key="reference-guide-styling-and-theming"
+				id="reference-guide-styling-and-theming"
+				renderer={(matchDetails) => {
+					const { page } = matchDetails.params;
+					return (
+						<ReferenceGuide
+							name="Styling and Theming"
+							repo="dojo/framework"
+							path="docs/:locale:/styling-and-theming"
+							route="reference-guide-styling-and-theming"
+							page={page}
+						/>
+					);
+				}}
 			/>
 		];
 	}
