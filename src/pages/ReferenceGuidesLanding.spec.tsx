@@ -29,6 +29,15 @@ describe('ReferenceGuidesLanding', () => {
 					>
 						{messages.i18nDescription}
 					</LandingLink>
+					<LandingLink
+						{...{ '~key': 'stylingAndThemingLink' }}
+						title={messages.stylingAndTheming}
+						icon="palette"
+						to="reference-guide-styling-and-theming"
+						params={{ page: 'introduction' }}
+					>
+						{messages.stylingAndThemingDescription}
+					</LandingLink>
 				</Grid>
 			</LandingSubsection>
 		</Landing>
