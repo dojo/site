@@ -32,7 +32,11 @@ describe('App', () => {
 				<Header />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
-					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<Outlet key="blog" id="blog" renderer={(matchDetails) => {
+						if (matchDetails.isExact()) {
+							return <Blog />;
+						}
+					}} />
 					<BlogPosts />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
@@ -48,7 +52,8 @@ describe('App', () => {
 
 	const pages: Page[] = [
 		{ outlet: 'home', content: <Home /> },
-		{ outlet: 'blog', content: <Blog /> },
+		{ outlet: 'blog', content: <Blog />, args: [{ isExact: () => true }] },
+		{ outlet: 'blog', content: undefined, args: [{ isExact: () => false }] },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'roadmap', content: <Roadmap /> },
