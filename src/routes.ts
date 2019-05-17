@@ -6,11 +6,13 @@ export default [
 	},
 	{
 		path: 'blog',
-		outlet: 'blog'
-	},
-	{
-		path: 'blog/{path}',
-		outlet: 'blog-post'
+		outlet: 'blog',
+		children: [
+			{
+				path: '{path}',
+				outlet: 'blog-post'
+			}
+		]
 	},
 	{
 		path: 'examples',

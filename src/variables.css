@@ -1,6 +1,5 @@
 :root {
 	/* Color Pallette */
-
 	--color-white: #ffffff;
 	--color-off-white: #aaa;
 	--color-black: #000000;
@@ -27,6 +26,37 @@
 	--dark-background-color: #212329;
 	--darker-background-color: #141414;
 
+	/* Typography */
+	--body-font-size: 14px;
+
+	--block-quote-font-size: 12px;
+	--block-quote-font-weight: 500;
+
+	--pre-font-size: 14px;
+
+	--header1-font-size: 2.625rem;
+	--header1-line-height: 1.2;
+
+	--header2-font-size: 2rem;
+	--header2-line-height: 1.3;
+
+	--header3-font-size: 1.5rem;
+	--header3-line-height: 1.4;
+
+	--header4-font-size: 1.25rem;
+	--header4-line-height: 1.4;
+
+	--header5-font-size: 16px;
+	--header5-line-height: 1.4;
+
+	--header6-font-size: 0.875rem;
+	--header6-line-height: 1.4;
+
+	--table-first-column-font-size: 1.1rem;
+
+	--feature-points-font-size: 1.2em;
+
+	/* App Variables */
 	--border-radius: 4px;
 	--grid-size: 10px;
 	--card-padding: calc(var(--grid-size) * 2);
@@ -37,7 +67,7 @@
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 8);
-	--footer-size: calc(var(--grid-size) * 4.5);
+	--footer-size: calc(var(--grid-size) * 4.4);
 
 	--content-top-padding: calc(var(--grid-size) * 6);
 	--content-padding: calc(var(--grid-size) * 3);
@@ -46,8 +76,20 @@
 
 @media (max-width: 768px) {
 	:root {
+		--header1-font-size: 24px;
+		--header2-font-size: 22px;
+		--header3-font-size: 20px;
+		--header4-font-size: 18px;
+		--header5-font-size: 16px;
+		--header6-font-size: 14px;
+	}
+}
+
+@media (max-width: 850px) {
+	:root {
 		--header-size: calc(var(--grid-size) * 6);
 		--content-top-padding: var(--grid-size);
 		--content-padding: var(--grid-size);
+		--footer-size: calc(var(--grid-size) * 3.9);
 	}
 }

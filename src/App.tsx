@@ -56,7 +56,15 @@ export default class App extends WidgetBase {
 				<Header />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
-					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<Outlet
+						key="blog"
+						id="blog"
+						renderer={(matchDetails) => {
+							if (matchDetails.isExact()) {
+								return <Blog />;
+							}
+						}}
+					/>
 					<BlogPosts />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />

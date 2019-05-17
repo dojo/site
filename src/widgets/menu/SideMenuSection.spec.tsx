@@ -9,7 +9,7 @@ import SideMenuSection from './SideMenuSection';
 
 describe('Side Menu Section', () => {
 	const baseAssertion = assertionTemplate(() => (
-		<div key="menu-section" classes={css.root}>
+		<div key="menu-section" classes={[css.root, undefined]}>
 			<SideMenuItemList classes={{ 'dojo.io/SideMenuItemList': { root: [css.menuItems] } }}>
 				Some content
 			</SideMenuItemList>
@@ -20,6 +20,13 @@ describe('Side Menu Section', () => {
 		const h = harness(() => <SideMenuSection>Some content</SideMenuSection>);
 
 		h.expect(baseAssertion);
+	});
+
+	it('renders fixed', () => {
+		const h = harness(() => <SideMenuSection fixed>Some content</SideMenuSection>);
+
+		const assertion = baseAssertion.setProperty('@menu-section', 'classes', [css.root, css.fixed]);
+		h.expect(assertion);
 	});
 
 	it('renders with title', () => {
