@@ -25,6 +25,14 @@ export default class ReferenceGuidesLanding extends I18nMixin(WidgetBase) {
 						>
 							{messages.i18nDescription}
 						</LandingLink>
+						<LandingLink
+							title={messages.stylingAndTheming}
+							icon="palette"
+							to="reference-guide-styling-and-theming"
+							params={{ page: 'introduction' }}
+						>
+							{messages.stylingAndThemingDescription}
+						</LandingLink>
 					</Grid>
 				</LandingSubsection>
 			</Landing>

@@ -37,5 +37,9 @@ export default [
 	{
 		path: 'reference-guides/i18n/{page}',
 		outlet: 'reference-guide-i18n'
+	},
+	{
+		path: 'reference-guides/styling-and-theming/{page}',
+		outlet: 'reference-guide-styling-and-theming'
 	}
 ];

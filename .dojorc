@@ -16,6 +16,11 @@
 				"reference-guides/i18n/internationalizing-a-dojo-application",
 				"reference-guides/i18n/advanced-formatting-cldr",
 				"reference-guides/i18n/standalone-api",
+				"reference-guides/styling-and-theming/introduction",
+				"reference-guides/styling-and-theming/basic-usage",
+				"reference-guides/styling-and-theming/styling--theming-in-dojo",
+				"reference-guides/styling-and-theming/theming-a-dojo-application",
+				"reference-guides/styling-and-theming/working-with-themes",
 				"reference-guides",
 				"examples"
 			],
