@@ -25,7 +25,7 @@ describe('Page', () => {
 	});
 
 	it('renders only content without Page widget', () => {
-		const h = harness(() => <LocalPage path="path/to/file.md" warpInPage={false} />);
+		const h = harness(() => <LocalPage path="path/to/file.md" wrapInPage={false} />);
 
 		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
 

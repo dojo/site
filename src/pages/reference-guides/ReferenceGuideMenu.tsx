@@ -71,7 +71,7 @@ export default class ReferenceGuideMenu extends I18nMixin(WidgetBase)<ReferenceG
 
 		return (
 			<SideMenu>
-				<SideMenuSection fixed={true}>{list}</SideMenuSection>
+				<SideMenuSection fixed>{list}</SideMenuSection>
 			</SideMenu>
 		);
 	}

@@ -8,19 +8,19 @@ import Page from './Page';
 
 export interface LocalPageProperties {
 	path: string;
-	warpInPage?: boolean;
+	wrapInPage?: boolean;
 }
 
 export default class LocalPage extends WidgetBase<LocalPageProperties> {
 	protected render() {
-		const { path, warpInPage = true } = this.properties;
+		const { path, wrapInPage = true } = this.properties;
 
 		const content: any = this.meta(Block).run(compiler)({
 			path,
 			locale: 'en'
 		});
 
-		if (!warpInPage) {
+		if (!wrapInPage) {
 			return content;
 		}
 

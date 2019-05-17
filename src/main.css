@@ -4,7 +4,7 @@
 
 html {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 14px;
+	font-size: var(--body-font-size);
 	font-weight: normal;
 	line-height: 1.65;
 	-webkit-text-size-adjust: 100%;
@@ -20,8 +20,8 @@ body {
 /* Code */
 blockquote {
 	color: var(--color-white);
-	font-size: 12px;
-	font-weight: 500;
+	font-size: var(--block-quote-font-size);
+	font-weight: var(--block-quote-font-weight);
 	text-align: left;
 	text-transform: uppercase;
 	line-height: 28px;
@@ -58,11 +58,11 @@ pre {
 
 @media (max-width: 768px) {
 	blockquote {
-		padding: 5px 15px;
+		padding: calc(var(--grid-size) * 0.5) calc(var(--grid-size) * 1.5);
 	}
 
 	pre[class*='language-'] {
-		font-size: 14px;
+		font-size: var(--pre-font-size);
 	}
 }
 
@@ -84,33 +84,33 @@ h6 {
  * Sizes
  */
 h1 {
-	font-size: 2.625rem;
-	line-height: 1.2;
+	font-size: var(--header1-font-size);
+	line-height: var(--header1-line-height);
 }
 
 h2 {
-	font-size: 2rem;
-	line-height: 1.3;
+	font-size: var(--header2-font-size);
+	line-height: var(--header2-line-height);
 }
 
 h3 {
-	font-size: 1.5rem;
-	line-height: 1.4;
+	font-size: var(--header3-font-size);
+	line-height: var(--header3-line-height);
 }
 
 h4 {
-	font-size: 1.25rem;
-	line-height: 1.4;
+	font-size: var(--header4-font-size);
+	line-height: var(--header4-line-height);
 }
 
 h5 {
-	font-size: 16px;
-	line-height: 1.4;
+	font-size: var(--header5-font-size);
+	line-height: var(--header5-line-height);
 }
 
 h6 {
-	font-size: 0.875rem;
-	line-height: 1.4;
+	font-size: var(--header6-font-size);
+	line-height: var(--header6-line-height);
 }
 
 /* Add margin if adjacent element */
@@ -120,41 +120,17 @@ h6 {
 * + h4,
 * + h5,
 * + h6 {
-	margin-top: 40px;
+	margin-top: calc(var(--grid-size) * 4);
 }
 
 @media (max-width: 768px) {
-	h1 {
-		font-size: 24px;
-	}
-
-	h2 {
-		font-size: 22px;
-	}
-
-	h3 {
-		font-size: 20px;
-	}
-
-	h4 {
-		font-size: 18px;
-	}
-
-	h5 {
-		font-size: 16px;
-	}
-
-	h6 {
-		font-size: 14px;
-	}
-
 	* + h1,
 	* + h2,
 	* + h3,
 	* + h4,
 	* + h5,
 	* + h6 {
-		margin-top: 25px;
+		margin-top: calc(var(--grid-size) * 2.5);
 	}
 }
 
@@ -233,7 +209,7 @@ td {
 	}
 
 	td:first-child {
-		font-size: 1.1rem;
+		font-size: var(--table-first-column-font-size);
 		font-weight: bold;
 		color: var(--color-black);
 		margin-bottom: 0;

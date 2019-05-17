@@ -109,7 +109,7 @@ describe('Page', () => {
 	});
 
 	it('renders only content without Page widget', () => {
-		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" warpInPage={false} />);
+		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" wrapInPage={false} />);
 
 		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',

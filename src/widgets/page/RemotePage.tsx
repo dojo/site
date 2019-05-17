@@ -12,12 +12,12 @@ export interface RemotePageProperties {
 	branch?: string;
 	path: string;
 	header?: string;
-	warpInPage?: boolean;
+	wrapInPage?: boolean;
 }
 
 export default class RemotePage extends WidgetBase<RemotePageProperties> {
 	protected render() {
-		const { repo, branch, path, header, warpInPage = true } = this.properties;
+		const { repo, branch, path, header, wrapInPage = true } = this.properties;
 
 		let content: any;
 		const locale = 'en';
@@ -45,7 +45,7 @@ export default class RemotePage extends WidgetBase<RemotePageProperties> {
 			});
 		}
 
-		if (!warpInPage) {
+		if (!wrapInPage) {
 			return content;
 		}
 

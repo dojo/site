@@ -41,7 +41,7 @@ export default class Roadmap extends WidgetBase {
 									}
 									classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 								>
-									<LocalPage path={entry.file} warpInPage={false} />
+									<LocalPage path={entry.file} wrapInPage={false} />
 								</Card>
 							</div>
 						</div>

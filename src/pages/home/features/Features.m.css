@@ -44,7 +44,7 @@
 }
 
 .featurePoints {
-	font-size: 1.2em;
+	font-size: var(--feature-points-font-size);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
