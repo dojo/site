@@ -106,13 +106,13 @@ describe('Reference Guide Menu', () => {
 
 	const baseStandaloneAssertion = assertionTemplate(() => (
 		<SideMenu>
-			<SideMenuSection>{menuItems()}</SideMenuSection>
+			<SideMenuSection fixed>{menuItems()}</SideMenuSection>
 		</SideMenu>
 	));
 
 	const basePartialAssertion = assertionTemplate(() => (
 		<SideMenuItemList>
-			<SideMenuItem name="name" inverse={true}>
+			<SideMenuItem name="name" inverse>
 				<SideMenuItemList>{menuItems({ inverse: true })}</SideMenuItemList>
 			</SideMenuItem>
 		</SideMenuItemList>

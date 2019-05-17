@@ -67,7 +67,7 @@ describe('Roadmap Page', () => {
 							}
 							classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 						>
-							<LocalPage path={`roadmap/en/dojo-6.0.0-release.md`} warpInPage={false} />
+							<LocalPage path={`roadmap/en/dojo-6.0.0-release.md`} wrapInPage={false} />
 						</Card>
 					</div>
 				</div>,
@@ -89,7 +89,7 @@ describe('Roadmap Page', () => {
 							}
 							classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 						>
-							<LocalPage path={`roadmap/en/dojo-5.0.0-release.md`} warpInPage={false} />
+							<LocalPage path={`roadmap/en/dojo-5.0.0-release.md`} wrapInPage={false} />
 						</Card>
 					</div>
 				</div>

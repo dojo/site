@@ -33,7 +33,7 @@ describe('ReferenceGuidesPage', () => {
 
 		h.expect(
 			baseAssertionTemplate.append('@section', [
-				<RemotePage repo={repo} branch={undefined} path={`${path}/${page}.md`} hasLeftSideMenu />
+				<RemotePage repo={repo} branch={undefined} path={`${path}/${page}.md`} />
 			])
 		);
 	});
@@ -45,13 +45,7 @@ describe('ReferenceGuidesPage', () => {
 
 		h.expect(
 			baseAssertionTemplate.append('@section', [
-				<RemotePage
-					repo={repo}
-					branch={undefined}
-					path={`${path}/supplemental.md`}
-					header="some-page"
-					hasLeftSideMenu
-				/>
+				<RemotePage repo={repo} branch={undefined} path={`${path}/supplemental.md`} header="some-page" />
 			])
 		);
 	});

@@ -29,11 +29,11 @@ describe('Page', () => {
 			locale: 'en'
 		});
 
-		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
+		h.expect(() => <Page>Some content</Page>);
 	});
 
 	it('renders with left menu', () => {
-		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" hasLeftSideMenu />);
+		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" />);
 
 		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
@@ -41,7 +41,7 @@ describe('Page', () => {
 			locale: 'en'
 		});
 
-		h.expect(() => <Page hasLeftSideMenu>Some content</Page>);
+		h.expect(() => <Page>Some content</Page>);
 	});
 
 	it('renders with branch', () => {
@@ -54,7 +54,7 @@ describe('Page', () => {
 			locale: 'en'
 		});
 
-		h.expect(() => <Page hasLeftSideMenu={false}>Some content</Page>);
+		h.expect(() => <Page>Some content</Page>);
 	});
 
 	it('renders from header', () => {
@@ -68,7 +68,7 @@ describe('Page', () => {
 		});
 
 		h.expect(() => (
-			<Page hasLeftSideMenu={false}>
+			<Page>
 				<h1>A page</h1>
 				<p>Some content</p>
 			</Page>
@@ -85,7 +85,7 @@ describe('Page', () => {
 			locale: 'en'
 		});
 
-		h.expect(() => <Page hasLeftSideMenu={false} />);
+		h.expect(() => <Page />);
 	});
 
 	it('renders from header with branch', () => {
@@ -101,7 +101,7 @@ describe('Page', () => {
 		});
 
 		h.expect(() => (
-			<Page hasLeftSideMenu={false}>
+			<Page>
 				<h1>A page</h1>
 				<p>Some content</p>
 			</Page>
@@ -109,7 +109,7 @@ describe('Page', () => {
 	});
 
 	it('renders only content without Page widget', () => {
-		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" warpInPage={false} />);
+		const h = harness(() => <RemotePage repo="dojo/framework" path="path/to/file.md" wrapInPage={false} />);
 
 		expect(mockCompileRemoteBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',

@@ -176,19 +176,19 @@ describe('FontAwesomeIcon', () => {
 	});
 
 	test('using border', () => {
-		const h = harness(() => <FontAwesomeIcon icon={faCoffee} border={true} />);
+		const h = harness(() => <FontAwesomeIcon icon={faCoffee} border />);
 
 		h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: ['fa-border'] }));
 	});
 
 	test('using fixedWidth', () => {
-		const h = harness(() => <FontAwesomeIcon icon={faCoffee} fixedWidth={true} />);
+		const h = harness(() => <FontAwesomeIcon icon={faCoffee} fixedWidth />);
 
 		h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: ['fa-fw'] }));
 	});
 
 	test('using inverse', () => {
-		const h = harness(() => <FontAwesomeIcon icon={faCoffee} inverse={true} />);
+		const h = harness(() => <FontAwesomeIcon icon={faCoffee} inverse />);
 
 		h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: ['fa-inverse'] }));
 	});
@@ -219,7 +219,7 @@ describe('FontAwesomeIcon', () => {
 	});
 
 	test('using listItem', () => {
-		const h = harness(() => <FontAwesomeIcon icon={faCoffee} listItem={true} />);
+		const h = harness(() => <FontAwesomeIcon icon={faCoffee} listItem />);
 
 		h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: ['fa-li'] }));
 	});
@@ -239,7 +239,7 @@ describe('FontAwesomeIcon', () => {
 	});
 
 	test('using pulse', () => {
-		const h = harness(() => <FontAwesomeIcon icon={faCoffee} pulse={true} />);
+		const h = harness(() => <FontAwesomeIcon icon={faCoffee} pulse />);
 
 		h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: ['fa-pulse'] }));
 	});
@@ -276,7 +276,7 @@ describe('FontAwesomeIcon', () => {
 
 	describe('using spin', () => {
 		test('setting spin prop to true adds fa-spin class', () => {
-			const h = harness(() => <FontAwesomeIcon icon={faCoffee} spin={true} />);
+			const h = harness(() => <FontAwesomeIcon icon={faCoffee} spin />);
 
 			h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }, { extraClasses: [`fa-spin`] }));
 		});

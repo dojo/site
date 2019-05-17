@@ -8,23 +8,22 @@ import Page from './Page';
 
 export interface LocalPageProperties {
 	path: string;
-	hasLeftSideMenu?: boolean;
-	warpInPage?: boolean;
+	wrapInPage?: boolean;
 }
 
 export default class LocalPage extends WidgetBase<LocalPageProperties> {
 	protected render() {
-		const { path, hasLeftSideMenu = false, warpInPage = true } = this.properties;
+		const { path, wrapInPage = true } = this.properties;
 
 		const content: any = this.meta(Block).run(compiler)({
 			path,
 			locale: 'en'
 		});
 
-		if (!warpInPage) {
+		if (!wrapInPage) {
 			return content;
 		}
 
-		return <Page hasLeftSideMenu={hasLeftSideMenu}>{content}</Page>;
+		return <Page>{content}</Page>;
 	}
 }

@@ -29,7 +29,7 @@
 
 @keyframes typeOne {
 	to {
-		width: 25em;
+		width: 23.5em;
 	}
 }
 
@@ -46,7 +46,7 @@
 
 @keyframes typeTwo {
 	to {
-		width: 22em;
+		width: 20.5em;
 	}
 }
 
@@ -203,12 +203,12 @@
 	}
 	@keyframes typeOne {
 		to {
-			width: 23em;
+			width: 23.5em;
 		}
 	}
 	@keyframes typeTwo {
 		to {
-			width: 20em;
+			width: 20.5em;
 		}
 	}
 }
