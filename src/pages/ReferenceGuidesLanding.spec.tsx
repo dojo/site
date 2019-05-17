@@ -21,7 +21,7 @@ describe('ReferenceGuidesLanding', () => {
 			<LandingSubsection>
 				<Grid>
 					<LandingLink
-						assertion-key='i18nLink'
+						assertion-key="i18nLink"
 						title={messages.i18n}
 						icon="globe"
 						to="reference-guide-i18n"
@@ -30,7 +30,7 @@ describe('ReferenceGuidesLanding', () => {
 						{messages.i18nDescription}
 					</LandingLink>
 					<LandingLink
-						assertion-key='stylingAndThemingLink'
+						assertion-key="stylingAndThemingLink"
 						title={messages.stylingAndTheming}
 						icon="palette"
 						to="reference-guide-styling-and-theming"
