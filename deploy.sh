@@ -7,9 +7,14 @@ else
 fi
 
 cp ./now.json ./output/dist
+if [ "$NOW_TOKEN" = "" ] ; then
+	echo "No token?"
+	exit 1
+fi
 
 nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public)
 if [ "$nowurl" = "" ] ; then
+	echo "Now deployment failed"
 	exit 1
 fi
 
@@ -17,6 +22,7 @@ echo "Deployed to $nowurl"
 
 deploymenturl=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/vnd.github.v3+json" -s -X POST https://api.github.com/repos/dojo/site/deployments -d '{"ref": "'$TRAVIS_COMMIT'","environment": "'$environment'","description": "Deploy request from Travis"}' | jq -r '.url')
 if [ "$deploymenturl" = "" ] ; then
+	echo "Failed creating github deployment"
 	exit 1
 fi
 
