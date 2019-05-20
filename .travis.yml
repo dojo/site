@@ -18,4 +18,4 @@ env:
 script:
 - npm run lint && npm run build:ci && npm run test:ci && npm run uploadCoverage
 after_success:
-- ./script.sh
+- ./deploy.sh
