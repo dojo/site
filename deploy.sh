@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "Commit: $TRAVIS_COMMIT"
+echo "Secure Vars? $TRAVIS_SECURE_ENV_VARS"
+echo "Pull Request? $TRAVIS_PULL_REQUEST"
+echo "Repo Slug: $TRAVIS_REPO_SLUG"
+
 if [ "$TRAVIS_PULL_REQUEST" = "false" ] ; then
 	environment="staging"
 else
