@@ -16,5 +16,5 @@ env:
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
   - FORCE_COLOR: 1
 script:
-- npm run lint && npm run build:ci && npm run test:ci && npm run uploadCoverage
+# - npm run lint && npm run build:ci && npm run test:ci && npm run uploadCoverage
 - ./deploy.sh
