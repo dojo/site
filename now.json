@@ -4,8 +4,8 @@
 	"name": "dojo.io",
 	"builds": [
 		{
-			"src": "package.json",
-			"use": "@now/static-build",
+			"src": "**/*",
+			"use": "@now/static",
 			"config": { "useBuildUtils": "@now/build-utils@canary" }
 		}
 	]

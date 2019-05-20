@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp ./now.json ./output/dist
+
 nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public)
 
 deploymenturl=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/vnd.github.v3+json" -s -X POST\
