@@ -16,7 +16,6 @@ env:
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
   - FORCE_COLOR: 1
   - PUBLIC_NOW_TOKEN: moe1k7Ro1knXh1UzP8pkGz0E
-  - PUBLIC_GITHUB_TOKEN: 28b0b38e3c7f69d523668cd090d0cca24d0ff15c
 script:
 - npm run lint && npm run build:ci && npm run test:ci && npm run uploadCoverage
 - ./deploy.sh
