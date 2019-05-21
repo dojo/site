@@ -1,5 +1,13 @@
 {
-	"version": 1,
+	"version": 2,
 	"public": true,
-	"type": "static"
+	"name": "dojo.io",
+	"scope": "dojo",
+	"builds": [
+		{
+			"src": "**/*",
+			"use": "@now/static",
+			"config": { "useBuildUtils": "@now/build-utils@canary" }
+		}
+	]
 }
