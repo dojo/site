@@ -2,7 +2,6 @@
 	"version": 2,
 	"public": true,
 	"name": "dojo.io",
-	"scope": "dojo",
 	"builds": [
 		{
 			"src": "**/*",
