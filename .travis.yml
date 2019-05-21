@@ -15,7 +15,6 @@ env:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
   - FORCE_COLOR: 1
-  - PUBLIC_NOW_TOKEN: moe1k7Ro1knXh1UzP8pkGz0E
 script:
 - npm run lint && npm run build:ci && npm run test:ci && npm run uploadCoverage
 - ./deploy.sh
