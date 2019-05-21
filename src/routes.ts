@@ -6,11 +6,13 @@ export default [
 	},
 	{
 		path: 'blog',
-		outlet: 'blog'
-	},
-	{
-		path: 'blog/{path}',
-		outlet: 'blog-post'
+		outlet: 'blog',
+		children: [
+			{
+				path: '{path}',
+				outlet: 'blog-post'
+			}
+		]
 	},
 	{
 		path: 'examples',
@@ -35,5 +37,9 @@ export default [
 	{
 		path: 'reference-guides/i18n/{page}',
 		outlet: 'reference-guide-i18n'
+	},
+	{
+		path: 'reference-guides/styling-and-theming/{page}',
+		outlet: 'reference-guide-styling-and-theming'
 	}
 ];

@@ -16,7 +16,7 @@ describe('Tutorial', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<Section>
 			<TutorialMenu />
-			<LocalPage path="local-installation" hasLeftSideMenu />
+			<LocalPage path="local-installation" />
 		</Section>
 	));
 

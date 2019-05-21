@@ -64,6 +64,13 @@ export default class Menu extends WidgetBase {
 										path="docs/:locale:/i18n"
 										standaloneMenu={false}
 									/>
+									<ReferenceGuideMenu
+										name="Styling and Theming"
+										route="reference-guide-styling-and-theming"
+										repo="dojo/framework"
+										path="docs/:locale:/styling-and-theming"
+										standaloneMenu={false}
+									/>
 								</SideMenuItem>
 							),
 							<SideMenuItem

@@ -11,7 +11,7 @@ describe('Landing Link', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={css.root}>
 			<LinkedCard
-				{...{ '~key': 'linkedCard' }}
+				assertion-key="linkedCard"
 				header={<CardIconHeader icon="list-alt" background="blue" />}
 				outlet="outlet"
 				params={undefined}

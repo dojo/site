@@ -2,7 +2,6 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 import Outlet from '@dojo/framework/routing/Outlet';
 
-import Header from './widgets/header/Header';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogPosts from './pages/blog/BlogPosts';
@@ -12,6 +11,9 @@ import Roadmap from './pages/Roadmap';
 import Community from './pages/Community';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
+
+import Header from './widgets/header/Header';
+import Footer from './widgets/footer/Footer';
 
 import * as css from './App.m.css';
 
@@ -30,7 +32,7 @@ import { faBoxOpen } from '@fortawesome/free-solid-svg-icons/faBoxOpen';
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
-import Footer from './widgets/footer/Footer';
+import { faPalette } from '@fortawesome/free-solid-svg-icons/faPalette';
 
 library.add(
 	faCloudDownloadAlt,
@@ -46,7 +48,8 @@ library.add(
 	faBoxOpen,
 	faBox,
 	faChevronRight,
-	faChevronDown
+	faChevronDown,
+	faPalette
 );
 
 export default class App extends WidgetBase {
@@ -56,7 +59,15 @@ export default class App extends WidgetBase {
 				<Header />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
-					<Outlet key="blog" id="blog" renderer={() => <Blog />} />
+					<Outlet
+						key="blog"
+						id="blog"
+						renderer={(matchDetails) => {
+							if (matchDetails.isExact()) {
+								return <Blog />;
+							}
+						}}
+					/>
 					<BlogPosts />
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />

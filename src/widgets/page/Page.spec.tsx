@@ -7,22 +7,14 @@ import * as css from './Page.m.css';
 
 describe('Page', () => {
 	const baseAssertionTemplate = assertionTemplate(() => (
-		<div {...{ '~key': 'root' }} classes={[css.root, undefined]}>
+		<div assertion-key="root" classes={[css.root]}>
 			<div classes={css.content}>Some Content</div>
 		</div>
 	));
 
-	it('renders without left menu', () => {
+	it('renders', () => {
 		const h = harness(() => <Page>Some Content</Page>);
 
 		h.expect(baseAssertionTemplate);
-	});
-
-	it('renders with left menu', () => {
-		const h = harness(() => <Page hasLeftSideMenu>Some Content</Page>);
-
-		const assertion = baseAssertionTemplate.setProperty('~root', 'classes', [css.root, css.contentShiftRight]);
-
-		h.expect(assertion);
 	});
 });

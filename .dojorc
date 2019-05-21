@@ -3,7 +3,6 @@
 		"build-time-render": {
 			"root": "root",
 			"paths": [
-				"blog",
 				"blog/version-4-dojo",
 				"blog/version-5-dojo",
 				"blog/building-pwa-dojo",
@@ -13,6 +12,7 @@
 				"blog/announcing-dojo-2-beta-5",
 				"blog/announcing-dojo-2-beta-4",
 				"blog/dojo-2-is-coming",
+				"blog",
 				"home",
 				"roadmap",
 				"community",
@@ -23,6 +23,11 @@
 				"reference-guides/i18n/internationalizing-a-dojo-application",
 				"reference-guides/i18n/advanced-formatting-cldr",
 				"reference-guides/i18n/standalone-api",
+				"reference-guides/styling-and-theming/introduction",
+				"reference-guides/styling-and-theming/basic-usage",
+				"reference-guides/styling-and-theming/styling--theming-in-dojo",
+				"reference-guides/styling-and-theming/theming-a-dojo-application",
+				"reference-guides/styling-and-theming/working-with-themes",
 				"reference-guides",
 				"examples"
 			],
