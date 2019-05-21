@@ -97,6 +97,7 @@ export const getMetaData = (content: string) => {
 };
 
 export const toDNodes = (node: RootNode): DNode => {
+	key = 0;
 	return toH(pragma, node);
 };
 
