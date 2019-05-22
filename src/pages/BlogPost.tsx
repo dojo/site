@@ -39,9 +39,7 @@ export default class Post extends WidgetBase<PostProperties> {
 
 		if (post) {
 			const postContent = [
-				<p classes={css.meta}>
-					{post.meta.author} {formatDate(post.meta.date)}
-				</p>,
+				<p classes={css.meta}>{`${post.meta.author} ${formatDate(post.meta.date)}`}</p>,
 				post.content
 			];
 
