@@ -26,7 +26,7 @@ describe('content compiler', () => {
 			text: mockText
 		} as any);
 		mockText.mockResolvedValue(Promise.resolve(githubContent));
-		mockToDNodes.mockResolvedValue('page content');
+		mockToDNodes.mockReturnValue('page content');
 	});
 
 	it('should process', async () => {
