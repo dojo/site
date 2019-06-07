@@ -48,6 +48,22 @@ describe('Tutorials', () => {
 						/>
 					);
 				}}
+			/>,
+			<Outlet
+				key="reference-guide-routing"
+				id="reference-guide-routing"
+				renderer={(matchDetails) => {
+					const { page } = matchDetails.params;
+					return (
+						<ReferenceGuide
+							name="routing"
+							repo="dojo/framework"
+							path="docs/:locale:/routing"
+							route="reference-guide-routing"
+							page={page}
+						/>
+					);
+				}}
 			/>
 		]);
 	});
@@ -78,6 +94,23 @@ describe('Tutorials', () => {
 					repo="dojo/framework"
 					path="docs/:locale:/styling-and-theming"
 					route="reference-guide-styling-and-theming"
+					page="introduction"
+				/>
+			),
+			args: [
+				{
+					params: { page: 'introduction' }
+				}
+			]
+		},
+		{
+			outlet: 'reference-guide-routing',
+			content: (
+				<ReferenceGuide
+					name="Routing"
+					repo="dojo/framework"
+					path="docs/:locale:/routing"
+					route="reference-guide-routing"
 					page="introduction"
 				/>
 			),

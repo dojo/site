@@ -33,6 +33,14 @@ export default class ReferenceGuidesLanding extends I18nMixin(WidgetBase) {
 						>
 							{messages.stylingAndThemingDescription}
 						</LandingLink>
+						<LandingLink
+							title={messages.routing}
+							icon="sitemap"
+							to="reference-guide-routing"
+							params={{ page: 'introduction' }}
+						>
+							{messages.routingDescription}
+						</LandingLink>
 					</Grid>
 				</LandingSubsection>
 			</Landing>

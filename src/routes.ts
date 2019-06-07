@@ -41,5 +41,9 @@ export default [
 	{
 		path: 'reference-guides/styling-and-theming/{page}',
 		outlet: 'reference-guide-styling-and-theming'
+	},
+	{
+		path: 'reference-guides/routing/{page}',
+		outlet: 'reference-guide-routing'
 	}
 ];
