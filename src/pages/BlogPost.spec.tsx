@@ -50,9 +50,7 @@ describe('Post', () => {
 				<Link to="blog-post" params={{ path: 'path' }} classes={css.headerLink}>
 					<h1 classes={css.header}>title</h1>
 				</Link>
-				<p classes={css.meta}>
-					{'author'} {'October 15, 2018, 12:00 PM'}
-				</p>
+				<p classes={css.meta}>author October 15, 2018, 12:00 PM</p>
 				content
 				<p>
 					<Link to="blog-post" params={{ path: 'path' }} classes={css.readMoreLink}>
@@ -77,9 +75,7 @@ describe('Post', () => {
 		h.expect(() => (
 			<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
 				<h1 classes={css.header}>title</h1>
-				<p classes={css.meta}>
-					{'author'} {'October 15, 2018, 12:00 PM'}
-				</p>
+				<p classes={css.meta}>author October 15, 2018, 12:00 PM</p>
 				content
 			</Page>
 		));
