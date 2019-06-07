@@ -22,6 +22,9 @@ export interface BlogEntry {
 	date: Date;
 }
 
+// In order to not spam people's RSS feed when this goes live, we skip items before May 2019
+const skipItemsBefore = new Date(2019, 4, 1).getTime();
+
 export function createBlogFeed(files: BlogFile[], contentRoot: string) {
 	const feed = new Feed({
 		title: 'Dojo',
@@ -40,6 +43,13 @@ export function createBlogFeed(files: BlogFile[], contentRoot: string) {
 	});
 
 	for (const file of files) {
+		const { title, date, author } = file.meta;
+		const publishedDate = date instanceof Date ? date : new Date();
+
+		if (publishedDate.getTime() < skipItemsBefore) {
+			break;
+		}
+
 		const fullContentProcessed = fromMarkdown(file.content, registerHandlers(handlers));
 		const fullContent = unified()
 			.use(stringify)
@@ -50,9 +60,7 @@ export function createBlogFeed(files: BlogFile[], contentRoot: string) {
 			.use(stringify)
 			.stringify(descriptionProcessed);
 
-		const { title, date, author } = file.meta;
 		const url = `https://dojo.io/blog/${file.file.replace('blog/en/', '').replace('.md', '')}`;
-		const publishedDate = date instanceof Date ? date : new Date();
 		const item = {
 			title: typeof title === 'string' ? title : '',
 			id: url,
