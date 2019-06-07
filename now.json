@@ -1,5 +1,29 @@
 {
 	"version": 1,
 	"public": true,
-	"type": "static"
+	"type": "static",
+	"static": {
+		"rewrites": [
+			{"source": "/blog/2017/03/27/Dojo-2-is-coming/", "destination": "/blog/dojo-2-is-coming.html"},
+			{"source": "/blog/2017/12/04/Announcing-Dojo-2-beta-4/", "destination": "/blog/announcing-dojo-2-beta-4.html"},
+			{"source": "/blog/2018/01/23/Announcing-Dojo-2-beta-5/", "destination": "/blog/announcing-dojo-2-beta-5.html"},
+			{"source": "/blog/2018/03/11/2018-03-11-Dojo-2-rc1/", "destination": "/blog/dojo-2-rc1.html"},
+			{"source": "/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/", "destination": "/blog/dojo2-0-0-release.html"},
+			{"source": "/blog/2018/07/27/2018-07-27-Dojo-version-3-release/", "destination": "/blog/dojo-version-3-release.html"},
+			{"source": "/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/", "destination": "/blog/building-pwa-dojo.html"},
+			{"source": "/blog/2018/10/15/2018-10-15-Version-4-Dojo/", "destination": "/blog/version-4-dojo.html"},
+			{"source": "/blog/2019/01/29/2019-01-29-Version-5-Dojo/", "destination": "/blog/version-5-dojo.html"}
+		],
+		"redirects": [
+			{"source": "/blog/2017/03/27/Dojo-2-is-coming/", "destination": "/blog/dojo-2-is-coming", "type": 301},
+			{"source": "/blog/2017/12/04/Announcing-Dojo-2-beta-4/", "destination": "/blog/announcing-dojo-2-beta-4", "type": 301},
+			{"source": "/blog/2018/01/23/Announcing-Dojo-2-beta-5/", "destination": "/blog/announcing-dojo-2-beta-5", "type": 301},
+			{"source": "/blog/2018/03/11/2018-03-11-Dojo-2-rc1/", "destination": "/blog/dojo-2-rc1", "type": 301},
+			{"source": "/blog/2018/05/02/2018-05-02-Dojo2-0-0-release/", "destination": "/blog/dojo2-0-0-release", "type": 301},
+			{"source": "/blog/2018/07/27/2018-07-27-Dojo-version-3-release/", "destination": "/blog/dojo-version-3-release", "type": 301},
+			{"source": "/blog/2018/09/13/2018-09-13-Building-PWA-Dojo/", "destination": "/blog/building-pwa-dojo", "type": 301},
+			{"source": "/blog/2018/10/15/2018-10-15-Version-4-Dojo/", "destination": "/blog/version-4-dojo", "type": 301},
+			{"source": "/blog/2019/01/29/2019-01-29-Version-5-Dojo/", "destination": "/blog/version-5-dojo", "type": 301}
+		]
+	}
 }
