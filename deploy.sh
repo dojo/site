@@ -18,8 +18,8 @@ else
 
 	echo "Deployed to $nowurl"
 	
-	deploymenturl=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/vnd.github.v3+json" -s -X POST https://api.github.com/repos/$TRAVIS_REPO_SLUG/deployments -d '{"ref": "'$TRAVIS_COMMIT'","environment": "'$environment'","description": "Deploy request from Travis","auto_merge":false}' | jq -r '.url')
-	if [ "$deploymenturl" = "" ] ; then
+	deploymenturl=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/vnd.github.v3+json" -s -X POST https://api.github.com/repos/$TRAVIS_REPO_SLUG/deployments -d '{"ref": "'$TRAVIS_COMMIT'","environment": "'$environment'","description": "Deploy request from Travis","auto_merge":false,"required_contexts":[]}' | jq -r '.url')
+	if [ "$deploymenturl" = "null" ] ; then
 		echo "Failed creating github deployment"
 		exit 1
 	fi
