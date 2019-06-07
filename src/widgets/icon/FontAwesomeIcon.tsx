@@ -25,8 +25,8 @@ export type IconSize = 'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '
 export function abstractElementToVNode(abstractElement: AbstractElement, rootTheme: SupportedClassName, level = 0) {
 	let children: VNode[] = [];
 	if (abstractElement.children) {
-		children = abstractElement.children.map(
-			(child) => (typeof child === 'string' ? child : abstractElementToVNode(child, rootTheme, level + 1))
+		children = abstractElement.children.map((child) =>
+			typeof child === 'string' ? child : abstractElementToVNode(child, rootTheme, level + 1)
 		);
 	}
 

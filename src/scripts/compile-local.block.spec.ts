@@ -22,7 +22,7 @@ describe('content compiler', () => {
 		jest.resetAllMocks();
 
 		mockRegisterHandlers.mockReturnValue(registeredHandlers);
-		mockToDNodes.mockResolvedValue('page content');
+		mockToDNodes.mockReturnValue('page content');
 	});
 
 	it('should process', async () => {
