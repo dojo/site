@@ -17,7 +17,7 @@ export interface TextNode {
 	value: string;
 }
 
-export type YamlData = { [key: string]: YamlData } | string | boolean;
+export type YamlData = { [key: string]: YamlData } | string | boolean | Date;
 
 export interface YamlNode {
 	type: 'yaml';

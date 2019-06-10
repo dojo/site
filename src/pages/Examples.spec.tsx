@@ -1,43 +1,23 @@
 import Block from '@dojo/framework/widget-core/meta/Block';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import harness from '@dojo/framework/testing/harness';
-import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/widget-core/interfaces';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
+import getExamples from '../scripts/examples.block';
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Grid from '../widgets/grid/Grid';
 import Landing from '../widgets/landing/Landing';
 import LandingSubsection from '../widgets/landing/LandingSubsection';
 import LinkedCard from '../widgets/card/LinkedCard';
 
+import { MockMetaMixin } from '../test/util/MockMeta';
+
 import Examples from './Examples';
 import * as css from './Examples.m.css';
 
-const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
-	return class extends Base {
-		protected meta<T extends MetaBase>(MetaType: WidgetMetaConstructor<T>): T {
-			return mockStub(MetaType);
-		}
-	};
-};
-
-const mockExamplesBlock = jest.fn();
-
-const mockBlockRun = jest.fn().mockImplementation((input: any) => {
-	return mockExamplesBlock;
-});
-
-const mockMeta = jest.fn().mockImplementation((input: any) => {
-	if (Block) {
-		return {
-			run: mockBlockRun
-		};
-	}
-});
-
 describe('Examples', () => {
 	it('renders', () => {
-		mockExamplesBlock.mockReturnValueOnce([
+		let mockMetaMixin = new MockMetaMixin(Examples);
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [getExamples], () => [
 			{
 				code: 'code',
 				demo: 'demo',
@@ -47,7 +27,7 @@ describe('Examples', () => {
 				sandbox: true
 			}
 		]);
-		const ExamplesMock = mockMetaMixin(Examples, mockMeta);
+		const ExamplesMock = mockMetaMixin.getClass();
 		const h = harness(() => <ExamplesMock />);
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
