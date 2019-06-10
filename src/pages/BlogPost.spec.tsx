@@ -19,14 +19,15 @@ describe('Post', () => {
 	});
 
 	it('renders index page style', () => {
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], () => ({
+		const mockCompileBlogPostBlock = jest.fn().mockReturnValue({
 			meta: {
 				author: 'author',
 				date: '2018-10-15 12:00:00',
 				title: 'title'
 			},
 			content: 'content'
-		}));
+		});
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 
 		const PostMock = mockMetaMixin.getClass();
 
@@ -45,17 +46,23 @@ describe('Post', () => {
 				</p>
 			</LandingSubsection>
 		));
+
+		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
+			excerpt: true,
+			path: 'path'
+		});
 	});
 
 	it('renders blog post page style', () => {
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], () => ({
+		const mockCompileBlogPostBlock = jest.fn().mockReturnValue({
 			meta: {
 				author: 'author',
 				date: '2018-10-15 12:00:00',
 				title: 'title'
 			},
 			content: 'content'
-		}));
+		});
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 
 		const PostMock = mockMetaMixin.getClass();
 		const h = harness(() => <PostMock path="path" standalone />);
@@ -66,12 +73,23 @@ describe('Post', () => {
 				content
 			</Page>
 		));
+
+		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
+			excerpt: false,
+			path: 'path'
+		});
 	});
 
 	it('does not render if post is not found', () => {
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], () => undefined);
+		const mockCompileBlogPostBlock = jest.fn().mockReturnValue(undefined);
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 		const PostMock = mockMetaMixin.getClass();
 		const h = harness(() => <PostMock path="path" standalone />);
 		h.expect(() => undefined);
+
+		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
+			excerpt: false,
+			path: 'path'
+		});
 	});
 });

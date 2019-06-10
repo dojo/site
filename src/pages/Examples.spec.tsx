@@ -17,7 +17,7 @@ import * as css from './Examples.m.css';
 describe('Examples', () => {
 	it('renders', () => {
 		let mockMetaMixin = new MockMetaMixin(Examples);
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [getExamples], () => [
+		const mockGetExample = jest.fn().mockReturnValue([
 			{
 				code: 'code',
 				demo: 'demo',
@@ -27,6 +27,7 @@ describe('Examples', () => {
 				sandbox: true
 			}
 		]);
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [getExamples], mockGetExample);
 		const ExamplesMock = mockMetaMixin.getClass();
 		const h = harness(() => <ExamplesMock />);
 		h.expect(() => (
@@ -73,5 +74,7 @@ describe('Examples', () => {
 				</LandingSubsection>
 			</Landing>
 		));
+
+		expect(mockGetExample).toHaveBeenCalled();
 	});
 });

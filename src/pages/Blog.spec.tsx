@@ -14,8 +14,8 @@ import * as css from './Blog.m.css';
 describe('Blog', () => {
 	it('renders', () => {
 		const mockMetaMixin = new MockMetaMixin(Blog);
-
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogIndexBlock], () => ['a', 'b', 'c']);
+		const mockCompileBlogIndexBlock = jest.fn().mockReturnValue(['a', 'b', 'c']);
+		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogIndexBlock], mockCompileBlogIndexBlock);
 
 		const BlogMock = mockMetaMixin.getClass();
 		const h = harness(() => <BlogMock />);
@@ -26,5 +26,7 @@ describe('Blog', () => {
 				<Post path="c" excerpt />
 			</Landing>
 		));
+
+		expect(mockCompileBlogIndexBlock).toHaveBeenCalledWith({ locale: 'en' });
 	});
 });
