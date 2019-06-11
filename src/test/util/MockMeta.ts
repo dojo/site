@@ -65,9 +65,7 @@ export class MockMetaMixin<T extends Constructor<WidgetBase<any>>> {
 
 						if (values.length === 0) {
 							throw new Error(
-								`Arguements ${JSON.stringify(args)} were registered ${total} time(s) for ${
-									MetaType.name
-								}.${method}() but have been called ${count} time(s)`
+								`Arguements ${argValues} were registered ${total} time(s) for ${MetaType.name}.${method}() but have been called ${count} time(s)`
 							);
 						}
 						return values.shift();
