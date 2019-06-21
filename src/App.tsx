@@ -33,6 +33,7 @@ import { faBox } from '@fortawesome/free-solid-svg-icons/faBox';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faPalette } from '@fortawesome/free-solid-svg-icons/faPalette';
+import { faSitemap } from '@fortawesome/free-solid-svg-icons/faSitemap';
 
 library.add(
 	faCloudDownloadAlt,
@@ -49,7 +50,8 @@ library.add(
 	faBox,
 	faChevronRight,
 	faChevronDown,
-	faPalette
+	faPalette,
+	faSitemap
 );
 
 export default class App extends WidgetBase {
