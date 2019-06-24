@@ -38,6 +38,22 @@ export default class ReferenceGuides extends WidgetBase {
 						/>
 					);
 				}}
+			/>,
+			<Outlet
+				key="reference-guide-routing"
+				id="reference-guide-routing"
+				renderer={(matchDetails) => {
+					const { page } = matchDetails.params;
+					return (
+						<ReferenceGuide
+							name="Routing"
+							repo="dojo/framework"
+							path="docs/:locale:/routing"
+							route="reference-guide-routing"
+							page={page}
+						/>
+					);
+				}}
 			/>
 		];
 	}

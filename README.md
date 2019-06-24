@@ -1,6 +1,6 @@
 # dojo.io
 
-[![Build Status](https://travis-ci.org/dojo/site.svg?branch=master)](https://travis-ci.org/dojo/site)
+[![Build Status](https://travis-ci.org/dojo/site.svg?branch=master)](https://travis-ci.org/dojo/site) [![codecov](https://codecov.io/gh/dojo/site/branch/master/graph/badge.svg)](https://codecov.io/gh/dojo/site)
 
 Next generation dojo.io.
 

@@ -28,6 +28,13 @@
 				"reference-guides/styling-and-theming/styling--theming-in-dojo",
 				"reference-guides/styling-and-theming/theming-a-dojo-application",
 				"reference-guides/styling-and-theming/working-with-themes",
+				"reference-guides/routing/introduction",
+				"reference-guides/routing/basic-usage",
+				"reference-guides/routing/route-configuration",
+				"reference-guides/routing/router-api",
+				"reference-guides/routing/using-the-outlet-matchdetails",
+				"reference-guides/routing/history-managers",
+				"reference-guides/routing/error-outlet",
 				"reference-guides",
 				"examples"
 			],
