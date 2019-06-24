@@ -109,7 +109,8 @@ describe('GetGoing', () => {
 				isIntersecting: false
 			},
 			{
-				isIntersecting: true
+				value: { isIntersecting: true },
+				shouldInvalidate: true
 			}
 		);
 

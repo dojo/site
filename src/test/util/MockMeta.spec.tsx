@@ -229,7 +229,7 @@ describe('MockMeta', () => {
 		}
 	}
 
-	test('automatic invalidation', () => {
+	test('invalidation', () => {
 		// Must use fake timers for proper testing
 		jest.useFakeTimers();
 
@@ -242,7 +242,10 @@ describe('MockMeta', () => {
 				isIntersecting: false
 			},
 			{
-				isIntersecting: true
+				value: {
+					isIntersecting: true
+				},
+				shouldInvalidate: true
 			}
 		);
 

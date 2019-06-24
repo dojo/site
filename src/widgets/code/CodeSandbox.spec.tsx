@@ -38,7 +38,8 @@ describe('CodeSandbox', () => {
 				isIntersecting: false
 			},
 			{
-				isIntersecting: true
+				value: { isIntersecting: true },
+				shouldInvalidate: true
 			}
 		);
 		const CodeSandboxMock = mockMetaMixin.getClass();

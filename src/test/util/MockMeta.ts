@@ -2,30 +2,33 @@ import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/wi
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import Map from '@dojo/framework/shim/Map';
 
-type MetaFunction = <M extends MetaBase>(MetaType: WidgetMetaConstructor<M>) => any;
+type MetaFunction = <M extends MetaBase>(MetaType: WidgetMetaConstructor<M>, parentInvalidate: () => void) => any;
+
+type MetaValue<M extends MetaBase, F extends jest.FunctionPropertyNames<M>> = Required<M>[F] extends (
+	...args: any[]
+) => any
+	? (ReturnType<Required<M>[F]> | Partial<ReturnType<Required<M>[F]>>)
+	: never;
 
 export class MockMetaMixin<T extends Constructor<WidgetBase<any>>> {
 	private mockMetaMixin = (Base: T, mockStub: MetaFunction): T => {
 		return class extends Base {
-			private handle: any;
-
 			protected meta<T extends MetaBase>(MetaType: WidgetMetaConstructor<T>): T {
-				return mockStub(MetaType);
+				return mockStub(MetaType, () => this.invalidate());
 			}
 
 			/**
 			 * Overriding render helps with testing metas that invalidate their host when their values change.
 			 */
 			protected render() {
-				this.handle && clearTimeout(this.handle);
-				this.handle = setTimeout(() => this.invalidate());
 				return super.render();
 			}
 		};
 	};
 
 	private mockMeta = <M extends MetaBase, F extends jest.FunctionPropertyNames<M>>(
-		MetaType: WidgetMetaConstructor<M>
+		MetaType: WidgetMetaConstructor<M>,
+		parentInvalidate: () => void
 	): any => {
 		if (!this.values[MetaType.name]) {
 			throw new Error(`Meta '${MetaType.name}' not registered`);
@@ -68,7 +71,15 @@ export class MockMetaMixin<T extends Constructor<WidgetBase<any>>> {
 								`Arguements ${argValues} were registered ${total} time(s) for ${MetaType.name}.${method}() but have been called ${count} time(s)`
 							);
 						}
-						return values.shift();
+						const current = values.shift();
+
+						if (values.length > 0) {
+							if (typeof values[0] === 'object' && values[0].shouldInvalidate) {
+								setTimeout(() => parentInvalidate());
+							}
+						}
+
+						return typeof current === 'object' && current.value ? current.value : current;
 					};
 					return current;
 				},
@@ -103,9 +114,7 @@ export class MockMetaMixin<T extends Constructor<WidgetBase<any>>> {
 		MetaType: WidgetMetaConstructor<M>,
 		method: F,
 		args: jest.ArgsType<Required<M>[F]>,
-		value: Required<M>[F] extends (...args: any[]) => any
-			? (ReturnType<Required<M>[F]> | Partial<ReturnType<Required<M>[F]>>)
-			: never
+		value: MetaValue<M, F>
 	) {
 		if (!this.values[MetaType.name]) {
 			this.values[MetaType.name] = {};
@@ -126,9 +135,12 @@ export class MockMetaMixin<T extends Constructor<WidgetBase<any>>> {
 		MetaType: WidgetMetaConstructor<M>,
 		method: F,
 		args: jest.ArgsType<Required<M>[F]>,
-		...values: (Required<M>[F] extends (...args: any[]) => any
-			? (ReturnType<Required<M>[F]> | Partial<ReturnType<Required<M>[F]>>)
-			: never)[]
+		...values: (
+			| MetaValue<M, F>
+			| {
+					value: MetaValue<M, F>;
+					shouldInvalidate: boolean;
+			  })[]
 	) {
 		if (!this.values[MetaType.name]) {
 			this.values[MetaType.name] = {};
