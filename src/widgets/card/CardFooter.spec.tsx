@@ -1,6 +1,6 @@
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import CardFooter from './CardFooter';
 import * as css from './CardFooter.m.css';

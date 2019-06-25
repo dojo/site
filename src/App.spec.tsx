@@ -1,7 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import Outlet from '@dojo/framework/routing/Outlet';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 import Blog from './pages/Blog';
 import BlogPosts from './pages/blog/BlogPosts';

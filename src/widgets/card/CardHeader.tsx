@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import * as css from './CardHeader.m.css';
 

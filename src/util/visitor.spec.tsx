@@ -1,8 +1,8 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { tsx } from '@dojo/framework/core/vdom';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 import visitor from './visitor';
-import { isVNode } from '@dojo/framework/widget-core/d';
+import { isVNode } from '@dojo/framework/core/vdom';
 
 describe('visitor', () => {
 	it('removes undefined nodes from the response', () => {

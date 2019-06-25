@@ -1,7 +1,7 @@
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { tsx } from '@dojo/framework/core/vdom';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 import CardHeader from './CardHeader';
 import CardIconHeader from './CardIconHeader';

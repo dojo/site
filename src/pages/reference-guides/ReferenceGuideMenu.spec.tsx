@@ -1,8 +1,8 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import { switchLocale } from '@dojo/framework/i18n/i18n';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
-import Registry from '@dojo/framework/widget-core/Registry';
+import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import MemoryHistory from '@dojo/framework/routing/history/MemoryHistory';
 

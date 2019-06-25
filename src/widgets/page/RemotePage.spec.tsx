@@ -1,5 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import * as compileRemoteBlock from '../../scripts/compile-remote.block';
 import * as compileRemoteHeadersBlock from '../../scripts/compile-remote-headers.block';

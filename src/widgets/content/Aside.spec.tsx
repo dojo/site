@@ -1,5 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import Aside from './Aside';
 import * as css from './Aside.m.css';

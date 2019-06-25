@@ -1,10 +1,10 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { w } from '@dojo/framework/widget-core/d';
-import { add } from '@dojo/framework/has/has';
-import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/widget-core/interfaces';
-import { Intersection } from '@dojo/framework/widget-core/meta/Intersection';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
+import { w } from '@dojo/framework/core/vdom';
+import { add } from '@dojo/framework/core/has';
+import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/core/interfaces';
+import { Intersection } from '@dojo/framework/core/meta/Intersection';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
 
 import CodeSandbox from './CodeSandbox';
 import * as css from './CodeSandbox.m.css';

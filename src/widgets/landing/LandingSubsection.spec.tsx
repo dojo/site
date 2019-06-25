@@ -1,5 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import Subsection from './LandingSubsection';
 import * as css from './LandingSubsection.m.css';

@@ -1,5 +1,5 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { tsx } from '@dojo/framework/core/vdom';
+import { DNode } from '@dojo/framework/core/interfaces';
 import Outlet from '@dojo/framework/routing/Outlet';
 import harness from '@dojo/framework/testing/harness';
 

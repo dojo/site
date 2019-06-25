@@ -1,4 +1,4 @@
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 import { Feed } from 'feed';
 import { join } from 'path';

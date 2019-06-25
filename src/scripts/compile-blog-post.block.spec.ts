@@ -1,4 +1,4 @@
-import { v, w } from '@dojo/framework/widget-core/d';
+import { v, w } from '@dojo/framework/core/vdom';
 
 import * as path from 'canonical-path';
 

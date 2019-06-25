@@ -1,7 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/ActiveLink';
-import Registry from '@dojo/framework/widget-core/Registry';
+import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import { MemoryHistory } from '@dojo/framework/routing/history/MemoryHistory';
 

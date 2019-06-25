@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
+import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/core/mixins/Themed';
 import ActiveLink from '@dojo/framework/routing/ActiveLink';
 import { Params } from '@dojo/framework/routing/interfaces';
 
