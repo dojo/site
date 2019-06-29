@@ -21,7 +21,7 @@ describe('Landing Subsection', () => {
 	it('renders with title', () => {
 		const h = harness(() => <Subsection title="A title">Some content</Subsection>);
 
-		const asssertion = baseAssertion.prepend('@landingSubsection', [<h2>A title</h2>]);
+		const asssertion = baseAssertion.prepend('@landingSubsection', () => [<h2>A title</h2>]);
 		h.expect(asssertion);
 	});
 });

@@ -39,7 +39,7 @@ describe('Card', () => {
 				</Card>
 			));
 
-			const assertion = baseAssertion.setChildren('@card', [
+			const assertion = baseAssertion.setChildren('@card', () => [
 				<CardHeader>A header</CardHeader>,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
@@ -54,7 +54,7 @@ describe('Card', () => {
 				</Card>
 			));
 
-			const assertion = baseAssertion.setChildren('@card', [
+			const assertion = baseAssertion.setChildren('@card', () => [
 				<CardIconHeader icon="coffee" />,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
@@ -70,7 +70,7 @@ describe('Card', () => {
 			</Card>
 		));
 
-		const assertion = baseAssertion.setChildren('@card', [
+		const assertion = baseAssertion.setChildren('@card', () => [
 			content(<h4>A subtitle</h4>, 'Some content'),
 			<CardFooter>A footer</CardFooter>
 		]);

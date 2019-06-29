@@ -387,7 +387,7 @@ describe('FontAwesomeIcon', () => {
 
 			expect((h.getRender(0) as any)[0].children.length).toBe(2);
 			expect((h.getRender(0) as any)[0].children[0].children.length).toBe(1);
-			expect((h.getRender(0) as any)[0].children[0].children[0].text).toBe('Coffee');
+			expect((h.getRender(0) as any)[0].children[0].children[0]).toBe('Coffee');
 		});
 	});
 });

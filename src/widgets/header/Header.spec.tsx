@@ -49,19 +49,6 @@ const router = new Router(
 
 registry.defineInjector('router', () => () => router);
 
-let invalidateCount = 0;
-class TestHeader extends Header {
-	constructor() {
-		super();
-
-		this.registry.base = registry;
-	}
-
-	invalidate() {
-		invalidateCount++;
-	}
-}
-
 describe('Menu', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<header key="root" classes={css.root}>
@@ -160,28 +147,8 @@ describe('Menu', () => {
 		</header>
 	));
 
-	beforeEach(() => {
-		invalidateCount = 0;
-	});
-
 	it('renders', () => {
 		const h = harness(() => <Header />);
-
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-
 		h.expect(baseAssertion);
-	});
-
-	it('invalidates on route change', () => {
-		const h = harness(() => <TestHeader />);
-
-		h.expect(baseAssertion);
-
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-		invalidateCount = 0;
-		router.setPath('/other');
-		expect(invalidateCount).toBe(2);
 	});
 });

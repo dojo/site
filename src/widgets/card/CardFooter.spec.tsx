@@ -20,7 +20,7 @@ describe('CardFooter', () => {
 			</CardFooter>
 		));
 
-		const assertion = baseAssertion.setChildren('@card-footer', [<span>foo</span>]);
+		const assertion = baseAssertion.setChildren('@card-footer', () => [<span>foo</span>]);
 		h.expect(assertion);
 	});
 });

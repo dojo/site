@@ -53,7 +53,7 @@ describe('Side Menu Item', () => {
 		it('renders', () => {
 			const h = harness(() => <SideMenuItem to="https://example.com/">A link</SideMenuItem>);
 
-			const assertion = baseAssertion.setChildren('@menu-item', [
+			const assertion = baseAssertion.setChildren('@menu-item', () => [
 				<a key="link" href="https://example.com/" target="_blank" classes={css.link}>
 					A link
 				</a>
@@ -81,7 +81,7 @@ describe('Side Menu Item', () => {
 		it('renders', () => {
 			const h = harness(() => <SideMenuItem name="A link">Dropdown children</SideMenuItem>);
 
-			const initialAssertion = baseDropdownAssertion.prepend('@link', ['A link']);
+			const initialAssertion = baseDropdownAssertion.prepend('@link', () => ['A link']);
 
 			h.expect(initialAssertion);
 
@@ -110,7 +110,7 @@ describe('Side Menu Item', () => {
 			const h = harness(() => <SideMenuItem name="A link">Dropdown children</SideMenuItem>);
 
 			const assertion = baseDropdownAssertion
-				.prepend('@link', ['A link'])
+				.prepend('@link', () => ['A link'])
 				.setProperty('@link', 'classes', [css.link, css.dropdownLink, css.selected]);
 
 			h.expect(assertion);
@@ -126,7 +126,7 @@ describe('Side Menu Item', () => {
 			));
 
 			const assertion = baseDropdownAssertion
-				.prepend('@link', ['A link'])
+				.prepend('@link', () => ['A link'])
 				.setProperty('@link', 'classes', [css.link, css.dropdownLink, css.selected, css.inverse]);
 
 			h.expect(assertion);

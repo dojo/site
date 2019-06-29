@@ -15,7 +15,7 @@
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.7",
+    "@dojo/framework": "6.0.0-alpha.8",
     "@fortawesome/fontawesome-svg-core": "1.2.19",
     "@fortawesome/free-solid-svg-icons": "5.9.0",
     "tslib": "1.9.3"
