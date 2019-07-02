@@ -1,9 +1,9 @@
-import Block from '@dojo/framework/widget-core/meta/Block';
+import Block from '@dojo/framework/core/meta/Block';
 import Link from '@dojo/framework/routing/Link';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
 import harness from '@dojo/framework/testing/harness';
-import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/widget-core/interfaces';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { Constructor, WidgetMetaConstructor, MetaBase } from '@dojo/framework/core/interfaces';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import LandingSubsection from '../widgets/landing/LandingSubsection';
 import Page from '../widgets/page/Page';

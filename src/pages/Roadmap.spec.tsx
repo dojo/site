@@ -1,4 +1,4 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
@@ -48,7 +48,7 @@ describe('Roadmap Page', () => {
 		const h = harness(() => <Roadmap />);
 
 		h.expect(
-			baseAssertion.setChildren('@timeline', [
+			baseAssertion.setChildren('@timeline', () => [
 				<div classes={[css.timelineEntry, null]}>
 					<div classes={css.timelineDate}>Q2 2019</div>
 					<div classes={css.timelineDetails}>

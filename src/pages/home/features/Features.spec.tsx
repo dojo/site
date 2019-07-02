@@ -1,5 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import * as css from './Features.m.css';
 import Features from './Features';
 import Card from '../../../widgets/card/Card';

@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import I18nMixin, { I18nProperties } from '@dojo/framework/widget-core/mixins/I18n';
-import Block from '@dojo/framework/widget-core/meta/Block';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
+import I18nMixin, { I18nProperties } from '@dojo/framework/core/mixins/I18n';
+import Block from '@dojo/framework/core/meta/Block';
 import Router from '@dojo/framework/routing/Router';
 
 import compileRemoteHeaders, { SupplementalHeaders } from '../../scripts/compile-remote-headers.block';

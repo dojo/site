@@ -1,6 +1,6 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { add } from '@dojo/framework/has/has';
+import { tsx } from '@dojo/framework/core/vdom';
+import { add } from '@dojo/framework/core/has';
 
 import Playground from './Playground';
 import * as css from './Playground.m.css';

@@ -1,5 +1,5 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import { CompileRemoteBlockOptions } from '../scripts/compile-remote.block';
 import RemotePage from '../widgets/page/RemotePage';

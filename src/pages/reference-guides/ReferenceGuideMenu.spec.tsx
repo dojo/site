@@ -1,8 +1,8 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import { switchLocale } from '@dojo/framework/i18n/i18n';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
-import Registry from '@dojo/framework/widget-core/Registry';
+import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import MemoryHistory from '@dojo/framework/routing/history/MemoryHistory';
 
@@ -47,19 +47,6 @@ const router = new Router(
 );
 
 registry.defineInjector('router', () => () => router);
-
-let invalidateCount = 0;
-class TestReferenceGuideMenu extends ReferenceGuideMenu {
-	constructor() {
-		super();
-
-		this.registry.base = registry;
-	}
-
-	invalidate() {
-		invalidateCount++;
-	}
-}
 
 describe('Reference Guide Menu', () => {
 	const mockReferenceGuideBlock = jest.spyOn(compileRemoteHeaders, 'default').mockReturnValue([
@@ -145,9 +132,6 @@ describe('Reference Guide Menu', () => {
 
 		h.expect(basePartialAssertion);
 
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-
 		expect(mockReferenceGuideBlock).toHaveBeenCalledWith({
 			repo: 'dojo/framework',
 			branch: undefined,
@@ -155,25 +139,5 @@ describe('Reference Guide Menu', () => {
 			locale: 'en',
 			headersOnly: true
 		});
-	});
-
-	it('invalidates on route change', () => {
-		const h = harness(() => (
-			<TestReferenceGuideMenu
-				name="name"
-				route="outlet"
-				repo="dojo/framework"
-				path="path/to"
-				standaloneMenu={false}
-			/>
-		));
-
-		h.expect(basePartialAssertion);
-
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-		invalidateCount = 0;
-		router.setPath('/other');
-		expect(invalidateCount).toBe(2);
 	});
 });

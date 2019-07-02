@@ -1,4 +1,4 @@
-import { v } from '@dojo/framework/widget-core/d';
+import { v } from '@dojo/framework/core/vdom';
 import * as fetch from 'node-fetch';
 
 import * as compiler from './compile';

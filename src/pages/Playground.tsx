@@ -1,8 +1,8 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import * as css from './Playground.m.css';
-import has from '@dojo/framework/has/has';
+import has from '@dojo/framework/core/has';
 
 export default class Playground extends WidgetBase {
 	protected render() {

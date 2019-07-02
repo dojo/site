@@ -1,6 +1,6 @@
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import CardHeader from './CardHeader';
 import * as css from './CardHeader.m.css';
@@ -23,7 +23,7 @@ describe('CardHeader', () => {
 				</CardHeader>
 			));
 
-			const assertion = baseAssertion.setChildren('@card-header', [<span>foo</span>]);
+			const assertion = baseAssertion.setChildren('@card-header', () => [<span>foo</span>]);
 			h.expect(assertion);
 		});
 
@@ -34,7 +34,7 @@ describe('CardHeader', () => {
 				</CardHeader>
 			));
 
-			const assertion = baseAssertion.setChildren('@card-header', [<span>foo</span>]);
+			const assertion = baseAssertion.setChildren('@card-header', () => [<span>foo</span>]);
 			h.expect(assertion);
 		});
 	});
@@ -42,7 +42,7 @@ describe('CardHeader', () => {
 	it('renders title', () => {
 		const h = harness(() => <CardHeader title="A title" />);
 
-		const assertion = baseAssertion.setChildren('@card-header', ['A title']);
+		const assertion = baseAssertion.setChildren('@card-header', () => ['A title']);
 		h.expect(assertion);
 	});
 
@@ -50,7 +50,7 @@ describe('CardHeader', () => {
 		it('renders title and image from object', () => {
 			const h = harness(() => <CardHeader title="A title" image={{ src: 'path/to/src.png' }} />);
 
-			const assertion = baseAssertion.setChildren('@card-header', [
+			const assertion = baseAssertion.setChildren('@card-header', () => [
 				<img src="path/to/src.png" alt="A title" classes={css.image} />,
 				'A title'
 			]);
@@ -60,7 +60,7 @@ describe('CardHeader', () => {
 		it('renders title and image from object with alt', () => {
 			const h = harness(() => <CardHeader title="A title" image={{ src: 'path/to/src.png', alt: 'an alt' }} />);
 
-			const assertion = baseAssertion.setChildren('@card-header', [
+			const assertion = baseAssertion.setChildren('@card-header', () => [
 				<img src="path/to/src.png" alt="an alt" classes={css.image} />,
 				'A title'
 			]);

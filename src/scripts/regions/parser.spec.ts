@@ -1,12 +1,12 @@
-import { DefaultWidgetBaseInterface, DNode } from '@dojo/framework/widget-core/interfaces';
+import { DefaultWidgetBaseInterface, DNode } from '@dojo/framework/core/interfaces';
 
 import * as compiler from '../compile';
 import * as parser from './parser';
 import { INLINE_C_MATCHER } from './region-matchers/inline-c';
-import * as d from '@dojo/framework/widget-core/d';
+import * as d from '@dojo/framework/core/vdom';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { v } from '@dojo/framework/widget-core/d';
+import { v } from '@dojo/framework/core/vdom';
 
 export const regionName = 'RegionName';
 
@@ -81,16 +81,16 @@ const region = `	// @start-region RegionName
 ${regionContents}
 	// @end-region RegionName`;
 
-const mockFileContents = `import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+const mockFileContents = `import { WidgetBase } from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
 
 export default class App extends WidgetBase {
 ${region}
 }
 `;
 
-const mockFileContentsNoRegions = `import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+const mockFileContentsNoRegions = `import { WidgetBase } from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
 
 export default class App extends WidgetBase {
 ${regionContentsLeftAlligned}

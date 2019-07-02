@@ -1,4 +1,4 @@
-import { w, v } from '@dojo/framework/widget-core/d';
+import { w, v } from '@dojo/framework/core/vdom';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
 

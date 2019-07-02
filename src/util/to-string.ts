@@ -1,5 +1,5 @@
-import { DNode } from '@dojo/framework/widget-core/interfaces';
-import { isVNode, isWNode } from '@dojo/framework/widget-core/d';
+import { DNode } from '@dojo/framework/core/interfaces';
+import { isVNode, isWNode } from '@dojo/framework/core/vdom';
 
 export function toString(node: DNode): string {
 	if (typeof node === 'string') {

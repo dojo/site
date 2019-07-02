@@ -1,5 +1,5 @@
-import { isVNode, v } from '@dojo/framework/widget-core/d';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { isVNode, v } from '@dojo/framework/core/vdom';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 import { toString } from '../util/to-string';
 
