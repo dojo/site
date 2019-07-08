@@ -1,0 +1,49 @@
+@import '../../variables.css';
+
+.root {
+	position: absolute;
+	outline: none;
+	box-shadow: var(--box-shadow-high-evelation);
+	width: calc(var(--grid-size) * 20);
+	background-color: var(--color-white);
+	z-index: var(--zindex-dropdown);
+	padding: var(--grid-size);
+	box-sizing: border-box;
+}
+
+.item {
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.sectionHeader,
+.item {
+	white-space: nowrap;
+	padding: calc(var(--grid-size) / 2);
+	border-radius: 0;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+.item:not(:disabled):hover,
+.item:not(:disabled):hover:focus {
+	background-color: var(--color-off-white);
+	background-color: var(--color-surface);
+	text-decoration: none;
+	color: initial;
+}
+
+.item:not(:disabled):focus {
+	outline: none;
+	border-radius: 0;
+}
+
+.sectionHeader {
+	cursor: initial;
+}
+
+.item + .sectionHeader {
+	margin-top: var(--grid-size);
+}

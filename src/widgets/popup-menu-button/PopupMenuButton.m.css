@@ -1,0 +1,20 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	position: relative;
+	margin-left: calc(var(--grid-size) * 2);
+}
+
+.button {
+	padding: 10px;
+	background: none;
+	color: var(--font-color-inverse);
+	border: 1px solid #6b6b6b;
+	text-transform: uppercase;
+}
+
+.button:hover {
+	color: var(--color-white);
+	border-color: #787878;
+}

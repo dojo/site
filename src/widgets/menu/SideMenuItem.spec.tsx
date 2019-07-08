@@ -54,7 +54,7 @@ describe('Side Menu Item', () => {
 			const h = harness(() => <SideMenuItem to="https://example.com/">A link</SideMenuItem>);
 
 			const assertion = baseAssertion.setChildren('@menu-item', () => [
-				<a key="link" href="https://example.com/" target="_blank" classes={css.link}>
+				<a key="link" href="https://example.com/" classes={[css.link]}>
 					A link
 				</a>
 			]);

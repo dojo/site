@@ -72,9 +72,6 @@
 	margin-left: auto;
 }
 
-.children {
-}
-
 .children.expanded {
 	visibility: visible;
 	opacity: 1;

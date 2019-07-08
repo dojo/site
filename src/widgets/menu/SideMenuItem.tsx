@@ -63,7 +63,7 @@ export default class SideMenuItem extends ThemedMixin(WidgetBase)<SideMenuItemPr
 			<li key="menu-item" classes={this.theme(css.root)}>
 				{to ? (
 					/^https?:\/\/[\S]+$/g.test(to) ? (
-						<a key="link" href={to} target="_blank" classes={this.theme(css.link)}>
+						<a key="link" href={to} classes={this.theme(linkClasses)}>
 							{this.children}
 						</a>
 					) : (

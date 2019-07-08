@@ -1,6 +1,7 @@
 :root {
 	/* Color Pallette */
 	--color-white: #ffffff;
+	--color-surface: #f5f6f8;
 	--color-off-white: #aaa;
 	--color-black: #000000;
 	--color-light-blue: #009dff;
@@ -72,6 +73,12 @@
 	--content-top-padding: calc(var(--grid-size) * 6);
 	--content-padding: calc(var(--grid-size) * 3);
 	--console-background-color: var(--darker-background-color);
+
+	/* Z indexes */
+	--zindex-dropdown: 500;
+
+	/* Elevation */
+	--box-shadow-high-evelation: 0px 10px 16px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {

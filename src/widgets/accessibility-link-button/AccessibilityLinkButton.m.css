@@ -1,0 +1,9 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	text-decoration: none;
+	padding: 0;
+	color: unset;
+	cursor: pointer;
+}
