@@ -1,5 +1,5 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import { switchLocale } from '@dojo/framework/i18n/i18n';
 
@@ -32,7 +32,7 @@ describe('ReferenceGuidesPage', () => {
 		));
 
 		h.expect(
-			baseAssertionTemplate.append('@section', [
+			baseAssertionTemplate.append('@section', () => [
 				<RemotePage repo={repo} branch={undefined} path={`${path}/${page}.md`} />
 			])
 		);
@@ -44,7 +44,7 @@ describe('ReferenceGuidesPage', () => {
 		));
 
 		h.expect(
-			baseAssertionTemplate.append('@section', [
+			baseAssertionTemplate.append('@section', () => [
 				<RemotePage repo={repo} branch={undefined} path={`${path}/supplemental.md`} header="some-page" />
 			])
 		);

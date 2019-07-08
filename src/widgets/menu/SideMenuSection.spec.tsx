@@ -1,4 +1,4 @@
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 
@@ -32,7 +32,7 @@ describe('Side Menu Section', () => {
 	it('renders with title', () => {
 		const h = harness(() => <SideMenuSection title="A title">Some content</SideMenuSection>);
 
-		const assertion = baseAssertion.prepend('@menu-section', [<h5 classes={css.title}>A title</h5>]);
+		const assertion = baseAssertion.prepend('@menu-section', () => [<h5 classes={css.title}>A title</h5>]);
 		h.expect(assertion);
 	});
 });

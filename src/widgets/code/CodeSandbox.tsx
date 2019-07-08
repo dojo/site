@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import Intersection from '@dojo/framework/widget-core/meta/Intersection';
-import has, { exists } from '@dojo/framework/has/has';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
+import Intersection from '@dojo/framework/core/meta/Intersection';
+import has, { exists } from '@dojo/framework/core/has';
 
 import * as css from './CodeSandbox.m.css';
 

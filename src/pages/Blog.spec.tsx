@@ -1,6 +1,6 @@
-import Block from '@dojo/framework/widget-core/meta/Block';
+import Block from '@dojo/framework/core/meta/Block';
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import compileBlogIndexBlock from '../scripts/compile-blog-index.block';
 import Landing from '../widgets/landing/Landing';

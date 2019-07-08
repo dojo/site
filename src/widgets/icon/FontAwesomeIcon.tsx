@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { VNode, SupportedClassName } from '@dojo/framework/widget-core/interfaces';
-import { v } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { VNode, SupportedClassName } from '@dojo/framework/core/interfaces';
+import { v } from '@dojo/framework/core/vdom';
+import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/core/mixins/Themed';
 
 import {
 	icon,
@@ -80,7 +80,7 @@ export default class FontAwesomeIcon extends ThemedMixin(WidgetBase)<FontAwesome
 	protected render() {
 		const {
 			border = false,
-			mask: maskArgs = null,
+			mask: maskArgs,
 			fixedWidth = false,
 			inverse = false,
 			flip = null,
@@ -118,7 +118,7 @@ export default class FontAwesomeIcon extends ThemedMixin(WidgetBase)<FontAwesome
 			typeof transformArgs === 'string' ? parse.transform(transformArgs) : transformArgs
 		);
 		let mask = null;
-		if (maskArgs !== null) {
+		if (maskArgs) {
 			mask = this.normalizeIconArgs(maskArgs);
 		}
 		let maskLookup = objectWithKey('mask', mask);

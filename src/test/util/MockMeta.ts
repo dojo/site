@@ -1,5 +1,5 @@
-import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/widget-core/interfaces';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/core/interfaces';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
 import Map from '@dojo/framework/shim/Map';
 
 type MetaFunction = <M extends MetaBase>(MetaType: WidgetMetaConstructor<M>, parentInvalidate: () => void) => any;

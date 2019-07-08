@@ -1,8 +1,8 @@
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { add } from '@dojo/framework/has/has';
-import Intersection from '@dojo/framework/widget-core/meta/Intersection';
+import { tsx } from '@dojo/framework/core/vdom';
+import { add } from '@dojo/framework/core/has';
+import Intersection from '@dojo/framework/core/meta/Intersection';
 
 import Card from '../../../widgets/card/Card';
 
@@ -44,14 +44,14 @@ describe('GetGoing', () => {
 							<span classes={[css.keyword]}>import</span>
 							<span classes={[css.variable]}>WidgetBase</span>
 							<span classes={[css.keyword]}>from</span>
-							<span classes={[css.string]}>'@dojo/framework/widget-core/WidgetBase'</span>
+							<span classes={[css.string]}>'@dojo/framework/core/WidgetBase'</span>
 							<span>;</span>
 						</div>
 						<div classes={[css.codeline]}>
 							<span classes={[css.keyword]}>import</span>
 							<span classes={[css.variable]}>ProjectorMixin</span>
 							<span classes={[css.keyword]}>from</span>
-							<span classes={[css.string]}>'@dojo/framework/widget-core/Projector'</span>
+							<span classes={[css.string]}>'@dojo/framework/core/Projector'</span>
 							<span>;</span>
 						</div>
 						<div classes={[css.codeline]}>
@@ -60,7 +60,7 @@ describe('GetGoing', () => {
 							<span classes={[css.variable]}>v</span>
 							<span>{'} '}</span>
 							<span classes={[css.keyword]}>from</span>
-							<span classes={[css.string]}>'@dojo/framework/widget-core/d'</span>
+							<span classes={[css.string]}>'@dojo/framework/core/vdom'</span>
 							<span>;</span>
 						</div>
 					</Card>

@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { Params } from '@dojo/framework/routing/interfaces';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { tsx } from '@dojo/framework/core/vdom';
+import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
 import Link from '@dojo/framework/routing/Link';
 
 import Card, { CardProperties } from './Card';

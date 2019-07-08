@@ -1,7 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import { add } from '@dojo/framework/has/has';
-import Intersection from '@dojo/framework/widget-core/meta/Intersection';
+import { tsx } from '@dojo/framework/core/vdom';
+import { add } from '@dojo/framework/core/has';
+import { Intersection } from '@dojo/framework/core/meta/Intersection';
 
 import { MockMetaMixin } from '../../test/util/MockMeta';
 

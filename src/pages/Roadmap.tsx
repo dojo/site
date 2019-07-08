@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import Block from '@dojo/framework/widget-core/meta/Block';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import Block from '@dojo/framework/core/meta/Block';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import roadmapMetadataBlock, { RoadmapMetaData } from '../scripts/roadmap-metadata.block';
 import Card from '../widgets/card/Card';

@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import Block from '@dojo/framework/widget-core/meta/Block';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import Block from '@dojo/framework/core/meta/Block';
+import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/Link';
 
 import compileBlogPostBlock from '../scripts/compile-blog-post.block';

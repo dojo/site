@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { VNode } from '@dojo/framework/widget-core/interfaces';
+import { VNode } from '@dojo/framework/core/interfaces';
 import { select } from '@dojo/framework/testing/support/selector';
 
 import { fromMarkdown, toDNodes } from './compile';

@@ -1,7 +1,7 @@
-import Block from '@dojo/framework/widget-core/meta/Block';
+import Block from '@dojo/framework/core/meta/Block';
 import Link from '@dojo/framework/routing/Link';
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 
 import compileBlogPostBlock from '../scripts/compile-blog-post.block';
 import LandingSubsection from '../widgets/landing/LandingSubsection';

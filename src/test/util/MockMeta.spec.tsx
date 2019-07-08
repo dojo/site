@@ -1,10 +1,10 @@
 import harness from '@dojo/framework/testing/harness';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { tsx } from '@dojo/framework/widget-core/tsx';
-import Focus from '@dojo/framework/widget-core/meta/Focus';
-import Dimensions from '@dojo/framework/widget-core/meta/Dimensions';
-import Intersection from '@dojo/framework/widget-core/meta/Intersection';
-import Block from '@dojo/framework/widget-core/meta/Block';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { tsx } from '@dojo/framework/core/vdom';
+import Focus from '@dojo/framework/core/meta/Focus';
+import Dimensions from '@dojo/framework/core/meta/Dimensions';
+import Intersection from '@dojo/framework/core/meta/Intersection';
+import Block from '@dojo/framework/core/meta/Block';
 
 import { MockMetaMixin } from './MockMeta';
 

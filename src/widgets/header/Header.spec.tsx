@@ -1,7 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
-import { tsx } from '@dojo/framework/widget-core/tsx';
+import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/ActiveLink';
-import Registry from '@dojo/framework/widget-core/Registry';
+import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import { MemoryHistory } from '@dojo/framework/routing/history/MemoryHistory';
 
@@ -48,19 +48,6 @@ const router = new Router(
 );
 
 registry.defineInjector('router', () => () => router);
-
-let invalidateCount = 0;
-class TestHeader extends Header {
-	constructor() {
-		super();
-
-		this.registry.base = registry;
-	}
-
-	invalidate() {
-		invalidateCount++;
-	}
-}
 
 describe('Menu', () => {
 	const baseAssertion = assertionTemplate(() => (
@@ -160,28 +147,8 @@ describe('Menu', () => {
 		</header>
 	));
 
-	beforeEach(() => {
-		invalidateCount = 0;
-	});
-
 	it('renders', () => {
 		const h = harness(() => <Header />);
-
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-
 		h.expect(baseAssertion);
-	});
-
-	it('invalidates on route change', () => {
-		const h = harness(() => <TestHeader />);
-
-		h.expect(baseAssertion);
-
-		const widget = (h.getRender(0) as any).bind;
-		widget.onAttach();
-		invalidateCount = 0;
-		router.setPath('/other');
-		expect(invalidateCount).toBe(2);
 	});
 });
