@@ -18,11 +18,11 @@ describe('TutorialsLanding', () => {
 			<LandingSubsection title={messages.gettingStarted}>
 				<Grid>
 					<LandingLink
-						title={messages.localInstllation}
+						title={messages.localInstallation}
 						icon="cloud-download-alt"
 						to="tutorial-local-installation"
 					>
-						{messages.localInstllationDescription}
+						{messages.localInstallationDescription}
 					</LandingLink>
 					<LandingLink
 						title={messages.sampleTutorial}

@@ -1,7 +1,8 @@
-import Block from '@dojo/framework/core/meta/Block';
+import block from '@dojo/framework/core/middleware/block';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
+import { createMockBlockMiddleware } from '../test/util/mockBlock';
 import getExamples from '../scripts/examples.block';
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
 import Grid from '../widgets/grid/Grid';
@@ -9,14 +10,11 @@ import Landing from '../widgets/landing/Landing';
 import LandingSubsection from '../widgets/landing/LandingSubsection';
 import LinkedCard from '../widgets/card/LinkedCard';
 
-import { MockMetaMixin } from '../test/util/MockMeta';
-
 import Examples from './Examples';
 import * as css from './Examples.m.css';
 
 describe('Examples', () => {
 	it('renders', () => {
-		let mockMetaMixin = new MockMetaMixin(Examples);
 		const mockGetExample = jest.fn().mockReturnValue([
 			{
 				code: 'code',
@@ -27,9 +25,8 @@ describe('Examples', () => {
 				sandbox: true
 			}
 		]);
-		mockMetaMixin.registerMetaCallOnce(Block, 'run', [getExamples], mockGetExample);
-		const ExamplesMock = mockMetaMixin.getClass();
-		const h = harness(() => <ExamplesMock />);
+		const mockBlock = createMockBlockMiddleware([[getExamples, mockGetExample]]);
+		const h = harness(() => <Examples />, { middleware: [[block, mockBlock]] });
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<LandingSubsection>

@@ -1,5 +1,4 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { create, tsx } from '@dojo/framework/core/vdom';
 import Outlet from '@dojo/framework/routing/Outlet';
 
 import Home from './pages/Home';
@@ -54,32 +53,32 @@ library.add(
 	faSitemap
 );
 
-export default class App extends WidgetBase {
-	protected render() {
-		return (
-			<div classes={[css.root]}>
-				<Header />
-				<div classes={[css.content]}>
-					<Outlet key="home" id="home" renderer={() => <Home />} />
-					<Outlet
-						key="blog"
-						id="blog"
-						renderer={(matchDetails) => {
-							if (matchDetails.isExact()) {
-								return <Blog />;
-							}
-						}}
-					/>
-					<BlogPosts />
-					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
-					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
-					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
-					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<ReferenceGuides />
-				</div>
-				<Footer />
+const factory = create();
+
+export default factory(function App() {
+	return (
+		<div classes={[css.root]}>
+			<Header />
+			<div classes={[css.content]}>
+				<Outlet key="home" id="home" renderer={() => <Home />} />
+				<Outlet
+					key="blog"
+					id="blog"
+					renderer={(matchDetails) => {
+						if (matchDetails.isExact()) {
+							return <Blog />;
+						}
+					}}
+				/>
+				<BlogPosts />
+				<Outlet key="examples" id="examples" renderer={() => <Examples />} />
+				<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
+				<Outlet key="community" id="community" renderer={() => <Community />} />
+				<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
+				<ReferenceGuides />
 			</div>
-		);
-	}
-}
+			<Footer />
+		</div>
+	);
+});

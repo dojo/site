@@ -1,8 +1,10 @@
 import { tsx } from '@dojo/framework/core/vdom';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import block from '@dojo/framework/core/middleware/block';
+import { createMockBlockMiddleware } from '../test/util/mockBlock';
 
-import * as roadmapMetadataBlock from '../scripts/roadmap-metadata.block';
+import roadmapMetadataBlock from '../scripts/roadmap-metadata.block';
 import Card from '../widgets/card/Card';
 import CardHeader from '../widgets/card/CardHeader';
 import FontAwesomeIcon from '../widgets/icon/FontAwesomeIcon';
@@ -28,7 +30,7 @@ describe('Roadmap Page', () => {
 	));
 
 	it('renders', () => {
-		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue([
+		const roadMapBlockStub = jest.fn().mockReturnValue([
 			{
 				file: 'roadmap/en/dojo-6.0.0-release.md',
 				title: 'Dojo 6',
@@ -43,9 +45,9 @@ describe('Roadmap Page', () => {
 				sortDate: '2019-01-31T23:59:00.000Z',
 				released: true
 			}
-		] as any);
-
-		const h = harness(() => <Roadmap />);
+		]);
+		const mockBlock = createMockBlockMiddleware([[roadmapMetadataBlock, roadMapBlockStub]]);
+		const h = harness(() => <Roadmap />, { middleware: [[block, mockBlock]] });
 
 		h.expect(
 			baseAssertion.setChildren('@timeline', () => [
@@ -96,16 +98,16 @@ describe('Roadmap Page', () => {
 			])
 		);
 
-		expect(mockRoadmapMetadataBlock).toHaveBeenCalledWith({ locale: 'en' });
+		expect(roadMapBlockStub).toHaveBeenCalledWith({ locale: 'en' });
 	});
 
 	it('renders empty timeline if block returns undefined', () => {
-		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue(undefined as any);
-
-		const h = harness(() => <Roadmap />);
+		const roadMapBlockStub = jest.fn().mockReturnValue(undefined);
+		const mockBlock = createMockBlockMiddleware([[roadmapMetadataBlock, roadMapBlockStub]]);
+		const h = harness(() => <Roadmap />, { middleware: [[block, mockBlock]] });
 
 		h.expect(baseAssertion);
 
-		expect(mockRoadmapMetadataBlock).toHaveBeenCalledWith({ locale: 'en' });
+		expect(roadMapBlockStub).toHaveBeenCalledWith({ locale: 'en' });
 	});
 });

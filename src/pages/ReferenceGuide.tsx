@@ -1,5 +1,4 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { create, tsx } from '@dojo/framework/core/vdom';
 
 import { CompileRemoteBlockOptions } from '../scripts/compile-remote.block';
 import RemotePage from '../widgets/page/RemotePage';
@@ -14,21 +13,19 @@ export interface ReferenceGuideProperties extends CompileRemoteBlockOptions {
 	page: string;
 }
 
-export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties> {
-	protected render() {
-		const { name, route, repo, branch, path, page } = this.properties;
+const factory = create().properties<ReferenceGuideProperties>();
 
-		return (
-			<Section key="section">
-				<div classes={css.menu}>
-					<ReferenceGuideMenu name={name} route={route} repo={repo} branch={branch} path={path} />
-				</div>
-				{page === 'introduction' || page === 'basic-usage' ? (
-					<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} />
-				) : (
-					<RemotePage repo={repo} branch={branch} path={`${path}/supplemental.md`} header={page} />
-				)}
-			</Section>
-		);
-	}
-}
+export default factory(function ReferenceGuide({ properties: { name, route, repo, branch, path, page } }) {
+	return (
+		<Section key="section">
+			<div classes={css.menu}>
+				<ReferenceGuideMenu name={name} route={route} repo={repo} branch={branch} path={path} />
+			</div>
+			{page === 'introduction' || page === 'basic-usage' ? (
+				<RemotePage repo={repo} branch={branch} path={`${path}/${page}.md`} />
+			) : (
+				<RemotePage repo={repo} branch={branch} path={`${path}/supplemental.md`} header={page} />
+			)}
+		</Section>
+	);
+});

@@ -1,7 +1,7 @@
 const messages = {
 	gettingStarted: 'Getting Started',
-	localInstllation: 'Local Installation',
-	localInstllationDescription:
+	localInstallation: 'Local Installation',
+	localInstallationDescription:
 		'Discover the basics of creating a Dojo application. Very long description on several lines for demonstration.',
 	sampleTutorial: 'Sample Tutorial',
 	sampleTutorialDescription: 'A simple tutorial',
