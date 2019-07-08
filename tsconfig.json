@@ -20,7 +20,8 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "jest", "node" ]
+		"types": [ "jest", "node" ],
+		"keyofStringsOnly": true
 	},
 	"include": [
 		"./src/**/*.ts",

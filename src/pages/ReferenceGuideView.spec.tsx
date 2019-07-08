@@ -7,8 +7,8 @@ import RemotePage from '../widgets/page/RemotePage';
 import Section from '../widgets/section/Section';
 
 import ReferenceGuideMenu from './reference-guides/ReferenceGuideMenu';
-import ReferenceGuide from './ReferenceGuide';
-import * as css from './ReferenceGuide.m.css';
+import ReferenceGuide from './ReferenceGuideView';
+import * as css from './ReferenceGuideView.m.css';
 
 describe('ReferenceGuidesPage', () => {
 	switchLocale('en-US');

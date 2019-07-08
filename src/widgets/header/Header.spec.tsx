@@ -4,16 +4,17 @@ import Link from '@dojo/framework/routing/ActiveLink';
 import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import { MemoryHistory } from '@dojo/framework/routing/history/MemoryHistory';
+import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
 const logo = require('../../../src/assets/logo.svg');
 
+import { ReferenceGuide } from '../../interface';
 import SideMenuItem from '../menu/SideMenuItem';
 import SideMenuItemList from '../menu/SideMenuItemList';
 import ReferenceGuideMenu from '../../pages/reference-guides/ReferenceGuideMenu';
 
 import Header from './Header';
 import * as css from './Header.m.css';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
 const registry = new Registry();
 
@@ -50,6 +51,29 @@ const router = new Router(
 registry.defineInjector('router', () => () => router);
 
 describe('Menu', () => {
+	const referenceGuide1: ReferenceGuide = {
+		name: 'i18n',
+		description: 'i18nDescription',
+		icon: 'globe',
+		to: 'reference-guide-i18n',
+		repository: {
+			name: 'dojo/framework'
+		},
+		path: 'docs/:locale:/i18n'
+	};
+
+	const referenceGuide2: ReferenceGuide = {
+		name: 'stylingAndTheming',
+		description: 'stylingAndThemingDescription',
+		icon: 'palette',
+		to: 'reference-guide-styling-and-theming',
+		repository: {
+			name: 'dojo/framework',
+			branch: 'someOtherBranch'
+		},
+		path: 'docs/:locale:/styling-and-theming'
+	};
+
 	const baseAssertion = assertionTemplate(() => (
 		<header key="root" classes={css.root}>
 			<input id="mainMenuToggle" classes={css.mainMenuToggle} type="checkbox" />
@@ -70,6 +94,7 @@ describe('Menu', () => {
 			<nav role="navigation" classes={[css.menu]} aria-label="Main Menu">
 				<SideMenuItemList classes={{ 'dojo.io/SideMenuItemList': { root: [css.menuList] } }}>
 					<SideMenuItem
+						assertion-key="blog"
 						to="blog"
 						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
@@ -87,6 +112,7 @@ describe('Menu', () => {
 							name="i18n"
 							route="reference-guide-i18n"
 							repo="dojo/framework"
+							branch={undefined}
 							path="docs/:locale:/i18n"
 							standaloneMenu={false}
 						/>
@@ -94,14 +120,8 @@ describe('Menu', () => {
 							name="Styling and Theming"
 							route="reference-guide-styling-and-theming"
 							repo="dojo/framework"
+							branch="someOtherBranch"
 							path="docs/:locale:/styling-and-theming"
-							standaloneMenu={false}
-						/>
-						<ReferenceGuideMenu
-							name="Routing"
-							route="reference-guide-routing"
-							repo="dojo/framework"
-							path="docs/:locale:/routing"
 							standaloneMenu={false}
 						/>
 					</SideMenuItem>
@@ -129,6 +149,7 @@ describe('Menu', () => {
 						Playground
 					</SideMenuItem>
 					<SideMenuItem
+						assertion-key="roadmap"
 						to="roadmap"
 						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
@@ -136,6 +157,7 @@ describe('Menu', () => {
 						Roadmap
 					</SideMenuItem>
 					<SideMenuItem
+						assertion-key="community"
 						to="community"
 						classes={{ 'dojo.io/SideMenuItem': { root: [css.menuItem, undefined], link: [css.link] } }}
 						inverse
@@ -148,7 +170,8 @@ describe('Menu', () => {
 	));
 
 	it('renders', () => {
-		const h = harness(() => <Header />);
+		const h = harness(() => <Header referenceGuides={[referenceGuide1, referenceGuide2]} />);
+
 		h.expect(baseAssertion);
 	});
 });

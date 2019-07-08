@@ -12,6 +12,7 @@ import Community from './pages/Community';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 
+import { content } from './constants';
 import Header from './widgets/header/Header';
 import Footer from './widgets/footer/Footer';
 
@@ -56,9 +57,11 @@ library.add(
 
 export default class App extends WidgetBase {
 	protected render() {
+		const { referenceGuides } = content;
+
 		return (
 			<div classes={[css.root]}>
-				<Header />
+				<Header referenceGuides={referenceGuides} />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet
@@ -75,8 +78,12 @@ export default class App extends WidgetBase {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<ReferenceGuides />
+					<Outlet
+						key="reference-guides"
+						id="reference-guides"
+						renderer={() => <ReferenceGuidesLanding referenceGuides={referenceGuides} />}
+					/>
+					<ReferenceGuides referenceGuides={referenceGuides} />
 				</div>
 				<Footer />
 			</div>

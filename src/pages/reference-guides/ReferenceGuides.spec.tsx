@@ -3,7 +3,9 @@ import { DNode } from '@dojo/framework/core/interfaces';
 import Outlet from '@dojo/framework/routing/Outlet';
 import harness from '@dojo/framework/testing/harness';
 
-import ReferenceGuide from '../ReferenceGuide';
+import { ReferenceGuide } from '../../interface';
+
+import ReferenceGuideView from '../ReferenceGuideView';
 
 import ReferenceGuides from './ReferenceGuides';
 
@@ -14,8 +16,31 @@ interface Page {
 }
 
 describe('Tutorials', () => {
+	const referenceGuide1: ReferenceGuide = {
+		name: 'i18n',
+		description: 'i18nDescription',
+		icon: 'globe',
+		to: 'reference-guide-i18n',
+		repository: {
+			name: 'dojo/framework'
+		},
+		path: 'docs/:locale:/i18n'
+	};
+
+	const referenceGuide2: ReferenceGuide = {
+		name: 'stylingAndTheming',
+		description: 'stylingAndThemingDescription',
+		icon: 'palette',
+		to: 'reference-guide-styling-and-theming',
+		repository: {
+			name: 'dojo/framework',
+			branch: 'someOtherBranch'
+		},
+		path: 'docs/:locale:/styling-and-theming'
+	};
+
 	it('renders', () => {
-		const h = harness(() => <ReferenceGuides />);
+		const h = harness(() => <ReferenceGuides referenceGuides={[referenceGuide1, referenceGuide2]} />);
 		h.expect(() => [
 			<Outlet
 				key="reference-guide-i18n"
@@ -23,7 +48,7 @@ describe('Tutorials', () => {
 				renderer={(matchDetails) => {
 					const { page } = matchDetails.params;
 					return (
-						<ReferenceGuide
+						<ReferenceGuideView
 							name="i18n"
 							repo="dojo/framework"
 							path="docs/:locale:/i18n"
@@ -39,27 +64,11 @@ describe('Tutorials', () => {
 				renderer={(matchDetails) => {
 					const { page } = matchDetails.params;
 					return (
-						<ReferenceGuide
+						<ReferenceGuideView
 							name="styling-and-theming"
 							repo="dojo/framework"
 							path="docs/:locale:/styling-and-theming"
 							route="reference-guide-styling-and-theming"
-							page={page}
-						/>
-					);
-				}}
-			/>,
-			<Outlet
-				key="reference-guide-routing"
-				id="reference-guide-routing"
-				renderer={(matchDetails) => {
-					const { page } = matchDetails.params;
-					return (
-						<ReferenceGuide
-							name="routing"
-							repo="dojo/framework"
-							path="docs/:locale:/routing"
-							route="reference-guide-routing"
 							page={page}
 						/>
 					);
@@ -72,9 +81,10 @@ describe('Tutorials', () => {
 		{
 			outlet: 'reference-guide-i18n',
 			content: (
-				<ReferenceGuide
+				<ReferenceGuideView
 					name="i18n"
 					repo="dojo/framework"
+					branch={undefined}
 					path="docs/:locale:/i18n"
 					route="reference-guide-i18n"
 					page="introduction"
@@ -89,28 +99,12 @@ describe('Tutorials', () => {
 		{
 			outlet: 'reference-guide-styling-and-theming',
 			content: (
-				<ReferenceGuide
-					name="Styling and Theming"
+				<ReferenceGuideView
+					name="stylingAndTheming"
 					repo="dojo/framework"
+					branch="someOtherBranch"
 					path="docs/:locale:/styling-and-theming"
 					route="reference-guide-styling-and-theming"
-					page="introduction"
-				/>
-			),
-			args: [
-				{
-					params: { page: 'introduction' }
-				}
-			]
-		},
-		{
-			outlet: 'reference-guide-routing',
-			content: (
-				<ReferenceGuide
-					name="Routing"
-					repo="dojo/framework"
-					path="docs/:locale:/routing"
-					route="reference-guide-routing"
 					page="introduction"
 				/>
 			),
@@ -123,7 +117,7 @@ describe('Tutorials', () => {
 	];
 
 	it('outlets render contents', () => {
-		const h = harness(() => <ReferenceGuides />);
+		const h = harness(() => <ReferenceGuides referenceGuides={[referenceGuide1, referenceGuide2]} />);
 		pages.forEach(({ outlet, content, args = [] }) => {
 			const renderer = h.trigger(`@${outlet}`, 'renderer', ...args);
 			h.expect(() => content, () => renderer);

@@ -206,7 +206,6 @@ Coming soon.
 
 	Pages will be generated for the introduction and basic usage files, and one page for each top level header (`h1`) in the supplemental file.
 2. Add page paths (for introduction, basic usage and each top level header (`h1`) in supplemental) to the `.dojorc` file.
-
 	**Example**:
 	> .dojo.rc
 	```json
@@ -226,52 +225,20 @@ Coming soon.
 		outlet: 'reference-guide-i18n'
 	}
 	```
-4. Add an outlet for the route to the `ReferenceGuides` widget.
+4. Add the reference guide setup to `src/constants.ts`.
 	**Example**:
 	> src/pages/reference-guides/ReferenceGuides.tsx
 	```ts
-	<Outlet
-		key="reference-guide-i18n"
-		id="reference-guide-i18n"
-		renderer={(matchDetails) => {
-			const { page } = matchDetails.params;
-			return (
-				<ReferenceGuide
-					name="i18n"
-					repo="dojo/framework"
-					path="docs/:locale:/i18n"
-					route="reference-guide-i18n"
-					page={page}
-				/>
-			);
-		}}
-	/>
+	{
+		name: 'i18n',
+		description: 'i18nDescription',
+		icon: 'globe',
+		to: outlets.referenceGuides.i18n,
+		repository: repositories.frameworkMaster,
+		path: 'docs/:locale:/i18n'
+	}
 	```
-5. Add a landing link to the `ReferenceGuidesLanding` widget in `src/pages`.
-	**Example**:
-	> src/pages/ReferenceGuidesLanding.tsx
-	```ts
-	<LandingLink
-		title={messages.i18n}
-		icon="globe"
-		to="reference-guide-i18n"
-		params={{ page: 'introduction' }}
-	>
-		{messages.i18nDescription}
-	</LandingLink>
-	```
-6. Add a menu entry to the `Header` widget for use in the hamburger menu on mobile.
-	**Example**:
-	> src/widgets/header/Header.tsx
-	```
-	<ReferenceGuideMenu
-		name="i18n"
-		route="reference-guide-i18n"
-		repo="dojo/framework"
-		path="docs/:locale:/i18n"
-		standaloneMenu={false}
-	/>
-	```
+	- If any of the icons are not already loaded in `src/App.tsx` see the [Fontawesome Icons Widget](#fontawesome-icons-widget) section below.
 
 ### Roadmap Entry
 

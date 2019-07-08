@@ -6,15 +6,15 @@ import RemotePage from '../widgets/page/RemotePage';
 import Section from '../widgets/section/Section';
 
 import ReferenceGuideMenu from './reference-guides/ReferenceGuideMenu';
-import * as css from './ReferenceGuide.m.css';
+import * as css from './ReferenceGuideView.m.css';
 
-export interface ReferenceGuideProperties extends CompileRemoteBlockOptions {
+export interface ReferenceGuideViewProperties extends CompileRemoteBlockOptions {
 	name: string;
 	route: string;
 	page: string;
 }
 
-export default class ReferenceGuide extends WidgetBase<ReferenceGuideProperties> {
+export default class ReferenceGuideView extends WidgetBase<ReferenceGuideViewProperties> {
 	protected render() {
 		const { name, route, repo, branch, path, page } = this.properties;
 

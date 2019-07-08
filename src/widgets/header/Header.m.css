@@ -19,7 +19,8 @@
 
 .menu {
 	margin-right: var(--menu-offset);
-	overflow: hidden;
+	display: flex;
+	align-items: center;
 }
 
 .menuList {
@@ -184,13 +185,14 @@
 		margin: 0;
 		opacity: 0.95;
 		background: var(--responsive-header-background-color);
+		box-shadow: -8px 0 8px var(--shadow-color);
+		align-items: start;
+		flex-direction: column;
 	}
 
 	.menuList {
 		margin: 0;
 		padding: 2.5em 0 0;
-		box-shadow: -8px 0 8px var(--shadow-color);
-		min-height: 100%;
 		width: 70vw;
 		display: block;
 		padding: var(--grid-size) calc(var(--grid-size) * 2);

@@ -3,6 +3,11 @@ import { tsx } from '@dojo/framework/core/vdom';
 import Outlet from '@dojo/framework/routing/Outlet';
 import { DNode } from '@dojo/framework/core/interfaces';
 
+import { content } from './constants';
+import Footer from './widgets/footer/Footer';
+import Header from './widgets/header/Header';
+
+import Roadmap from './pages/Roadmap';
 import Blog from './pages/Blog';
 import BlogPosts from './pages/blog/BlogPosts';
 import Community from './pages/Community';
@@ -11,12 +16,9 @@ import Home from './pages/Home';
 import Playground from './pages/Playground';
 import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
 import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
-import Header from './widgets/header/Header';
-import Roadmap from './pages/Roadmap';
 
 import App from './App';
 import * as css from './App.m.css';
-import Footer from './widgets/footer/Footer';
 
 interface Page {
 	outlet: string;
@@ -25,11 +27,13 @@ interface Page {
 }
 
 describe('App', () => {
+	const { referenceGuides } = content;
+
 	it('renders', () => {
 		const h = harness(() => <App />);
 		h.expect(() => (
 			<div classes={[css.root]}>
-				<Header />
+				<Header referenceGuides={referenceGuides} />
 				<div classes={[css.content]}>
 					<Outlet key="home" id="home" renderer={() => <Home />} />
 					<Outlet
@@ -46,8 +50,12 @@ describe('App', () => {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<ReferenceGuides />
+					<Outlet
+						key="reference-guides"
+						id="reference-guides"
+						renderer={() => <ReferenceGuidesLanding referenceGuides={referenceGuides} />}
+					/>
+					<ReferenceGuides referenceGuides={referenceGuides} />
 				</div>
 				<Footer />
 			</div>
@@ -62,7 +70,7 @@ describe('App', () => {
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'roadmap', content: <Roadmap /> },
 		{ outlet: 'community', content: <Community /> },
-		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> }
+		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding referenceGuides={referenceGuides} /> }
 	];
 
 	it('outlets render contents', () => {
