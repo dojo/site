@@ -1,6 +1,6 @@
 ---
 title: Dojo 2 Release Candidate 1 is now available!
-date: 2018-03-11 09:00:00
+date: 2018-03-11T09:00:00.000Z
 author: Dylan Schiemann
 ---
 

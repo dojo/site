@@ -1,6 +1,6 @@
 ---
 title: Dojo 2 is coming
-date: 2017-03-27 14:32:37
+date: 2017-03-27T14:32:37.000Z
 author: Dylan Schiemann
 ---
 

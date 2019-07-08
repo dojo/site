@@ -5,7 +5,7 @@ import { join } from 'path';
 import { outputFileSync } from 'fs-extra';
 
 import { registerHandlers, handlers, fromMarkdown } from './compile';
-import { BlogFile } from './compile-blog-index.block';
+import { BlogPost } from './compile-blog-post.block';
 
 const unified = require('unified');
 const stringify = require('rehype-stringify');
@@ -25,7 +25,7 @@ export interface BlogEntry {
 // In order to not spam people's RSS feed when this goes live, we skip items before May 2019
 const skipItemsBefore = new Date(2019, 4, 1).getTime();
 
-export function createBlogFeed(files: BlogFile[]) {
+export function createBlogFeed(files: BlogPost[]) {
 	const feed = new Feed({
 		title: 'Dojo',
 		description: 'The official blog of the Dojo framework',
@@ -50,12 +50,15 @@ export function createBlogFeed(files: BlogFile[]) {
 			continue;
 		}
 
-		const fullContentProcessed = fromMarkdown(file.content, registerHandlers(handlers));
+		const fullContentProcessed = fromMarkdown(file.rawContent, registerHandlers(handlers));
 		const fullContent = unified()
 			.use(stringify)
 			.stringify(fullContentProcessed);
 
-		const descriptionProcessed = fromMarkdown(file.content.split('<!-- more -->')[0], registerHandlers(handlers));
+		const descriptionProcessed = fromMarkdown(
+			file.rawContent.split('<!-- more -->')[0],
+			registerHandlers(handlers)
+		);
 		const description = unified()
 			.use(stringify)
 			.stringify(descriptionProcessed);

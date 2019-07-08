@@ -10,20 +10,24 @@ import { MockMetaMixin } from '../test/util/MockMeta';
 
 import Blog from './Blog';
 import * as css from './Blog.m.css';
+import { blogPost1Excerpt, blogPost2Excerpt, blogPost3, blogPost4 } from '../test/blog-posts.mock';
 
 describe('Blog', () => {
 	it('renders', () => {
 		const mockMetaMixin = new MockMetaMixin(Blog);
-		const mockCompileBlogIndexBlock = jest.fn().mockReturnValue(['a', 'b', 'c']);
+		const mockCompileBlogIndexBlock = jest
+			.fn()
+			.mockReturnValue([blogPost1Excerpt, blogPost2Excerpt, blogPost3, blogPost4]);
 		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogIndexBlock], mockCompileBlogIndexBlock);
 
 		const BlogMock = mockMetaMixin.getClass();
 		const h = harness(() => <BlogMock />);
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
-				<Post path="a" excerpt />
-				<Post path="b" excerpt />
-				<Post path="c" excerpt />
+				<Post key={blogPost1Excerpt.file} post={blogPost1Excerpt} excerpt />
+				<Post key={blogPost2Excerpt.file} post={blogPost2Excerpt} excerpt />
+				<Post key={blogPost3.file} post={blogPost3} excerpt />
+				<Post key={blogPost4.file} post={blogPost4} excerpt />
 			</Landing>
 		));
 

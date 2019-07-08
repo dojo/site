@@ -1,6 +1,6 @@
 ---
 title: Introducing Dojo 2.0!
-date: 2018-05-02T17:00:00Z
+date: 2018-05-02T17:00:00.000Z
 author: Dylan Schiemann
 ---
 

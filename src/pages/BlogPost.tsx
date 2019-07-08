@@ -3,7 +3,7 @@ import Block from '@dojo/framework/core/meta/Block';
 import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/Link';
 
-import compileBlogPostBlock from '../scripts/compile-blog-post.block';
+import compileBlogPostBlock, { BlogPost } from '../scripts/compile-blog-post.block';
 
 import LandingSubsection from '../widgets/landing/LandingSubsection';
 import Page from '../widgets/page/Page';
@@ -13,7 +13,8 @@ import * as css from './BlogPost.m.css';
 export interface PostProperties {
 	excerpt?: boolean;
 	standalone?: boolean;
-	path: string;
+	path?: string;
+	post?: BlogPost;
 }
 
 export function formatDate(date: string) {
@@ -22,7 +23,7 @@ export function formatDate(date: string) {
 		year: 'numeric',
 		month: 'long',
 		day: '2-digit',
-		hour: '2-digit',
+		hour: 'numeric',
 		minute: '2-digit'
 	};
 
@@ -31,15 +32,19 @@ export function formatDate(date: string) {
 
 export default class Post extends WidgetBase<PostProperties> {
 	protected render() {
+		let { post } = this.properties;
 		const { excerpt = false, standalone = false, path } = this.properties;
-		const post: any = this.meta(Block).run(compileBlogPostBlock)({
-			excerpt,
-			path
-		});
+
+		if (!post && path) {
+			post = this.meta(Block).run(compileBlogPostBlock)({
+				excerpt,
+				path
+			}) as any;
+		}
 
 		if (post) {
 			const postContent = [
-				<p classes={css.meta}>{`${post.meta.author} ${formatDate(post.meta.date)}`}</p>,
+				<p classes={css.meta}>{`${post.meta.author} ${formatDate(post.meta.date as string)}`}</p>,
 				post.content
 			];
 
@@ -48,7 +53,7 @@ export default class Post extends WidgetBase<PostProperties> {
 					<Link
 						to="blog-post"
 						params={{
-							path: path.replace('blog/en/', '').replace('.md', '')
+							path: post.file.replace('blog/en/', '').replace('.md', '')
 						}}
 						classes={css.readMoreLink}
 					>
@@ -72,7 +77,7 @@ export default class Post extends WidgetBase<PostProperties> {
 					<Link
 						to="blog-post"
 						params={{
-							path: path.replace('blog/en/', '').replace('.md', '')
+							path: post.file.replace('blog/en/', '').replace('.md', '')
 						}}
 						classes={css.headerLink}
 					>

@@ -3,8 +3,8 @@ import * as path from 'path';
 import { Feed } from 'feed';
 import { advanceTo, clear } from 'jest-date-mock';
 
-import { BlogFile } from './compile-blog-index.block';
 import { createBlogFeed } from './blog-rss';
+import { BlogPost } from './compile-blog-post.block';
 
 jest.mock('fs');
 jest.mock('fs-extra');
@@ -12,7 +12,7 @@ jest.mock('fs-extra');
 describe('Blog RSS', () => {
 	let outputFileSyncMock: jest.SpyInstance;
 
-	const blog1: BlogFile = {
+	const blog1: BlogPost = {
 		sortDate: new Date(2019, 6, 1),
 		meta: {
 			title: 'Announcing Version 6 of Dojo',
@@ -20,7 +20,8 @@ describe('Blog RSS', () => {
 			author: 'Anthony Gubler'
 		},
 		file: 'blog/en/version-6-dojo.md',
-		content: `
+		content: false,
+		rawContent: `
 ---
 title: Announcing Dojo 6.0.0
 date: 2019-06-01T00:00:00.000Z
@@ -40,7 +41,7 @@ Yadda yadda yadda yadda yadda yadda yadda yadda.
       `
 	};
 
-	const blog2: BlogFile = {
+	const blog2: BlogPost = {
 		sortDate: new Date('2018-10-15 12:00:00'),
 		meta: {
 			title: 'Announcing Version 4 of Dojo',
@@ -48,7 +49,8 @@ Yadda yadda yadda yadda yadda yadda yadda yadda.
 			author: 'Paul Shannon'
 		},
 		file: 'blog/en/version-4-dojo.md',
-		content: `
+		content: false,
+		rawContent: `
 ---
 title: Announcing Version 4 of Dojo
 date: 2018-10-15T12:00:00.000Z
@@ -69,11 +71,12 @@ The application template used by \`cli-build-app\` provides this functionality o
       `
 	};
 
-	const blog3: BlogFile = {
+	const blog3: BlogPost = {
 		sortDate: new Date(),
 		meta: {},
 		file: 'blog/en/no-meta-blog.md',
-		content: `## A blog without any meta`
+		content: false,
+		rawContent: '## A blog without any meta'
 	};
 
 	beforeEach(() => {

@@ -1,6 +1,6 @@
 ---
 title: Building Progressive Web Apps With Dojo
-date: 2018-09-13T08:00:00Z
+date: 2018-09-13T08:00:00.000Z
 author: Matt Wistrand
 ---
 ![Building Progressive Web Apps with Dojo](/assets/blog/building-pwa-dojo/featured.jpg)

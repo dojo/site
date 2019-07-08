@@ -8,8 +8,9 @@ import LandingSubsection from '../widgets/landing/LandingSubsection';
 import Page from '../widgets/page/Page';
 
 import { MockMetaMixin } from '../test/util/MockMeta';
+import { blogPost2Full, blogPost2Excerpt } from '../test/blog-posts.mock';
 
-import Post from './BlogPost';
+import Post, { formatDate } from './BlogPost';
 import * as css from './BlogPost.m.css';
 
 describe('Post', () => {
@@ -18,29 +19,42 @@ describe('Post', () => {
 		mockMetaMixin = new MockMetaMixin(Post);
 	});
 
-	it('renders index page style', () => {
-		const mockCompileBlogPostBlock = jest.fn().mockReturnValue({
-			meta: {
-				author: 'author',
-				date: '2018-10-15 12:00:00',
-				title: 'title'
-			},
-			content: 'content'
-		});
+	it('renders from provided post', () => {
+		const PostMock = mockMetaMixin.getClass();
+
+		const h = harness(() => <PostMock post={blogPost2Excerpt} excerpt />);
+		h.expect(() => (
+			<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
+				<Link to="blog-post" params={{ path: 'version-6-dojo' }} classes={css.headerLink}>
+					<h1 classes={css.header}>Announcing Version 6 of Dojo</h1>
+				</Link>
+				<p classes={css.meta}>{`Anthony Gubler ${formatDate(blogPost2Excerpt.meta.date as string)}`}</p>
+				{blogPost2Excerpt.content}
+				<p>
+					<Link to="blog-post" params={{ path: 'version-6-dojo' }} classes={css.readMoreLink}>
+						READ MORE
+					</Link>
+				</p>
+			</LandingSubsection>
+		));
+	});
+
+	it('renders excerpt style', () => {
+		const mockCompileBlogPostBlock = jest.fn().mockReturnValue(blogPost2Excerpt);
 		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 
 		const PostMock = mockMetaMixin.getClass();
 
-		const h = harness(() => <PostMock path="path" excerpt />);
+		const h = harness(() => <PostMock path="version-6-dojo" excerpt />);
 		h.expect(() => (
 			<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
-				<Link to="blog-post" params={{ path: 'path' }} classes={css.headerLink}>
-					<h1 classes={css.header}>title</h1>
+				<Link to="blog-post" params={{ path: 'version-6-dojo' }} classes={css.headerLink}>
+					<h1 classes={css.header}>Announcing Version 6 of Dojo</h1>
 				</Link>
-				<p classes={css.meta}>author October 15, 2018, 12:00 PM</p>
-				content
+				<p classes={css.meta}>{`Anthony Gubler ${formatDate(blogPost2Excerpt.meta.date as string)}`}</p>
+				{blogPost2Excerpt.content}
 				<p>
-					<Link to="blog-post" params={{ path: 'path' }} classes={css.readMoreLink}>
+					<Link to="blog-post" params={{ path: 'version-6-dojo' }} classes={css.readMoreLink}>
 						READ MORE
 					</Link>
 				</p>
@@ -49,34 +63,27 @@ describe('Post', () => {
 
 		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
 			excerpt: true,
-			path: 'path'
+			path: 'version-6-dojo'
 		});
 	});
 
 	it('renders blog post page style', () => {
-		const mockCompileBlogPostBlock = jest.fn().mockReturnValue({
-			meta: {
-				author: 'author',
-				date: '2018-10-15 12:00:00',
-				title: 'title'
-			},
-			content: 'content'
-		});
+		const mockCompileBlogPostBlock = jest.fn().mockReturnValue(blogPost2Full);
 		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 
 		const PostMock = mockMetaMixin.getClass();
-		const h = harness(() => <PostMock path="path" standalone />);
+		const h = harness(() => <PostMock path="version-6-dojo" standalone />);
 		h.expect(() => (
 			<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
-				<h1 classes={css.header}>title</h1>
-				<p classes={css.meta}>author October 15, 2018, 12:00 PM</p>
-				content
+				<h1 classes={css.header}>Announcing Version 6 of Dojo</h1>
+				<p classes={css.meta}>{`Anthony Gubler ${formatDate(blogPost2Full.meta.date as string)}`}</p>
+				{blogPost2Full.content}
 			</Page>
 		));
 
 		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
 			excerpt: false,
-			path: 'path'
+			path: 'version-6-dojo'
 		});
 	});
 
@@ -84,12 +91,12 @@ describe('Post', () => {
 		const mockCompileBlogPostBlock = jest.fn().mockReturnValue(undefined);
 		mockMetaMixin.registerMetaCallOnce(Block, 'run', [compileBlogPostBlock], mockCompileBlogPostBlock);
 		const PostMock = mockMetaMixin.getClass();
-		const h = harness(() => <PostMock path="path" standalone />);
+		const h = harness(() => <PostMock path="version-6-dojo" standalone />);
 		h.expect(() => undefined);
 
 		expect(mockCompileBlogPostBlock).toHaveBeenCalledWith({
 			excerpt: false,
-			path: 'path'
+			path: 'version-6-dojo'
 		});
 	});
 });

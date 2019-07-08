@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 2 beta 4!
-date: 2017-12-04 18:00:00
+date: 2017-12-04T18:00:00.000Z
 author: Kitson Kelly
 ---
 
