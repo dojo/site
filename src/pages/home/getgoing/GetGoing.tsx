@@ -19,7 +19,7 @@ export default class GetGoing extends WidgetBase {
 					<a href="https://www.npmjs.com">npm</a> to get going quickly.
 				</p>
 				<div key="cli" classes={[css.cli]}>
-					<Card dark extraClasses={{ root: css.commands, content: css.commandsContent }}>
+					<Card dark classes={{ 'dojo.io/Card': { root: [css.commands], content: [css.commandsContent] } }}>
 						<div classes={[css.command]}>
 							<span classes={[css.commandOne, play ? css.commandOneAnimation : null]}>
 								npm i @dojo/cli @dojo/cli-create-app -g
@@ -34,7 +34,7 @@ export default class GetGoing extends WidgetBase {
 						</div>
 					</Card>
 					<div classes={[css.codeContainer]}>
-						<Card dark extraClasses={{ root: play ? css.code : css.hide }}>
+						<Card dark classes={{ 'dojo.io/Card': { root: [play ? css.code : css.hide] } }}>
 							<div classes={[css.codeline]}>
 								<span classes={[css.keyword]}>import</span>
 								<span classes={[css.variable]}>WidgetBase</span>
@@ -60,9 +60,8 @@ export default class GetGoing extends WidgetBase {
 							</div>
 						</Card>
 						<Card
-							extraClasses={{
-								root: play ? css.result : css.hide,
-								content: css.resultContent
+							classes={{
+								'dojo.io/Card': { root: [play ? css.result : css.hide], content: [css.resultContent] }
 							}}
 						>
 							<div classes={[css.check]}>✔</div>

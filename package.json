@@ -38,6 +38,7 @@
     "hast-util-to-string": "1.0.2",
     "husky": "2.2.0",
     "jest": "24.8.0",
+    "jest-date-mock": "^1.0.7",
     "lint-staged": "8.2.0",
     "mdast-util-to-hast": "6.0.1",
     "node-fetch": "2.6.0",
@@ -96,7 +97,10 @@
           ]
         }
       }
-    }
+    },
+    "setupFiles": [
+      "jest-date-mock"
+    ]
   },
   "lint-staged": {
     "*.{ts,tsx,css}": [

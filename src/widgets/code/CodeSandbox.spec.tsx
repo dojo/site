@@ -1,13 +1,13 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
-import { w } from '@dojo/framework/core/vdom';
 import { add } from '@dojo/framework/core/has';
-import { Constructor, MetaBase, WidgetMetaConstructor } from '@dojo/framework/core/interfaces';
 import { Intersection } from '@dojo/framework/core/meta/Intersection';
-import WidgetBase from '@dojo/framework/core/WidgetBase';
+
+import { MockMetaMixin } from '../../test/util/MockMeta';
 
 import CodeSandbox from './CodeSandbox';
 import * as css from './CodeSandbox.m.css';
+import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
 const noop: any = () => {};
 
@@ -17,45 +17,39 @@ export const stubEvent = {
 	target: {}
 };
 
-const mockMetaMixin = <T extends Constructor<WidgetBase<any>>>(Base: T, mockStub: jest.Mock): T => {
-	return class extends Base {
-		protected meta<T extends MetaBase>(MetaType: WidgetMetaConstructor<T>): T {
-			return mockStub(MetaType);
-		}
-	};
-};
-
 describe('CodeSandbox', () => {
+	const baseAssertion = assertionTemplate(() => (
+		<div key="root" classes={[css.root]}>
+			<iframe assertion-key="iframe" classes={[css.root]} src="" />
+		</div>
+	));
+
 	it('renders', () => {
+		jest.useFakeTimers();
 		add('build-time-render', false, true);
 		const url = 'https://codesandbox.io/embed/dummy';
 
-		const mockMeta = jest.fn().mockImplementation((input: any) => {
-			if (Intersection) {
-				return {
-					get: mockIntersectionGet
-				};
+		let mockMetaMixin = new MockMetaMixin(CodeSandbox);
+		mockMetaMixin.registerMetaCallOnce(
+			Intersection,
+			'get',
+			['root'],
+			{
+				isIntersecting: false
+			},
+			{
+				value: { isIntersecting: true },
+				shouldInvalidate: true
 			}
-		});
+		);
+		const CodeSandboxMock = mockMetaMixin.getClass();
 
-		const mockIntersectionGet = jest
-			.fn()
-			.mockReturnValueOnce({ isIntersecting: false })
-			.mockReturnValueOnce({ isIntersecting: true });
+		const h = harness(() => <CodeSandboxMock url={url} />);
+		h.expect(baseAssertion);
 
-		const h = harness(() => w(mockMetaMixin(CodeSandbox, mockMeta), { url }));
-		h.expect(() => (
-			<div key="root" classes={[css.root]}>
-				<iframe classes={[css.root]} src="" />
-			</div>
-		));
+		jest.runAllTimers();
 
-		const h2 = harness(() => w(mockMetaMixin(CodeSandbox, mockMeta), { url }));
-		h2.expect(() => (
-			<div key="root" classes={[css.root]}>
-				<iframe classes={[css.root]} src={`${url}?autoresize=1&hidenavigation=1`} />
-			</div>
-		));
+		h.expect(baseAssertion.setProperty('~iframe', 'src', `${url}?autoresize=1&hidenavigation=1`));
 	});
 
 	it('does not render during build-time-rendering', () => {

@@ -25,7 +25,7 @@ export interface BlogEntry {
 // In order to not spam people's RSS feed when this goes live, we skip items before May 2019
 const skipItemsBefore = new Date(2019, 4, 1).getTime();
 
-export function createBlogFeed(files: BlogFile[], contentRoot: string) {
+export function createBlogFeed(files: BlogFile[]) {
 	const feed = new Feed({
 		title: 'Dojo',
 		description: 'The official blog of the Dojo framework',
@@ -42,12 +42,12 @@ export function createBlogFeed(files: BlogFile[], contentRoot: string) {
 		feed: ''
 	});
 
-	for (const file of files) {
+	for (let file of files) {
 		const { title, date, author } = file.meta;
 		const publishedDate = date instanceof Date ? date : new Date();
 
 		if (publishedDate.getTime() < skipItemsBefore) {
-			break;
+			continue;
 		}
 
 		const fullContentProcessed = fromMarkdown(file.content, registerHandlers(handlers));

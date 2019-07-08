@@ -41,7 +41,7 @@ export default async function(options: CompileBlogIndex) {
 
 	blogs.sort((a, b) => b.sortDate.getTime() - a.sortDate.getTime());
 
-	createBlogFeed(blogs, contentPath);
+	createBlogFeed(blogs);
 
 	return blogs.map((blog) => blog.file);
 }
