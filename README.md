@@ -105,7 +105,7 @@ The `CodeBlock` widget takes two requires parameters (`path` and `language`) and
 **CodeBlock from file sample**
 
 ```
-[CodeBlock path=tutorial-2-finished/src/widgets/App.tsx, language=tsx]
+[CodeBlock path=tutorial-2-finished/src/App.tsx, language=tsx]
 ```
 
 ![CodeBlock](./docs/codeblock.png)
@@ -114,7 +114,7 @@ The `CodeBlock` widget takes two requires parameters (`path` and `language`) and
 **CodeBlock from file with region**
 
 ```
-[CodeBlock path=tutorial-2-finished/src/widgets/App.tsx, region=render, language=tsx]
+[CodeBlock path=tutorial-2-finished/src/App.tsx, region=render, language=tsx]
 ```
 
 ![CodeBlock Region](./docs/codeblock-region.png)
@@ -228,7 +228,7 @@ Coming soon.
 	```
 4. Add an outlet for the route to the `ReferenceGuides` widget.
 	**Example**:
-	> src/pages/reference-guides/ReferenceGuides.tsx
+	> src/reference-guides/ReferenceGuides.tsx
 	```ts
 	<Outlet
 		key="reference-guide-i18n"
@@ -249,7 +249,7 @@ Coming soon.
 	```
 5. Add a landing link to the `ReferenceGuidesLanding` widget in `src/pages`.
 	**Example**:
-	> src/pages/ReferenceGuidesLanding.tsx
+	> src/ReferenceGuidesLanding.tsx
 	```ts
 	<LandingLink
 		title={messages.i18n}
@@ -262,7 +262,7 @@ Coming soon.
 	```
 6. Add a menu entry to the `Header` widget for use in the hamburger menu on mobile.
 	**Example**:
-	> src/widgets/header/Header.tsx
+	> src/header/Header.tsx
 	```
 	<ReferenceGuideMenu
 		name="i18n"

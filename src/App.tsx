@@ -2,18 +2,18 @@ import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { tsx } from '@dojo/framework/core/vdom';
 import Outlet from '@dojo/framework/routing/Outlet';
 
-import Home from './pages/Home';
-import Blog from './pages/Blog';
-import BlogPosts from './pages/blog/BlogPosts';
-import Examples from './pages/Examples';
-import Playground from './pages/Playground';
-import Roadmap from './pages/Roadmap';
-import Community from './pages/Community';
-import ReferenceGuides from './pages/reference-guides/ReferenceGuides';
-import ReferenceGuidesLanding from './pages/ReferenceGuidesLanding';
+import Home from './home/Home';
+import Blog from './blog/Blog';
+import BlogPosts from './blog/BlogPosts';
+import Examples from './examples/Examples';
+import Playground from './playground/Playground';
+import Roadmap from './roadmap/Roadmap';
+import Community from './community/Community';
+import ReferenceGuides from './reference-guides/ReferenceGuides';
+import ReferenceGuidesLanding from './reference-guides/ReferenceGuidesLanding';
 
-import Header from './widgets/header/Header';
-import Footer from './widgets/footer/Footer';
+import Header from './header/Header';
+import Footer from './footer/Footer';
 
 import * as css from './App.m.css';
 
