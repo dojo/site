@@ -1,7 +1,7 @@
 import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { tsx } from '@dojo/framework/core/vdom';
 import * as css from './Hero.m.css';
-const hero = require('../../../assets/herobg.png');
+const hero = require('../assets/herobg.png');
 
 export default class Hero extends WidgetBase {
 	protected render() {

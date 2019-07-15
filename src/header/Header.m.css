@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import '../variables.css';
 
 .root {
 	--toggle-button-height: calc(var(--grid-size) * 2);

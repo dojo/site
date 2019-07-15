@@ -3,7 +3,7 @@ import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/ActiveLink';
 import Router from '@dojo/framework/routing/Router';
 
-const logo = require('../../assets/logo.svg');
+const logo = require('../assets/logo.svg');
 
 import ReferenceGuideMenu from '../reference-guides/ReferenceGuideMenu';
 import SideMenuItemList from '../menu/SideMenuItemList';

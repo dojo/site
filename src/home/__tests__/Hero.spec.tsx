@@ -3,7 +3,7 @@ import { tsx } from '@dojo/framework/core/vdom';
 import { add } from '@dojo/framework/core/has';
 import * as css from '../Hero.m.css';
 import Hero from '../Hero';
-const hero = require('../../../assets/herobg.png');
+const hero = require('../assets/herobg.png');
 
 describe('Hero', () => {
 	it('renders', () => {
