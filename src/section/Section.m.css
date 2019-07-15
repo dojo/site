@@ -1,0 +1,6 @@
+@import '../variables.css';
+
+.root {
+	display: flex;
+	width: 100%;
+}

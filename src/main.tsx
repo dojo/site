@@ -4,11 +4,11 @@ import { tsx } from '@dojo/framework/core/vdom';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import { StateHistory } from '@dojo/framework/routing/history/StateHistory';
 
-import Alert from './widgets/content/Alert';
-import Aside from './widgets/content/Aside';
-import CodeBlock from './widgets/code/CodeBlock';
-import CodeSandbox from './widgets/code/CodeSandbox';
-import BlogImage from './widgets/blog/Image';
+import Alert from './content/Alert';
+import Aside from './content/Aside';
+import CodeBlock from './code/CodeBlock';
+import CodeSandbox from './code/CodeSandbox';
+import BlogImage from './image/Image';
 
 import routes from './routes';
 import App from './App';

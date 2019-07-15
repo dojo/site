@@ -1,0 +1,55 @@
+@import '../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: row;
+	margin: calc(var(--grid-size) * 2.5);
+}
+
+.ethosPoint {
+	width: calc(100% / 3);
+	margin: calc(var(--grid-size) * 5) calc(var(--grid-size) * 2.5) calc(var(--grid-size) * 2.5);
+	padding: 0;
+}
+
+.ethosContent {
+	padding: calc(var(--grid-size) * 2.5);
+}
+
+.ethosTitle {
+	color: var(--color-black);
+	margin: 0;
+	margin-left: calc(var(--grid-size) * 1.6);
+	margin-bottom: calc(var(--grid-size) * 1.6);
+}
+
+.productive {
+	color: var(--color-red);
+}
+
+.adaptable {
+	color: var(--color-green);
+}
+
+.inclusive {
+	color: var(--color-purple);
+}
+
+.ethosTitleContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+@media (max-width: 960px) {
+	.root {
+		flex-direction: column;
+	}
+	.ethosPoint {
+		width: initial;
+		margin: calc(var(--grid-size) * 2) 0;
+	}
+	.ethos {
+		margin: 0;
+		flex-direction: column;
+	}
+}

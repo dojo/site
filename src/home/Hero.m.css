@@ -1,0 +1,48 @@
+@import '../variables.css';
+
+.root {
+	background: var(--hero-background);
+	width: 100%;
+	height: calc(var(--grid-size) * 47.5);
+	color: var(--color-white);
+	background-size: cover;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.headline {
+	color: var(--color-white);
+	width: calc(var(--grid-size) * 60);
+	text-align: center;
+	margin-bottom: calc(var(--grid-size) * 5);
+}
+
+.build {
+	background: rgba(0, 0, 0, 0);
+	font-size: 0.875em;
+	color: var(--color-white);
+	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
+	border-image-slice: 1;
+	border-width: 3px;
+	width: calc(var(--grid-size) * 30);
+	height: calc(var(--grid-size) * 7);
+	margin-bottom: var(--grid-size);
+	text-transform: uppercase;
+}
+
+.build:hover {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+@media (max-width: 960px) {
+	.headline {
+		font-size: 1.25em;
+		width: calc(var(--grid-size) * 28);
+	}
+	.build {
+		width: calc(var(--grid-size) * 25);
+	}
+}

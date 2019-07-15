@@ -1,9 +1,0 @@
-@import '../../variables.css';
-
-.root {
-	flex-grow: 1;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	padding: var(--card-padding);
-}

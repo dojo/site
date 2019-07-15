@@ -5,8 +5,8 @@ import { resolve } from 'path';
 
 import * as compiler from './compile';
 
-import Aside from '../widgets/content/Aside';
-import CodeSandbox from '../widgets/code/CodeSandbox';
+import Aside from '../content/Aside';
+import CodeSandbox from '../code/CodeSandbox';
 
 const fetch = require('node-fetch').default;
 jest.mock('node-fetch');
@@ -35,7 +35,7 @@ const mockHandlersOutput: { [type: string]: compiler.HandlerFunction } = {
 };
 
 const mockTutorialSourcePath = '../../content/tutorials/another-tutorial.md';
-const mockExampleFile = '../../content/examples/tutorial-2-finished/src/widgets/App.tsx';
+const mockExampleFile = '../../content/examples/tutorial-2-finished/src/App.tsx';
 
 const mockBuildJson: { [section: string]: { [filePath: string]: string } } = {
 	tutorials: {}
