@@ -2,7 +2,7 @@ import WidgetBase from '@dojo/framework/core/WidgetBase';
 import Block from '@dojo/framework/core/meta/Block';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import compiler from '../scripts/compile-local.block';
+import local from './local.block';
 
 import Page from './Page';
 
@@ -15,7 +15,7 @@ export default class LocalPage extends WidgetBase<LocalPageProperties> {
 	protected render() {
 		const { path, wrapInPage = true } = this.properties;
 
-		const content: any = this.meta(Block).run(compiler)({
+		const content: any = this.meta(Block).run(local)({
 			path,
 			locale: 'en'
 		});

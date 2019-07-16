@@ -1,7 +1,7 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import * as compiler from '../../scripts/compile-local.block';
+import * as compiler from '../../page/local.block';
 
 import Page from '../Page';
 import LocalPage from '../LocalPage';
@@ -11,7 +11,7 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 		locale: 'en-US'
 	}
 }));
-jest.mock('../../scripts/compile-local.block');
+jest.mock('../../page/local.block');
 
 describe('Page', () => {
 	const mockCompiler = jest.spyOn(compiler, 'default').mockReturnValue('Some content' as any);

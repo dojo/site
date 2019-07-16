@@ -1,4 +1,4 @@
-import { RegionMatcherFactory } from '../parser';
+import { RegionMatcherFactory } from './parser';
 
 // This comment type is used in C like languages such as JS, TS, Dart, etc
 export const INLINE_C_MATCHER: RegionMatcherFactory = {

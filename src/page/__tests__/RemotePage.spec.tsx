@@ -1,8 +1,8 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import * as compileRemoteBlock from '../../scripts/compile-remote.block';
-import * as compileRemoteHeadersBlock from '../../scripts/compile-remote-headers.block';
+import * as compileRemoteBlock from '../../common/compile-remote.block';
+import * as compileRemoteHeadersBlock from '../../common/compile-remote-headers.block';
 
 import Page from '../Page';
 import RemotePage from '../RemotePage';
@@ -12,7 +12,7 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 		locale: 'en-US'
 	}
 }));
-jest.mock('../../scripts/compile-remote.block');
+jest.mock('../../common/compile-remote.block');
 
 describe('Page', () => {
 	const mockCompileRemoteBlock = jest.spyOn(compileRemoteBlock, 'default').mockReturnValue('Some content' as any);

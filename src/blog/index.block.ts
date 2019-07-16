@@ -1,9 +1,8 @@
 import { join } from 'canonical-path';
-import { readdir } from 'fs-extra';
+import { readdir, readFile } from 'fs-extra';
 
-import { getLocalFile, getMetaData } from './compile';
-import { YamlData } from './util';
-import { createBlogFeed } from './blog-rss';
+import metadata from '../common/metadata';
+import { createBlogFeed } from './rss';
 
 const CONTENT_PATH = join(__dirname, '../../content/blog');
 
@@ -14,7 +13,7 @@ interface CompileBlogIndex {
 export interface BlogFile {
 	sortDate: Date;
 	meta: {
-		[key: string]: YamlData;
+		[key: string]: any;
 	};
 	file: string;
 	content: string;
@@ -28,8 +27,8 @@ export default async function(options: CompileBlogIndex) {
 	const blogs: BlogFile[] = [];
 
 	for (let file of files) {
-		const content = await getLocalFile(join(contentPath, file));
-		const blogMetaData = getMetaData(content);
+		const content = await readFile(join(contentPath, file), 'utf-8');
+		const blogMetaData = metadata(content);
 
 		blogs.push({
 			sortDate: new Date(`${blogMetaData.date}`),

@@ -7,7 +7,7 @@ import Grid from '../grid/Grid';
 import Landing from '../landing/Landing';
 import LandingSubsection from '../landing/LandingSubsection';
 import LinkedCard from '../card/LinkedCard';
-import getExamples, { ExampleMeta } from '../scripts/examples.block';
+import getExamples, { ExampleMeta } from './list.block';
 
 import * as css from './Examples.m.css';
 

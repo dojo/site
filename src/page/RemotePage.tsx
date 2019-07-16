@@ -2,8 +2,8 @@ import WidgetBase from '@dojo/framework/core/WidgetBase';
 import Block from '@dojo/framework/core/meta/Block';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import compileRemoteBlock from '../scripts/compile-remote.block';
-import compileRemoteHeadersBlock from '../scripts/compile-remote-headers.block';
+import compileRemoteBlock from '../common/compile-remote.block';
+import compileRemoteHeadersBlock from '../common/compile-remote-headers.block';
 
 import Page from './Page';
 

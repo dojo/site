@@ -1,7 +1,7 @@
 import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import { CompileRemoteBlockOptions } from '../scripts/compile-remote.block';
+import { CompileRemoteBlockOptions } from '../common/compile-remote.block';
 import RemotePage from '../page/RemotePage';
 import Section from '../section/Section';
 

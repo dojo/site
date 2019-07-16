@@ -3,7 +3,7 @@ import Block from '@dojo/framework/core/meta/Block';
 import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/Link';
 
-import compileBlogPostBlock from '../scripts/compile-blog-post.block';
+import post from './post.block';
 
 import LandingSubsection from '../landing/LandingSubsection';
 import Page from '../page/Page';
@@ -32,15 +32,15 @@ export function formatDate(date: string) {
 export default class Post extends WidgetBase<PostProperties> {
 	protected render() {
 		const { excerpt = false, standalone = false, path } = this.properties;
-		const post: any = this.meta(Block).run(compileBlogPostBlock)({
+		const result: any = this.meta(Block).run(post)({
 			excerpt,
 			path
 		});
 
-		if (post) {
-			const postContent = [
-				<p classes={css.meta}>{`${post.meta.author} ${formatDate(post.meta.date)}`}</p>,
-				post.content
+		if (result) {
+			const resultContent = [
+				<p classes={css.meta}>{`${result.meta.author} ${formatDate(result.meta.date)}`}</p>,
+				result.content
 			];
 
 			const readMoreLink = excerpt && (
@@ -60,8 +60,8 @@ export default class Post extends WidgetBase<PostProperties> {
 			if (standalone) {
 				return (
 					<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
-						<h1 classes={css.header}>{post.meta.title}</h1>
-						{postContent}
+						<h1 classes={css.header}>{result.meta.title}</h1>
+						{resultContent}
 						{readMoreLink}
 					</Page>
 				);
@@ -76,9 +76,9 @@ export default class Post extends WidgetBase<PostProperties> {
 						}}
 						classes={css.headerLink}
 					>
-						<h1 classes={css.header}>{post.meta.title}</h1>
+						<h1 classes={css.header}>{result.meta.title}</h1>
 					</Link>
-					{postContent}
+					{resultContent}
 					{readMoreLink}
 				</LandingSubsection>
 			);

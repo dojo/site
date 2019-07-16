@@ -1,4 +1,4 @@
-import { RegionMatcherFactory } from '../parser';
+import { RegionMatcherFactory } from './parser';
 
 // These kind of comments are used in HTML
 export const HTML_MATCHER: RegionMatcherFactory = {

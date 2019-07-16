@@ -2,11 +2,11 @@ import { w, v } from '@dojo/framework/core/vdom';
 import { resolve } from 'path';
 import { readFileSync, existsSync } from 'fs-extra';
 
-import { WidgetBuilder, fromMarkdown, toDNodes } from '../compile';
+import markdown from '../markdown';
 
-import { BLOCK_C_MATCHER } from './region-matchers/block-c';
-import { INLINE_C_MATCHER } from './region-matchers/inline-c';
-import { HTML_MATCHER } from './region-matchers/html';
+import { BLOCK_C_MATCHER } from './block-c';
+import { INLINE_C_MATCHER } from './inline-c';
+import { HTML_MATCHER } from './html';
 
 const refractor = require('refractor');
 refractor.register(require(`refractor/lang/tsx.js`));
@@ -38,7 +38,7 @@ const regionMatchers: { [key: string]: RegionMatcherFactory } = {
 
 export const REGION_GROUP_MATCHER = '\\s*^(.[\\s\\S]*)$';
 
-export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBlockProps) => {
+export const regionBuilder = (type: string, props: RegionCodeBlockProps) => {
 	let { path, region, language = 'ts' } = props;
 	if (path === undefined) {
 		return v('p', ['Invalid file path']);
@@ -75,7 +75,7 @@ export const regionBuilder: WidgetBuilder = (type: string, props: RegionCodeBloc
 	if (code !== undefined) {
 		code = leftAlign(stripRegionComments(code.split('\n'), regionMatcherFactory.regionCommentMatcher)).join('\n');
 		const wProps: any = { path, region, language };
-		return w(type, wProps, [toDNodes(fromMarkdown('```' + `${language}\n${code}\n` + '```', {}))]);
+		return w(type, wProps, [markdown('```' + `${language}\n${code}\n` + '```')]);
 	} else {
 		return v('p', ['Could not load region']);
 	}

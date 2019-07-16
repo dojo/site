@@ -1,8 +1,8 @@
 import { DefaultWidgetBaseInterface, DNode } from '@dojo/framework/core/interfaces';
 
 import * as compiler from '../compile';
-import * as parser from './parser';
-import { INLINE_C_MATCHER } from './region-matchers/inline-c';
+import * as parser from '../parser';
+import { INLINE_C_MATCHER } from '../inline-c';
 import * as d from '@dojo/framework/core/vdom';
 import * as fs from 'fs-extra';
 import * as path from 'path';
