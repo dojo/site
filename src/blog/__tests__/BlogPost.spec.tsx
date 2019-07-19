@@ -3,7 +3,7 @@ import Link from '@dojo/framework/routing/Link';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import compileBlogPostBlock from '../../scripts/compile-blog-post.block';
+import compileBlogPostBlock from '../post.block';
 import LandingSubsection from '../../landing/LandingSubsection';
 import Page from '../../page/Page';
 

@@ -3,8 +3,8 @@ import * as path from 'path';
 import { Feed } from 'feed';
 import { advanceTo, clear } from 'jest-date-mock';
 
-import { BlogFile } from './compile-blog-index.block';
-import { createBlogFeed } from './blog-rss';
+import { BlogFile } from '../index.block';
+import { createBlogFeed } from '../rss';
 
 jest.mock('fs');
 jest.mock('fs-extra');

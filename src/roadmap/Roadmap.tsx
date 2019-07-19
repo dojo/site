@@ -2,7 +2,7 @@ import WidgetBase from '@dojo/framework/core/WidgetBase';
 import Block from '@dojo/framework/core/meta/Block';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import roadmapMetadataBlock, { RoadmapMetaData } from '../scripts/roadmap-metadata.block';
+import roadmapMetadataBlock, { RoadmapMetaData } from './metadata.block';
 import Card from '../card/Card';
 import CardHeader from '../card/CardHeader';
 import FontAwesomeIcon from '../icon/FontAwesomeIcon';

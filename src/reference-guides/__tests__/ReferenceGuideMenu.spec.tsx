@@ -6,7 +6,7 @@ import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import MemoryHistory from '@dojo/framework/routing/history/MemoryHistory';
 
-import * as compileRemoteHeaders from '../../scripts/compile-remote-headers.block';
+import * as compileRemoteHeaders from '../../common/compile-remote-headers.block';
 import SideMenu from '../../menu/SideMenu';
 import SideMenuSection from '../../menu/SideMenuSection';
 import SideMenuItem from '../../menu/SideMenuItem';

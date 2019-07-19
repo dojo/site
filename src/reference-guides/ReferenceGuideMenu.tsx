@@ -4,7 +4,7 @@ import I18nMixin, { I18nProperties } from '@dojo/framework/core/mixins/I18n';
 import Block from '@dojo/framework/core/meta/Block';
 import Router from '@dojo/framework/routing/Router';
 
-import compileRemoteHeaders, { SupplementalHeaders } from '../scripts/compile-remote-headers.block';
+import compileRemoteHeaders, { SupplementalHeaders } from '../common/compile-remote-headers.block';
 import SideMenu from '../menu/SideMenu';
 import SideMenuSection from '../menu/SideMenuSection';
 import SideMenuItem from '../menu/SideMenuItem';

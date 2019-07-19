@@ -1,4 +1,4 @@
-import { RegionMatcherFactory } from '../parser';
+import { RegionMatcherFactory } from './parser';
 
 // These kind of comments are used CSS and other languages that do not support inline comments
 export const BLOCK_C_MATCHER: RegionMatcherFactory = {

@@ -1,12 +1,7 @@
 import { v, w } from '@dojo/framework/core/vdom';
 import { DNode } from '@dojo/framework/core/interfaces';
-import { readFile } from 'fs-extra';
-import { resolve } from 'path';
 
 import { regionBuilder } from './regions/parser';
-
-import linkCleanup from './link-cleanup';
-import { RootNode, isYamlNode } from './util';
 
 const unified = require('unified');
 const macro = require('remark-macro')();
@@ -16,22 +11,22 @@ const remark2rehype = require('remark-rehype');
 const rehypePrism = require('@mapbox/rehype-prism');
 const all = require('mdast-util-to-hast/lib/all');
 const frontmatter = require('remark-frontmatter');
-const parseFrontmatter = require('remark-parse-yaml');
+const visit = require('unist-util-visit');
 
-export interface Handler {
+interface Handler {
 	type: string;
 	inline?: boolean;
 }
 
-export type HandlerFunction = (h: Function, node: any) => any;
+type HandlerFunction = (h: Function, node: any) => any;
 
-export interface WidgetBuilders {
+interface WidgetBuilders {
 	[type: string]: WidgetBuilder;
 }
 
-export type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
+type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
 
-export const handlers: Handler[] = [
+const handlers: Handler[] = [
 	{ type: 'Alert' },
 	{ type: 'Aside' },
 	{ type: 'CodeBlock', inline: true },
@@ -39,16 +34,17 @@ export const handlers: Handler[] = [
 	{ type: 'BlogImage', inline: true }
 ];
 
-export const widgets: WidgetBuilders = {
+const widgets: WidgetBuilders = {
 	'docs-codeblock': regionBuilder
 };
 
 let key = 0;
-export const getCompiledKey = () => {
+
+const getCompiledKey = () => {
 	return `compiled-${key++}`;
 };
 
-export const pragma = (tag: string, props: any = {}, children: any[]) => {
+const pragma = (tag: string, props: any = {}, children: any[]) => {
 	props.key = getCompiledKey();
 	if (tag.substr(0, 1) === tag.substr(0, 1).toUpperCase()) {
 		const type = `docs-${tag.toLowerCase()}`;
@@ -60,7 +56,7 @@ export const pragma = (tag: string, props: any = {}, children: any[]) => {
 	return v(tag, props, children);
 };
 
-export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFunction } => {
+const registerHandlers = (types: Handler[]): { [type: string]: HandlerFunction } => {
 	return types.reduce((handlers: { [type: string]: HandlerFunction }, { type, inline = false }) => {
 		try {
 			if (inline) {
@@ -83,44 +79,47 @@ export const registerHandlers = (types: Handler[]): { [type: string]: HandlerFun
 		return handlers;
 	}, {});
 };
+const registeredHandlers = registerHandlers(handlers);
 
-export const getMetaData = (content: string) => {
-	const pipeline = unified()
-		.use(remarkParse, { commonmark: true })
-		.use(frontmatter, 'yaml')
-		.use(parseFrontmatter);
+function clean(node: any) {
+	if (!node || node.type !== 'element' || node.tagName !== 'a') {
+		return;
+	}
+	const relativeMatch = /^(.\/[\s\S]*)([.][a-z]+)([#][\s\S]+)?$/g.exec(node.properties.href);
+	if (relativeMatch && relativeMatch.length >= 3) {
+		// Has a file extension
+		let url = relativeMatch[1];
+		node.properties.href = url;
+	}
+	const externalMatch = /^http[s]?:\/\/[\S]+$/g.exec(node.properties.href);
+	if (externalMatch) {
+		node.properties.target = '_blank';
+	}
+	// Make github links prettier
+	if (node.children && node.children.length === 1) {
+		const child = node.children[0];
+		if (child.type === 'text') {
+			const match = /http[s]?:\/\/github.com\/[^\/]+\/[^\/]+\/[^\/]+\/([0-9]+)/g.exec(child.value);
+			if (match && match.length === 2) {
+				child.value = `#${match[1]}`;
+			}
+		}
+	}
+}
 
-	const nodes: RootNode = pipeline.parse(content);
-	const result: RootNode = pipeline.runSync(nodes);
-	const node = result.children.find(isYamlNode);
-	return node ? node.data.parsedValue : {};
-};
-
-export const toDNodes = (node: RootNode): DNode => {
-	key = 0;
-	return toH(pragma, node);
-};
-
-export const fromMarkdown = (content: string, registeredHandlers: { [type: string]: HandlerFunction }): RootNode => {
+export const markdown = (content: string): DNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(frontmatter, 'yaml')
 		.use(macro.transformer)
 		.use(remark2rehype, { handlers: registeredHandlers })
-		.use(linkCleanup)
+		.use(() => (tree: any) => visit(tree, 'element', clean))
 		.use(rehypePrism, { ignoreMissing: false });
 
-	const nodes: RootNode = pipeline.parse(content);
-	const result: RootNode = pipeline.runSync(nodes);
-
-	return result;
+	const nodes = pipeline.parse(content);
+	const result = pipeline.runSync(nodes);
+	key = 0;
+	return toH(pragma, result);
 };
 
-export const getLocalFile = async (path: string) => {
-	path = resolve(__dirname, path);
-	return await readFile(path, 'utf-8');
-};
-
-export const setLocale = (path: string, locale: string) => {
-	return path.replace(/:locale:/g, locale);
-};
+export default markdown;

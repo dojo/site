@@ -1,4 +1,4 @@
-import { RegionMatcherFactory } from '../parser';
+import { RegionMatcherFactory } from './parser';
 
 // These type of comments are used in hash comment based languages such as bash and Yaml
 export const INLINE_HASH_MATCHER: RegionMatcherFactory = {

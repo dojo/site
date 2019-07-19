@@ -1,7 +1,8 @@
 import { join, basename } from 'canonical-path';
 import { readdir } from 'fs-extra';
+import { readFile } from 'fs-extra';
 
-import { getMetaData, getLocalFile } from './compile';
+import metadata from '../common/metadata';
 
 const CONTENT_PATH = join(__dirname, '../../content/roadmap');
 
@@ -26,8 +27,8 @@ export default async function(options: CompileRoadmapMetadataBlockOptions) {
 	const filesMetaData: RoadmapMetaData[] = [];
 
 	for (let file of files) {
-		const content = await getLocalFile(join(folder, file));
-		const fileMetaData = getMetaData(content);
+		const content = await readFile(join(folder, file), 'utf-8');
+		const fileMetaData = metadata(content);
 
 		filesMetaData.push({
 			file: `roadmap/${locale}/${basename(file)}`,

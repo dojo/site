@@ -2,7 +2,7 @@ import { tsx } from '@dojo/framework/core/vdom';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 
-import * as roadmapMetadataBlock from '../../scripts/roadmap-metadata.block';
+import * as roadmapMetadataBlock from '../metadata.block';
 import Card from '../../card/Card';
 import CardHeader from '../../card/CardHeader';
 import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
@@ -17,7 +17,7 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 		locale: 'en-US'
 	}
 }));
-jest.mock('../../scripts/roadmap-metadata.block');
+jest.mock('../metadata.block');
 
 describe('Roadmap Page', () => {
 	const baseAssertion = assertionTemplate(() => (

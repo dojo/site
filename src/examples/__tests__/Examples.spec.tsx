@@ -2,7 +2,7 @@ import Block from '@dojo/framework/core/meta/Block';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import getExamples from '../../scripts/examples.block';
+import getExamples from '../list.block';
 import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
 import Grid from '../../grid/Grid';
 import Landing from '../../landing/Landing';

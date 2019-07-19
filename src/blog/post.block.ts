@@ -1,6 +1,9 @@
 import { join } from 'canonical-path';
+import { readFile } from 'fs-extra';
+import { resolve } from 'path';
 
-import { registerHandlers, handlers, fromMarkdown, getLocalFile, getMetaData, toDNodes } from './compile';
+import markdown from '../common/markdown';
+import metadata from '../common/metadata';
 
 const CONTENT_PATH = join(__dirname, '../../content');
 
@@ -12,12 +15,12 @@ interface CompileBlogPost {
 export default async function(options: CompileBlogPost): Promise<any> {
 	const { path } = options;
 
-	const contentPath = join(CONTENT_PATH, path);
+	const contentPath = resolve(__dirname, join(CONTENT_PATH, path));
 
-	let rawContent = await getLocalFile(contentPath);
+	let rawContent = await readFile(contentPath, 'utf-8');
 	rawContent = options.excerpt ? rawContent.split('<!-- more -->')[0] : rawContent;
 
-	const content = toDNodes(fromMarkdown(rawContent, registerHandlers(handlers)));
-	const meta = await getMetaData(rawContent);
+	const content = markdown(rawContent);
+	const meta = metadata(rawContent);
 	return { content, meta };
 }

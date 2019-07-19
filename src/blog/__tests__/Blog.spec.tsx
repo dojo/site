@@ -2,7 +2,7 @@ import Block from '@dojo/framework/core/meta/Block';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import compileBlogIndexBlock from '../../scripts/compile-blog-index.block';
+import compileBlogIndexBlock from '../index.block';
 import Landing from '../../landing/Landing';
 import Post from '../BlogPost';
 
