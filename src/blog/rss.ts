@@ -5,9 +5,7 @@ import { join } from 'path';
 import { outputFileSync } from 'fs-extra';
 
 import markdown from '../common/markdown';
-
-const unified = require('unified');
-const stringify = require('rehype-stringify');
+import { BlogFile } from './index.block';
 
 const outputDirectory = join(__dirname, '../../output/dist');
 
@@ -24,7 +22,7 @@ export interface BlogEntry {
 // In order to not spam people's RSS feed when this goes live, we skip items before May 2019
 const skipItemsBefore = new Date(2019, 4, 1).getTime();
 
-export function createBlogFeed(files: any[]) {
+export function createBlogFeed(files: BlogFile[]) {
 	const feed = new Feed({
 		title: 'Dojo',
 		description: 'The official blog of the Dojo framework',
@@ -49,15 +47,8 @@ export function createBlogFeed(files: any[]) {
 			continue;
 		}
 
-		const fullContentProcessed = markdown(file.content);
-		const fullContent = unified()
-			.use(stringify)
-			.stringify(fullContentProcessed);
-
-		const descriptionProcessed = markdown(file.content.split('<!-- more -->')[0]);
-		const description = unified()
-			.use(stringify)
-			.stringify(descriptionProcessed);
+		const fullContent = markdown(file.content, 'string') as string;
+		const description = markdown(file.content.split('<!-- more -->')[0], 'string') as string;
 
 		const url = `https://dojo.io/blog/${file.file.replace('blog/en/', '').replace('.md', '')}`;
 		const item = {

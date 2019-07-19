@@ -1,9 +1,7 @@
 import { v } from '@dojo/framework/core/vdom';
 import * as fetch from 'node-fetch';
 
-import * as compiler from './compile';
-
-import examplesBlock, { ExampleMeta } from './examples.block';
+import examplesBlock, { ExampleMeta } from '../list.block';
 
 const mockReadme = `
 Some junk
@@ -20,40 +18,37 @@ Some other junk
 const expectedOutput: ExampleMeta[] = [
 	{
 		exampleName: 'todo-mvc',
-		example: v('p', { key: 'compiledKey' }, ['TodoMVC']),
-		code: v('p', { key: 'compiledKey' }, [v('a', { key: 'compiledKey', href: './todo-mvc' }, ['Link'])]),
+		example: v('p', { key: 'compiled-3' }, ['TodoMVC']),
+		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './todo-mvc' }, ['Link'])]),
 		demo: 'https://dojo.github.io/examples/todo-mvc',
 		sandbox: true,
-		overview: v('p', { key: 'compiledKey' }, [
+		overview: v('p', { key: 'compiled-4' }, [
 			'Reference implementation of ',
-			v('a', { key: 'compiledKey', target: '_blank', href: 'http://todomvc.com/' }, ['TodoMVC']),
+			v('a', { key: 'compiled-3', target: '_blank', href: 'http://todomvc.com/' }, ['TodoMVC']),
 			' built using Dojo packages.'
 		])
 	},
 	{
 		exampleName: 'todo-mvc-kitchensink',
-		example: v('p', { key: 'compiledKey' }, ['TodoMVC (kitchen sink)']),
-		code: v('p', { key: 'compiledKey' }, [
-			v('a', { key: 'compiledKey', href: './todo-mvc-kitchensink' }, ['Link'])
-		]),
+		example: v('p', { key: 'compiled-3' }, ['TodoMVC (kitchen sink)']),
+		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './todo-mvc-kitchensink' }, ['Link'])]),
 		demo: 'https://dojo.github.io/examples/todo-mvc-kitchensink',
 		sandbox: false,
-		overview: v('p', { key: 'compiledKey' }, ['Feature-enhanced version of TodoMVC built using Dojo packages.'])
+		overview: v('p', { key: 'compiled-3' }, ['Feature-enhanced version of TodoMVC built using Dojo packages.'])
 	},
 	{
 		exampleName: 'example3',
-		example: v('p', { key: 'compiledKey' }, ['Example 3']),
-		code: v('p', { key: 'compiledKey' }, [v('a', { key: 'compiledKey', href: './example3' }, ['Link'])]),
+		example: v('p', { key: 'compiled-3' }, ['Example 3']),
+		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './example3' }, ['Link'])]),
 		demo: '',
 		sandbox: false,
-		overview: v('p', { key: 'compiledKey' }, ['A third example with no demo'])
+		overview: v('p', { key: 'compiled-3' }, ['A third example with no demo'])
 	}
 ];
 
 describe('content compiler', () => {
 	const mockFetch = jest.spyOn(fetch, 'default');
 	const mockText = jest.fn();
-	const mockGetCompiledKey = jest.spyOn(compiler, 'getCompiledKey');
 
 	beforeEach(() => {
 		jest.resetAllMocks();
@@ -62,12 +57,13 @@ describe('content compiler', () => {
 			text: mockText
 		} as any);
 		mockText.mockResolvedValue(Promise.resolve(mockReadme));
-		mockGetCompiledKey.mockReturnValue('compiledKey');
 	});
 
 	it('should process', async () => {
 		const result = await examplesBlock();
 
-		expect(result).toEqual(expectedOutput);
+		expect(result[0]).toEqual(expectedOutput[0]);
+		expect(result[1]).toEqual(expectedOutput[1]);
+		expect(result[2]).toEqual(expectedOutput[2]);
 	});
 });

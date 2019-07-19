@@ -12,6 +12,7 @@ const rehypePrism = require('@mapbox/rehype-prism');
 const all = require('mdast-util-to-hast/lib/all');
 const frontmatter = require('remark-frontmatter');
 const visit = require('unist-util-visit');
+const stringify = require('rehype-stringify');
 
 interface Handler {
 	type: string;
@@ -21,7 +22,7 @@ interface Handler {
 type HandlerFunction = (h: Function, node: any) => any;
 
 interface WidgetBuilders {
-	[type: string]: WidgetBuilder;
+	[type: string]: () => WidgetBuilder;
 }
 
 type WidgetBuilder = (type: string, props: any, children: any[]) => DNode;
@@ -35,7 +36,7 @@ const handlers: Handler[] = [
 ];
 
 const widgets: WidgetBuilders = {
-	'docs-codeblock': regionBuilder
+	'docs-codeblock': () => regionBuilder
 };
 
 let key = 0;
@@ -49,7 +50,7 @@ const pragma = (tag: string, props: any = {}, children: any[]) => {
 	if (tag.substr(0, 1) === tag.substr(0, 1).toUpperCase()) {
 		const type = `docs-${tag.toLowerCase()}`;
 		if (widgets[type]) {
-			return widgets[type](type, props, children);
+			return widgets[type]()(type, props, children);
 		}
 		return w(type, props, children);
 	}
@@ -107,7 +108,7 @@ function clean(node: any) {
 	}
 }
 
-export const markdown = (content: string): DNode => {
+export const markdown = (content: string, outputType: 'dnode' | 'string' = 'dnode'): DNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 		.use(frontmatter, 'yaml')
@@ -118,6 +119,15 @@ export const markdown = (content: string): DNode => {
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
+
+	if (outputType === 'string') {
+		const string: string = unified()
+			.use(stringify)
+			.stringify(result);
+
+		return string;
+	}
+
 	key = 0;
 	return toH(pragma, result);
 };

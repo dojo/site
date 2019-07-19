@@ -25,7 +25,7 @@ export interface RegionMatcher {
 export interface RegionCodeBlockProps {
 	path?: string;
 	region?: string;
-	language: string;
+	language?: string;
 }
 
 const regionMatchers: { [key: string]: RegionMatcherFactory } = {
