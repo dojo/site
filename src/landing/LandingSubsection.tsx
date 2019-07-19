@@ -1,23 +1,22 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './LandingSubsection.m.css';
 
-interface LandingSubsectionProperties extends ThemedProperties {
+interface LandingSubsectionProperties {
 	title?: string;
 }
 
-@theme(css)
-export default class LandingSubsection extends ThemedMixin(WidgetBase)<LandingSubsectionProperties> {
-	protected render() {
-		const { title } = this.properties;
+const factory = create({ theme }).properties<LandingSubsectionProperties>();
 
-		return (
-			<div key="landingSubsection" classes={this.theme(css.root)}>
-				{title && <h2>{title}</h2>}
-				{this.children}
-			</div>
-		);
-	}
-}
+export default factory(function LandingSubsection({ middleware: { theme }, children, properties }) {
+	const { title } = properties();
+	const themedCss = theme.classes(css);
+
+	return (
+		<div key="landingSubsection" classes={themedCss.root}>
+			{title && <h2>{title}</h2>}
+			{children()}
+		</div>
+	);
+});

@@ -1,16 +1,18 @@
-import { tsx } from '@dojo/framework/core/vdom';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import { tsx } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 
-import * as roadmapMetadataBlock from '../metadata.block';
+import metadataBlock from '../metadata.block';
 import Card from '../../card/Card';
 import CardHeader from '../../card/CardHeader';
 import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
 import LocalPage from '../../page/LocalPage';
 import Page from '../../page/Page';
 
-import Roadmap from '../Roadmap';
 import * as css from '../Roadmap.m.css';
+import Roadmap from '../Roadmap';
+import createBlockMock from '../../test/mockBlock';
 
 jest.mock('@dojo/framework/i18n/i18n', () => ({
 	default: {
@@ -28,24 +30,29 @@ describe('Roadmap Page', () => {
 	));
 
 	it('renders', () => {
-		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue([
-			{
-				file: 'roadmap/en/dojo-6.0.0-release.md',
-				title: 'Dojo 6',
-				date: 'Q2 2019',
-				sortDate: '2019-06-30T23:59:00.000Z',
-				released: false
-			},
-			{
-				file: 'roadmap/en/dojo-5.0.0-release.md',
-				title: 'Dojo 5',
-				date: 'January 2019',
-				sortDate: '2019-01-31T23:59:00.000Z',
-				released: true
-			}
-		] as any);
+		const blockMock = createBlockMock([
+			[
+				metadataBlock,
+				[
+					{
+						file: 'roadmap/en/dojo-6.0.0-release.md',
+						title: 'Dojo 6',
+						date: 'Q2 2019',
+						sortDate: '2019-06-30T23:59:00.000Z',
+						released: false
+					},
+					{
+						file: 'roadmap/en/dojo-5.0.0-release.md',
+						title: 'Dojo 5',
+						date: 'January 2019',
+						sortDate: '2019-01-31T23:59:00.000Z',
+						released: true
+					}
+				]
+			]
+		]);
 
-		const h = harness(() => <Roadmap />);
+		const h = harness(() => <Roadmap />, { middleware: [[block, blockMock]] });
 
 		h.expect(
 			baseAssertion.setChildren('@timeline', () => [
@@ -95,17 +102,13 @@ describe('Roadmap Page', () => {
 				</div>
 			])
 		);
-
-		expect(mockRoadmapMetadataBlock).toHaveBeenCalledWith({ locale: 'en' });
 	});
 
 	it('renders empty timeline if block returns undefined', () => {
-		const mockRoadmapMetadataBlock = jest.spyOn(roadmapMetadataBlock, 'default').mockReturnValue(undefined as any);
+		const blockMock = createBlockMock([[metadataBlock, undefined]]);
 
-		const h = harness(() => <Roadmap />);
+		const h = harness(() => <Roadmap />, { middleware: [[block, blockMock]] });
 
 		h.expect(baseAssertion);
-
-		expect(mockRoadmapMetadataBlock).toHaveBeenCalledWith({ locale: 'en' });
 	});
 });

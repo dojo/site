@@ -1,7 +1,7 @@
 import { v } from '@dojo/framework/core/vdom';
 import * as fetch from 'node-fetch';
 
-import referenceGuideBlock, { SupplementalPageLookup } from '../compile-remote-headers.block';
+import compileRemoteHeadersBlock, { SupplementalPageLookup } from '../compile-remote-headers.block';
 
 const mockReadme = `
 Top content
@@ -101,7 +101,7 @@ describe('compile remote headers block', () => {
 	});
 
 	it('should return pages lookup', async () => {
-		const result = await referenceGuideBlock({
+		const result = await compileRemoteHeadersBlock({
 			repo: 'dojo/framework',
 			branch: undefined,
 			path: 'path/to/supplemental.md',
@@ -112,7 +112,7 @@ describe('compile remote headers block', () => {
 	});
 
 	it('should return list of headers', async () => {
-		const result = await referenceGuideBlock({
+		const result = await compileRemoteHeadersBlock({
 			repo: 'dojo/framework',
 			branch: undefined,
 			path: 'path/to/supplemental.md',
@@ -126,7 +126,7 @@ describe('compile remote headers block', () => {
 	it('should return empty lookup table if no content', async () => {
 		mockText.mockResolvedValue(Promise.resolve(v('div', {}, [])));
 
-		const result = await referenceGuideBlock({
+		const result = await compileRemoteHeadersBlock({
 			repo: 'dojo/framework',
 			branch: undefined,
 			path: 'path/to/supplemental.md',

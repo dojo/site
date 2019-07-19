@@ -25,7 +25,7 @@ export const metadata = (content: string) => {
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
-	const node = result.children.find(isYamlNode);
+	const node: YamlNode = result.children.find(isYamlNode);
 	return node ? node.data.parsedValue : {};
 };
 

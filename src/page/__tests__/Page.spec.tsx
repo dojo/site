@@ -7,7 +7,7 @@ import * as css from '../Page.m.css';
 
 describe('Page', () => {
 	const baseAssertionTemplate = assertionTemplate(() => (
-		<div assertion-key="root" classes={[css.root]}>
+		<div assertion-key="root" classes={css.root}>
 			<div classes={css.content}>Some Content</div>
 		</div>
 	));

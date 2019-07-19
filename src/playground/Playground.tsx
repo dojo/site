@@ -1,15 +1,17 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import has from '@dojo/framework/core/has';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './Playground.m.css';
-import has from '@dojo/framework/core/has';
 
-export default class Playground extends WidgetBase {
-	protected render() {
-		if (!has('build-time-render')) {
-			const src =
-				'https://codesandbox.io/embed/github/dojo/dojo-codesandbox-template/tree/master/?autoresize=1&hidenavigation=1';
-			return <iframe classes={[css.iframe]} src={src} />;
-		}
+const SANDBOX_URL =
+	'https://codesandbox.io/embed/github/dojo/dojo-codesandbox-template/tree/master/?autoresize=1&hidenavigation=1';
+
+const factory = create({ theme });
+
+export default factory(function Playground({ middleware: { theme } }) {
+	const themedCss = theme.classes(css);
+	if (!has('build-time-render')) {
+		return <iframe classes={themedCss.iframe} src={SANDBOX_URL} />;
 	}
-}
+});

@@ -1,6 +1,7 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import Intersection from '@dojo/framework/core/meta/Intersection';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
+import cache from '@dojo/framework/core/middleware/cache';
+import intersection from '@dojo/framework/core/middleware/intersection';
 import has, { exists } from '@dojo/framework/core/has';
 
 import * as css from './CodeSandbox.m.css';
@@ -9,22 +10,23 @@ interface CodeSandboxProperties {
 	url: string;
 }
 
-export default class CodeSandbox extends WidgetBase<CodeSandboxProperties> {
-	private _src = '';
+const factory = create({ theme, cache, intersection }).properties<CodeSandboxProperties>();
 
-	render() {
-		const { url } = this.properties;
-		if (exists('build-time-render') && !has('build-time-render')) {
-			const { isIntersecting } = this.meta(Intersection).get('root');
-			if (isIntersecting) {
-				this._src = `${url}?autoresize=1&hidenavigation=1`;
-			}
+export default factory(function CodeSandbox({ middleware: { theme, cache, intersection }, properties }) {
+	const themedCss = theme.classes(css);
 
-			return (
-				<div key="root" classes={[css.root]}>
-					<iframe classes={[css.root]} src={this._src} />
-				</div>
-			);
+	const { url } = properties();
+	if (exists('build-time-render') && !has('build-time-render')) {
+		const { isIntersecting } = intersection.get('root');
+		if (isIntersecting) {
+			cache.set('src', `${url}?autoresize=1&hidenavigation=1`);
 		}
+
+		const src = cache.get<string>('src') || '';
+		return (
+			<div key="root" classes={[themedCss.root]}>
+				<iframe classes={[themedCss.root]} src={src} />
+			</div>
+		);
 	}
-}
+});

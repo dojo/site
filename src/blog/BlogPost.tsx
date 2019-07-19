@@ -1,12 +1,11 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import Block from '@dojo/framework/core/meta/Block';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 import Link from '@dojo/framework/routing/Link';
-
-import post from './post.block';
 
 import LandingSubsection from '../landing/LandingSubsection';
 import Page from '../page/Page';
+
+import postBlock from './post.block';
 
 import * as css from './BlogPost.m.css';
 
@@ -29,59 +28,59 @@ export function formatDate(date: string) {
 	return new Intl.DateTimeFormat('en-US', options).format(d);
 }
 
-export default class Post extends WidgetBase<PostProperties> {
-	protected render() {
-		const { excerpt = false, standalone = false, path } = this.properties;
-		const result: any = this.meta(Block).run(post)({
-			excerpt,
-			path
-		});
+const factory = create({ block }).properties<PostProperties>();
 
-		if (result) {
-			const resultContent = [
-				<p classes={css.meta}>{`${result.meta.author} ${formatDate(result.meta.date)}`}</p>,
-				result.content
-			];
+export default factory(function BlogPost({ middleware: { block }, properties }) {
+	const { excerpt = false, standalone = false, path } = properties();
+	const result = block(postBlock)({
+		excerpt,
+		path
+	});
 
-			const readMoreLink = excerpt && (
-				<p>
-					<Link
-						to="blog-post"
-						params={{
-							path: path.replace('blog/en/', '').replace('.md', '')
-						}}
-						classes={css.readMoreLink}
-					>
-						READ MORE
-					</Link>
-				</p>
-			);
+	if (result) {
+		const resultContent = [
+			<p classes={css.meta}>{`${result.meta.author} ${formatDate(result.meta.date as string)}`}</p>,
+			result.content
+		];
 
-			if (standalone) {
-				return (
-					<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
-						<h1 classes={css.header}>{result.meta.title}</h1>
-						{resultContent}
-						{readMoreLink}
-					</Page>
-				);
-			}
+		const readMoreLink = excerpt && (
+			<p>
+				<Link
+					to="blog-post"
+					params={{
+						path: path.replace('blog/en/', '').replace('.md', '')
+					}}
+					classes={css.readMoreLink}
+				>
+					READ MORE
+				</Link>
+			</p>
+		);
 
+		if (standalone) {
 			return (
-				<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
-					<Link
-						to="blog-post"
-						params={{
-							path: path.replace('blog/en/', '').replace('.md', '')
-						}}
-						classes={css.headerLink}
-					>
-						<h1 classes={css.header}>{result.meta.title}</h1>
-					</Link>
+				<Page classes={{ 'dojo.io/Page': { root: [css.root] } }}>
+					<h1 classes={css.header}>{result.meta.title}</h1>
 					{resultContent}
 					{readMoreLink}
-				</LandingSubsection>
+				</Page>
 			);
 		}
+
+		return (
+			<LandingSubsection classes={{ 'dojo.io/LandingSubsection': { root: [css.root] } }}>
+				<Link
+					to="blog-post"
+					params={{
+						path: path.replace('blog/en/', '').replace('.md', '')
+					}}
+					classes={css.headerLink}
+				>
+					<h1 classes={css.header}>{result.meta.title}</h1>
+				</Link>
+				{resultContent}
+				{readMoreLink}
+			</LandingSubsection>
+		);
 	}
-}
+});

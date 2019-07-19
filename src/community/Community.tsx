@@ -1,6 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import ThemedMixin, { theme } from '@dojo/framework/core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import LinkedCard from '../card/LinkedCard';
 import CardHeader from '../card/CardHeader';
@@ -140,53 +139,56 @@ const projects = [
 	}
 ];
 
-@theme(css)
-export default class Community extends ThemedMixin(WidgetBase) {
-	protected render() {
-		const linkCards = links.map(({ description, title, url, image }) => (
-			<a href={url} title={description} classes={css.link} target="_blank">
-				<img classes={css.linkImage} {...image} />
-				{title}
-			</a>
-		));
-		const projectCards = projects.map(({ description, title, url }) => (
-			<LinkedCard
-				header={<CardHeader title={title} />}
-				url={url}
-				classes={{
-					'dojo.io/Card': {
-						root: [css.card],
-						content: [css.cardContent]
-					},
-					'dojo.io/LinkedCard': {
-						root: [css.cardLink]
-					}
-				}}
-			>
-				{description}
-				<FontAwesomeIcon
-					icon="external-link-alt"
-					size="2x"
-					classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.cardLinkIcon] } }}
-				/>
-			</LinkedCard>
-		));
-		return (
-			<div classes={[css.root]}>
-				<h2>Community Links</h2>
+const factory = create({ theme });
 
-				<div key="links" classes={css.linkTable}>
-					{linkCards}
-				</div>
+export default factory(function Community({ middleware: { theme } }) {
+	const themedCss = theme.classes(css);
 
-				<h2>Projects</h2>
+	const linkCards = links.map(({ description, title, url, image }) => (
+		<a href={url} title={description} classes={themedCss.link} target="_blank">
+			<img classes={themedCss.linkImage} {...image} />
+			{title}
+		</a>
+	));
 
-				<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
+	const projectCards = projects.map(({ description, title, url }) => (
+		<LinkedCard
+			header={<CardHeader title={title} />}
+			url={url}
+			classes={{
+				'dojo.io/Card': {
+					root: [themedCss.card],
+					content: [themedCss.cardContent]
+				},
+				'dojo.io/LinkedCard': {
+					root: [themedCss.cardLink]
+				}
+			}}
+		>
+			{description}
+			<FontAwesomeIcon
+				icon="external-link-alt"
+				size="2x"
+				classes={{ 'dojo.io/FontAwesomeIcon': { root: [themedCss.cardLinkIcon] } }}
+			/>
+		</LinkedCard>
+	));
 
-				<div key="projects" classes={css.cardTable}>
-					{projectCards}
-				</div>
+	return (
+		<div classes={[themedCss.root]}>
+			<h2>Community Links</h2>
+
+			<div key="links" classes={themedCss.linkTable}>
+				{linkCards}
 			</div>
-		);
-	}
-}
+
+			<h2>Projects</h2>
+
+			<p>Dojo is a project consisting of several projects! We are always looking for new contributors.</p>
+
+			<div key="projects" classes={themedCss.cardTable}>
+				{projectCards}
+			</div>
+		</div>
+	);
+});

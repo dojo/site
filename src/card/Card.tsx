@@ -1,38 +1,33 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { WNode } from '@dojo/framework/core/interfaces';
-import { ThemedMixin, theme, ThemedProperties } from '@dojo/framework/core/mixins/Themed';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './Card.m.css';
 
-export interface CardProperties extends ThemedProperties {
+export interface CardProperties {
 	header?: WNode;
 	footer?: WNode;
 	dark?: boolean;
 	depth?: 1 | 4;
 }
 
-@theme(css)
-export default class Card extends ThemedMixin(WidgetBase)<CardProperties> {
-	protected render() {
-		const { header, footer, dark = false, depth = 1 } = this.properties;
+const factory = create({ theme }).properties<CardProperties>();
 
-		return (
-			<div
-				key="card"
-				data-test="card"
-				classes={[
-					this.theme(css.root),
-					dark ? this.theme(css.dark) : null,
-					depth === 4 ? this.theme(css.depth4) : null
-				]}
-			>
-				{header}
-				<div key="content" data-test="content" classes={this.theme(css.content)}>
-					{this.children}
-				</div>
-				{footer}
+export default factory(function Card({ middleware: { theme }, properties, children }) {
+	const { header, footer, dark = false, depth = 1 } = properties();
+	const themedCss = theme.classes(css);
+
+	return (
+		<div
+			key="card"
+			data-test="card"
+			classes={[themedCss.root, dark ? themedCss.dark : null, depth === 4 ? themedCss.depth4 : null]}
+		>
+			{header}
+			<div key="content" data-test="content" classes={themedCss.content}>
+				{children()}
 			</div>
-		);
-	}
-}
+			{footer}
+		</div>
+	);
+});

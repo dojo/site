@@ -1,8 +1,7 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
 
-export default class CodeBlock extends WidgetBase {
-	render() {
-		return <div>{this.children}</div>;
-	}
-}
+const factory = create();
+
+export default factory(function CodeBlock({ children }) {
+	return <div>{children()}</div>;
+});

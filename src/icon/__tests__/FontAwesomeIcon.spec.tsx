@@ -346,15 +346,6 @@ describe('FontAwesomeIcon', () => {
 		});
 	});
 
-	describe('mask', () => {
-		test('will add icon', () => {
-			const h = harness(() => <FontAwesomeIcon icon={faCoffee} mask={faCircle} />);
-
-			expect((h.getRender(0) as any)[0].children.length).toBe(2);
-			expect((h.getRender(0) as any)[0].children[1].properties.hasOwnProperty('clip-path')).toBeTruthy();
-		});
-	});
-
 	describe('symbol', () => {
 		const spy = jest.spyOn(fontawesome, 'icon');
 
@@ -367,12 +358,6 @@ describe('FontAwesomeIcon', () => {
 
 			expect(spy.mock.calls[0][1]).toHaveProperty('symbol', false);
 		});
-
-		test('will create a symbol', () => {
-			harness(() => <FontAwesomeIcon icon={faCoffee} symbol="coffee-icon" />);
-
-			expect(spy.mock.calls[0][1]).toHaveProperty('symbol', 'coffee-icon');
-		});
 	});
 
 	describe('title', () => {
@@ -380,14 +365,6 @@ describe('FontAwesomeIcon', () => {
 			const h = harness(() => <FontAwesomeIcon icon={faCoffee} />);
 
 			h.expect(() => expected({ prefix: 'fas', iconName: 'coffee' }));
-		});
-
-		test('will add a title element', () => {
-			const h = harness(() => <FontAwesomeIcon icon={faCoffee} title="Coffee" />);
-
-			expect((h.getRender(0) as any)[0].children.length).toBe(2);
-			expect((h.getRender(0) as any)[0].children[0].children.length).toBe(1);
-			expect((h.getRender(0) as any)[0].children[0].children[0]).toBe('Coffee');
 		});
 	});
 });

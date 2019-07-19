@@ -3,7 +3,7 @@ import { DNode } from '@dojo/framework/core/interfaces';
 
 import { toString } from '../util/to-string';
 
-import compileRemote, { CompileRemoteBlockOptions } from './compile-remote.block';
+import compileRemoteBlock, { CompileRemoteBlockOptions } from './compile-remote.block';
 
 export interface ReferenceGuideBlockOptions extends CompileRemoteBlockOptions {
 	headersOnly?: boolean;
@@ -18,7 +18,7 @@ export interface SupplementalHeaders {
 export default async function(options: ReferenceGuideBlockOptions) {
 	const { headersOnly = false } = options;
 
-	const content = await compileRemote(options);
+	const content = await compileRemoteBlock(options);
 
 	// Unwrap content's outer div
 	const nodes = isVNode(content) && content.children ? content.children : [];

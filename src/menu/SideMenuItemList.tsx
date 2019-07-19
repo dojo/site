@@ -1,13 +1,11 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import ThemedMixin, { theme } from '@dojo/framework/core/mixins/Themed';
-import I18nMixin from '@dojo/framework/core/mixins/I18n';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './SideMenuItemList.m.css';
 
-@theme(css)
-export default class SideMenuItemList extends ThemedMixin(I18nMixin(WidgetBase)) {
-	protected render() {
-		return <ul classes={this.theme(css.root)}>{this.children}</ul>;
-	}
-}
+const factory = create({ theme });
+
+export default factory(function SideMenuItemList({ middleware: { theme }, children }) {
+	const themedCss = theme.classes(css);
+	return <ul classes={themedCss.root}>{children()}</ul>;
+});

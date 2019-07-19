@@ -1,7 +1,7 @@
 import { v } from '@dojo/framework/core/vdom';
 import * as fetch from 'node-fetch';
 
-import examplesBlock, { ExampleMeta } from '../list.block';
+import listBlock, { ExampleMeta } from '../list.block';
 
 const mockReadme = `
 Some junk
@@ -60,7 +60,7 @@ describe('content compiler', () => {
 	});
 
 	it('should process', async () => {
-		const result = await examplesBlock();
+		const result = await listBlock();
 
 		expect(result[0]).toEqual(expectedOutput[0]);
 		expect(result[1]).toEqual(expectedOutput[1]);

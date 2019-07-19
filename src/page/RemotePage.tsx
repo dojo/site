@@ -1,11 +1,11 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import Block from '@dojo/framework/core/meta/Block';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 
 import compileRemoteBlock from '../common/compile-remote.block';
-import compileRemoteHeadersBlock from '../common/compile-remote-headers.block';
+import compileRemoteHeadersBlock, { SupplementalPageLookup } from '../common/compile-remote-headers.block';
 
 import Page from './Page';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 export interface RemotePageProperties {
 	repo: string;
@@ -15,40 +15,40 @@ export interface RemotePageProperties {
 	wrapInPage?: boolean;
 }
 
-export default class RemotePage extends WidgetBase<RemotePageProperties> {
-	protected render() {
-		const { repo, branch, path, header, wrapInPage = true } = this.properties;
+const factory = create({ block }).properties<RemotePageProperties>();
 
-		let content: any;
-		const locale = 'en';
+export default factory(function RemotePage({ middleware: { block }, properties }) {
+	const { repo, branch, path, header, wrapInPage = true } = properties();
 
-		// Render only the contents of a given header
-		if (header) {
-			const pages: any = this.meta(Block).run(compileRemoteHeadersBlock)({
-				repo,
-				branch,
-				path,
-				locale
-			});
+	let content: DNode;
+	const locale = 'en';
 
-			if (pages && pages[header]) {
-				content = pages[header];
-			}
+	// Render only the contents of a given header
+	if (header) {
+		const pages = block(compileRemoteHeadersBlock)({
+			repo,
+			branch,
+			path,
+			locale
+		}) as SupplementalPageLookup | null;
+
+		if (pages && pages[header]) {
+			content = pages[header];
 		}
-		// Render an entire markdown file
-		else {
-			content = this.meta(Block).run(compileRemoteBlock)({
-				repo,
-				branch,
-				path,
-				locale
-			});
-		}
-
-		if (!wrapInPage) {
-			return content;
-		}
-
-		return <Page>{content}</Page>;
 	}
-}
+	// Render an entire markdown file
+	else {
+		content = block(compileRemoteBlock)({
+			repo,
+			branch,
+			path,
+			locale
+		});
+	}
+
+	if (!wrapInPage) {
+		return content;
+	}
+
+	return <Page>{content}</Page>;
+});

@@ -127,7 +127,7 @@ describe('Side Menu Item', () => {
 
 			const assertion = baseDropdownAssertion
 				.prepend('@link', () => ['A link'])
-				.setProperty('@link', 'classes', [css.link, css.dropdownLink, css.selected, css.inverse]);
+				.setProperty('@link', 'classes', [css.link, css.inverse, css.dropdownLink, css.selected]);
 
 			h.expect(assertion);
 		});

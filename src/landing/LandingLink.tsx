@@ -1,6 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import ThemedMixin, { theme, ThemedProperties } from '@dojo/framework/core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 import { Params } from '@dojo/framework/routing/interfaces';
 
 import { IconName, IconLookup, IconPrefix } from '@fortawesome/fontawesome-svg-core';
@@ -10,7 +9,7 @@ import CardIconHeader, { IconHeaderBackgroundColor } from '../card/CardIconHeade
 
 import * as css from './LandingLink.m.css';
 
-interface LandingLinkProperties extends ThemedProperties {
+interface LandingLinkProperties {
 	to: string;
 	params?: Params;
 	title: string;
@@ -18,18 +17,18 @@ interface LandingLinkProperties extends ThemedProperties {
 	color?: IconHeaderBackgroundColor;
 }
 
-@theme(css)
-export default class LandingLink extends ThemedMixin(WidgetBase)<LandingLinkProperties> {
-	protected render() {
-		const { title, to, params, icon, color = 'blue' } = this.properties;
+const factory = create({ theme }).properties<LandingLinkProperties>();
 
-		return (
-			<div classes={this.theme(css.root)}>
-				<LinkedCard header={<CardIconHeader icon={icon} background={color} />} outlet={to} params={params}>
-					<h4 classes={this.theme(css.title)}>{title}</h4>
-					{this.children}
-				</LinkedCard>
-			</div>
-		);
-	}
-}
+export default factory(function LandingLink({ middleware: { theme }, children, properties }) {
+	const { title, to, params, icon, color = 'blue' } = properties();
+	const themedCss = theme.classes(css);
+
+	return (
+		<div classes={themedCss.root}>
+			<LinkedCard header={<CardIconHeader icon={icon} background={color} />} outlet={to} params={params}>
+				<h4 classes={themedCss.title}>{title}</h4>
+				{children()}
+			</LinkedCard>
+		</div>
+	);
+});
