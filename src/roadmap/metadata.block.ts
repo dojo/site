@@ -1,6 +1,5 @@
 import { join, basename } from 'canonical-path';
-import { readdir } from 'fs-extra';
-import { readFile } from 'fs-extra';
+import { readdir, readFile } from 'fs-extra';
 
 import metadata from '../common/metadata';
 

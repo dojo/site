@@ -1,7 +1,6 @@
 import * as fs from 'fs-extra';
 
-import * as compiler from './compile';
-import compileBlogIndexBlock from './compile-blog-index.block';
+import indexBlock from '../index.block';
 
 const files = ['file1.md', 'file2.md', 'file3.md', 'file4.md'];
 
@@ -39,33 +38,33 @@ const expectedOutput = ['blog/en/file1.md', 'blog/en/file2.md', 'blog/en/file3.m
 
 describe('compile block index block', () => {
 	const mockReaddir = jest.spyOn(fs, 'readdir');
-	const mockGetLocalFile = jest.spyOn(compiler, 'getLocalFile');
+	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
 
 	beforeEach(() => {
 		jest.resetAllMocks();
 
 		mockReaddir.mockReturnValue(Promise.resolve(files));
-		mockGetLocalFile
-			.mockReturnValueOnce(Promise.resolve(file1))
-			.mockReturnValueOnce(Promise.resolve(file2))
-			.mockReturnValueOnce(Promise.resolve(file3))
-			.mockReturnValueOnce(Promise.resolve(file4));
+		mockReadFile
+			.mockResolvedValue(file1)
+			.mockResolvedValue(file2)
+			.mockResolvedValue(file3)
+			.mockResolvedValue(file4);
 	});
 
 	it('returns a list of file paths for files in the the blog folder', async () => {
-		const result = await compileBlogIndexBlock({ locale: 'en' });
+		const result = await indexBlock({ locale: 'en' });
 
 		expect(result).toEqual(expectedOutput);
 	});
 
 	it('defaults to english when a locale is not provided', async () => {
-		const result = await compileBlogIndexBlock({});
+		const result = await indexBlock({});
 
 		expect(result).toEqual(expectedOutput);
 	});
 
 	it('looks in the appropriate folder based on locale', async () => {
-		const result = await compileBlogIndexBlock({ locale: 'fr' });
+		const result = await indexBlock({ locale: 'fr' });
 
 		expect(result).toEqual(expectedOutput.map((file) => file.replace('en', 'fr')));
 	});

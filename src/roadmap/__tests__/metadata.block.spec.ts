@@ -1,8 +1,7 @@
 import * as path from 'canonical-path';
 import * as fs from 'fs-extra';
 
-import * as compiler from './compile';
-import roadmapMetadataBlock, { RoadmapMetaData } from './roadmap-metadata.block';
+import roadmapMetadataBlock, { RoadmapMetaData } from '../metadata.block';
 
 describe('roadmap metadata block', () => {
 	const files: { file: string; content: string }[] = [
@@ -135,7 +134,7 @@ A random file with no meta data
 		}
 	];
 
-	const mockGetLocalFile = jest.spyOn(compiler, 'getLocalFile');
+	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
 	const mockJoin = jest.spyOn(path, 'join');
 	const mockReaddir = jest.spyOn(fs, 'readdir');
 
@@ -145,7 +144,7 @@ A random file with no meta data
 		mockJoin.mockReturnValueOnce('path/to/roadmaps');
 
 		files.map((file) => {
-			mockGetLocalFile.mockReturnValueOnce(Promise.resolve(file.content));
+			mockReadFile.mockResolvedValueOnce(file.content);
 			mockJoin.mockReturnValueOnce(file.file);
 		});
 
