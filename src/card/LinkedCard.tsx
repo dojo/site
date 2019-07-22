@@ -1,7 +1,6 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
 import { Params } from '@dojo/framework/routing/interfaces';
-import { tsx } from '@dojo/framework/core/vdom';
-import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
 import Card, { CardProperties } from './Card';
@@ -14,29 +13,30 @@ export interface LinkedCardProperties extends CardProperties {
 	params?: Params;
 }
 
-@theme(css)
-export default class LinkedCard extends ThemedMixin(WidgetBase)<LinkedCardProperties> {
-	protected render() {
-		const { url, outlet, params, ...cardProperties } = this.properties;
-		const card = <Card {...cardProperties}>{this.children}</Card>;
+const factory = create({ theme }).properties<LinkedCardProperties>();
 
-		if (url) {
-			return (
-				<div classes={this.theme(css.root)}>
-					<a classes={this.theme(css.link)} href={url} target="_blank" />
-					{card}
-				</div>
-			);
-		}
+export default factory(function LinkedCard({ middleware: { theme }, properties, children }) {
+	const themedCss = theme.classes(css);
 
-		if (outlet) {
-			return (
-				<div classes={this.theme(css.root)}>
-					<Link classes={this.theme(css.link)} to={outlet} params={params} />
-					{card}
-				</div>
-			);
-		}
-		return card;
+	const { url, outlet, params, ...cardProperties } = properties();
+	const card = <Card {...cardProperties}>{children()}</Card>;
+
+	if (url) {
+		return (
+			<div classes={themedCss.root}>
+				<a classes={themedCss.link} href={url} target="_blank" />
+				{card}
+			</div>
+		);
 	}
-}
+
+	if (outlet) {
+		return (
+			<div classes={themedCss.root}>
+				<Link classes={themedCss.link} to={outlet} params={params} />
+				{card}
+			</div>
+		);
+	}
+	return card;
+});

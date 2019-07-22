@@ -1,10 +1,14 @@
-import { WidgetBase } from '@dojo/framework/core/WidgetBase';
-import { v } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
 
-export default class App extends WidgetBase {
+const factory = create();
+
+export default factory(function App() {
 	// @start-region render
-	protected render() {
-		return v('div', ['Here is some content!', v('div', ['Something else again '])]);
-	}
+	return (
+		<div>
+			Here is some content!
+			<div>Something else again</div>
+		</div>
+	);
 	// @end-region render
-}
+});

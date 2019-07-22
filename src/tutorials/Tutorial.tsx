@@ -1,5 +1,4 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
 
 import LocalPage from '../page/LocalPage';
 import Section from '../section/Section';
@@ -10,15 +9,15 @@ export interface TutorialPageProperties {
 	path: string;
 }
 
-export default class Tutorial extends WidgetBase<TutorialPageProperties> {
-	protected render() {
-		const { path } = this.properties;
+const factory = create().properties<TutorialPageProperties>();
 
-		return (
-			<Section>
-				<TutorialMenu />
-				<LocalPage path={path} />
-			</Section>
-		);
-	}
-}
+export default factory(function Tutorial({ properties }) {
+	const { path } = properties();
+
+	return (
+		<Section>
+			<TutorialMenu />
+			<LocalPage path={path} />
+		</Section>
+	);
+});

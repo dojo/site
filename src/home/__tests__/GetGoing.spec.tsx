@@ -1,12 +1,13 @@
+import { add } from '@dojo/framework/core/has';
+add('test', true, true);
+
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import createIntersectionMock from '@dojo/framework/testing/mocks/middleware/intersection';
 import { tsx } from '@dojo/framework/core/vdom';
-import { add } from '@dojo/framework/core/has';
-import Intersection from '@dojo/framework/core/meta/Intersection';
+import intersection from '@dojo/framework/core/middleware/intersection';
 
 import Card from '../../card/Card';
-
-import { MockMetaMixin } from '../../test/util/MockMeta';
 
 import * as css from '../GetGoing.m.css';
 import GetGoing from '../GetGoing';
@@ -97,29 +98,13 @@ describe('GetGoing', () => {
 	});
 
 	it('starts playing on intersection', () => {
-		jest.useFakeTimers();
 		add('build-time-render', false, true);
 
-		const mockMetaMixin = new MockMetaMixin(GetGoing);
-		mockMetaMixin.registerMetaCallOnce(
-			Intersection,
-			'get',
-			['cli'],
-			{
-				isIntersecting: false
-			},
-			{
-				value: { isIntersecting: true },
-				shouldInvalidate: true
-			}
-		);
-
-		const MockGetGoing = mockMetaMixin.getClass();
-
-		const h = harness(() => <MockGetGoing />);
+		const intersectionMock = createIntersectionMock();
+		const h = harness(() => <GetGoing />, { middleware: [[intersection, intersectionMock]] });
 		h.expect(notPlayingAssertion);
 
-		jest.runAllTimers();
+		intersectionMock('cli', { isIntersecting: true });
 
 		h.expect(playingAssertion);
 	});

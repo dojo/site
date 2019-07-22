@@ -1,6 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './CardHeader.m.css';
 
@@ -12,20 +11,21 @@ export interface CardHeaderProperties {
 	};
 }
 
-@theme(css)
-export default class CardHeader extends ThemedMixin(WidgetBase)<CardHeaderProperties> {
-	protected render() {
-		const { title, image } = this.properties;
+const factory = create({ theme }).properties<CardHeaderProperties>();
 
-		let children = this.children.length > 0 ? this.children : null;
-		if (!children && title) {
-			children = [image && <img classes={css.image} src={image.src} alt={image.alt || title} />, title];
-		}
+export default factory(function CardHeader({ middleware: { theme }, properties, children }) {
+	const themedCss = theme.classes(css);
 
-		return (
-			<header key="card-header" data-test="card-header" classes={this.theme(css.root)}>
-				{children}
-			</header>
-		);
+	const { title, image } = properties();
+
+	let content = children();
+	if (!content.length && title) {
+		content = [image && <img classes={themedCss.image} src={image.src} alt={image.alt || title} />, title];
 	}
-}
+
+	return (
+		<header key="card-header" data-test="card-header" classes={themedCss.root}>
+			{content}
+		</header>
+	);
+});

@@ -12,7 +12,7 @@ interface CompileBlogPost {
 	path: string;
 }
 
-export default async function(options: CompileBlogPost): Promise<any> {
+export default async function(options: CompileBlogPost) {
 	const { path } = options;
 
 	const contentPath = resolve(__dirname, join(CONTENT_PATH, path));

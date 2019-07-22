@@ -1,6 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import { IconName, IconLookup, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 
@@ -15,27 +14,27 @@ export interface CardIconHeaderProperties {
 	background?: IconHeaderBackgroundColor;
 }
 
-export const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
-	blue: css.backgroundBlue,
-	black: css.backgroundBlack,
-	green: css.backgroundGreen,
-	purple: css.backgroundPurple,
-	orange: css.backgroundOrange
-};
+const factory = create({ theme }).properties<CardIconHeaderProperties>();
 
-@theme(css)
-export default class CardIconHeader extends ThemedMixin(WidgetBase)<CardIconHeaderProperties> {
-	protected render() {
-		const { icon, background = 'blue' } = this.properties;
+export default factory(function CardIconHeader({ middleware: { theme }, properties }) {
+	const { icon, background = 'blue' } = properties();
+	const themedCss = theme.classes(css);
 
-		return (
-			<header
-				key="card-icon-header"
-				data-test="card-icon-header"
-				classes={this.theme([css.root, colorClasses[background]])}
-			>
-				<FontAwesomeIcon icon={icon} size="4x" />
-			</header>
-		);
-	}
-}
+	const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
+		blue: themedCss.backgroundBlue,
+		black: themedCss.backgroundBlack,
+		green: themedCss.backgroundGreen,
+		purple: themedCss.backgroundPurple,
+		orange: themedCss.backgroundOrange
+	};
+
+	return (
+		<header
+			key="card-icon-header"
+			data-test="card-icon-header"
+			classes={[themedCss.root, colorClasses[background]]}
+		>
+			<FontAwesomeIcon icon={icon} size="4x" />
+		</header>
+	);
+});

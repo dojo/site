@@ -1,21 +1,23 @@
-import Block from '@dojo/framework/core/meta/Block';
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
+import block from '@dojo/framework/core/middleware/block';
 
-import index from './index.block';
+import indexBlock from './index.block';
 import Landing from '../landing/Landing';
 
-import Post from './BlogPost';
+import BlogPost from './BlogPost';
 import * as css from './Blog.m.css';
 
-export default class Blog extends WidgetBase {
-	protected render() {
-		const paths: any = this.meta(Block).run(index)({ locale: 'en' });
+const factory = create({ theme, block });
 
-		return (
-			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
-				{paths && paths.map((path: string) => <Post path={path} excerpt />)}
-			</Landing>
-		);
-	}
-}
+export default factory(function Blog({ middleware: { theme, block } }) {
+	const themedCss = theme.classes(css);
+
+	const paths = block(indexBlock)({ locale: 'en' });
+
+	return (
+		<Landing classes={{ 'dojo.io/Landing': { root: [themedCss.root] } }}>
+			{paths && paths.map((path: string) => <BlogPost path={path} excerpt />)}
+		</Landing>
+	);
+});

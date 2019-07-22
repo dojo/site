@@ -1,23 +1,15 @@
-import { WidgetBase } from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
-import { v } from '@dojo/framework/core/vdom';
+import { tsx, v, create } from '@dojo/framework/core/vdom';
 
-export default class App extends WidgetBase {
-	// @start-region onclick
-	private _onclick(event: any) {
-		console.log(event);
-	}
-	// @end-region onclick
+const factory = create();
 
+export default factory(function App() {
 	// @start-region render
-	protected render() {
-		return v('div', [
-			'Here is some content!',
-			<div>Something else again </div>,
-			// @start-region a-onclick
-			v('a', { onclick: this._onclick }, ['Click me!'])
-			// @end-region a-onclick
-		]);
-	}
+	return v('div', [
+		'Here is some content!',
+		<div>Something else again </div>,
+		// @start-region a-onclick
+		<a onclick={(event) => console.log(event)}>Click me!</a>
+		// @end-region a-onclick
+	]);
 	// @end-region render
-}
+});

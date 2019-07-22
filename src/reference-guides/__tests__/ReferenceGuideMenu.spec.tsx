@@ -1,18 +1,19 @@
-import { tsx } from '@dojo/framework/core/vdom';
-import { switchLocale } from '@dojo/framework/i18n/i18n';
 import harness from '@dojo/framework/testing/harness';
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import { tsx } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 import Registry from '@dojo/framework/core/Registry';
 import Router from '@dojo/framework/routing/Router';
 import MemoryHistory from '@dojo/framework/routing/history/MemoryHistory';
 
-import * as compileRemoteHeaders from '../../common/compile-remote-headers.block';
+import compileRemoteHeadersBlock from '../../common/compile-remote-headers.block';
 import SideMenu from '../../menu/SideMenu';
 import SideMenuSection from '../../menu/SideMenuSection';
 import SideMenuItem from '../../menu/SideMenuItem';
 import SideMenuItemList from '../../menu/SideMenuItemList';
 
 import ReferenceGuideMenu from '../ReferenceGuideMenu';
+import createBlockMock from '../../test/mockBlock';
 
 const registry = new Registry();
 
@@ -49,22 +50,25 @@ const router = new Router(
 registry.defineInjector('router', () => () => router);
 
 describe('Reference Guide Menu', () => {
-	const mockReferenceGuideBlock = jest.spyOn(compileRemoteHeaders, 'default').mockReturnValue([
-		{
-			title: 'Test 1',
-			param: 'test-1'
-		},
-		{
-			title: 'Page 2',
-			param: 'page-2'
-		},
-		{
-			title: 'Advanced Details 3',
-			param: 'advanced-details-3'
-		}
-	] as any);
-
-	switchLocale('en-US');
+	const blockMock = createBlockMock([
+		[
+			compileRemoteHeadersBlock,
+			[
+				{
+					title: 'Test 1',
+					param: 'test-1'
+				},
+				{
+					title: 'Page 2',
+					param: 'page-2'
+				},
+				{
+					title: 'Advanced Details 3',
+					param: 'advanced-details-3'
+				}
+			]
+		]
+	]);
 
 	interface MenuItemsOptions {
 		inverse?: boolean;
@@ -106,38 +110,28 @@ describe('Reference Guide Menu', () => {
 	));
 
 	it('renders standalone menu', () => {
-		const h = harness(() => <ReferenceGuideMenu name="name" route="outlet" repo="dojo/framework" path="path/to" />);
+		const h = harness(
+			() => <ReferenceGuideMenu name="name" route="outlet" repo="dojo/framework" path="path/to" />,
+			{ middleware: [[block, blockMock]] }
+		);
 
 		h.expect(baseStandaloneAssertion);
-
-		expect(mockReferenceGuideBlock).toHaveBeenCalledWith({
-			repo: 'dojo/framework',
-			branch: undefined,
-			path: 'path/to/supplemental.md',
-			locale: 'en',
-			headersOnly: true
-		});
 	});
 
 	it('renders partial menu', () => {
-		const h = harness(() => (
-			<ReferenceGuideMenu
-				name="name"
-				route="outlet"
-				repo="dojo/framework"
-				path="path/to"
-				standaloneMenu={false}
-			/>
-		));
+		const h = harness(
+			() => (
+				<ReferenceGuideMenu
+					name="name"
+					route="outlet"
+					repo="dojo/framework"
+					path="path/to"
+					standaloneMenu={false}
+				/>
+			),
+			{ middleware: [[block, blockMock]] }
+		);
 
 		h.expect(basePartialAssertion);
-
-		expect(mockReferenceGuideBlock).toHaveBeenCalledWith({
-			repo: 'dojo/framework',
-			branch: undefined,
-			path: 'path/to/supplemental.md',
-			locale: 'en',
-			headersOnly: true
-		});
 	});
 });

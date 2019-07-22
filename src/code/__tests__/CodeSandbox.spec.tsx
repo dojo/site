@@ -1,13 +1,14 @@
+import { add } from '@dojo/framework/core/has';
+add('test', true, true);
+
+import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
-import { add } from '@dojo/framework/core/has';
-import { Intersection } from '@dojo/framework/core/meta/Intersection';
+import intersection from '@dojo/framework/core/middleware/intersection';
 
-import { MockMetaMixin } from '../../test/util/MockMeta';
-
-import CodeSandbox from '../CodeSandbox';
 import * as css from '../CodeSandbox.m.css';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import CodeSandbox from '../CodeSandbox';
+import createIntersectionMock from '@dojo/framework/testing/mocks/middleware/intersection';
 
 const noop: any = () => {};
 
@@ -25,29 +26,15 @@ describe('CodeSandbox', () => {
 	));
 
 	it('renders', () => {
-		jest.useFakeTimers();
 		add('build-time-render', false, true);
 		const url = 'https://codesandbox.io/embed/dummy';
 
-		let mockMetaMixin = new MockMetaMixin(CodeSandbox);
-		mockMetaMixin.registerMetaCallOnce(
-			Intersection,
-			'get',
-			['root'],
-			{
-				isIntersecting: false
-			},
-			{
-				value: { isIntersecting: true },
-				shouldInvalidate: true
-			}
-		);
-		const CodeSandboxMock = mockMetaMixin.getClass();
+		const intersectionMock = createIntersectionMock();
 
-		const h = harness(() => <CodeSandboxMock url={url} />);
+		const h = harness(() => <CodeSandbox url={url} />, { middleware: [[intersection, intersectionMock]] });
 		h.expect(baseAssertion);
 
-		jest.runAllTimers();
+		intersectionMock('root', { isIntersecting: true });
 
 		h.expect(baseAssertion.setProperty('~iframe', 'src', `${url}?autoresize=1&hidenavigation=1`));
 	});

@@ -1,8 +1,7 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import Block from '@dojo/framework/core/meta/Block';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 
-import local from './local.block';
+import localBlock from './local.block';
 
 import Page from './Page';
 
@@ -11,19 +10,19 @@ export interface LocalPageProperties {
 	wrapInPage?: boolean;
 }
 
-export default class LocalPage extends WidgetBase<LocalPageProperties> {
-	protected render() {
-		const { path, wrapInPage = true } = this.properties;
+const factory = create({ block }).properties<LocalPageProperties>();
 
-		const content: any = this.meta(Block).run(local)({
-			path,
-			locale: 'en'
-		});
+export default factory(function LocalPage({ middleware: { block }, properties }) {
+	const { path, wrapInPage = true } = properties();
 
-		if (!wrapInPage) {
-			return content;
-		}
+	const content = block(localBlock)({
+		path,
+		locale: 'en'
+	});
 
-		return <Page>{content}</Page>;
+	if (!wrapInPage) {
+		return content;
 	}
-}
+
+	return <Page>{content}</Page>;
+});

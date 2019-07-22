@@ -2,7 +2,7 @@ import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
-import CardIconHeader, { colorClasses, IconHeaderBackgroundColor } from '../CardIconHeader';
+import CardIconHeader, { IconHeaderBackgroundColor } from '../CardIconHeader';
 import * as css from '../CardIconHeader.m.css';
 import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
 
@@ -19,7 +19,15 @@ describe('CardIconHeader', () => {
 	});
 
 	it('renders background colors', () => {
-		for (let key in Object.keys(colorClasses)) {
+		const colorClasses: { [key in IconHeaderBackgroundColor]: string } = {
+			blue: css.backgroundBlue,
+			black: css.backgroundBlack,
+			green: css.backgroundGreen,
+			purple: css.backgroundPurple,
+			orange: css.backgroundOrange
+		};
+
+		for (let key of Object.keys(colorClasses)) {
 			let colorKey: IconHeaderBackgroundColor = key as IconHeaderBackgroundColor;
 			const h = harness(() => <CardIconHeader icon="coffee" background={colorKey} />);
 

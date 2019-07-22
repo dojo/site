@@ -10,7 +10,7 @@ describe('Ethos', () => {
 		const h = harness(() => <Ethos />);
 		h.expect(() => (
 			<section classes={[css.root]}>
-				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
+				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.productive]}>
 							<FontAwesomeIcon icon="code-branch" />
@@ -22,7 +22,7 @@ describe('Ethos', () => {
 						sustainability and code management.
 					</div>
 				</Card>
-				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
+				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.adaptable]}>
 							<FontAwesomeIcon icon="plug" />
@@ -34,7 +34,7 @@ describe('Ethos', () => {
 						solutions available today on the open web.
 					</div>
 				</Card>
-				<Card extraClasses={{ root: css.ethosPoint, content: css.ethosContent }}>
+				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
 						<span classes={[css.inclusive]}>
 							<FontAwesomeIcon icon="users" />

@@ -1,7 +1,10 @@
 import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
 
-import * as compiler from '../../page/local.block';
+import localBlock from '../../page/local.block';
+
+import createBlockMock from '../../test/mockBlock';
 
 import Page from '../Page';
 import LocalPage from '../LocalPage';
@@ -14,20 +17,18 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 jest.mock('../../page/local.block');
 
 describe('Page', () => {
-	const mockCompiler = jest.spyOn(compiler, 'default').mockReturnValue('Some content' as any);
+	const blockMock = createBlockMock([[localBlock, 'Some content']]);
 
 	it('renders', () => {
-		const h = harness(() => <LocalPage path="path/to/file.md" />);
-
-		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
+		const h = harness(() => <LocalPage path="path/to/file.md" />, { middleware: [[block, blockMock]] });
 
 		h.expect(() => <Page>Some content</Page>);
 	});
 
 	it('renders only content without Page widget', () => {
-		const h = harness(() => <LocalPage path="path/to/file.md" wrapInPage={false} />);
-
-		expect(mockCompiler).toHaveBeenCalledWith({ path: 'path/to/file.md', locale: 'en' });
+		const h = harness(() => <LocalPage path="path/to/file.md" wrapInPage={false} />, {
+			middleware: [[block, blockMock]]
+		});
 
 		h.expect(() => 'Some content');
 	});

@@ -1,5 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './Aside.m.css';
 
@@ -7,14 +7,16 @@ interface AsideProperties {
 	title: string;
 }
 
-export default class Aside extends WidgetBase<AsideProperties> {
-	render() {
-		const { title } = this.properties;
-		return (
-			<article classes={[css.root]}>
-				<strong>{title}</strong>
-				<p>{this.children}</p>
-			</article>
-		);
-	}
-}
+const factory = create({ theme }).properties<AsideProperties>();
+
+export default factory(function Aside({ middleware: { theme }, properties, children }) {
+	const { title } = properties();
+	const themedCss = theme.classes(css);
+
+	return (
+		<article classes={themedCss.root}>
+			<strong>{title}</strong>
+			<p>{children()}</p>
+		</article>
+	);
+});

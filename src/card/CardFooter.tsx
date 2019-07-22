@@ -1,16 +1,16 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/framework/core/mixins/Themed';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './CardFooter.m.css';
 
-@theme(css)
-export default class CardFooter extends ThemedMixin(WidgetBase) {
-	protected render() {
-		return (
-			<footer key="card-footer" data-test="footer" classes={this.theme(css.root)}>
-				{this.children}
-			</footer>
-		);
-	}
-}
+const factory = create({ theme });
+
+export default factory(function CardFooter({ middleware: { theme }, children }) {
+	const themedCss = theme.classes(css);
+
+	return (
+		<footer key="card-footer" data-test="footer" classes={themedCss.root}>
+			{children()}
+		</footer>
+	);
+});

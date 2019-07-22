@@ -1,15 +1,19 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
+
 import * as css from './Hero.m.css';
+
 const hero = require('../assets/herobg.png');
 
-export default class Hero extends WidgetBase {
-	protected render() {
-		return (
-			<section styles={{ backgroundImage: `url(${hero})` }} classes={[css.root]}>
-				<h1 classes={[css.headline]}>A Progressive Framework for Modern Web Apps</h1>
-				<button classes={[css.build]}>Build with Dojo</button>
-			</section>
-		);
-	}
-}
+const factory = create({ theme });
+
+export default factory(function Hero({ middleware: { theme } }) {
+	const themedCss = theme.classes(css);
+
+	return (
+		<section styles={{ backgroundImage: `url(${hero})` }} classes={[themedCss.root]}>
+			<h1 classes={[themedCss.headline]}>A Progressive Framework for Modern Web Apps</h1>
+			<button classes={[themedCss.build]}>Build with Dojo</button>
+		</section>
+	);
+});

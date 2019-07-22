@@ -1,7 +1,7 @@
 import * as path from 'canonical-path';
 import * as fs from 'fs-extra';
 
-import roadmapMetadataBlock, { RoadmapMetaData } from '../metadata.block';
+import metadataBlock, { RoadmapMetaData } from '../metadata.block';
 
 describe('roadmap metadata block', () => {
 	const files: { file: string; content: string }[] = [
@@ -152,19 +152,19 @@ A random file with no meta data
 	});
 
 	it('gets meta data from files', async () => {
-		const result = await roadmapMetadataBlock({ locale: 'en' });
+		const result = await metadataBlock({ locale: 'en' });
 
 		expect(result).toEqual(expectedOutput);
 	});
 
 	it('defaults to english if no locale provided', async () => {
-		const result = await roadmapMetadataBlock({});
+		const result = await metadataBlock({});
 
 		expect(result).toEqual(expectedOutput);
 	});
 
 	it('handles none english locales', async () => {
-		const result = await roadmapMetadataBlock({ locale: 'fr' });
+		const result = await metadataBlock({ locale: 'fr' });
 
 		expect(result).toEqual(
 			expectedOutput.map((file) => ({
@@ -177,7 +177,7 @@ A random file with no meta data
 	it('returns an emptry array if no files found', async () => {
 		mockReaddir.mockReturnValue(Promise.resolve([]));
 
-		const result = await roadmapMetadataBlock({ locale: 'en' });
+		const result = await metadataBlock({ locale: 'en' });
 
 		expect(result).toEqual([]);
 	});

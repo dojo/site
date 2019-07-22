@@ -1,5 +1,5 @@
-import WidgetBase from '@dojo/framework/core/WidgetBase';
-import { tsx } from '@dojo/framework/core/vdom';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 
 import * as css from './Alert.m.css';
 
@@ -7,10 +7,11 @@ export interface AlertProperties {
 	type?: 'success' | 'info' | 'danger' | 'warning';
 }
 
-export default class Alert extends WidgetBase<AlertProperties> {
-	render() {
-		const { type = 'info' } = this.properties;
+const factory = create({ theme }).properties<AlertProperties>();
 
-		return <div classes={[css.root, css[type]]}>{this.children}</div>;
-	}
-}
+export default factory(function Alert({ middleware: { theme }, children, properties }) {
+	const { type = 'info' } = properties();
+	const themedCss = theme.classes(css);
+
+	return <div classes={[themedCss.root, themedCss[type]]}>{children()}</div>;
+});
