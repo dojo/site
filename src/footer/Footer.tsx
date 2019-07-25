@@ -9,6 +9,6 @@ export default factory(function Footer({ middleware: { theme } }) {
 	const themedCss = theme.classes(css);
 
 	return (
-		<footer classes={themedCss.root}>{`© ${new Date().getFullYear()} JS Foundation, All Rights Reserved.`}</footer>
+		<footer classes={themedCss.root}>{`© ${new Date().getFullYear()} Open JS Foundation, All Rights Reserved.`}</footer>
 	);
 });
