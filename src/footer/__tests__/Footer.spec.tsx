@@ -7,6 +7,6 @@ import Footer from '../Footer';
 describe('Footer', () => {
 	it('renders', () => {
 		const h = harness(() => <Footer />);
-		h.expect(() => <footer classes={css.root}>© 2019 JS Foundation, All Rights Reserved.</footer>);
+		h.expect(() => <footer classes={css.root}>© 2019 Open JS Foundation, All Rights Reserved.</footer>);
 	});
 });
