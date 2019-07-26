@@ -8,6 +8,8 @@
 	background: var(--dark-background-color);
 	color: var(--color-white);
 	padding: var(--grid-size);
+	height: var(--footer-size);
+	box-sizing: border-box;
 }
 
 @media (max-width: 850px) {

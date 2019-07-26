@@ -1,7 +1,7 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 
-import { IconName, IconLookup, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { IconName } from '@fortawesome/fontawesome-common-types';
 
 import FontAwesomeIcon from '../icon/FontAwesomeIcon';
 
@@ -10,7 +10,7 @@ import * as css from './CardIconHeader.m.css';
 export type IconHeaderBackgroundColor = 'blue' | 'black' | 'green' | 'purple' | 'orange';
 
 export interface CardIconHeaderProperties {
-	icon: IconName | IconLookup | [IconPrefix, IconName];
+	icon: IconName;
 	background?: IconHeaderBackgroundColor;
 }
 

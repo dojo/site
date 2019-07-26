@@ -2,7 +2,7 @@ import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import { Params } from '@dojo/framework/routing/interfaces';
 
-import { IconName, IconLookup, IconPrefix } from '@fortawesome/fontawesome-svg-core';
+import { IconName } from '@fortawesome/fontawesome-common-types';
 
 import LinkedCard from '../card/LinkedCard';
 import CardIconHeader, { IconHeaderBackgroundColor } from '../card/CardIconHeader';
@@ -13,7 +13,7 @@ interface LandingLinkProperties {
 	to: string;
 	params?: Params;
 	title: string;
-	icon: IconName | IconLookup | [IconPrefix, IconName];
+	icon: IconName;
 	color?: IconHeaderBackgroundColor;
 }
 
