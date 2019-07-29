@@ -15,7 +15,7 @@
 .command {
 	font-family: monospace;
 	color: var(--color-off-white);
-	font-size: 1rem;
+	font-size: 15px;
 	display: flex;
 }
 
@@ -182,7 +182,7 @@
 		height: initial;
 	}
 	.command {
-		font-size: 0.7rem;
+		font-size: 12px;
 	}
 	.commands {
 		width: 100%;

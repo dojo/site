@@ -1,7 +1,7 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import icache from '@dojo/framework/core/middleware/icache';
-import Link from '@dojo/framework/routing/ActiveLink';
+import Link from '../link/ActiveLink';
 
 const logo = require('../assets/logo.svg');
 
@@ -30,7 +30,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 				<span classes={[themedCss.centerContainer]}>
 					<Link key="homeLink" to="home" onClick={() => {
 						icache.set('open', false);
-					}} classes={[themedCss.homeLink]} activeClasses={[themedCss.selected]}>
+					}} classes={[themedCss.homeLink]} matchParams={{}} activeClasses={[themedCss.selected]}>
 						<img classes={[themedCss.logo]} alt="logo" src={logo} />
 					</Link>
 				</span>
@@ -43,7 +43,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 							<li classes={themedCss.menuItem}>
 								<Link classes={css.menuLink} onClick={() => {
 									icache.set('open', false);
-								}} to={item.toLowerCase()} activeClasses={[]}>
+								}} to={item.toLowerCase()} matchParams={{}} activeClasses={[themedCss.selected]}>
 									{item}
 								</Link>
 							</li>

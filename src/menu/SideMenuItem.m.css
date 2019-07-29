@@ -6,7 +6,7 @@
 }
 
 .link {
-	font-size: 0.95rem;
+	font-size: 15px;
 	line-height: 1.65;
 	background-color: var(--color-white);
 	color: var(--color-light-gray);

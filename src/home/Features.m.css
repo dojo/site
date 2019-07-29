@@ -21,14 +21,12 @@
 }
 
 .featureCardRight {
-	min-height: calc(var(--grid-size) * 40);
 	width: 45%;
 	margin: calc(var(--grid-size) * 10) calc(var(--grid-size) * 20) calc(var(--grid-size) * 10) 0px;
 	padding: calc(var(--grid-size) * 3.5);
 }
 
 .featureCardLeft {
-	min-height: calc(var(--grid-size) * 40);
 	width: 45%;
 	margin: calc(var(--grid-size) * 10) 0 calc(var(--grid-size) * 10) calc(var(--grid-size) * 20);
 	padding: calc(var(--grid-size) * 3.5);

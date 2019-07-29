@@ -1,7 +1,7 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import block from '@dojo/framework/core/middleware/block';
-import Link from '@dojo/framework/routing/ActiveLink';
+import Link from '../link/ActiveLink';
 
 import LearnContent from './LearnContent';
 import getSections from './sections.block';
@@ -33,6 +33,7 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 									to="learn"
 									classes={css.menuLink}
 									params={{ guide: guide.toLowerCase(), page: 'introduction' }}
+									matchParams={{ guide: guide.toLowerCase() }}
 									activeClasses={[css.selected]}
 								>
 									{guide}

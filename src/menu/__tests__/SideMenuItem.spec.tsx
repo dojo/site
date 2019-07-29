@@ -1,19 +1,19 @@
 import { tsx } from '@dojo/framework/core/vdom';
-import ActiveLink from '@dojo/framework/routing/ActiveLink';
+
 import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import harness from '@dojo/framework/testing/harness';
 
 import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
-
+import Link from '../../link/ActiveLink';
 import * as css from '../SideMenuItem.m.css';
 import SideMenuItem from '../SideMenuItem';
 
 describe('Side Menu Item', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<li key="menu-item" classes={css.root}>
-			<ActiveLink key="link" to="outlet" params={undefined} classes={[css.link]} activeClasses={[css.selected]}>
+			<Link key="link" to="outlet" params={undefined} classes={[css.link]} activeClasses={[css.selected]}>
 				A link
-			</ActiveLink>
+			</Link>
 		</li>
 	));
 

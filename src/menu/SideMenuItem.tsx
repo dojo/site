@@ -1,7 +1,7 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import icache from '@dojo/framework/core/middleware/icache';
-import ActiveLink from '@dojo/framework/routing/ActiveLink';
+import Link from '../link/ActiveLink';
 import { Params } from '@dojo/framework/routing/interfaces';
 
 import FontAwesomeIcon from '../icon/FontAwesomeIcon';
@@ -43,7 +43,7 @@ export default factory(function SideMenuItem({ middleware: { theme, icache }, ch
 						{children()}
 					</a>
 				) : (
-					<ActiveLink
+					<Link
 						key="link"
 						to={to}
 						params={params}
@@ -51,7 +51,7 @@ export default factory(function SideMenuItem({ middleware: { theme, icache }, ch
 						activeClasses={[themedCss.selected]}
 					>
 						{children()}
-					</ActiveLink>
+					</Link>
 				)
 			) : (
 				[

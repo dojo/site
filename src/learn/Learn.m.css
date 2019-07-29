@@ -28,12 +28,11 @@
 }
 
 .menuItem {
-	font-size: 0.85rem;
+	font-size: 15px;
 	line-height: 1.65;
 	display: inline-block;
 	text-decoration: none;
 	position: relative;
-	text-transform: uppercase;
 	padding: var(--grid-size)  calc(var(--grid-size) * 2);
 }
 
@@ -57,13 +56,14 @@
 }
 
 .main {
-    margin-top: 52px;
+    margin-top: 40px;
     display: flex;
 }
 
 .content {
     margin-right: 280px;
-    margin-left: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
 }
 
 .menu {
@@ -75,8 +75,11 @@
     border-left: 1px solid rgba(18, 18, 18, 0.2);
 }
 
+.columnMenuList {
+}
+
 .columnMenuItem {
-	font-size: 0.85rem;
+	font-size: 14px;
 	line-height: 1.65;
 	color: var(--font-color-inverse);
 	margin: var(--grid-size);
@@ -88,6 +91,10 @@
 
 .columnMenuLink {
 	color: var(--header-background-color);
+}
+
+.columnMenuLinkSelected {
+	font-weight: bold;
 }
 
 .selected::before {
@@ -149,12 +156,11 @@
 	}
 	
 	.columnMenuItem {
-		font-size: 0.85rem;
+		font-size: 14px;
 		line-height: 1.65;
 		display: inline-block;
 		text-decoration: none;
 		position: relative;
-		text-transform: uppercase;
 		white-space: nowrap;
 		margin: 0;
 		padding: var(--grid-size)  calc(var(--grid-size) * 2);
@@ -166,10 +172,6 @@
 	
 	.columnMenuLink:hover {
 		text-decoration: none;
-	}
-
-	.columnMenuLinkSelected {
-		font-weight: bold;
 	}
 
 	.columnMenuLink::after {

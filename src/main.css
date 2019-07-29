@@ -25,12 +25,10 @@ blockquote {
 	font-weight: var(--block-quote-font-weight);
 	text-align: left;
 	line-height: 28px;
-	background-color: #3b3f4a;
-	border-bottom: 1px solid #dbdbdb;
-	padding: 10px 25px;
+	background-color: #2a98cf;
+	padding: 4px 10px;
+	border: 1px solid #2a98cf;
 	margin: 0;
-	box-shadow: rgba(10, 16, 20, 1) 0px 0px 2px;
-	border-radius: 3px 3px 0px 0;
 }
 
 blockquote > p {
@@ -38,8 +36,7 @@ blockquote > p {
 }
 
 pre[class*='language-'] {
-	border-radius: 3px !important;
-	box-shadow: rgba(10, 16, 20, 0.24) 0px 2px 2px, rgba(10, 16, 20, 0.12) 0px 0px 2px;
+	font-size: var(--pre-font-size);
 	margin-bottom: 2em !important;
 }
 
@@ -49,11 +46,15 @@ pre[class*='language-']:last-child {
 
 blockquote + pre[class*='language-'] {
 	margin-top: 0;
-	border-radius: 0 0 3px 3px;
 }
 
 pre {
 	white-space: pre-wrap;
+	border: 1px solid #2a98cf;
+}
+
+p {
+	font-size: 15px;
 }
 
 @media (max-width: 768px) {
@@ -159,11 +160,11 @@ img {
  */
 table {
 	border-collapse: collapse;
-	box-shadow: rgba(10, 16, 20, 0.24) 0px 2px 2px, rgba(10, 16, 20, 0.12) 0px 0px 2px;
+	border: 1px solid #2a98cf;
 }
 
 thead {
-	background-color: #3b3f4a;
+	background-color: #2a98cf;
 }
 
 th {
@@ -175,6 +176,10 @@ th {
 
 tr {
 	border-bottom: 1px solid rgba(10, 16, 20, 0.12);
+}
+
+tr:last-child {
+	border-bottom: none;
 }
 
 td {
@@ -219,4 +224,10 @@ td {
 code[class*=language-] {
 	white-space: pre-wrap;
     word-break: break-word;
+}
+
+@media (max-width: 768px) {
+	pre[class*='language-'] {
+		font-size: 15px;
+	}
 }

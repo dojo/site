@@ -33,7 +33,7 @@
 }
 
 .menuItem {
-	font-size: 0.95rem;
+	font-size: 16px;
 	line-height: 1.65;
 	margin: var(--grid-size);
 	padding: calc(var(--grid-size) / 2) 0;
@@ -90,6 +90,7 @@
 }
 
 .selected {
+	color: white;
 }
 
 .centerContainer {
