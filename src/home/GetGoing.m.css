@@ -95,11 +95,6 @@
 	width: calc(var(--grid-size) * 20);
 }
 
-.keyword,
-.variable {
-	margin-right: 7px;
-}
-
 .keyword {
 	color: #c775df;
 }

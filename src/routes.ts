@@ -31,19 +31,11 @@ export default [
 		outlet: 'community'
 	},
 	{
-		path: 'reference-guides',
-		outlet: 'reference-guides'
-	},
-	{
-		path: 'reference-guides/i18n/{page}',
-		outlet: 'reference-guide-i18n'
-	},
-	{
-		path: 'reference-guides/styling-and-theming/{page}',
-		outlet: 'reference-guide-styling-and-theming'
-	},
-	{
-		path: 'reference-guides/routing/{page}',
-		outlet: 'reference-guide-routing'
+		path: 'learn/{guide}/{page}',
+		outlet: 'learn',
+		defaultParams: {
+			guide: 'outline',
+			page: 'introduction'
+		}
 	}
 ];

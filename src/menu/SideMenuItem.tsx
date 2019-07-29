@@ -5,7 +5,6 @@ import ActiveLink from '@dojo/framework/routing/ActiveLink';
 import { Params } from '@dojo/framework/routing/interfaces';
 
 import FontAwesomeIcon from '../icon/FontAwesomeIcon';
-import { toSlug } from '../util/to-slug';
 
 import * as css from './SideMenuItem.m.css';
 
@@ -29,7 +28,7 @@ export default factory(function SideMenuItem({ middleware: { theme, icache }, ch
 	if (!to) {
 		const url = window.location.pathname;
 		linkClasses.push(themedCss.dropdownLink);
-		if (name !== '' && url.includes(toSlug(name))) {
+		if (name !== '' && url.includes(name)) {
 			linkClasses.push(themedCss.selected);
 		}
 	}

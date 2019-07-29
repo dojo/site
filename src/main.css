@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&font-display=swap');
 
 @import './variables.css';
 
@@ -23,7 +23,6 @@ blockquote {
 	font-size: var(--block-quote-font-size);
 	font-weight: var(--block-quote-font-weight);
 	text-align: left;
-	text-transform: uppercase;
 	line-height: 28px;
 	background-color: #3b3f4a;
 	border-bottom: 1px solid #dbdbdb;
@@ -214,4 +213,9 @@ td {
 		color: var(--color-black);
 		margin-bottom: 0;
 	}
+}
+
+code[class*=language-] {
+	white-space: pre-wrap;
+    word-break: break-word;
 }

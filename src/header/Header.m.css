@@ -34,9 +34,23 @@
 }
 
 .menuItem {
-	text-align: right;
+	font-size: 1.1rem;
+	line-height: 1.65;
 	margin: var(--grid-size);
+	padding: calc(var(--grid-size) / 2) 0;
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
 	text-transform: uppercase;
+}
+
+.menuLink {
+	color: var(--font-color-inverse);
+}
+
+.menuLink:hover {
+	color: white;
+	text-decoration: none;
 }
 
 .left {
@@ -155,20 +169,8 @@
 	clip: rect(0, 0, 0, 0);
 }
 
-.smallScreenOnly {
-	display: none;
-}
-
 /* small screen */
 @media (max-width: 768px) {
-	.noSmallScreen {
-		display: none;
-	}
-
-	.smallScreenOnly {
-		display: list-item;
-	}
-
 	.toggleButton {
 		display: inline-block;
 	}
@@ -191,10 +193,11 @@
 		padding: 2.5em 0 0;
 		box-shadow: -8px 0 8px var(--shadow-color);
 		min-height: 100%;
-		width: 70vw;
-		display: block;
+		width: 40vw;
+		display: flex;
 		padding: var(--grid-size) calc(var(--grid-size) * 2);
 		box-sizing: border-box;
+		flex-direction: column;
 	}
 
 	.menuItem {
