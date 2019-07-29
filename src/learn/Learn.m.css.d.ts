@@ -9,3 +9,5 @@ export const menu: string;
 export const columnMenuItem: string;
 export const columnMenuLink: string;
 export const selected: string;
+export const columnMenuList: string;
+export const columnMenuLinkSelected: string;

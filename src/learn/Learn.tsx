@@ -3,7 +3,7 @@ import theme from '@dojo/framework/core/middleware/theme';
 import block from '@dojo/framework/core/middleware/block';
 import Link from '@dojo/framework/routing/ActiveLink';
 
-import getContent from './content.block';
+import LearnContent from './LearnContent';
 import getSections from './sections.block';
 import * as css from './Learn.m.css';
 
@@ -21,7 +21,6 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName.toLowerCase()}`;
 	const repo = 'dojo/framework';
-	const content = block(getContent)({ path, page: pageName, repo });
 	const sections = block(getSections)({ path, page: 'supplemental', repo }) || [];
 	return (
 		<div classes={themedCss.root}>
@@ -44,25 +43,22 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 				</ul>
 			</nav>
 			<main classes={themedCss.main}>
-                <div classes={themedCss.content}>
-                    {content}
-                </div>
 				<div classes={themedCss.menu}>
-					<ul>
+					<ul classes={themedCss.columnMenuList}>
 						<li classes={themedCss.columnMenuItem}>
-							<Link key="intro" classes={css.columnMenuLink} to="learn" params={{ page: 'introduction' }} activeClasses={[]}>
+							<Link key="intro" classes={css.columnMenuLink} to="learn" params={{ page: 'introduction' }} activeClasses={[css.columnMenuLinkSelected]}>
 								Introduction
 							</Link>
 						</li>
 						<li classes={themedCss.columnMenuItem}>
-							<Link key="basic" classes={css.columnMenuLink} to="learn" params={{ page: 'basic-usage' }} activeClasses={[]}>
+							<Link key="basic" classes={css.columnMenuLink} to="learn" params={{ page: 'basic-usage' }} activeClasses={[css.columnMenuLinkSelected]}>
 								Basic Usage
 							</Link>
 						</li>
-						{sections.map(({param, title}) => {
+						{(sections || []).map(({param, title}: any) => {
 							return (
 								<li classes={themedCss.columnMenuItem}>
-									<Link classes={css.columnMenuLink} key={param} to="learn" params={{ page: param }} activeClasses={[]}>
+									<Link classes={css.columnMenuLink} key={param} to="learn" params={{ page: param }} activeClasses={[css.columnMenuLinkSelected]}>
 										{title}
 									</Link>
 								</li>
@@ -70,6 +66,7 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 						})}
 					</ul>
 				</div>
+				<LearnContent repo={repo} page={pageName} path={path} />
 			</main>
 		</div>
 	);

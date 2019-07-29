@@ -4,8 +4,7 @@
 	--toggle-button-height: calc(var(--grid-size) * 2);
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
-	--logo-width: calc(var(--grid-size) * 11);
-	--logo-height: calc(var(--grid-size) * 4.8);
+	--logo-width: calc(var(--grid-size) * 9);
 	position: fixed;
 	background: var(--header-background-color);
 	width: 100%;
@@ -34,7 +33,7 @@
 }
 
 .menuItem {
-	font-size: 1.1rem;
+	font-size: 0.95rem;
 	line-height: 1.65;
 	margin: var(--grid-size);
 	padding: calc(var(--grid-size) / 2) 0;
@@ -97,7 +96,6 @@
 }
 
 .logo {
-	height: var(--logo-height);
 	width: var(--logo-width);
 }
 
@@ -171,21 +169,26 @@
 
 /* small screen */
 @media (max-width: 768px) {
+
+	.root {
+		position: inherit;
+	}
+
 	.toggleButton {
 		display: inline-block;
 	}
 
 	.menu {
 		position: fixed;
-		left: -70vw;
+		left: -100vw;
 		top: var(--header-size);
 		height: 100%;
+		width: 100vw;
 		overflow-x: visible;
 		transition: left 0.3s ease, box-shadow 0.3s ease;
 		z-index: 999;
 		margin: 0;
-		opacity: 0.95;
-		background: var(--responsive-header-background-color);
+		background: var(--header-background-color);
 	}
 
 	.menuList {
@@ -193,7 +196,6 @@
 		padding: 2.5em 0 0;
 		box-shadow: -8px 0 8px var(--shadow-color);
 		min-height: 100%;
-		width: 40vw;
 		display: flex;
 		padding: var(--grid-size) calc(var(--grid-size) * 2);
 		box-sizing: border-box;
@@ -204,11 +206,7 @@
 		text-transform: uppercase;
 		text-align: left;
 		margin: 0;
-	}
-
-	.dummyLink {
-		line-height: 1.65;
-		padding: calc(var(--grid-size) / 2) 0;
+		padding: var(--grid-size) 0;
 	}
 
 	.centerContainer {

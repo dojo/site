@@ -6,7 +6,16 @@
 	background: #009dff;
 	position: fixed;
 	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.nav::-webkit-scrollbar {
+	display: none;
+  }
 
 .menuList {
 	list-style: none;
@@ -16,11 +25,10 @@
 	height: auto;
 	width: auto;
 	background: none;
-	flex-direction: row;
 }
 
 .menuItem {
-	font-size: 1.05rem;
+	font-size: 0.85rem;
 	line-height: 1.65;
 	display: inline-block;
 	text-decoration: none;
@@ -33,7 +41,7 @@
 	color: white;
 }
 
-.menuLink:hover:hover {
+.menuLink:hover {
 	text-decoration: none;
 	color: white;
 }
@@ -68,7 +76,7 @@
 }
 
 .columnMenuItem {
-	font-size: 1rem;
+	font-size: 0.85rem;
 	line-height: 1.65;
 	color: var(--font-color-inverse);
 	margin: var(--grid-size);
@@ -99,4 +107,77 @@
     width: 1px;
 	height: 22px;
     background-color: rgba(18,18,18,0.2);
+}
+
+@media (max-width: 768px) {
+	.nav {
+		position: inherit;
+	}
+
+	.main {
+		margin-top: 0;
+		display: block;
+	}
+
+	.content {
+		margin-right: 20px;
+	}
+
+	.menu {
+		background: white;
+		width: 100%;
+		display: flex;
+		flex-wrap: nowrap;
+		position: inherit;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+	}
+	
+	.menu::-webkit-scrollbar {
+		display: none;
+	}
+
+	.columnMenuList {
+		list-style: none;
+		display: flex;
+		padding: 0;
+		margin: 0;
+		height: auto;
+		width: auto;
+		background: none;
+	}
+	
+	.columnMenuItem {
+		font-size: 0.85rem;
+		line-height: 1.65;
+		display: inline-block;
+		text-decoration: none;
+		position: relative;
+		text-transform: uppercase;
+		white-space: nowrap;
+		margin: 0;
+		padding: var(--grid-size)  calc(var(--grid-size) * 2);
+	}
+	
+	.columnMenuLink {
+		color: black;
+	}
+	
+	.columnMenuLink:hover {
+		text-decoration: none;
+	}
+
+	.columnMenuLinkSelected {
+		font-weight: bold;
+	}
+
+	.columnMenuLink::after {
+		position: absolute;
+		left: 0;
+		content: '';
+		width: 1px;
+		height: 22px;
+		background-color: rgba(18,18,18,0.2);
+	}
 }
