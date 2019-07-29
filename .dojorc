@@ -7,7 +7,22 @@
 				"learn/routing/introduction",
 				"learn/routing/basic-usage",
 				"learn/routing/router-api",
-				"learn/routing/route-configuration"
+				"learn/routing/route-configuration",
+				"learn/routing/router-api",
+				"learn/routing/using-the-outlet-matchdetails",
+				"learn/routing/history-managers",
+				"learn/routing/error-outlet",
+				"learn/building/introduction",
+				"learn/building/basic-usage",
+				"learn/building/creating-bundles",
+				"learn/building/assets",
+				"learn/building/progressive-web-apps",
+				"learn/building/buildtime-rendering",
+				"learn/building/conditional-code",
+				"learn/building/externals",
+				"learn/building/ejecting",
+				"learn/testing/introduction",
+				"learn/testing/basic-usage"
 			],
 			"puppeteerOptions": {
 				"args": [

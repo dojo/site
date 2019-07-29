@@ -190,6 +190,7 @@ td {
 @media (max-width: 850px) {
 	table {
 		box-shadow: none;
+		border: none;
 	}
 
 	thead {
