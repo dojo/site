@@ -15,7 +15,7 @@
 
 .nav::-webkit-scrollbar {
 	display: none;
-  }
+}
 
 .menuList {
 	list-style: none;
@@ -33,7 +33,7 @@
 	display: inline-block;
 	text-decoration: none;
 	position: relative;
-	padding: var(--grid-size)  calc(var(--grid-size) * 2);
+	padding: var(--grid-size) calc(var(--grid-size) * 2);
 }
 
 .menuLink {
@@ -47,32 +47,32 @@
 
 .menuLink:hover::before {
 	position: absolute;
-    bottom: 0;
-    left: 0;
-    content: '';
-    width: 100%;
-    height: 4px;
-	background-color: rgba(18,18,18,0.5);
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 4px;
+	background-color: rgba(18, 18, 18, 0.5);
 }
 
 .main {
-    margin-top: 40px;
-    display: flex;
+	margin-top: 40px;
+	display: flex;
 }
 
 .content {
-    margin-right: 280px;
+	margin-right: 280px;
 	margin-left: 20px;
 	margin-bottom: 20px;
 }
 
 .menu {
-    position: fixed;
-    right: 0;
-    width: 260px;
-    height: 100%;
-    box-sizing: border-box;
-    border-left: 1px solid rgba(18, 18, 18, 0.2);
+	position: fixed;
+	right: 0;
+	width: 260px;
+	height: 100%;
+	box-sizing: border-box;
+	border-left: 1px solid rgba(18, 18, 18, 0.2);
 }
 
 .columnMenuList {
@@ -99,21 +99,21 @@
 
 .selected::before {
 	position: absolute;
-    bottom: 0;
-    left: 0;
-    content: '';
-    width: 100%;
-    height: 4px;
-    background-color: #3c3f4a;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 4px;
+	background-color: #3c3f4a;
 }
 
 .menuLink::after {
 	position: absolute;
-    left: 0;
-    content: '';
-    width: 1px;
+	left: 0;
+	content: '';
+	width: 1px;
 	height: 22px;
-    background-color: rgba(18,18,18,0.2);
+	background-color: rgba(18, 18, 18, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -140,7 +140,7 @@
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 	}
-	
+
 	.menu::-webkit-scrollbar {
 		display: none;
 	}
@@ -154,7 +154,7 @@
 		width: auto;
 		background: none;
 	}
-	
+
 	.columnMenuItem {
 		font-size: 14px;
 		line-height: 1.65;
@@ -163,13 +163,13 @@
 		position: relative;
 		white-space: nowrap;
 		margin: 0;
-		padding: var(--grid-size)  calc(var(--grid-size) * 2);
+		padding: var(--grid-size) calc(var(--grid-size) * 2);
 	}
-	
+
 	.columnMenuLink {
 		color: black;
 	}
-	
+
 	.columnMenuLink:hover {
 		text-decoration: none;
 	}
@@ -180,6 +180,6 @@
 		content: '';
 		width: 1px;
 		height: 22px;
-		background-color: rgba(18,18,18,0.2);
+		background-color: rgba(18, 18, 18, 0.2);
 	}
 }

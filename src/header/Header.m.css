@@ -170,7 +170,6 @@
 
 /* small screen */
 @media (max-width: 768px) {
-
 	.root {
 		position: inherit;
 	}

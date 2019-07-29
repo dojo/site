@@ -44,10 +44,10 @@ describe('App', () => {
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 					<Outlet
-					key="learn"
-					id="learn"
-					renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
-				/>
+						key="learn"
+						id="learn"
+						renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
+					/>
 				</div>
 				<Footer />
 			</div>

@@ -47,19 +47,37 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 				<div classes={themedCss.menu}>
 					<ul classes={themedCss.columnMenuList}>
 						<li classes={themedCss.columnMenuItem}>
-							<Link key="intro" classes={css.columnMenuLink} to="learn" params={{ page: 'introduction' }} activeClasses={[css.columnMenuLinkSelected]}>
+							<Link
+								key="intro"
+								classes={css.columnMenuLink}
+								to="learn"
+								params={{ page: 'introduction' }}
+								activeClasses={[css.columnMenuLinkSelected]}
+							>
 								Introduction
 							</Link>
 						</li>
 						<li classes={themedCss.columnMenuItem}>
-							<Link key="basic" classes={css.columnMenuLink} to="learn" params={{ page: 'basic-usage' }} activeClasses={[css.columnMenuLinkSelected]}>
+							<Link
+								key="basic"
+								classes={css.columnMenuLink}
+								to="learn"
+								params={{ page: 'basic-usage' }}
+								activeClasses={[css.columnMenuLinkSelected]}
+							>
 								Basic Usage
 							</Link>
 						</li>
-						{(sections || []).map(({param, title}: any) => {
+						{(sections || []).map(({ param, title }: any) => {
 							return (
 								<li classes={themedCss.columnMenuItem}>
-									<Link classes={css.columnMenuLink} key={param} to="learn" params={{ page: param }} activeClasses={[css.columnMenuLinkSelected]}>
+									<Link
+										classes={css.columnMenuLink}
+										key={param}
+										to="learn"
+										params={{ page: param }}
+										activeClasses={[css.columnMenuLinkSelected]}
+									>
 										{title}
 									</Link>
 								</li>

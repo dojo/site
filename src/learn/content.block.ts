@@ -38,12 +38,14 @@ export default async function(options: CompileRemoteBlockOptions) {
 			return null;
 		}
 
-		return JSON.parse(JSON.stringify(header.parent, (key, value) => {
-			if (key === 'parent') {
-				return undefined;
-			}
-			return value;
-		}));
+		return JSON.parse(
+			JSON.stringify(header.parent, (key, value) => {
+				if (key === 'parent') {
+					return undefined;
+				}
+				return value;
+			})
+		);
 	}
 	return markdown(content);
 }

@@ -19,7 +19,8 @@ export default factory(function GetGoing({ middleware: { theme, intersection } }
 		<section classes={[themedCss.root]}>
 			<h2>Get Going Quickly</h2>
 			<p classes={[themedCss.headline]}>
-				Getting started with Dojo is simple. You can use your command line of choice and npm to get going quickly.
+				Getting started with Dojo is simple. You can use your command line of choice and npm to get going
+				quickly.
 			</p>
 			<div key="cli" classes={[themedCss.cli]}>
 				<Card

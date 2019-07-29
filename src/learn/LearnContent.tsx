@@ -6,20 +6,16 @@ import getContent from './content.block';
 import * as css from './Learn.m.css';
 
 interface LearnContentProperties {
-    path: string;
-    page: string;
-    repo: string;
+	path: string;
+	page: string;
+	repo: string;
 }
 
 const factory = create({ theme, block }).properties<LearnContentProperties>();
 
 export default factory(function LearnContent({ properties, middleware: { theme, block } }) {
-    const { path, page, repo } = properties();
-    const themedCss = theme.classes(css);
+	const { path, page, repo } = properties();
+	const themedCss = theme.classes(css);
 	const content = block(getContent)({ path, page, repo });
-	return (
-        <div classes={themedCss.content}>
-            {content}
-        </div>
-    );
+	return <div classes={themedCss.content}>{content}</div>;
 });

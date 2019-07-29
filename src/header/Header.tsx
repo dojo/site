@@ -17,9 +17,15 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 
 	return (
 		<header key="root" classes={themedCss.root}>
-			<input id="mainMenuToggle" onclick={() => {
-				icache.set('open', true);
-			}} classes={themedCss.mainMenuToggle} type="checkbox" checked={open} />
+			<input
+				id="mainMenuToggle"
+				onclick={() => {
+					icache.set('open', true);
+				}}
+				classes={themedCss.mainMenuToggle}
+				type="checkbox"
+				checked={open}
+			/>
 			<div classes={[themedCss.left]}>
 				<span classes={themedCss.leftContainer}>
 					<label for="mainMenuToggle" key="toggleButton" classes={themedCss.toggleButton}>
@@ -28,9 +34,16 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 					</label>
 				</span>
 				<span classes={[themedCss.centerContainer]}>
-					<Link key="homeLink" to="home" onClick={() => {
-						icache.set('open', false);
-					}} classes={[themedCss.homeLink]} matchParams={{}} activeClasses={[themedCss.selected]}>
+					<Link
+						key="homeLink"
+						to="home"
+						onClick={() => {
+							icache.set('open', false);
+						}}
+						classes={[themedCss.homeLink]}
+						matchParams={{}}
+						activeClasses={[themedCss.selected]}
+					>
 						<img classes={[themedCss.logo]} alt="logo" src={logo} />
 					</Link>
 				</span>
@@ -41,9 +54,15 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 					{menuItems.map((item) => {
 						return (
 							<li classes={themedCss.menuItem}>
-								<Link classes={css.menuLink} onClick={() => {
-									icache.set('open', false);
-								}} to={item.toLowerCase()} matchParams={{}} activeClasses={[themedCss.selected]}>
+								<Link
+									classes={css.menuLink}
+									onClick={() => {
+										icache.set('open', false);
+									}}
+									to={item.toLowerCase()}
+									matchParams={{}}
+									activeClasses={[themedCss.selected]}
+								>
 									{item}
 								</Link>
 							</li>
