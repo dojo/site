@@ -19,7 +19,7 @@ Dojo offers a variety of framework components, tooling and a build pipeline that
 
 ## Create global applications
 
--   Develop [themeable widgets and applications](https://github.com/dojo/framework/blob/master/docs/en/styling-and-theming/introduction.md) to help isolate presentational from functional concerns, and allow for an easy way to achieve consistent presentation across a full application.
+-   Develop [themeable widgets and applications](https://github.com/dojo/framework/blob/master/docs/en/styling-and-theming/introduction.md) to help isolate presentational and functional concerns, and allow for an easy way to achieve consistent presentation across a full application.
 -   Make use of a suite of [user interface (UI) widgets](https://github.com/dojo/widgets/blob/master/README.md) that support internationalization (i18n), accessibility (a11y) and theming out-of-the-box.
 -   Use an [internationalization (i18n) framework](https://github.com/dojo/framework/blob/master/docs/en/i18n/introduction.md) to support multiple locales, including optional advanced message formatting through [Unicode CLDR](https://github.com/dojo/framework/blob/master/docs/en/i18n/supplemental.md#advanced-formatting-cldr).
 
