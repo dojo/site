@@ -7,8 +7,3 @@
 	font-size: 0.9em;
 	border-left: 10px solid #faa05a;
 }
-
-.root :not(pre) > code {
-	color: rgba(255, 255, 255, 0.7);
-	background: rgba(255, 255, 255, 0.1);
-}

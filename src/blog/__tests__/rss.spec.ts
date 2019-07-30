@@ -117,15 +117,9 @@ The application template used by \`cli-build-app\` provides this functionality o
 			id: 'https://dojo.io/blog/version-6-dojo',
 			author: [{ name: 'Anthony Gubler' }],
 			link: 'https://dojo.io/blog/version-6-dojo',
-			description: `<h2>Dojo version 6 has arrived!</h2>
-<p>We're excited to announce the 6.0.0 release of Dojo. Yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda.</p>
-<p><img src="/assets/blog/version-5-dojo/featured.png" alt="Announcing Dojo 5.0.0"></p>`,
-			content: `<h2>Dojo version 6 has arrived!</h2>
-<p>We're excited to announce the 6.0.0 release of Dojo. Yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda.</p>
-<p><img src="/assets/blog/version-5-dojo/featured.png" alt="Announcing Dojo 5.0.0"></p>
-<h3>New Features</h3>
-<p>Yadda yadda yadda yadda yadda yadda yadda yadda.
-</p>`,
+			description: `<section><h2>Dojo version 6 has arrived!</h2><p>We're excited to announce the 6.0.0 release of Dojo. Yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda.</p><p><img src="/assets/blog/version-5-dojo/featured.png" alt="Announcing Dojo 5.0.0"></p></section>`,
+			content: `<section><h2>Dojo version 6 has arrived!</h2><p>We're excited to announce the 6.0.0 release of Dojo. Yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda yadda.</p><p><img src="/assets/blog/version-5-dojo/featured.png" alt="Announcing Dojo 5.0.0"></p><section><h3>New Features</h3><p>Yadda yadda yadda yadda yadda yadda yadda yadda.
+</p></section></section>`,
 			date: new Date(2019, 6, 1),
 			published: new Date(2019, 6, 1)
 		};
@@ -138,8 +132,8 @@ The application template used by \`cli-build-app\` provides this functionality o
 			id: 'https://dojo.io/blog/no-meta-blog',
 			author: [{ name: '' }],
 			link: 'https://dojo.io/blog/no-meta-blog',
-			description: `<h2>A blog without any meta</h2>`,
-			content: `<h2>A blog without any meta</h2>`,
+			description: `<section><h2>A blog without any meta</h2></section>`,
+			content: `<section><h2>A blog without any meta</h2></section>`,
 			date: new Date(),
 			published: new Date()
 		};

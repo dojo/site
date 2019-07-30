@@ -11,3 +11,9 @@
 	margin-top: var(--header-size);
 	min-height: calc(100vh - calc(var(--header-size) + var(--footer-size)));
 }
+
+@media (max-width: 768px) {
+	.content {
+		margin-top: 0;
+	}
+}

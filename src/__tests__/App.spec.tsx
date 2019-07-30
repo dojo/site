@@ -5,18 +5,16 @@ import { DNode } from '@dojo/framework/core/interfaces';
 
 import Blog from '../blog/Blog';
 import BlogPosts from '../blog/BlogPosts';
-import Community from '../community/Community';
 import Examples from '../examples/Examples';
 import Home from '../home/Home';
 import Playground from '../playground/Playground';
-import ReferenceGuidesLanding from '../reference-guides/ReferenceGuidesLanding';
-import ReferenceGuides from '../reference-guides/ReferenceGuides';
 import Header from '../header/Header';
 import Roadmap from '../roadmap/Roadmap';
 
 import App from '../App';
 import * as css from '../App.m.css';
 import Footer from '../footer/Footer';
+import Learn from '../learn/Learn';
 
 interface Page {
 	outlet: string;
@@ -45,9 +43,11 @@ describe('App', () => {
 					<Outlet key="examples" id="examples" renderer={() => <Examples />} />
 					<Outlet key="playground" id="playground" renderer={() => <Playground />} />
 					<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
-					<Outlet key="community" id="community" renderer={() => <Community />} />
-					<Outlet key="reference-guides" id="reference-guides" renderer={() => <ReferenceGuidesLanding />} />
-					<ReferenceGuides />
+					<Outlet
+						key="learn"
+						id="learn"
+						renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
+					/>
 				</div>
 				<Footer />
 			</div>
@@ -60,9 +60,7 @@ describe('App', () => {
 		{ outlet: 'blog', content: undefined, args: [{ isExact: () => false }] },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
-		{ outlet: 'roadmap', content: <Roadmap /> },
-		{ outlet: 'community', content: <Community /> },
-		{ outlet: 'reference-guides', content: <ReferenceGuidesLanding /> }
+		{ outlet: 'roadmap', content: <Roadmap /> }
 	];
 
 	it('outlets render contents', () => {

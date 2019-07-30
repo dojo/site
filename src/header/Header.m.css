@@ -4,8 +4,7 @@
 	--toggle-button-height: calc(var(--grid-size) * 2);
 	--shadow-color: rgba(0, 0, 0, 0.5);
 	--toggle-button-color: #d3d3d3;
-	--logo-width: calc(var(--grid-size) * 11);
-	--logo-height: calc(var(--grid-size) * 4.8);
+	--logo-width: calc(var(--grid-size) * 9);
 	position: fixed;
 	background: var(--header-background-color);
 	width: 100%;
@@ -34,9 +33,23 @@
 }
 
 .menuItem {
-	text-align: right;
+	font-size: 16px;
+	line-height: 1.65;
 	margin: var(--grid-size);
+	padding: calc(var(--grid-size) / 2) 0;
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
 	text-transform: uppercase;
+}
+
+.menuLink {
+	color: var(--font-color-inverse);
+}
+
+.menuLink:hover {
+	color: white;
+	text-decoration: none;
 }
 
 .left {
@@ -77,13 +90,13 @@
 }
 
 .selected {
+	color: white;
 }
 
 .centerContainer {
 }
 
 .logo {
-	height: var(--logo-height);
 	width: var(--logo-width);
 }
 
@@ -155,18 +168,10 @@
 	clip: rect(0, 0, 0, 0);
 }
 
-.smallScreenOnly {
-	display: none;
-}
-
 /* small screen */
 @media (max-width: 768px) {
-	.noSmallScreen {
-		display: none;
-	}
-
-	.smallScreenOnly {
-		display: list-item;
+	.root {
+		position: inherit;
 	}
 
 	.toggleButton {
@@ -175,15 +180,15 @@
 
 	.menu {
 		position: fixed;
-		left: -70vw;
+		left: -100vw;
 		top: var(--header-size);
 		height: 100%;
+		width: 100vw;
 		overflow-x: visible;
 		transition: left 0.3s ease, box-shadow 0.3s ease;
 		z-index: 999;
 		margin: 0;
-		opacity: 0.95;
-		background: var(--responsive-header-background-color);
+		background: var(--header-background-color);
 	}
 
 	.menuList {
@@ -191,21 +196,17 @@
 		padding: 2.5em 0 0;
 		box-shadow: -8px 0 8px var(--shadow-color);
 		min-height: 100%;
-		width: 70vw;
-		display: block;
+		display: flex;
 		padding: var(--grid-size) calc(var(--grid-size) * 2);
 		box-sizing: border-box;
+		flex-direction: column;
 	}
 
 	.menuItem {
 		text-transform: uppercase;
 		text-align: left;
 		margin: 0;
-	}
-
-	.dummyLink {
-		line-height: 1.65;
-		padding: calc(var(--grid-size) / 2) 0;
+		padding: var(--grid-size) 0;
 	}
 
 	.centerContainer {

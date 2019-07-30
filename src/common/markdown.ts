@@ -13,6 +13,7 @@ const all = require('mdast-util-to-hast/lib/all');
 const frontmatter = require('remark-frontmatter');
 const visit = require('unist-util-visit');
 const stringify = require('rehype-stringify');
+const section = require('remark-sectionize');
 
 interface Handler {
 	type: string;
@@ -113,6 +114,7 @@ export const markdown = (content: string, outputType: 'dnode' | 'string' = 'dnod
 		.use(remarkParse, { commonmark: true })
 		.use(frontmatter, 'yaml')
 		.use(macro.transformer)
+		.use(section)
 		.use(remark2rehype, { handlers: registeredHandlers })
 		.use(() => (tree: any) => visit(tree, 'element', clean))
 		.use(rehypePrism, { ignoreMissing: false });
