@@ -1,10 +1,9 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
-import block from '@dojo/framework/core/middleware/block';
 import Link from '../link/ActiveLink';
 
 import LearnContent from './LearnContent';
-import getSections from './sections.block';
+import LearnSectionMenu from './LearnSectionMenu';
 import * as css from './Learn.m.css';
 
 interface LearnProperties {
@@ -12,16 +11,16 @@ interface LearnProperties {
 	pageName: string;
 }
 
-const factory = create({ theme, block }).properties<LearnProperties>();
+const factory = create({ theme }).properties<LearnProperties>();
 
-const guides = ['Routing', 'Building', 'I18n', 'Theming', 'Testing'];
+const guides = ['Overview', 'Creating Widgets', 'Middleware', 'Building', 'I18n', 'Styling', 'Routing', 'Testing'];
 
-export default factory(function Learn({ properties, middleware: { theme, block } }) {
+export default factory(function Learn({ properties, middleware: { theme } }) {
 	const { guideName, pageName } = properties();
 	const themedCss = theme.classes(css);
-	const path = `docs/:locale:/${guideName.toLowerCase()}`;
-	const repo = 'dojo/framework';
-	const sections = block(getSections)({ path, page: 'supplemental', repo }) || [];
+	const path = guideName === 'overview' ? `content/reference-guides/outline` : `docs/:locale:/${guideName.toLowerCase()}`;
+	const repo = guideName === 'overview' ? 'sbinge/site' : 'agubler/framework';
+	const branch = guideName === 'overview' ? 'reference-content-outline' : 'doc-links';
 	return (
 		<div classes={themedCss.root}>
 			<nav classes={themedCss.nav}>
@@ -32,8 +31,8 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 								<Link
 									to="learn"
 									classes={css.menuLink}
-									params={{ guide: guide.toLowerCase(), page: 'introduction' }}
-									matchParams={{ guide: guide.toLowerCase() }}
+									params={{ guide: guide.toLowerCase().replace(' ', '-'), page: 'introduction' }}
+									matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
 									activeClasses={[css.selected]}
 								>
 									{guide}
@@ -57,35 +56,10 @@ export default factory(function Learn({ properties, middleware: { theme, block }
 								Introduction
 							</Link>
 						</li>
-						<li classes={themedCss.columnMenuItem}>
-							<Link
-								key="basic"
-								classes={css.columnMenuLink}
-								to="learn"
-								params={{ page: 'basic-usage' }}
-								activeClasses={[css.columnMenuLinkSelected]}
-							>
-								Basic Usage
-							</Link>
-						</li>
-						{(sections || []).map(({ param, title }: any) => {
-							return (
-								<li classes={themedCss.columnMenuItem}>
-									<Link
-										classes={css.columnMenuLink}
-										key={param}
-										to="learn"
-										params={{ page: param }}
-										activeClasses={[css.columnMenuLinkSelected]}
-									>
-										{title}
-									</Link>
-								</li>
-							);
-						})}
+						<LearnSectionMenu repo={repo} path={path} branch={branch}/>
 					</ul>
 				</div>
-				<LearnContent repo={repo} page={pageName} path={path} />
+				<LearnContent repo={repo} page={pageName} path={path} branch={branch} />
 			</main>
 		</div>
 	);

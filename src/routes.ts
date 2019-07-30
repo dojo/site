@@ -34,7 +34,7 @@ export default [
 		path: 'learn/{guide}/{page}',
 		outlet: 'learn',
 		defaultParams: {
-			guide: 'outline',
+			guide: 'overview',
 			page: 'introduction'
 		}
 	}

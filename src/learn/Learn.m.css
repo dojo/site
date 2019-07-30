@@ -33,6 +33,7 @@
 	display: inline-block;
 	text-decoration: none;
 	position: relative;
+	white-space: nowrap;
 	padding: var(--grid-size) calc(var(--grid-size) * 2);
 }
 
@@ -64,6 +65,7 @@
 	margin-right: 280px;
 	margin-left: 20px;
 	margin-bottom: 20px;
+	min-width: 300px;
 }
 
 .menu {
