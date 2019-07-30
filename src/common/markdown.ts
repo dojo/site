@@ -13,7 +13,6 @@ const all = require('mdast-util-to-hast/lib/all');
 const frontmatter = require('remark-frontmatter');
 const visit = require('unist-util-visit');
 const stringify = require('rehype-stringify');
-// const section = require('@agentofuser/rehype-section')
 const section = require('remark-sectionize');
 
 interface Handler {
