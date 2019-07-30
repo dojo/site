@@ -17,7 +17,7 @@ export default factory(function Blog({ middleware: { theme, block } }) {
 
 	return (
 		<Landing classes={{ 'dojo.io/Landing': { root: [themedCss.root] } }}>
-			{paths && paths.map((path) => <BlogPost key={path} path={path} excerpt />)}
+			{paths && paths.map((path) => <BlogPost path={path} excerpt />)}
 		</Landing>
 	);
 });

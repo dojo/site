@@ -7,30 +7,30 @@ import getSections from './sections.block';
 import * as css from './Learn.m.css';
 
 interface LearnSectionMenuProperties {
-    path: string;
-    repo: string;
-    branch: string;
+	path: string;
+	repo: string;
+	branch: string;
 }
 
 const factory = create({ theme, block }).properties<LearnSectionMenuProperties>();
 
 export default factory(function LearnSectionMenu({ properties, middleware: { theme, block } }) {
-    const { path, repo, branch } = properties();
-    const themedCss = theme.classes(css);
-    const sections = block(getSections)({ branch, path, page: 'supplemental', repo }) || [];
-    return sections.map(({ param, title }) => {
-        return (
-            <li classes={themedCss.columnMenuItem}>
-                <Link
-                    classes={css.columnMenuLink}
-                    key={param}
-                    to="learn"
-                    params={{ page: param }}
-                    activeClasses={[css.columnMenuLinkSelected]}
-                >
-                    {title}
-                </Link>
-            </li>
-        );
-    });
+	const { path, repo, branch } = properties();
+	const themedCss = theme.classes(css);
+	const sections = block(getSections)({ branch, path, page: 'supplemental', repo }) || [];
+	return sections.map(({ param, title }) => {
+		return (
+			<li classes={themedCss.columnMenuItem}>
+				<Link
+					classes={css.columnMenuLink}
+					key={param}
+					to="learn"
+					params={{ page: param }}
+					activeClasses={[css.columnMenuLinkSelected]}
+				>
+					{title}
+				</Link>
+			</li>
+		);
+	});
 });
