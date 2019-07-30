@@ -5,7 +5,6 @@ import block from '@dojo/framework/core/middleware/block';
 import metadataBlock from './metadata.block';
 import Card from '../card/Card';
 import CardHeader from '../card/CardHeader';
-import FontAwesomeIcon from '../icon/FontAwesomeIcon';
 import LocalPage from '../page/LocalPage';
 import Page from '../page/Page';
 
@@ -26,12 +25,7 @@ export default factory(function Roadmap({ middleware: { theme, block } }) {
 					<div classes={[themedCss.timelineEntry, entry.released ? themedCss.released : null]}>
 						<div classes={themedCss.timelineDate}>{entry.date}</div>
 						<div classes={themedCss.timelineDetails}>
-							<div classes={themedCss.timelineMarker}>
-								<FontAwesomeIcon
-									classes={{ 'dojo.io/FontAwesomeIcon': { root: [themedCss.timelineIcon] } }}
-									icon={entry.released ? 'box-open' : 'box'}
-								/>
-							</div>
+							<div classes={themedCss.timelineMarker} />
 							<Card
 								header={
 									<CardHeader

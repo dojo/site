@@ -4,7 +4,6 @@ import { tsx } from '@dojo/framework/core/vdom';
 import { DNode } from '@dojo/framework/core/interfaces';
 
 import CardHeader from '../CardHeader';
-import CardIconHeader from '../CardIconHeader';
 import Card from '../Card';
 
 import * as css from '../Card.m.css';
@@ -41,21 +40,6 @@ describe('Card', () => {
 
 			const assertion = baseAssertion.setChildren('@card', () => [
 				<CardHeader>A header</CardHeader>,
-				content(<h4>A subtitle</h4>, 'Some content')
-			]);
-			h.expect(assertion);
-		});
-
-		it('renders with icon header', () => {
-			const h = harness(() => (
-				<Card header={<CardIconHeader icon="coffee" />}>
-					<h4>A subtitle</h4>
-					Some content
-				</Card>
-			));
-
-			const assertion = baseAssertion.setChildren('@card', () => [
-				<CardIconHeader icon="coffee" />,
 				content(<h4>A subtitle</h4>, 'Some content')
 			]);
 			h.expect(assertion);

@@ -57,10 +57,6 @@
 	font-weight: 600;
 }
 
-.timelineIcon {
-	color: var(--color-white);
-}
-
 .timelineDetails {
 	display: flex;
 	margin-left: var(--grid-size);

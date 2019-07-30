@@ -3,7 +3,6 @@ import { tsx } from '@dojo/framework/core/vdom';
 import * as css from '../Ethos.m.css';
 import Ethos from '../Ethos';
 import Card from '../../card/Card';
-import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
 
 describe('Ethos', () => {
 	it('renders', () => {
@@ -12,9 +11,6 @@ describe('Ethos', () => {
 			<section classes={[css.root]}>
 				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
-						<span classes={[css.productive]}>
-							<FontAwesomeIcon icon="code-branch" />
-						</span>
 						<h3 classes={[css.ethosTitle]}>Productive</h3>
 					</div>
 					<div>
@@ -24,9 +20,6 @@ describe('Ethos', () => {
 				</Card>
 				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
-						<span classes={[css.adaptable]}>
-							<FontAwesomeIcon icon="plug" />
-						</span>
 						<h3 classes={[css.ethosTitle]}>Adaptable</h3>
 					</div>
 					<div>
@@ -36,9 +29,6 @@ describe('Ethos', () => {
 				</Card>
 				<Card classes={{ 'dojo.io/Card': { root: [css.ethosPoint], content: [css.ethosContent] } }}>
 					<div classes={[css.ethosTitleContainer]}>
-						<span classes={[css.inclusive]}>
-							<FontAwesomeIcon icon="users" />
-						</span>
 						<h3 classes={[css.ethosTitle]}>Inclusive</h3>
 					</div>
 					<div>
