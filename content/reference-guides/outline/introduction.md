@@ -1,13 +1,13 @@
 # Introduction
 
-Dojo provides a holistic approach to engineering modern web applications, while being progressively modular in which pieces your project may utilize or opt out of. The framework scales with the complexity of your application and allows building anything from simple pre-rendered websites all the way up to enterprise-scale single-page web applications, including options for progressive web apps that approach native app experiences across a variety of device types.
+Dojo provides a holistic approach to engineering modern web applications while remaining progressively modular in which aspects a project may utilize. The Dojo framework scales with the complexity of an application and allows building anything from simple pre-rendered websites all the way up to enterprise-scale single-page web applications, including options for progressive web apps that approach native app experiences across a variety of device types.
 
 Dojo offers a variety of framework components, tooling and a build pipeline that together help address many end-to-end web application development concerns.
 
 ## Manage complex applications
 
 -   Develop [simple, modular components known as **widgets**](https://github.com/dojo/framework/blob/master/docs/en/creating-widgets/supplemental.md#basic-widget-structure) that can be assembled in a variety of ways to implement increasingly complex requirements.
--   Connect widgets using [reactive state management and data flows](https://github.com/dojo/framework/blob/master/docs/en/creating-widgets/supplemental.md#managing-state), allowing the framework to efficiently handle rendering updates when application state changes.
+-   Connect widgets using [reactive state management and data flows](https://github.com/dojo/framework/blob/master/docs/en/creating-widgets/supplemental.md#managing-state), allowing the Dojo framework to efficiently handle rendering updates when application state changes.
 -   Make use of [centralized, command-oriented data stores](https://github.com/dojo/framework/blob/master/docs/en/stores/introduction.md) for advanced application state management.
 -   Allow user navigation within Single-Page Applications (SPA) via [declarative routing](https://github.com/dojo/framework/blob/master/docs/en/routing/supplemental.md#route-configuration), with history support.
 -   Disable functionality that is still being developed through feature toggle detection - even [elide unused modules](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#elided-imports) at build time to help minimize application delivery size. Write applications that adapt to running within a browser or on a server.
@@ -15,7 +15,7 @@ Dojo offers a variety of framework components, tooling and a build pipeline that
 ## Create efficient applications
 
 -   Avoid costly DOM operations and layout thrashing by declaring widget structure through a [Virtualized Document Object Model (VDOM)](https://github.com/dojo/framework/blob/master/docs/en/creating-widgets/supplemental.md#working-with-the-vdom).
--   Simplify [resource layering and bundling](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#creating-bundles) to minimize Time-to-Interactive (TTI) for the subset of an application a user actually needs. The framework can automatically convert imports to be lazily loaded when modules and their dependencies cross bundle boundaries.
+-   Simplify [resource layering and bundling](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#creating-bundles) to minimize Time-to-Interactive (TTI) for the subset of an application a user actually needs. The Dojo framework can automatically convert imports to be lazily loaded when modules and their dependencies cross bundle boundaries.
 
 ## Create global applications
 
@@ -27,7 +27,7 @@ Dojo offers a variety of framework components, tooling and a build pipeline that
 
 -   Develop [progressive web applications (PWA)](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#progressive-web-apps) that support features similar to native device apps such as offline usage, background data syncing and push notifications
 -   Use [build-time rendering (BTR)](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#build-time-rendering) to provide certain pre-rendering benefits of Server-Side Rendered (SSR) apps without the need for hosting on a dynamic web application server. Create truly static websites that work without JavaScript, or use BTR with progressive hydration for an even better application first-load experience.
--   Make use of cutting-edge web technologies such as Web Animations, [Intersection Observers](https://github.com/dojo/framework/blob/master/docs/en/en/middleware/supplemental.md#intersection) and [Resize Observers](https://github.com/dojo/framework/blob/master/docs/en/middleware/supplemental.md#resize). The framework provides a consistent application experience for modern features across a variety of user runtime environments.
+Make use of cutting-edge web technologies such as [Web Animations](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API), [Intersection Observers](https://github.com/dojo/framework/blob/master/docs/en/en/middleware/supplemental.md#intersection) and [Resize Observers](https://github.com/dojo/framework/blob/master/docs/en/middleware/supplemental.md#resize). The Dojo framework provides a consistent application experience for modern features across a variety of user runtime environments.
 -   If required, projects with bespoke needs can [opt-out of Dojo’s build pipeline](https://github.com/dojo/framework/blob/master/docs/en/building/supplemental.md#ejecting) in favor of their own solution, and instead only use pieces of the framework that are needed.
 
 ## Speed up development
