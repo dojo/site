@@ -1,7 +1,6 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import block from '@dojo/framework/core/middleware/block';
 
-import FontAwesomeIcon from '../icon/FontAwesomeIcon';
 import Grid from '../grid/Grid';
 import Landing from '../landing/Landing';
 import LandingSubsection from '../landing/LandingSubsection';
@@ -41,7 +40,7 @@ export default factory(function Examples({ middleware: { block } }) {
 													target="_blank"
 													classes={css.linkBtn}
 												>
-													<FontAwesomeIcon icon="laptop-code" />
+													<span>codesandbox.io</span>
 												</a>
 											)}
 											<a
@@ -49,7 +48,7 @@ export default factory(function Examples({ middleware: { block } }) {
 												target="_blank"
 												classes={css.linkBtn}
 											>
-												<FontAwesomeIcon icon="code-branch" />
+												<span>GitHub</span>
 											</a>
 										</div>
 									}

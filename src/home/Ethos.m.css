@@ -19,20 +19,8 @@
 .ethosTitle {
 	color: var(--color-black);
 	margin: 0;
-	margin-left: calc(var(--grid-size) * 1.6);
+	margin-left: 0;
 	margin-bottom: calc(var(--grid-size) * 1.6);
-}
-
-.productive {
-	color: var(--color-red);
-}
-
-.adaptable {
-	color: var(--color-green);
-}
-
-.inclusive {
-	color: var(--color-purple);
 }
 
 .ethosTitleContainer {

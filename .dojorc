@@ -2,9 +2,19 @@
 	"build-app": {
 		"build-time-render": {
 			"root": "root",
+			"static": true,
 			"paths": [
 				"home",
 				"blog",
+				"blog/version-4-dojo",
+				"blog/version-5-dojo",
+				"blog/building-pwa-dojo",
+				"blog/dojo-version-3-release",
+				"blog/dojo2-0-0-release",
+				"blog/dojo-2-rc1",
+				"blog/announcing-dojo-2-beta-5",
+				"blog/announcing-dojo-2-beta-4",
+				"blog/dojo-2-is-coming",
 				"roadmap",
 				"examples",
 				"playground",

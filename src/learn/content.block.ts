@@ -26,7 +26,7 @@ export default async function(options: CompileRemoteBlockOptions) {
 		const headers = select('h1', nodes);
 		const header: any = headers.find((node: any) => {
 			if (node.children && node.children.length) {
-				const title = node.children[0]
+				const title = node.children[1]
 					.toLocaleLowerCase()
 					.replace(/[^a-z0-9 ]/g, '')
 					.replace(/ /g, '-');

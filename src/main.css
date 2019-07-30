@@ -35,6 +35,27 @@ blockquote > p {
 	margin: 0;
 }
 
+h1 a:before,
+h2 a:before,
+h3 a:before,
+h4 a:before {
+	content: '';
+	display: block;
+	height: 124px;
+	margin: -124px 0 0;
+}
+
+:target::before {
+	content: '';
+	display: block;
+	height: 124px;
+	margin: -124px 0 0;
+}
+
+.refguide-link {
+	margin-right: 5px;
+}
+
 pre[class*='language-'] {
 	font-size: var(--pre-font-size);
 	margin-bottom: 2em !important;

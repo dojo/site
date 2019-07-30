@@ -15,15 +15,15 @@
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.14",
-    "@fortawesome/fontawesome-svg-core": "1.2.19",
-    "@fortawesome/free-solid-svg-icons": "5.9.0",
+    "@dojo/framework": "6.0.0-alpha.15",
+    "remark-autolink-headings": "^5.2.1",
     "remark-sectionize": "^1.0.1",
+    "remark-slug": "^5.1.2",
     "tslib": "1.10.0"
   },
   "devDependencies": {
     "@agentofuser/rehype-section": "^1.0.5",
-    "@dojo/cli": "5.0.0",
+    "@dojo/cli": "6.0.0-alpha.1",
     "@dojo/cli-build-app": "6.0.0-alpha.7",
     "@dojo/scripts": "4.0.2",
     "@mapbox/rehype-prism": "0.3.1",

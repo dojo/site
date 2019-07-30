@@ -6,7 +6,6 @@ import block from '@dojo/framework/core/middleware/block';
 import metadataBlock from '../metadata.block';
 import Card from '../../card/Card';
 import CardHeader from '../../card/CardHeader';
-import FontAwesomeIcon from '../../icon/FontAwesomeIcon';
 import LocalPage from '../../page/LocalPage';
 import Page from '../../page/Page';
 
@@ -59,12 +58,7 @@ describe('Roadmap Page', () => {
 				<div classes={[css.timelineEntry, null]}>
 					<div classes={css.timelineDate}>Q2 2019</div>
 					<div classes={css.timelineDetails}>
-						<div classes={css.timelineMarker}>
-							<FontAwesomeIcon
-								classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.timelineIcon] } }}
-								icon={'box'}
-							/>
-						</div>
+						<div classes={css.timelineMarker} />
 						<Card
 							header={
 								<CardHeader
@@ -81,12 +75,7 @@ describe('Roadmap Page', () => {
 				<div classes={[css.timelineEntry, css.released]}>
 					<div classes={css.timelineDate}>January 2019</div>
 					<div classes={css.timelineDetails}>
-						<div classes={css.timelineMarker}>
-							<FontAwesomeIcon
-								classes={{ 'dojo.io/FontAwesomeIcon': { root: [css.timelineIcon] } }}
-								icon={'box-open'}
-							/>
-						</div>
+						<div classes={css.timelineMarker} />
 						<Card
 							header={
 								<CardHeader

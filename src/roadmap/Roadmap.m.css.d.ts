@@ -8,6 +8,5 @@ export const card: string;
 export const content: string;
 export const timelineDate: string;
 export const released: string;
-export const timelineIcon: string;
 export const timelineDetails: string;
 export const timelineMarker: string;

@@ -1,7 +1,6 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 
-import FontAwesomeIcon from '../icon/FontAwesomeIcon';
 import Card from '../card/Card';
 
 import * as css from './Ethos.m.css';
@@ -15,9 +14,6 @@ export default factory(function Ethos({ middleware: { theme } }) {
 		<section classes={[themedCss.root]}>
 			<Card classes={{ 'dojo.io/Card': { root: [themedCss.ethosPoint], content: [themedCss.ethosContent] } }}>
 				<div classes={[themedCss.ethosTitleContainer]}>
-					<span classes={[themedCss.productive]}>
-						<FontAwesomeIcon icon="code-branch" />
-					</span>
 					<h3 classes={[themedCss.ethosTitle]}>Productive</h3>
 				</div>
 				<div>
@@ -27,9 +23,6 @@ export default factory(function Ethos({ middleware: { theme } }) {
 			</Card>
 			<Card classes={{ 'dojo.io/Card': { root: [themedCss.ethosPoint], content: [themedCss.ethosContent] } }}>
 				<div classes={[themedCss.ethosTitleContainer]}>
-					<span classes={[themedCss.adaptable]}>
-						<FontAwesomeIcon icon="plug" />
-					</span>
 					<h3 classes={[themedCss.ethosTitle]}>Adaptable</h3>
 				</div>
 				<div>
@@ -39,9 +32,6 @@ export default factory(function Ethos({ middleware: { theme } }) {
 			</Card>
 			<Card classes={{ 'dojo.io/Card': { root: [themedCss.ethosPoint], content: [themedCss.ethosContent] } }}>
 				<div classes={[themedCss.ethosTitleContainer]}>
-					<span classes={[themedCss.inclusive]}>
-						<FontAwesomeIcon icon="users" />
-					</span>
 					<h3 classes={[themedCss.ethosTitle]}>Inclusive</h3>
 				</div>
 				<div>
