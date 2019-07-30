@@ -1,4 +1,3 @@
-import has from '@dojo/framework/core/has';
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 
@@ -11,7 +10,5 @@ const factory = create({ theme });
 
 export default factory(function Playground({ middleware: { theme } }) {
 	const themedCss = theme.classes(css);
-	if (!has('build-time-render')) {
-		return <iframe classes={themedCss.iframe} src={SANDBOX_URL} />;
-	}
+	return <iframe classes={themedCss.iframe} src={SANDBOX_URL} />;
 });

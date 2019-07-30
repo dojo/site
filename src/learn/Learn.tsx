@@ -13,15 +13,14 @@ interface LearnProperties {
 
 const factory = create({ theme }).properties<LearnProperties>();
 
-const guides = ['Overview', 'Creating Widgets', 'Middleware', 'Building', 'I18n', 'Styling', 'Routing', 'Testing'];
+const guides = ['Overview', 'Creating Widgets', 'Middleware', 'Building', 'I18n', 'Styling', 'Stores', 'Routing', 'Testing'];
 
 export default factory(function Learn({ properties, middleware: { theme } }) {
 	const { guideName, pageName } = properties();
 	const themedCss = theme.classes(css);
-	const path =
-		guideName === 'overview' ? `content/reference-guides/outline` : `docs/:locale:/${guideName.toLowerCase()}`;
-	const repo = guideName === 'overview' ? 'dojo/site' : 'dojo/framework';
-	const branch = 'master';
+	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
+	const repo = guideName === 'overview' ? 'sbinge/framework' : 'dojo/framework';
+	const branch = guideName === 'overview' ? 'add-ref-content-outline' : 'master';
 	return (
 		<div classes={themedCss.root}>
 			<nav classes={themedCss.nav}>
