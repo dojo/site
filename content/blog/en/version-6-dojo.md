@@ -153,7 +153,15 @@ The minimum required TypeScript version has been updated to 3.4. Updating the co
 
 ## Dojo Widgets
 
-// TODO talk about the enhancements made for Dojo 6
+Version 6 of `@dojo/widgets` builds upon its input widgets by adding `helperText` and a consistent approach to validation.
+
+`helperText` displays a message below the input to which it gets applied to provide extra context. The `helperText` also doubles as the location of the error message when used with the `valid` property.
+
+The change from `invalid` to `valid` and `onValidate` provides a mechanism to reactively validate and display error messages beneath a widget. In the case of `text-input`, this is further supplemented by native browser validation meaning that properties such as `required`, `pattern`, `max`, `min`, etc. will trigger an `onValidate` callback with the result of native validation.
+
+We have added `Snackbar` and `Card` widgets to the Dojo widget library as well as adding `Raised` and `Outline` variations of the `Button` widget. This is the start of a larger initiative to support a material design theme in the future as well as a selection of the components material design offers.
+
+Finally, we have started writing our new widgets using TSX syntax. We may convert existing widgets to use TSX in the future if we make any extensive changes to them.
 
 ## Revamped Doc Website
 
