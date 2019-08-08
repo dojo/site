@@ -16,12 +16,4 @@ describe('Playground', () => {
 
 		h.expect(() => <iframe classes={css.iframe} src={src} />);
 	});
-
-	it('does not render during BTR', () => {
-		add('build-time-render', true, true);
-
-		const h = harness(() => <Playground />);
-
-		h.expect(() => undefined);
-	});
 });
