@@ -18,9 +18,15 @@ describe('Blog', () => {
 		const h = harness(() => <Blog />, { middleware: [[block, blockMock]] });
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
-				<Post path="a" excerpt />
-				<Post path="b" excerpt />
-				<Post path="c" excerpt />
+				<div key="a">
+					<Post key="a" path="a" excerpt />
+				</div>
+				<div key="b">
+					<Post key="b" path="b" excerpt />
+				</div>
+				<div key="c">
+					<Post key="c" path="c" excerpt />
+				</div>
 			</Landing>
 		));
 	});
