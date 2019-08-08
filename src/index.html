@@ -11,13 +11,8 @@
 
 	<script>
 		if ('serviceWorker' in window.navigator) {
-			var prefix = '';
-			var publicPath = window.__public_path__;
-			if (publicPath) {
-				prefix = String(publicPath).replace(/\/$/, '') + '/';
-			}
 			window.addEventListener('load', function () {
-				window.navigator.serviceWorker.register(prefix + 'service-worker.js');
+				window.navigator.serviceWorker.register('/service-worker.js');
 			});
 		}
 	</script>
