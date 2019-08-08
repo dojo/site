@@ -25,3 +25,4 @@ Features coming in Dojo 6.0.0
 - Serving gzip by default when using `serve` options 
 - library build target for `@dojo/cli-build-widget`
 - legacy option for `@dojo/cli-test-intern` to support evergreen and legacy environments
+- Brand new documentation site and content
