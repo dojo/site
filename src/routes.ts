@@ -1,3 +1,5 @@
+import { RouteConfig } from '@dojo/framework/routing/interfaces';
+
 export default [
 	{
 		path: 'home',
@@ -31,6 +33,17 @@ export default [
 		outlet: 'community'
 	},
 	{
+		path: 'learn',
+		outlet: 'learn'
+	},
+	{
+		path: 'learn/{guide}',
+		outlet: 'learn',
+		defaultParams: {
+			guide: 'overview'
+		}
+	},
+	{
 		path: 'learn/{guide}/{page}',
 		outlet: 'learn',
 		defaultParams: {
@@ -38,4 +51,4 @@ export default [
 			page: 'introduction'
 		}
 	}
-];
+] as RouteConfig[];
