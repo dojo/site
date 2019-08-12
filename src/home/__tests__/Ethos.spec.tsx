@@ -32,8 +32,8 @@ describe('Ethos', () => {
 						<h3 classes={[css.ethosTitle]}>Inclusive</h3>
 					</div>
 					<div>
-						Demand for accessibility and internationalization are required for enterprise web applications.
-						Dojo supports inclusivity and provides both.
+						Accessibility and internationalization are required for enterprise web applications. Dojo
+						supports inclusivity and provides both.
 					</div>
 				</Card>
 			</section>

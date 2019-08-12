@@ -35,8 +35,8 @@ export default factory(function Ethos({ middleware: { theme } }) {
 					<h3 classes={[themedCss.ethosTitle]}>Inclusive</h3>
 				</div>
 				<div>
-					Demand for accessibility and internationalization are required for enterprise web applications. Dojo
-					supports inclusivity and provides both.
+					Accessibility and internationalization are required for enterprise web applications. Dojo supports
+					inclusivity and provides both.
 				</div>
 			</Card>
 		</section>
