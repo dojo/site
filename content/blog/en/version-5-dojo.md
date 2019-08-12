@@ -172,7 +172,7 @@ it('should render the number when a number is passed as a property', () => {
 });
 ```
 
-Here we're using the `setChildren()` API on the `baseAssertion`, and we're using a special `~` selector to find a node with a `~key` property with a value of `message`. The `~key` property is a special property on Assertion Templates and will get erased at assertion time, so it doesn't show up when matching the renders. This approach allows you to decorate the Assertion Templates to easily select nodes, without having to augment the actual widget's render function.
+Here we're using the `setChildren()` API on the `baseAssertion`, and we're using a special `~` selector to find a node with a `~key` or `assertion-key` property with a value of `message`. These are special properties on Assertion Templates and will get erased at assertion time, so it doesn't show up when matching the renders. This approach allows you to decorate the Assertion Templates to easily select nodes, without having to augment the actual widget's render function.
 
 Once we have the `message` node we then set the children to the expected `the number 5`, and use the resulting template in `h.expect`. It's important to note Assertion Templates always return a new Assertion Template when setting a value, this ensures you don't accidentally mutate an existing template (potentially causing other tests to fail), and allows you to compose layered Templates incrementally building on each other.
 
