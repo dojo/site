@@ -16,8 +16,8 @@ describe('Features', () => {
 							<li>
 								<h3 classes={[css.topFeaturePoint]}>Widgets</h3>
 								<div>
-									Write reusable, reactive, components for your page. Dojo allows composition of
-									complex user interfaces via it's widget system.
+									Write reusable, reactive components for your page. Dojo allows composition of
+									complex user interfaces via its widget system.
 								</div>
 							</li>
 							<li>
@@ -31,7 +31,7 @@ describe('Features', () => {
 								<h3>State Management</h3>
 								<div>
 									Managing state can be difficult. With built-in state management via the Dojo Stores
-									system, you can keep track and update your application state efficently.
+									system, you can track and update your application state efficiently.
 								</div>
 							</li>
 						</ul>
@@ -79,7 +79,7 @@ describe('Features', () => {
 							<li>
 								<h3>Accessibilility</h3>
 								<div>
-									Dojo Widgets, the widget library provided alongside the Dojo framework aims to be
+									Dojo Widgets, the widget library provided alongside the Dojo framework, aims to be
 									accessible out-of-the-box.
 								</div>
 							</li>
