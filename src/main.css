@@ -34,18 +34,20 @@ blockquote > p {
 	margin: 0;
 }
 
-h1 > a,
-h2 > a,
-h3 > a,
-h4 > a {
-	position: relative;
-}
+@media (min-width: 769px) {
+	h1 > a,
+	h2 > a,
+	h3 > a,
+	h4 > a {
+		position: relative;
+	}
 
-:target::before {
-	content: '';
-	display: block;
-	height: 124px;
-	margin: -124px 0 0;
+	:target::before {
+		content: '';
+		display: block;
+		height: 124px;
+		margin: -124px 0 0;
+	}
 }
 
 .refguide-link {

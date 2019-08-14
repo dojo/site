@@ -11,6 +11,7 @@
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
+	z-index: 10;
 }
 
 .nav::-webkit-scrollbar {
