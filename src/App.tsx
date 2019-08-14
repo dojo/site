@@ -38,7 +38,9 @@ export default factory(function App() {
 				<Outlet
 					key="learn"
 					id="learn"
-					renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
+					renderer={({ params }) => (
+						<Learn guideName={params.guide || 'overview'} pageName={params.page || 'introduction'} />
+					)}
 				/>
 			</div>
 			<Footer />
