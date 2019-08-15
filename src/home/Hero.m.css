@@ -20,21 +20,27 @@
 }
 
 .build {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	background: rgba(0, 0, 0, 0);
 	font-size: 0.875em;
 	color: var(--color-white);
+	border: 3px solid;
 	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
 	border-image-slice: 1;
-	border-width: 3px;
 	width: calc(var(--grid-size) * 30);
 	height: calc(var(--grid-size) * 7);
 	margin-bottom: var(--grid-size);
 	text-transform: uppercase;
+	box-sizing: border-box;
 }
 
 .build:hover {
 	font-weight: bold;
 	cursor: pointer;
+	color: var(--color-white);
+	text-decoration: none;
 }
 
 @media (max-width: 960px) {

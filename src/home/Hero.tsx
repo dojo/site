@@ -1,5 +1,6 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
+import Link from '@dojo/framework/routing/Link';
 
 import * as css from './Hero.m.css';
 
@@ -13,7 +14,9 @@ export default factory(function Hero({ middleware: { theme } }) {
 	return (
 		<section styles={{ backgroundImage: `url(${hero})` }} classes={[themedCss.root]}>
 			<h1 classes={[themedCss.headline]}>A Progressive Framework for Modern Web Apps</h1>
-			<button classes={[themedCss.build]}>Build with Dojo</button>
+			<Link to="learn" classes={[themedCss.build]}>
+				Build with Dojo
+			</Link>
 		</section>
 	);
 });
