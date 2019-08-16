@@ -8,7 +8,7 @@ We're pleased to announce Dojo 2 release candidate 1 is now available!
 
 We first started brainstorming ideas for Dojo 2 back in 2010. While development of Dojo 2 did not take quite as long as Diablo 3 or Duke Nukem Forever, we followed a very deliberate journey. Conceived initially as a modern clean-up for Dojo 1.x, with the introduction of ES6, TypeScript, web components, and an array of other features, we realized we wanted to take a different path and create an approach to building modern apps that would not just be a slight clean-up of Dojo 1 or a clone of other current frameworks, but a productive and efficient development experience and front-end architecture.
 
-![Dojo 2 Release Candidate 1 is now available!](/assets/blog/dojo-2-rc1/featured.png)
+![Dojo 2 Release Candidate 1 is now available!](assets/blog/dojo-2-rc1/featured.png)
 
 <!-- more -->
 

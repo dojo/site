@@ -8,7 +8,7 @@ author: Dylan Schiemann
 
 As the earliest, most comprehensive JavaScript framework, the Dojo Toolkit offered up intelligent building blocks for serious web developers. For example, Dojo’s very early work on deferreds and async patterns, widgets, modules, i18n, and a11y led to the standardization of promises, fetch, web components, ES modules and other best practices and mainstays of modern web development.  Dojo was the first open source JavaScript framework that treated JavaScript and the browser as a platform for building robust software applications. Its focus on pushing the limits of the open web with diligent consistency means that applications authored in 2007 with Dojo still work today!
 
-![Dojo 2.0 is released](/assets/blog/dojo2-0-0-release/featured.jpg)
+![Dojo 2.0 is released](assets/blog/dojo2-0-0-release/featured.jpg)
 
 <!-- more -->
 

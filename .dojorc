@@ -99,10 +99,24 @@
 				"theme_color": "#222127",
 				"icons": [
 					{
-						"src": "src/assets/favicon.ico",
+						"src": "src/assets/dojo.png",
 						"sizes": [
-							16
+							16,
+							192,
+							512
 						]
+					}
+				]
+			},
+			"serviceWorker": {
+				"clientsClaim": true,
+				"routes": [
+					{
+						"urlPattern": ".*",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
 					}
 				]
 			}

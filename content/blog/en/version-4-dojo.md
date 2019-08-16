@@ -7,7 +7,7 @@ author: Paul Shannon
 
 Developer ergonomics, efficient source code, consistent and flexible architecture, interoperability and alignment with modern standards, and strong community support are fundamental reasons for choosing a framework. We’re constantly looking for ways to improve Dojo and provide the community with the best possible modern framework.
 
-![Announcing Version 4 of Dojo](/assets/blog/version-4-dojo/featured.png)
+![Announcing Version 4 of Dojo](assets/blog/version-4-dojo/featured.png)
 <!-- more -->
 
 ## Dojo CLI Tooling
@@ -16,7 +16,7 @@ The main focus of version 4 of Dojo is improving application optimization and an
 
 The application template used by `cli-build-app` provides this functionality out of the box. In addition to this a bundle analyzer is automatically generated when running a build in production mode, providing even more insight into you bundles.
 
-![Announcing Version 4 of Dojo](/assets/blog/version-4-dojo/bundleAnalyzer.png)
+![Announcing Version 4 of Dojo](assets/blog/version-4-dojo/bundleAnalyzer.png)
 
 This is provided by the template app generated with `@dojo/cli-create-app`.
 
