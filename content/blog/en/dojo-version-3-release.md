@@ -3,7 +3,7 @@ title: Dojo Version 3.0
 date: 2018-07-27 08:00:00
 author: Paul Shannon
 ---
-![Dojo Version 3.0](/assets/blog/dojo2-0-0-release/featured.jpg)
+![Dojo Version 3.0](assets/blog/dojo2-0-0-release/featured.jpg)
 
 ## Building on Success
 

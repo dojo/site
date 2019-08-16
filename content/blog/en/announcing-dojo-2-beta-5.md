@@ -8,7 +8,7 @@ Dojo is a modern, reactive framework authored with ES2017 and TypeScript, and op
 
 If you're learning about Dojo 2 for the first time, please read our overview about the [Dojo 2 beta 4 release](https://dojo.io/blog/2017/12/04/Announcing-Dojo-2-beta-4/).
 
-![Announcing Dojo 2 beta 5!](/assets/blog/announcing-dojo-2-beta-5/featured.png)
+![Announcing Dojo 2 beta 5!](assets/blog/announcing-dojo-2-beta-5/featured.png)
 
 <!-- more -->
 

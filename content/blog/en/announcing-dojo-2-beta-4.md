@@ -12,7 +12,7 @@ Dojo’s out-of-the-box experience takes under a minute to get started  and prov
 
 The latest beta 4 release has several significant changes and updates from earlier versions. Here we highlight the current state of Dojo 2, as well as emphasize the recent changes and additions in beta 4.
 
-![Announcing Dojo 2 beta 4!](/assets/blog/announcing-dojo-2-beta-4/featured.png)
+![Announcing Dojo 2 beta 4!](assets/blog/announcing-dojo-2-beta-4/featured.png)
 
 <!-- more -->
 
@@ -230,11 +230,11 @@ We have introduced two new widgets in Beta 4 and are considering more before the
 
 We have introduced a new accordion pane widget (`@dojo/widgets/accordionpane/AccordionPane`):
 
-![The accordion pane widget](/assets/blog/announcing-dojo-2-beta-4/accordion.png)
+![The accordion pane widget](assets/blog/announcing-dojo-2-beta-4/accordion.png)
 
 And we have introduced a tooltip widget (`@dojo/widgets/tooltip/Tooltip`):
 
-![The tooltip widget](/assets/blog/announcing-dojo-2-beta-4/tooltip.png)
+![The tooltip widget](assets/blog/announcing-dojo-2-beta-4/tooltip.png)
 
 ## Other widget improvements
 

@@ -3,7 +3,7 @@ title: Building Progressive Web Apps With Dojo
 date: 2018-09-13T08:00:00Z
 author: Matt Wistrand
 ---
-![Building Progressive Web Apps with Dojo](/assets/blog/building-pwa-dojo/featured.jpg)
+![Building Progressive Web Apps with Dojo](assets/blog/building-pwa-dojo/featured.jpg)
 
 Within the past few years, new features get added to browsers at breakneck speed. The time between proposal and standardization has dropped from years to months, and browser vendors are eager to maintain similar turnaround times for implementing new standards. In many ways, it has never been a better time to be a web developer.
 
