@@ -293,5 +293,5 @@ As usual all of the breaking changes introduced in Dojo 6 are carefully consider
 ## Support
 
 See the [release notes](TODO: Add link) for more details on version 6.0.0 of Dojo!
-Love what we’re doing or having a problem? We ❤️our community. [Reach out to us on Discord](https://discord.gg/M7yRngE), check out [the Dojo roadmap](https://github.com/dojo/meta/wiki/Roadmap#future-ideas) and see where we are heading, and try out the new [Dojo on CodeSandbox][https://codesandbox.io/s/github/dojo/dojo-codesandbox-template]. We look forward to your feedback!
+Love what we’re doing or having a problem? We ❤️our community. [Reach out to us on Discord](https://discord.gg/M7yRngE), check out [the Dojo roadmap](/roadmap) and see where we are heading, and try out the new [Dojo on CodeSandbox][https://codesandbox.io/s/github/dojo/dojo-codesandbox-template]. We look forward to your feedback!
 
