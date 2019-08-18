@@ -10,7 +10,7 @@ In a world of semantic versioning where even minor breaking changes require a ne
 
 Version 6 of Dojo brings many new features and changes to substantially improve the development experience when creating applications with Dojo by reducing boilerplate, increasing flexibility, and further improving performance.
 
-![The image for the blog](assets/blog/version-6-dojo/featured.gif)
+![The image for the blog](assets/blog/version-6-dojo/featured.png)
 <!-- more -->
 
 ## Function Based Widgets and Middleware
