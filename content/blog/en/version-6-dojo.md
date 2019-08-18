@@ -1,9 +1,8 @@
 ---
-title: Announcing Dojo 6.0.0
+title: Announcing Dojo 6
 date: 2019-07-30T08:00:00.000Z
 author: Anthony Gubler
 ---
-## Annoucing Dojo 6.0.0!
 
 Since the first major Dojo release last year, we have been working to refine the features and patterns to make Dojo an even more efficient framework for building applications with TypeScript and modern web APIs.
 
@@ -11,10 +10,10 @@ In a world of semantic versioning where even minor breaking changes require a ne
 
 Version 6 of Dojo brings many new features and changes to substantially improve the development experience when creating applications with Dojo by reducing boilerplate, increasing flexibility, and further improving performance.
 
-![The image for the blog](/assets/blog/version-6-dojo/featured.png)
+![The image for the blog](assets/blog/version-6-dojo/featured.gif)
 <!-- more -->
 
-## Function Based Widget and Middleware
+## Function Based Widgets and Middleware
 
 We are very excited to introduce function-based widgets and middleware, the next evolution for creating and working with widgets in Dojo. Function-based widgets and middleware offer an alternative API for Dojo widgets to the existing class-based APIs (metas, decorators, mixins). A single API for both widgets and middleware helps improve developer ergonomics and reduce the complexity and boilerplate with previous releases of Dojo, making it even easier to get started with Dojo.
 
@@ -22,6 +21,7 @@ What is middleware? Middleware is the singular concept designed to replace all e
 
 The core primitive for working with function-based widgets and middleware is a new function, `create`, provided by the `vdom` module. The `create` function gets used for defining middleware and properties and returns a factory for creating either widgets or middleware.
 
+> src/MyWidget.tsx
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 
@@ -32,21 +32,25 @@ interface MyWidgetProperties {
 const render = create().properties<MyWidgetProperties>();
 
 export default render(function MyWidget({ properties, children }) {
+  const { label } = properties();
 	return (
 		<div>
-			<span>{properties.label}</span>
-			<div>{children}<div>
+			<span>{label}</span>
+			<div>{children()}<div>
 		</div>
 	);
 });
 ```
 
-As mentioned, the middleware design supports composition in order to create advanced custom functionality. The majority of middlewares will build on the set of core middlewares which provide hooks into Dojo’s rendering engine. For more information on the core middleware please see the [Dojo reference guide](https://dojo.io).
+As mentioned, the middleware design supports composition in order to create advanced custom functionality. The majority of middlewares will build on the set of core middlewares which provide hooks into Dojo’s rendering engine. For more information on the core middleware please see the [Dojo reference guide](/learn/middleware/core-render-middleware).
 
-In addition to the core middleware, Dojo also provides a selection of higher-level middleware for function-based widgets. This middleware provides the features and functionality found in most of the existing metas and mixins from working with class-based widgets, for example Resize Observers and Intersection Observers TODO: Verify this last part after for example.
+In addition to the core middleware, we've created a selection of [higher-level middleware](/learn/middleware/available-middleware) for function-based widgets. These middlewares provide the features and functionality found in most of the existing metas and mixins from working with class-based widgets.
 
-// TODO words describing the comparison between working with “local” state and event handlers between class and functional widgets.
+A common pattern used in class-based widgets is to use class properties to store local state for the widget. With function-based widgets this presents a challenge as there is no mechanism to persist state across widget renders. This is where the `icache` middleware, meaning invalidating cache, comes to the forefront. We believe `icache` being one of the most commonly middlewares when building function-based widgets.
 
+Example simple counter class-based widget using class properties to store the "counter" state and class methods:
+
+> src/ClassCounter.tsx
 ```tsx
 import { tsx } from "@dojo/framework/core/vdom";
 import WidgetBase from "@dojo/framework/core/WidgetBase";
@@ -89,6 +93,9 @@ export class ClassCounter extends WidgetBase<ClassCounterProperties> {
 }
 ```
 
+Using function-based widgets, we define `icache` middleware for the widget factory so that we can store the counter state across renders. Notice that when we call set on the `icache` we don't need to manually `invalidate` the widget as `icache` implicitly invalidates when a value is set.
+
+> src/FunctionalCounter.tsx
 ```tsx
 interface FunctionalCounterProperties {
   incrementStep?: number;
@@ -98,8 +105,9 @@ const factory = create({ icache }).properties<FunctionalCounterProperties>();
 
 export const FunctionalCounter = factory(function FunctionalCounter({
   middleware: { icache },
-  properties: { incrementStep }
+  properties
 }) {
+  const { incrementStep } = properties();
   const count = icache.get<number>("count") || 0;
   return (
     <div classes={[css.root]}>
@@ -121,11 +129,74 @@ export const FunctionalCounter = factory(function FunctionalCounter({
 });
 ```
 
-For more information please see the middleware reference guides on [dojo.io](https://dojo.io) or see some of the examples we have created on codesandbox: [`theme` middleware](https://codesandbox.io/s/theme-middleware-4btv7), [`icache` middleware](https://codesandbox.io/s/advanced-icache-middleware-teeig).
+For more information please see the [middleware reference guides](/learn/middleware/introduction) or some of the middleware examples on codesandbox:
 
-The existing widget APIs are not going away. These enhancements are additive and backwards-compatible, providing what we believe to be an ergonomic improvement on top of the existing widget APIs.
+ * [`theme` middleware](https://codesandbox.io/s/theme-middleware-4btv7)
+ * [`icache` middleware](https://codesandbox.io/s/advanced-icache-middleware-teeig)
+
+Don't worry, the existing class-based widget APIs are not going away! These enhancements are additive and backwards-compatible, providing what we believe to be an ergonomic improvement on top of the existing widget APIs.
 
 We are really looking forward to seeing the fun and innovative middlewares from the Dojo community, and, as always, please let us know any feedback that you might have!
+
+## Intelligent Custom Elements
+
+Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. We’ve added support to intelligently compiling your Dojo widgets in to custom element, automatically detecting properties, attributes and events based on the widget’s property interface. 
+
+With this enhancement there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile the widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight and creates an additional maintenance burden of keep the configuration up to date with changes to widgets properties, this can be see below with the custom element configuration for an example widget.
+
+Current configuration required for compiling a Dojo widget to a custom element:
+
+> .dojorc
+```json
+{
+  "build-widget": {
+    "widgets": [
+      "src/MyWidget"
+    ]
+  }
+}
+```
+
+> src/MyWidget
+```tsx
+import { WidgetBase } from '@dojo/framework/core/WidgetBase';
+import { customElement } from '@dojo/framework/core/decorators/customElement';
+import { CustomElementChildType } from '@dojo/framework/core/registerCustomElement';
+
+interface MyWidgetProperties {
+  value: string;
+  disabled: boolean;
+  onInput: (input: value) => void;
+}
+
+@customElement<MyWidgetProperties>({
+	tag: 'dojo-my-widget',
+	childType: CustomElementChildType.TEXT,
+	properties: ['disabled'],
+	attributes: ['value'],
+	events: [
+		'onInput'
+	]
+})
+class MyWidget extends WidgetBase<MyWidgetProperties> {
+  protected render() {
+    // rendering
+  }
+}
+```
+
+Using the build tool to intelligent configuration, requires only the `.dojorc` entry and will automatically include new, changed or removed properties.
+
+> .dojorc
+```json
+{
+  "build-widget": {
+    "widgets": [
+      "src/MyWidget"
+    ]
+  }
+}
+```
 
 ## BTR and Dojo Block Improvements
 
@@ -133,35 +204,83 @@ In version 5 of Dojo, we announced Dojo Blocks, a feature leveraging build time 
 
 Please check out our [example static blog site with Dojo on codesandbox](https://codesandbox.io/s/my-first-blog-bywnn).
 
-## Better Custom Elements
-
-Dojo has supported exporting widgets as custom elements since the initial release using `@dojo/cli-build-widget`. However, exporting widgets required some manual configuration to define details such as the custom element tagname along with the properties, attributes and events. From Dojo 6, all the attributes, properties and events are inferred from the widget properties interface and the tagname name defined in the `.dojorc` configuration file.
-
-**Note:** Currently exporting custom elements is not supported with function-based widgets. This is something that we'll be working on over the next few months.
-
 ## Widget Library Build
 
-A long awaited feature for us at Dojo was built in support for building Dojo widget libraries using the `@dojo/cli-build-widget` command. We are using this command to build our own widget library and are excited to see more Dojo widget libraries popping up throughout the community ❤️.
+A long awaited and highly requested feature for Dojo has been support support for building Dojo widget libraries using the `@dojo/cli-build-widget` command. As part of Dojo 6 we're excited to include a library target for the first time. We are now using this to build the `@dojo/widgets` library and are very excited to see more Dojo widget libraries popping up throughout the community ❤️.
+
+To build your widgets using `@dojo/cli-build-widget`, add list your widgets in the the `widgets` section of the `.dojorc` and run the build using the `--lib` option. The resulting build output is ready to be packaged consumed by other Dojo applications.
+
+> .dojorc
+```json
+{
+  "build-widget": {
+    "widgets": [
+      "src/MyWidget"
+    ]
+  }
+}
+```
+
+> terminal
+```shell
+dojo build widget --lib
+```
+
+## Faster Development Builds
+
+As projects grow in size the build time increase significantly too, the CLI build command now supports an experimental “fast” mode that can improve the build time of larger projects for development.
+
+![experimental speed demo](assets/blog/version-6-dojo/speed.gif)
+
+This shows an approximate 2 second saving building the [Dojo RealWorld example](https://github.com/dojo/examples/tree/master/realworld) with the experimental speed mode enabled. On larger Dojo projects we've witnessed more significant savings with development build times drop by more than 50% having previously taking over 40 seconds, reducing to under 20 seconds using the new speed mode.
 
 ## Glob Support For Code Splitting
 
-The `.dojorc` configuration for bundle has been enhanced to support globs. This especially useful for scenarios such as internationalization meaning that you don't have to define all the language bundles, instead simply define a matching pattern for each of the locales.
+The `.dojorc` configuration for `bundles` has been enhanced to support globs. This especially useful for scenarios such as internationalization meaning that you don't have to define all the language bundles, instead simply define a matching pattern for each of the locales.
+
+Consider a project with a folder structure that defines language bundles in locale named directories, ideally build tool would create a single bundle for each locale that would be loaded when users change locale. Using a glob provides a low maintenance and minimal effort way to do this over explicitly defining each language bundle modules in the `.dojorc`.
+
+Current configuration required to create a bundle per locale:
+
+> .dojorc
+```json
+{
+  "build-app": {
+    "bundles": {
+      "fr": [ 
+        "src/widgets/home/nls/fr/home.ts",
+        "src/widgets/menu/nls/fr/menu.ts",
+        "src/widgets/blog/nls/fr/blog.ts",
+        "src/widgets/reference/nls/fr/reference.ts"
+      ],
+      "jp": [ 
+        "src/widgets/home/nls/jp/home.ts",
+        "src/widgets/menu/nls/jp/menu.ts",
+        "src/widgets/blog/nls/jp/blog.ts",
+        "src/widgets/reference/nls/jp/reference.ts"
+      ]
+    }
+  }
+}
+```
+
+Using the glob configuration to create a bundle per locale:
+
+> .dojorc
+```json
+{
+  "build-app": {
+    "bundles": {
+      "fr": [ "**/fr/*.ts" ],
+      "jp": [ "**/jp/*.ts" ]
+    }
+  }
+}
+```
 
 ## Update to TypeScript
 
 The minimum required TypeScript version has been updated to 3.4. Updating the core framework to use a recent version enables us to leverage the latest features that underpin the function-based widget and middleware typings.
-
-## Dojo Widgets
-
-Version 6 of `@dojo/widgets` builds upon its input widgets by adding `helperText` and a consistent approach to validation.
-
-`helperText` displays a message below the input to which it gets applied to provide extra context. The `helperText` also doubles as the location of the error message when used with the `valid` property.
-
-The change from `invalid` to `valid` and `onValidate` provides a mechanism to reactively validate and display error messages beneath a widget. In the case of `text-input`, this is further supplemented by native browser validation meaning that properties such as `required`, `pattern`, `max`, `min`, etc. will trigger an `onValidate` callback with the result of native validation.
-
-We have added `Snackbar` and `Card` widgets to the Dojo widget library as well as adding `Raised` and `Outline` variations of the `Button` widget. This is the start of a larger initiative to support a material design theme in the future as well as a selection of the components material design offers.
-
-Finally, we have started writing our new widgets using TSX syntax. We may convert existing widgets to use TSX in the future if we make any extensive changes to them.
 
 ## Revamped Doc Website
 
@@ -169,7 +288,7 @@ Finally, we have started writing our new widgets using TSX syntax. We may conver
 
 ## Migration
 
-As usual all of the breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [migration guide](TODO Add link).
+As usual all of the breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [migration guide](https://github.com/dojo/framework/blob/master/docs/V6-Migration-Guide.md).
 
 ## Support
 
