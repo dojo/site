@@ -232,7 +232,7 @@ As projects grow in size the build time increase significantly too, the CLI buil
 
 ![experimental speed demo](assets/blog/version-6-dojo/speed.gif)
 
-This shows an approximate 2 second saving building the [Dojo RealWorld example](https://github.com/dojo/examples/tree/master/realworld) with the experimental speed mode enabled. On larger Dojo projects we've witnessed more significant savings with development build times drop by more than 50% having previously taking over 40 seconds, reducing to under 20 seconds using the new speed mode.
+This shows an approximate saving of over 2 seconds building the [Dojo RealWorld example](https://github.com/dojo/examples/tree/master/realworld) with the experimental speed mode enabled. On larger Dojo projects we've witnessed more significant savings with development build times dropping by more than 50% having previously taking over 40 seconds, reducing to under 20 seconds using the new speed mode.
 
 ## Glob Support For Code Splitting
 
