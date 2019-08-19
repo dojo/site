@@ -226,7 +226,7 @@ dojo build widget --lib
 
 ## Faster Development Builds
 
-As projects grow in size their build times can significantly increase. The CLI build command now supports an experimental “fast” mode that can reduce the build time of larger projects during development.
+As projects grow in size their build times can significantly increase. The CLI build command now supports an experimental "speed" mode that can reduce the build time of larger projects during development.
 
 ![experimental Dojo speed demo](assets/blog/version-6-dojo/speed.gif)
 
