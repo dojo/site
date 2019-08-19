@@ -44,7 +44,7 @@ export default render(function MyWidget({ properties, children }) {
 
 As mentioned, the middleware design supports composition in order to create advanced custom functionality. The majority of middlewares will build on the set of core middlewares which provide hooks into Dojo’s rendering engine. For more information on the core middleware please see the [Dojo reference guide](/learn/middleware/core-render-middleware).
 
-In addition to the core middleware, we've created a selection of [higher-level middleware](/learn/middleware/available-middleware) for function-based widgets. These middlewares provide the features and functionality found in most of the existing metas and mixins from working with class-based widgets.
+In addition to the core middleware, we've created a selection of [higher-level Dojo middleware](/learn/middleware/available-middleware) for function-based widgets. These middlewares provide the features and functionality found in most of the existing metas and mixins from working with class-based widgets.
 
 A common pattern used in class-based widgets is to use class properties to store local state for the widget. With function-based widgets this presents a challenge as there is no mechanism to persist state across widget renders. This is where the `icache` - invalidating cache - middleware comes to the forefront. We believe `icache` will be one of the most commonly used middleware when building function-based widgets.
 
@@ -129,10 +129,10 @@ export const FunctionalCounter = factory(function FunctionalCounter({
 });
 ```
 
-For more information please see the [middleware reference guides](/learn/middleware/introduction) or some of the middleware examples on codesandbox:
+For more information please see the [Dojo middleware reference guides](/learn/middleware/introduction) or some of the middleware examples on CodeSandbox:
 
- * [`theme` middleware](https://codesandbox.io/s/theme-middleware-4btv7)
- * [`icache` middleware](https://codesandbox.io/s/advanced-icache-middleware-teeig)
+ * [Dojo `theme` middleware](https://codesandbox.io/s/theme-middleware-4btv7)
+ * [Dojo `icache` middleware](https://codesandbox.io/s/advanced-icache-middleware-teeig)
 
 Don't worry, the existing class-based widget APIs are not going away! These enhancements are additive and backwards-compatible, providing what we believe to be an ergonomic improvement on top of the existing widget APIs.
 
@@ -140,9 +140,9 @@ We are really looking forward to seeing the fun and innovative middlewares from 
 
 ## Config free Custom Elements
 
-Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight, and creates an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
+Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. The approach prior to Dojo version 6 required additional development effort, foresight, and created an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
 
-Current configuration required for compiling a Dojo widget to a custom element:
+Configuration required prior to version 6 for compiling a Dojo widget to a custom element:
 
 > .dojorc
 ```json
@@ -183,7 +183,7 @@ class MyWidget extends WidgetBase<MyWidgetProperties> {
 }
 ```
 
-In Dojo version 6, the build tool's intelligent configuration of custom elements only requires the `.dojorc` entry and will automatically include new, changed or removed properties.
+In Dojo version 6, this is substantially simplified. Now the Dojo build tool's intelligent configuration of custom elements only requires the `.dojorc` entry and will automatically include new, changed or removed properties!
 
 > .dojorc
 ```json
@@ -200,7 +200,7 @@ In Dojo version 6, the build tool's intelligent configuration of custom elements
 
 In version 5 of Dojo, we announced Dojo Blocks, a feature leveraging build time rendering (BTR) that brought the world of static site generation to Dojo. Since then we have been working on improving the experience including more intelligent block bundling, dynamic path registration and a full static mode. Building static and progressive websites has never been easier with Dojo.
 
-Please check out our [example static blog site with Dojo on codesandbox](https://codesandbox.io/s/my-first-blog-bywnn).
+Review the [example static blog site with Dojo on CodeSandbox](https://codesandbox.io/s/my-first-blog-bywnn) to learn more about BTR and Dojo Block improvements.
 
 ## Widget Library Build
 
@@ -226,19 +226,19 @@ dojo build widget --lib
 
 ## Faster Development Builds
 
-As projects grow in size their build times can significantly increase. The CLI build command now supports an experimental “fast” mode that can reduce the build time of larger projects while developing.
+As projects grow in size their build times can significantly increase. The CLI build command now supports an experimental “fast” mode that can reduce the build time of larger projects during development.
 
-![experimental speed demo](assets/blog/version-6-dojo/speed.gif)
+![experimental Dojo speed demo](assets/blog/version-6-dojo/speed.gif)
 
-This shows an approximate saving of over 2 seconds building the [Dojo RealWorld example](https://github.com/dojo/examples/tree/master/realworld) with the experimental speed mode enabled. On larger Dojo projects we've witnessed more significant savings with development build times dropping by more than 50% having previously taking over 40 seconds, reducing to under 20 seconds using the new speed mode.
+This demonstrates saving approximately two seconds when building the [Dojo RealWorld example](https://github.com/dojo/examples/tree/master/realworld) with the experimental speed mode enabled. On larger Dojo projects we've witnessed more significant savings with development build times dropping by more than 50%, e.g. previous builds of more than 40 seconds reduced to under 20 seconds using the new speed mode.
 
 ## Glob Support For Code Splitting
 
-The `.dojorc` configuration for `bundles` has been enhanced to support globs. This is especially useful for scenarios such as internationalization, meaning that you don't have to define all the language bundles explicitly, instead simply define a matching pattern for each of the locales.
+The `.dojorc` configuration for `bundles` has been enhanced to support globs. The globs configuration option is especially useful for scenarios such as internationalization, meaning that you do not need to define all language bundles explicitly, instead simply define a matching pattern for each of the locales.
 
-Consider a project with a folder structure that defines language bundles in locale named directories, ideally build tool would create a single bundle for each locale that would be loaded when users change locale. Using a glob provides a low maintenance and minimal effort way to do this over explicitly defining each language bundle modules in the `.dojorc`.
+Consider a project with a folder structure that defines language bundles in locale named directories. Ideally the build tool would create a single bundle for each locale that gets loaded when the user changes their locale. Using a glob provides a low maintenance and minimal effort way to do this without explicitly defining every language bundle module in the `.dojorc`.
 
-Current configuration required to create a bundle per locale:
+Prior to Dojo version 6, the configuration required to create a bundle per locale:
 
 > .dojorc
 ```json
@@ -262,7 +262,7 @@ Current configuration required to create a bundle per locale:
 }
 ```
 
-Using the glob configuration to create a bundle per locale:
+Using the glob configuration in Dojo version 6 to create a bundle per locale:
 
 > .dojorc
 ```json
@@ -290,6 +290,6 @@ As usual all of the breaking changes introduced in Dojo 6 are carefully consider
 
 ## Support
 
-See the [release notes](TODO: Add link) for more details on version 6.0.0 of Dojo!
-Love what we’re doing or having a problem? We ❤️our community. [Reach out to us on Discord](https://discord.gg/M7yRngE), check out [the Dojo roadmap](/roadmap) and see where we are heading, and try out the new [Dojo on CodeSandbox][https://codesandbox.io/s/github/dojo/dojo-codesandbox-template]. We look forward to your feedback!
+See the [Dojo version 6 release notes](TODO: Add link) for more details on version 6.0.0 of Dojo!
+Love what we’re doing or having a problem? We ❤️our community. [Reach out to the Dojo team on Discord](https://discord.gg/M7yRngE), check out [the Dojo roadmap](/roadmap) and see where we are heading, and try out the new [Dojo on CodeSandbox][https://codesandbox.io/s/github/dojo/dojo-codesandbox-template]. We look forward to your feedback!
 
