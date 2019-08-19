@@ -8,14 +8,14 @@ Since the first major Dojo release last year, we have been working to refine the
 
 In a world of semantic versioning where even minor breaking changes require a new version number, it is challenging to know when a new version is substantial. Today, we’re excited to announce version 6, our most ambitious set of improvements since the Dojo 2.0 release.
 
-Version 6 of Dojo brings many new features and changes to substantially improve the development experience when creating applications with Dojo by reducing boilerplate, increasing flexibility, and further improving performance.
+Version 6 of Dojo brings many new features and changes to substantially improve the development experience by reducing boilerplate, increasing flexibility, and further improving performance.
 
 ![The image for the blog](assets/blog/version-6-dojo/featured.png)
 <!-- more -->
 
 ## Function Based Widgets and Middleware
 
-We are very excited to introduce function-based widgets and middleware, the next evolution for creating and working with widgets in Dojo. Function-based widgets and middleware offer an alternative API for Dojo widgets to the existing class-based APIs (metas, decorators, mixins). A single API for both widgets and middleware helps improve developer ergonomics and reduce the complexity and boilerplate with previous releases of Dojo, making it even easier to get started with Dojo.
+We are very excited to introduce function-based widgets and middleware, the next evolution for creating and working with widgets in Dojo. Function-based widgets and middleware offer an alternative API to the existing class-based APIs (metas, decorators, mixins). A single API for both widgets and middleware helps improve developer ergonomics and reduce the complexity and boilerplate compared to previous releases of the framework, making it even easier to start writing Dojo applications.
 
 What is middleware? Middleware is the singular concept designed to replace all existing supplemental widget patterns, mixins, metas and decorators. A natural progression from the functional and reactive meta API, middleware provides a mechanism that not only facilitates working with imperative and asynchronous APIs reactively, but can get composed with other middleware and also affect a widget’s property interface.
 
@@ -46,7 +46,7 @@ As mentioned, the middleware design supports composition in order to create adva
 
 In addition to the core middleware, we've created a selection of [higher-level middleware](/learn/middleware/available-middleware) for function-based widgets. These middlewares provide the features and functionality found in most of the existing metas and mixins from working with class-based widgets.
 
-A common pattern used in class-based widgets is to use class properties to store local state for the widget. With function-based widgets this presents a challenge as there is no mechanism to persist state across widget renders. This is where the `icache` middleware, meaning invalidating cache, comes to the forefront. We believe `icache` being one of the most commonly middlewares when building function-based widgets.
+A common pattern used in class-based widgets is to use class properties to store local state for the widget. With function-based widgets this presents a challenge as there is no mechanism to persist state across widget renders. This is where the `icache` - invalidating cache - middleware comes to the forefront. We believe `icache` will be one of the most commonly used middleware when building function-based widgets.
 
 Example simple counter class-based widget using class properties to store the "counter" state and class methods:
 
@@ -140,7 +140,7 @@ We are really looking forward to seeing the fun and innovative middlewares from 
 
 ## Config free Custom Elements
 
-Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight and creates an additional maintenance burden of keep the configuration up to date with changes to widgets properties, this can be see below with the custom element configuration for an example widget.
+Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight, and creates an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
 
 Current configuration required for compiling a Dojo widget to a custom element:
 
@@ -183,7 +183,7 @@ class MyWidget extends WidgetBase<MyWidgetProperties> {
 }
 ```
 
-Using the build tool to intelligent configuration, requires only the `.dojorc` entry and will automatically include new, changed or removed properties.
+In Dojo version 6, the build tool's intelligent configuration of custom elements only requires the `.dojorc` entry and will automatically include new, changed or removed properties.
 
 > .dojorc
 ```json
@@ -204,9 +204,9 @@ Please check out our [example static blog site with Dojo on codesandbox](https:/
 
 ## Widget Library Build
 
-A long awaited and highly requested feature for Dojo has been support support for building Dojo widget libraries using the `@dojo/cli-build-widget` command. As part of Dojo 6 we're excited to include a library target for the first time. We are now using this to build the `@dojo/widgets` library and are very excited to see more Dojo widget libraries popping up throughout the community ❤️.
+A long awaited and highly requested feature for Dojo has been support for building Dojo widget libraries using the `@dojo/cli-build-widget` command. As part of Dojo 6 we're excited to include a library target for the first time. We are now using this to build the `@dojo/widgets` library and are very excited to see more Dojo widget libraries popping up throughout the community ❤️.
 
-To build your widgets using `@dojo/cli-build-widget`, add list your widgets in the the `widgets` section of the `.dojorc` and run the build using the `--lib` option. The resulting build output is ready to be packaged consumed by other Dojo applications.
+To build your widgets using `@dojo/cli-build-widget`, list your widgets in the `widgets` section of the `.dojorc` and run the build using the `--lib` option. The resulting build output is ready to be packaged and consumed by other Dojo applications.
 
 > .dojorc
 ```json
@@ -226,7 +226,7 @@ dojo build widget --lib
 
 ## Faster Development Builds
 
-As projects grow in size the build time increase significantly too, the CLI build command now supports an experimental “fast” mode that can improve the build time of larger projects for development.
+As projects grow in size their build times can significantly increase. The CLI build command now supports an experimental “fast” mode that can reduce the build time of larger projects while developing.
 
 ![experimental speed demo](assets/blog/version-6-dojo/speed.gif)
 
@@ -234,7 +234,7 @@ This shows an approximate saving of over 2 seconds building the [Dojo RealWorld 
 
 ## Glob Support For Code Splitting
 
-The `.dojorc` configuration for `bundles` has been enhanced to support globs. This especially useful for scenarios such as internationalization meaning that you don't have to define all the language bundles, instead simply define a matching pattern for each of the locales.
+The `.dojorc` configuration for `bundles` has been enhanced to support globs. This is especially useful for scenarios such as internationalization, meaning that you don't have to define all the language bundles explicitly, instead simply define a matching pattern for each of the locales.
 
 Consider a project with a folder structure that defines language bundles in locale named directories, ideally build tool would create a single bundle for each locale that would be loaded when users change locale. Using a glob provides a low maintenance and minimal effort way to do this over explicitly defining each language bundle modules in the `.dojorc`.
 
