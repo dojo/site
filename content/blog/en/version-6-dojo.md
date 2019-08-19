@@ -138,11 +138,9 @@ Don't worry, the existing class-based widget APIs are not going away! These enha
 
 We are really looking forward to seeing the fun and innovative middlewares from the Dojo community, and, as always, please let us know any feedback that you might have!
 
-## Intelligent Custom Elements
+## Config free Custom Elements
 
-Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. We’ve added support to intelligently compiling your Dojo widgets in to custom element, automatically detecting properties, attributes and events based on the widget’s property interface. 
-
-With this enhancement there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile the widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight and creates an additional maintenance burden of keep the configuration up to date with changes to widgets properties, this can be see below with the custom element configuration for an example widget.
+Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. Doing so takes additional development effort, foresight and creates an additional maintenance burden of keep the configuration up to date with changes to widgets properties, this can be see below with the custom element configuration for an example widget.
 
 Current configuration required for compiling a Dojo widget to a custom element:
 
@@ -248,16 +246,16 @@ Current configuration required to create a bundle per locale:
   "build-app": {
     "bundles": {
       "fr": [ 
-        "src/widgets/home/nls/fr/home.ts",
-        "src/widgets/menu/nls/fr/menu.ts",
-        "src/widgets/blog/nls/fr/blog.ts",
-        "src/widgets/reference/nls/fr/reference.ts"
+        "src/widgets/home/nls/fr/home",
+        "src/widgets/menu/nls/fr/menu",
+        "src/widgets/blog/nls/fr/blog",
+        "src/widgets/reference/nls/fr/reference"
       ],
       "jp": [ 
-        "src/widgets/home/nls/jp/home.ts",
-        "src/widgets/menu/nls/jp/menu.ts",
-        "src/widgets/blog/nls/jp/blog.ts",
-        "src/widgets/reference/nls/jp/reference.ts"
+        "src/widgets/home/nls/jp/home",
+        "src/widgets/menu/nls/jp/menu",
+        "src/widgets/blog/nls/jp/blog",
+        "src/widgets/reference/nls/jp/reference"
       ]
     }
   }
@@ -271,8 +269,8 @@ Using the glob configuration to create a bundle per locale:
 {
   "build-app": {
     "bundles": {
-      "fr": [ "**/fr/*.ts" ],
-      "jp": [ "**/jp/*.ts" ]
+      "fr": [ "**/fr/*" ],
+      "jp": [ "**/jp/*" ]
     }
   }
 }
