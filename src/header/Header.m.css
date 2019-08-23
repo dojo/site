@@ -19,6 +19,8 @@
 .menu {
 	margin-right: var(--menu-offset);
 	overflow: hidden;
+	display: flex;
+	align-items: center;
 }
 
 .menuList {
@@ -30,6 +32,7 @@
 	width: auto;
 	background: none;
 	flex-direction: row;
+	margin-right: var(--grid-size);
 }
 
 .menuItem {
@@ -91,9 +94,6 @@
 
 .selected {
 	color: white;
-}
-
-.centerContainer {
 }
 
 .logo {
@@ -264,4 +264,8 @@
 	.link:hover {
 		color: var(--color-light-gray);
 	}
+}
+
+.iconLink {
+	display: flex;
 }
