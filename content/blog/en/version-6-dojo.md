@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 6
-date: 2019-07-30T08:00:00.000Z
+date: 2019-08-26T08:00:00.000Z
 author: Anthony Gubler
 ---
 
@@ -148,6 +148,7 @@ Configuration required prior to version 6 for compiling a Dojo widget to a custo
 ```json
 {
   "build-widget": {
+    "prefix": "dojo",
     "widgets": [
       "src/MyWidget"
     ]
@@ -199,6 +200,8 @@ In Dojo version 6, this is substantially simplified. Now the Dojo build tool's i
 ## BTR and Dojo Block Improvements
 
 In version 5 of Dojo, we announced Dojo Blocks, a feature leveraging build time rendering (BTR) that brought the world of static site generation to Dojo. Since then we have been working on improving the experience including more intelligent block bundling, dynamic path registration and a full static mode. Building static and progressive websites has never been easier with Dojo.
+
+With Dojo 6, BTR has gotten even smarter. During the build, BTR will figure out what scripts and CSS assets were used and add them to the rendered output as `preload` tags. Downloading these important files right away, and before they are needed by the page, results in faster page performance. Additionally, assets that are not used by the current page, but are used by other pages, are added to the page as `prefetch`, which instructs the browser to download these files when it's idle. Once the user interacts and chooses one of these other pages, the assets for the page will have already been loaded by the browser's `prefetch`. This results in a substantial load-time improvement.
 
 Review the [example static blog site with Dojo on CodeSandbox](https://codesandbox.io/s/my-first-blog-bywnn) to learn more about BTR and Dojo Block improvements.
 
