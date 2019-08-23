@@ -42,7 +42,7 @@ export default render(function MyWidget({ properties, children }) {
 });
 ```
 
-As mentioned, the middleware design supports composition in order to create advanced custom functionality. The majority of middlewares will build on the set of core middlewares which provide hooks into Dojo’s rendering engine. For more information on the core middleware please see the [Dojo reference guide](/learn/middleware/core-render-middleware).
+The middleware design supports composition in order to create advanced custom functionality. The majority of middlewares will build on the set of core middlewares which provide hooks into Dojo’s rendering engine. For more information on the core middleware please see the [Dojo reference guide](/learn/middleware/core-render-middleware).
 
 In addition to the core middleware, we've created a selection of [higher-level Dojo middleware](/learn/middleware/available-middleware) for function-based widgets. These middlewares provide the features and functionality found in most of the existing metas and mixins from working with class-based widgets.
 
@@ -286,7 +286,7 @@ The minimum required TypeScript version has been updated to 3.4. Updating the co
 
 ## Migration
 
-As usual all of the breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [migration guide](https://github.com/dojo/framework/blob/master/docs/V6-Migration-Guide.md).
+As usual all of the breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [Dojo version 6 migration guide](https://github.com/dojo/framework/blob/master/docs/V6-Migration-Guide.md).
 
 ## Support
 
