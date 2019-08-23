@@ -190,6 +190,7 @@ In Dojo version 6, this is substantially simplified. Now the Dojo build tool's i
 ```json
 {
   "build-widget": {
+    "prefix": "dojo",
     "widgets": [
       "src/MyWidget"
     ]
