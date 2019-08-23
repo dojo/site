@@ -12,7 +12,8 @@ export default factory(function BlogPosts() {
 			id="blog-post"
 			renderer={(matchDetails) => {
 				const path = `blog/en/${matchDetails.params.path}.md`;
-				return <BlogPost path={path} standalone />;
+				const url = matchDetails.router.link('blog-post', matchDetails.router.currentParams);
+				return <BlogPost url={url} path={path} standalone />;
 			}}
 		/>
 	);

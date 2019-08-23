@@ -15,7 +15,7 @@ describe('Blog Posts', () => {
 	it('outlet render content', () => {
 		const h = harness(() => <BlogPosts />);
 
-		const renderer = h.trigger(`@blog-post`, 'renderer', { params: { path: 'path' } });
-		h.expect(() => <Post path="blog/en/path.md" standalone />, () => renderer);
+		const renderer = h.trigger(`@blog-post`, 'renderer', { router: { link: () => {} }, params: { path: 'path' } });
+		h.expect(() => <Post url={undefined} path="blog/en/path.md" standalone />, () => renderer);
 	});
 });
