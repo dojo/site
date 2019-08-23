@@ -25,7 +25,9 @@ export default factory(function LearnContent({ properties, middleware: { theme, 
 		decorate(
 			content,
 			(node: VNode) => {
-				(node.properties as any).href = `${url}${node.properties.href}`;
+				if (/^#/.test((node.properties as any).href)) {
+					(node.properties as any).href = `${url}${node.properties.href}`;
+				}
 			},
 			(node): node is VNode => isVNode(node) && node.tag === 'a'
 		);

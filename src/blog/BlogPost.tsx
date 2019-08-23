@@ -45,7 +45,9 @@ export default factory(function BlogPost({ middleware: { block }, properties }) 
 			decorate(
 				result.content,
 				(node: VNode) => {
-					(node.properties as any).href = `${url}${node.properties.href}`;
+					if (/^#/.test((node.properties as any).href)) {
+						(node.properties as any).href = `${url}${node.properties.href}`;
+					}
 				},
 				(node): node is VNode => isVNode(node) && node.tag === 'a'
 			);
