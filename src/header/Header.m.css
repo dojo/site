@@ -17,10 +17,7 @@
 }
 
 .menu {
-	margin-right: var(--menu-offset);
 	overflow: hidden;
-	display: flex;
-	align-items: center;
 }
 
 .menuList {
@@ -179,7 +176,7 @@
 	}
 
 	.menu {
-		position: fixed;
+		position: absolute;
 		left: -100vw;
 		top: var(--header-size);
 		height: 100%;
@@ -268,4 +265,5 @@
 
 .iconLink {
 	display: flex;
+	margin-right: 15px;
 }
