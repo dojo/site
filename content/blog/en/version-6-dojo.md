@@ -282,7 +282,7 @@ The minimum required TypeScript version has been updated to 3.4. Updating the co
 
 ## Revamped Doc Website
 
-// TODO talk about the creation of the new doc website - using BTR and Blocks
+For the Dojo 6 release, we have revamped [dojo.io](https://dojo.io) and moved it to a new repository, [dojo/site](https://github.com/dojo/site). Dojo.io now leverages the improved build time rendering (BTR) and block middleware. Documentation content is pulled down from [dojo/framework](https://github.com/dojo/framework) during the regular Dojo build process and rendered statically. The site is written completely using the new function-based widgets and middlewares, serving as a real world example of a statically rendered site using the latest Dojo patterns.
 
 ## Migration
 
