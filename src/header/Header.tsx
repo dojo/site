@@ -75,6 +75,9 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 					})}
 				</ul>
 			</nav>
+			<a href="https://github.com/dojo/framework" target="_blank" classes={themedCss.iconLink}>
+				<img alt="dojo/framework" src="/assets/github-mark-light.png" />
+			</a>
 		</header>
 	);
 });
