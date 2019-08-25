@@ -140,7 +140,7 @@ We are really looking forward to seeing the fun and innovative middlewares from 
 
 ## Config free Custom Elements
 
-Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. We think this is a significant improvement to current tooling that requires widgets to be explicitly configured with the custom element details. The approach prior to Dojo version 6 required additional development effort, foresight, and created an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
+Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. This significantly improves the previous tooling which required explicitly configured widgets with their custom element details. The approach prior to Dojo version 6 required additional development effort, foresight, and created an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
 
 Configuration required prior to version 6 for compiling a Dojo widget to a custom element:
 
@@ -284,9 +284,9 @@ Using the glob configuration in Dojo version 6 to create a bundle per locale:
 
 The minimum required TypeScript version has been updated to 3.4. Updating the core framework to use a recent version enables us to leverage the latest features that underpin the function-based widget and middleware typings.
 
-## Revamped Doc Website
+## Revamped Dojo Documentation and Website
 
-For the Dojo 6 release, we have revamped [dojo.io](https://dojo.io) and moved it to a new repository, [dojo/site](https://github.com/dojo/site). Dojo.io now leverages the improved build time rendering (BTR) and block middleware. Documentation content is pulled down from [dojo/framework](https://github.com/dojo/framework) during the regular Dojo build process and rendered statically. The site is written completely using the new function-based widgets and middlewares, serving as a real world example of a statically rendered site using the latest Dojo patterns.
+For the Dojo 6 release, we have revamped [dojo.io](https://dojo.io) and moved it to a new repository, [dojo/site](https://github.com/dojo/site). Dojo.io now leverages the improved build time rendering (BTR) and block middleware. Documentation content is automatically imported from [dojo/framework](https://github.com/dojo/framework) during the regular Dojo build process and rendered statically. The new Dojo website is authored using the new Dojo function-based widgets and middlewares, serving as a real world example of a statically rendered site using the latest Dojo patterns!
 
 ## Migration
 
