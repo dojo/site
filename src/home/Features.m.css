@@ -13,6 +13,7 @@
 
 .featureThree {
 	background: linear-gradient(110deg, var(--color-purple), var(--color-blue));
+	margin-bottom: calc(var(--grid-size) * -2);
 }
 
 .featureRow {
