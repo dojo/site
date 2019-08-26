@@ -83,6 +83,14 @@
 	margin-left: calc(var(--grid-size) * 0.5);
 }
 
+.link .externalLink {
+	opacity: 0.5;
+}
+
+.link:hover .externalLink {
+	opacity: 1;
+}
+
 @media (max-width: 1200px) {
 	.copyright {
 		flex: 0 0 100%;
