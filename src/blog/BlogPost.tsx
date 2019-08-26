@@ -1,4 +1,4 @@
-import { tsx, create } from '@dojo/framework/core/vdom';
+import { tsx, create, isVNode } from '@dojo/framework/core/vdom';
 import block from '@dojo/framework/core/middleware/block';
 import Link from '@dojo/framework/routing/Link';
 
@@ -8,11 +8,14 @@ import Page from '../page/Page';
 import postBlock from './post.block';
 
 import * as css from './BlogPost.m.css';
+import { decorate } from '@dojo/framework/core/util';
+import { VNode } from '@dojo/framework/core/interfaces';
 
 export interface PostProperties {
 	excerpt?: boolean;
 	standalone?: boolean;
 	path: string;
+	url?: string;
 }
 
 export function formatDate(date: string) {
@@ -31,13 +34,23 @@ export function formatDate(date: string) {
 const factory = create({ block }).properties<PostProperties>();
 
 export default factory(function BlogPost({ middleware: { block }, properties }) {
-	const { excerpt = false, standalone = false, path } = properties();
+	const { excerpt = false, standalone = false, path, url } = properties();
 	const result = block(postBlock)({
 		excerpt,
 		path
 	});
 
 	if (result) {
+		url &&
+			decorate(
+				result.content,
+				(node: VNode) => {
+					if (/^#/.test((node.properties as any).href)) {
+						(node.properties as any).href = `${url}${node.properties.href}`;
+					}
+				},
+				(node): node is VNode => isVNode(node) && node.tag === 'a'
+			);
 		const resultContent = [
 			<p classes={css.meta}>{`${result.meta.author} ${formatDate(result.meta.date as string)}`}</p>,
 			result.content

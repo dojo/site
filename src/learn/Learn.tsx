@@ -9,6 +9,7 @@ import * as css from './Learn.m.css';
 interface LearnProperties {
 	guideName: string;
 	pageName: string;
+	url?: string;
 }
 
 const factory = create({ theme }).properties<LearnProperties>();
@@ -26,7 +27,7 @@ const guides = [
 ];
 
 export default factory(function Learn({ properties, middleware: { theme } }) {
-	const { guideName, pageName } = properties();
+	const { guideName, pageName, url } = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 	const repo = 'dojo/framework';
@@ -69,7 +70,7 @@ export default factory(function Learn({ properties, middleware: { theme } }) {
 						<LearnSectionMenu repo={repo} path={path} branch={branch} />
 					</ul>
 				</div>
-				<LearnContent repo={repo} page={pageName} path={path} branch={branch} />
+				<LearnContent url={url} repo={repo} page={pageName} path={path} branch={branch} />
 			</main>
 		</div>
 	);
