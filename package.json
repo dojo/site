@@ -15,13 +15,13 @@
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0",
+    "@dojo/framework": "^6.0.0",
     "tslib": "1.10.0"
   },
   "devDependencies": {
     "@agentofuser/rehype-section": "1.0.5",
-    "@dojo/cli": "6.0.0",
-    "@dojo/cli-build-app": "6.0.0",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
     "@dojo/scripts": "4.0.2",
     "@mapbox/rehype-prism": "0.3.1",
     "@types/fs-extra": "8.0.0",
