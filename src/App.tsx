@@ -26,8 +26,9 @@ export default factory(function App() {
 					key="blog"
 					id="blog"
 					renderer={(matchDetails) => {
+						const url = matchDetails.router.link('blog', matchDetails.router.currentParams);
 						if (matchDetails.isExact()) {
-							return <Blog />;
+							return <Blog url={url} />;
 						}
 					}}
 				/>
@@ -38,9 +39,16 @@ export default factory(function App() {
 				<Outlet
 					key="learn"
 					id="learn"
-					renderer={({ params }) => (
-						<Learn guideName={params.guide || 'overview'} pageName={params.page || 'introduction'} />
-					)}
+					renderer={({ params, router }) => {
+						const url = router.link('learn', router.currentParams);
+						return (
+							<Learn
+								url={url}
+								guideName={params.guide || 'overview'}
+								pageName={params.page || 'introduction'}
+							/>
+						);
+					}}
 				/>
 			</div>
 			<Footer />

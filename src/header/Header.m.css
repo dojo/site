@@ -17,7 +17,6 @@
 }
 
 .menu {
-	margin-right: var(--menu-offset);
 	overflow: hidden;
 }
 
@@ -30,6 +29,7 @@
 	width: auto;
 	background: none;
 	flex-direction: row;
+	margin-right: var(--grid-size);
 }
 
 .menuItem {
@@ -91,9 +91,6 @@
 
 .selected {
 	color: white;
-}
-
-.centerContainer {
 }
 
 .logo {
@@ -179,7 +176,7 @@
 	}
 
 	.menu {
-		position: fixed;
+		position: absolute;
 		left: -100vw;
 		top: var(--header-size);
 		height: 100%;
@@ -264,4 +261,11 @@
 	.link:hover {
 		color: var(--color-light-gray);
 	}
+}
+
+.iconLink {
+	display: flex;
+	margin-right: calc(var(--grid-size) * 1.5);
+	width: calc(var(--grid-size) * 3.2);
+	height: calc(var(--grid-size) * 3.2);
 }

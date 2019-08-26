@@ -56,8 +56,12 @@ describe('App', () => {
 
 	const pages: Page[] = [
 		{ outlet: 'home', content: <Home /> },
-		{ outlet: 'blog', content: <Blog />, args: [{ isExact: () => true }] },
-		{ outlet: 'blog', content: undefined, args: [{ isExact: () => false }] },
+		{
+			outlet: 'blog',
+			content: <Blog url={undefined} />,
+			args: [{ router: { link: () => {} }, isExact: () => true }]
+		},
+		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
 		{ outlet: 'roadmap', content: <Roadmap /> }

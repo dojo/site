@@ -19,13 +19,13 @@ describe('Blog', () => {
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<div key="a">
-					<Post key="a" path="a" excerpt />
+					<Post key="a" url={undefined} path="a" excerpt />
 				</div>
 				<div key="b">
-					<Post key="b" path="b" excerpt />
+					<Post key="b" url={undefined} path="b" excerpt />
 				</div>
 				<div key="c">
-					<Post key="c" path="c" excerpt />
+					<Post key="c" url={undefined} path="c" excerpt />
 				</div>
 			</Landing>
 		));
