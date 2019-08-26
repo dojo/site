@@ -8,6 +8,7 @@ import { guides } from '../learn/Learn';
 import bundle from './Footer.nls';
 
 const openjsfLogo = require('../assets/openjsf-color.svg');
+const externalLink = require('../assets/external-link.svg');
 
 const factory = create({ theme, i18n });
 
@@ -46,18 +47,23 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 									classes={css.link}
 								>
 									{messages.codeOfConduct}
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/framework" classes={css.link}>
 									GitHub
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://discord.gg/M7yRngE" classes={css.link}>
 									Discord
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://twitter.com/dojo" classes={css.link}>
 									Twitter
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://discourse.dojo.io/" classes={css.link}>
 									Discourse
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<Link to="examples" classes={css.link}>
 									{messages.examples}
@@ -67,51 +73,66 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								<div classes={themedCss.title}>{messages.repositories}</div>
 								<a target="_blank" href="https://github.com/dojo/framework" classes={css.link}>
 									framework
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/widgets" classes={css.link}>
 									widgets
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/themes" classes={css.link}>
 									themes
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/interop" classes={css.link}>
 									interop
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli" classes={css.link}>
 									cli
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-create-app" classes={css.link}>
 									cli-create-app
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-build-app" classes={css.link}>
 									cli-build-app
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-build-widget" classes={css.link}>
 									cli-build-widget
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-create-theme" classes={css.link}>
 									cli-create-theme
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-build-theme" classes={css.link}>
 									cli-build-theme
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-upgrade-app" classes={css.link}>
 									cli-upgrade-app
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/cli-test-intern" classes={css.link}>
 									cli-test-intern
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/webpack-contrib" classes={css.link}>
 									webpack-contrib
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<a target="_blank" href="https://github.com/dojo/site" classes={css.link}>
 									site
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 							</div>
 							<div classes={themedCss.links}>
 								<div classes={themedCss.title}>{messages.versions}</div>
 								<a target="_blank" href="https://dojo.github.io/dojo.io" classes={css.link}>
 									v5.0
+									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 							</div>
 						</div>

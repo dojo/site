@@ -60,6 +60,8 @@
 .link {
 	color: white;
 	line-height: 2;
+	display: flex;
+	align-items: center;
 }
 
 .link:hover {
@@ -73,6 +75,12 @@
 	position: relative;
 	width: 100%;
 	display: flex;
+}
+
+.externalLink {
+	width: calc(var(--grid-size) * 1.2);
+	height: calc(var(--grid-size) * 1.2);
+	margin-left: calc(var(--grid-size) * 0.5);
 }
 
 @media (max-width: 1200px) {

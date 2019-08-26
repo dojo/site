@@ -8,3 +8,4 @@ export const links: string;
 export const copyright: string;
 export const linksWrapper: string;
 export const link: string;
+export const externalLink: string;
