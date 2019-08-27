@@ -11,7 +11,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
 	curl -H "Authorization: token ${PUBLIC_GITHUB_TOKEN}" -H "Content-Type: application/vnd.github.v3+json" -s -X POST "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments" -d '{"body": "This pull request has been deployed to '$nowurl'"}'
 else
 	if [ "$TRAVIS_BRANCH" = "master" ] ; then
-		nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public --scope=dojo)
+		nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public --scope=dojo --target=production)
 		if [ "$nowurl" = "" ] ; then
 			echo "Now deployment failed"
 			exit 1
