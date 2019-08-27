@@ -14,7 +14,7 @@ interface LearnProperties {
 
 const factory = create({ theme }).properties<LearnProperties>();
 
-const guides = [
+export const guides = [
 	'Overview',
 	'Creating Widgets',
 	'Middleware',

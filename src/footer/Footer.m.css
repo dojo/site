@@ -1,17 +1,135 @@
 @import '../variables.css';
 
 .root {
+	z-index: 1;
 	justify-content: center;
 	align-items: center;
 	display: flex;
 	flex-direction: column;
 	background: var(--dark-background-color);
 	color: var(--color-white);
-	padding: var(--grid-size);
+	padding: calc(var(--grid-size) * 4) var(--grid-size) calc(var(--grid-size) * 5) var(--grid-size);
+	margin-top: calc(var(--grid-size) * 2);
 }
 
-@media (max-width: 850px) {
+.logo {
+	width: calc(var(--grid-size) * 20);
+	margin-bottom: calc(var(--grid-size) * 2);
+}
+
+.title {
+	text-transform: uppercase;
+	color: var(--font-color-inverse);
+	line-height: 3;
+}
+
+.contentRow,
+.linksRow {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+}
+
+.content {
+	width: 90%;
+	max-width: calc(var(--grid-size) * 126);
+	margin: 0 auto;
+}
+
+.links,
+.copyright,
+.linksWrapper {
+	position: relative;
+	width: 100%;
+	flex-direction: column;
+	display: flex;
+	box-sizing: border-box;
+}
+
+.links {
+	flex: 0 0 25%;
+	max-width: 25%;
+}
+
+.copyright {
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%;
+	justify-content: center;
+}
+
+.link {
+	color: white;
+	line-height: 2;
+	display: flex;
+	align-items: center;
+}
+
+.link:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.linksWrapper {
+	flex: 0 0 66.666666%;
+	max-width: 66.666666%;
+	position: relative;
+	width: 100%;
+	display: flex;
+}
+
+.externalLink {
+	width: calc(var(--grid-size) * 1.2);
+	height: calc(var(--grid-size) * 1.2);
+	margin-left: calc(var(--grid-size) * 0.5);
+}
+
+.link .externalLink {
+	opacity: 0.5;
+}
+
+.link:hover .externalLink {
+	opacity: 1;
+}
+
+@media (max-width: 1200px) {
+	.copyright {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+	.linksWrapper {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+
+	.links {
+		margin-top: calc(var(--grid-size) * 2);
+	}
+}
+
+@media (max-width: 900px) {
+	.links {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+}
+
+@media (max-width: 768px) {
 	.root {
-		font-size: 15px;
+		padding: calc(var(--grid-size) * 4) calc(var(--grid-size) * 2) calc(var(--grid-size) * 5)
+			calc(var(--grid-size) * 2);
+	}
+
+	.content {
+		width: 100%;
+	}
+
+	.contentRow {
+		flex-direction: column-reverse;
+	}
+
+	.copyright {
+		align-items: center;
+		margin-top: calc(var(--grid-size) * 4);
 	}
 }
