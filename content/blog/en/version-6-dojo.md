@@ -290,7 +290,7 @@ For the Dojo 6 release, we have revamped [dojo.io](https://dojo.io) and moved it
 
 ## Migration
 
-As usual all of the breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [Dojo version 6 migration guide](https://github.com/dojo/framework/blob/master/docs/V6-Migration-Guide.md).
+As usual with modern Dojo releases, all breaking changes introduced in Dojo 6 are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 6, please see the [Dojo version 6 migration guide](https://github.com/dojo/framework/blob/master/docs/V6-Migration-Guide.md).
 
 ## Support
 
