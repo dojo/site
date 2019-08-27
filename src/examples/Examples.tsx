@@ -38,6 +38,7 @@ export default factory(function Examples({ middleware: { block } }) {
 												<a
 													href={`https://codesandbox.io/s/github/dojo/examples/tree/master/${example.exampleName}`}
 													target="_blank"
+													rel="noopener noreferrer"
 													classes={css.linkBtn}
 												>
 													<span>codesandbox.io</span>
@@ -46,6 +47,7 @@ export default factory(function Examples({ middleware: { block } }) {
 											<a
 												href={`https://github.com/dojo/examples/tree/master/${example.exampleName}`}
 												target="_blank"
+												rel="noopener noreferrer"
 												classes={css.linkBtn}
 											>
 												<span>GitHub</span>

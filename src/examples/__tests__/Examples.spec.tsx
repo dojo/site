@@ -45,6 +45,7 @@ describe('Examples', () => {
 										<a
 											href="https://codesandbox.io/s/github/dojo/examples/tree/master/name"
 											target="_blank"
+											rel="noopener noreferrer"
 											classes={css.linkBtn}
 										>
 											<span>codesandbox.io</span>
@@ -52,6 +53,7 @@ describe('Examples', () => {
 										<a
 											href="https://github.com/dojo/examples/tree/master/name"
 											target="_blank"
+											rel="noopener noreferrer"
 											classes={css.linkBtn}
 										>
 											<span>GitHub</span>

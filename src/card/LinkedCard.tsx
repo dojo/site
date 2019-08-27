@@ -24,7 +24,7 @@ export default factory(function LinkedCard({ middleware: { theme }, properties, 
 	if (url) {
 		return (
 			<div classes={themedCss.root}>
-				<a classes={themedCss.link} href={url} target="_blank" />
+				<a classes={themedCss.link} href={url} target="_blank" rel="noopener noreferrer" />
 				{card}
 			</div>
 		);
