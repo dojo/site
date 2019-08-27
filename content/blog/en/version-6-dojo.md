@@ -138,7 +138,7 @@ Don't worry, the existing class-based widget APIs are not going away! These enha
 
 We are really looking forward to seeing the fun and innovative middlewares from the Dojo community, and, as always, please let us know any feedback that you might have!
 
-## Config free Custom Elements
+## Zero-Configuration Custom Elements
 
 Including Web Components as a first class citizen in Dojo is something that we’ve always been passionate about and now compiling your Dojo widgets to Custom Elements is _even_ easier. In Dojo 6 there is no configuration required, other than defining the widget(s) in the `.dojorc` to instruct the `@dojo/cli-build-widget` to compile your widgets to custom elements. This significantly improves the previous tooling which required explicitly configured widgets with their custom element details. The approach prior to Dojo version 6 required additional development effort, foresight, and created an additional maintenance burden of keeping the configuration up to date with changes to widget properties. This can be seen below with the custom element configuration for an example widget.
 
