@@ -36,6 +36,9 @@ const file4 = `\
 
 const expectedOutput = ['blog/en/file1.md', 'blog/en/file2.md', 'blog/en/file3.md', 'blog/en/file4.md'];
 
+jest.mock('fs');
+jest.mock('fs-extra');
+
 describe('compile block index block', () => {
 	const mockReaddir = jest.spyOn(fs, 'readdir');
 	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
