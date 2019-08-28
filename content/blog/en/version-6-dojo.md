@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 6
-date: 2019-08-26T08:00:00.000Z
+date: 2019-08-28T08:00:00.000Z
 author: Anthony Gubler
 ---
 
