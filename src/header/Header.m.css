@@ -175,6 +175,12 @@
 		display: inline-block;
 	}
 
+	.homeLink {
+		position: absolute;
+		top: 12px;
+		left: calc(50% - 45px);
+	}
+
 	.menu {
 		position: absolute;
 		left: -100vw;
