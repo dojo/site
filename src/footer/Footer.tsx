@@ -224,7 +224,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								<a
 									target="_blank"
 									rel="noopener noreferrer"
-									href="https://v5dojoio-9fle9r04o.now.sh"
+									href="https://v5.dojo.io"
 									classes={css.link}
 								>
 									v5.0
