@@ -184,7 +184,7 @@ class MyWidget extends WidgetBase<MyWidgetProperties> {
 }
 ```
 
-In Dojo version 6, this is substantially simplified. Now the Dojo build tool's intelligent configuration of custom elements only requires the `.dojorc` entry and will automatically include new, changed or removed properties!
+In Dojo version 6, this is substantially simplified. Now the Dojo build tool's intelligent configuration of custom elements only require the `.dojorc` entry, the tooling will automatically determine the tag name, properties, attributes and events!
 
 > .dojorc
 ```json
