@@ -4,7 +4,7 @@ date: August 2019
 released: true
 ---
 
-Features coming in Dojo 6.0.0
+The Dojo framework 6.0.0 release.
 
 - [Update minimum TypeScript support](https://github.com/dojo/framework/pull/331)
 - [New function-based widget API for authoring widgets](https://github.com/dojo/framework/issues/349)
