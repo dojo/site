@@ -1,7 +1,7 @@
 ---
 title: Dojo 6
-date: Q3 2019
-released: false
+date: August 2019
+released: true
 ---
 
 Features coming in Dojo 6.0.0
