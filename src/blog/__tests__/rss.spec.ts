@@ -94,7 +94,7 @@ The application template used by \`cli-build-app\` provides this functionality o
 	});
 
 	it('should render blog rss feed', () => {
-		createBlogFeed([blog1, blog2, blog3]);
+		createBlogFeed([blog1, blog2, blog3], 'en');
 
 		const feed = new Feed({
 			title: 'Dojo',

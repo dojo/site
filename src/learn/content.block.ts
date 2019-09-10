@@ -8,6 +8,7 @@ export interface CompileRemoteBlockOptions {
 	branch: string;
 	path: string;
 	page: string;
+	language?: string;
 	locale?: string;
 	section?: string;
 }
@@ -15,10 +16,20 @@ export interface CompileRemoteBlockOptions {
 const staticPages = ['introduction', 'supplemental'];
 
 export default async function(options: CompileRemoteBlockOptions) {
-	const { repo, branch, path, locale = 'en', page } = options;
-	const pagePath = path.replace(/:locale:/g, locale);
+	const { repo, branch, path, language = 'en', locale = 'en', page } = options;
 	const docPage = page !== 'introduction' ? 'supplemental.md' : `${page}.md`;
-	const response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`);
+
+	let pagePath = path.replace(/:locale:/g, language);
+	let response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`);
+	if (!response.ok) {
+		pagePath = path.replace(/:locale:/g, locale);
+		response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`);
+		if (!response.ok) {
+			pagePath = path.replace(/:locale:/g, 'en');
+			response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`);
+		}
+	}
+
 	const content = await response.text();
 
 	let nodes = markdown(content);

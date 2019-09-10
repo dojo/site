@@ -22,7 +22,7 @@ export interface BlogEntry {
 // In order to not spam people's RSS feed when this goes live, we skip items before May 2019
 const skipItemsBefore = new Date(2019, 4, 1).getTime();
 
-export function createBlogFeed(files: BlogFile[]) {
+export function createBlogFeed(files: BlogFile[], languageFolder: string) {
 	const feed = new Feed({
 		title: 'Dojo',
 		description: 'The official blog of the Dojo framework',
@@ -50,7 +50,7 @@ export function createBlogFeed(files: BlogFile[]) {
 		const fullContent = markdown(file.content, 'string') as string;
 		const description = markdown(file.content.split('<!-- more -->')[0], 'string') as string;
 
-		const url = `https://dojo.io/blog/${file.file.replace('blog/en/', '').replace('.md', '')}`;
+		const url = `https://dojo.io/blog/${file.file.replace(`blog/${languageFolder}/`, '').replace('.md', '')}`;
 		const item = {
 			title: typeof title === 'string' ? title : '',
 			id: url,

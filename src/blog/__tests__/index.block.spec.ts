@@ -40,12 +40,14 @@ jest.mock('fs');
 jest.mock('fs-extra');
 
 describe('compile block index block', () => {
+	const mockExistsSync = jest.spyOn(fs, 'existsSync');
 	const mockReaddir = jest.spyOn(fs, 'readdir');
 	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
 
 	beforeEach(() => {
 		jest.resetAllMocks();
 
+		mockExistsSync.mockReturnValue(true);
 		mockReaddir.mockReturnValue(Promise.resolve(files));
 		mockReadFile
 			.mockResolvedValue(file1)
@@ -67,7 +69,7 @@ describe('compile block index block', () => {
 	});
 
 	it('looks in the appropriate folder based on locale', async () => {
-		const result = await indexBlock({ locale: 'fr' });
+		const result = await indexBlock({ language: 'fr', locale: 'fr' });
 
 		expect(result).toEqual(expectedOutput.map((file) => file.replace('en', 'fr')));
 	});
