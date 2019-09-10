@@ -10,14 +10,16 @@ interface LearnSectionMenuProperties {
 	path: string;
 	repo: string;
 	branch: string;
+	language?: string;
+	locale?: string;
 }
 
 const factory = create({ theme, block }).properties<LearnSectionMenuProperties>();
 
 export default factory(function LearnSectionMenu({ properties, middleware: { theme, block } }) {
-	const { path, repo, branch } = properties();
+	const { path, repo, branch, language, locale } = properties();
 	const themedCss = theme.classes(css);
-	const sections = block(getSections)({ branch, path, page: 'supplemental', repo }) || [];
+	const sections = block(getSections)({ branch, path, page: 'supplemental', repo, language, locale }) || [];
 	return sections.map(({ param, title }) => {
 		return (
 			<li classes={themedCss.columnMenuItem}>

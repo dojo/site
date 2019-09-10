@@ -3,9 +3,10 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import * as css from './Footer.m.css';
 import { guides } from '../learn/Learn';
+
 import bundle from './Footer.nls';
+import * as css from './Footer.m.css';
 
 const openjsfLogo = require('../assets/openjsf-color.svg');
 const externalLink = require('../assets/external-link.svg');

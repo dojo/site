@@ -13,14 +13,16 @@ interface LearnContentProperties {
 	repo: string;
 	branch: string;
 	url?: string;
+	language?: string;
+	locale?: string;
 }
 
 const factory = create({ theme, block }).properties<LearnContentProperties>();
 
 export default factory(function LearnContent({ properties, middleware: { theme, block } }) {
-	const { path, page, repo, branch, url } = properties();
+	const { path, page, repo, branch, url, language, locale } = properties();
 	const themedCss = theme.classes(css);
-	const content = block(getContent)({ path, page, repo, branch });
+	const content = block(getContent)({ path, page, repo, branch, language, locale });
 	url &&
 		decorate(
 			content,
