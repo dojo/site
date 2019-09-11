@@ -1,5 +1,5 @@
 ---
-title: The Future and Beyond
+title: The Future
 released: false
 ---
 
