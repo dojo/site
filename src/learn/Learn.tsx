@@ -77,13 +77,21 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 								params={{ page: 'introduction' }}
 								activeClasses={[css.columnMenuLinkSelected]}
 							>
-								{`Introduction [${language} / ${locale}]`}
+								Introduction
 							</Link>
 						</li>
-						<LearnSectionMenu repo={repo} path={path} branch={branch} language={language} locale={locale} />
+						<LearnSectionMenu
+							key="menu"
+							repo={repo}
+							path={path}
+							branch={branch}
+							language={language}
+							locale={locale}
+						/>
 					</ul>
 				</div>
 				<LearnContent
+					key="content"
 					url={url}
 					repo={repo}
 					page={pageName}

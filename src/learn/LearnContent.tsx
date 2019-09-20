@@ -1,11 +1,11 @@
 import { create, tsx, isVNode } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import block from '@dojo/framework/core/middleware/block';
+import { decorate } from '@dojo/framework/core/util';
+import { VNode } from '@dojo/framework/core/interfaces';
 
 import getContent from './content.block';
 import * as css from './Learn.m.css';
-import { decorate } from '@dojo/framework/core/util';
-import { VNode } from '@dojo/framework/core/interfaces';
 
 interface LearnContentProperties {
 	path: string;
