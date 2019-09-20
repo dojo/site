@@ -4,8 +4,6 @@ import { select } from '@dojo/framework/testing/support/selector';
 
 import markdown from '../common/markdown';
 
-const README_URL = 'https://raw.githubusercontent.com/dojo/examples/master/README.md';
-
 export interface ExampleMeta {
 	code: VNode;
 	demo: string;
@@ -15,8 +13,12 @@ export interface ExampleMeta {
 	sandbox?: boolean;
 }
 
-export default async function(): Promise<ExampleMeta[]> {
-	const response = await fetch(README_URL);
+interface ExampleOptions {
+	branch: string;
+}
+
+export default async function({ branch }: ExampleOptions): Promise<ExampleMeta[]> {
+	const response = await fetch(`https://raw.githubusercontent.com/dojo/examples/${branch}/README.md`);
 	const text = await response.text();
 	const rows = text.match(/\|.*\|/g)!.map((row) => row.trim());
 	const keys = rows
