@@ -56,6 +56,7 @@
 	display: flex;
 	align-items: center;
 	flex: 1 0 auto;
+	height: 100%;
 }
 
 .link {
@@ -87,6 +88,7 @@
 .homeLink {
 	display: flex;
 	justify-content: center;
+	height: 100%;
 }
 
 .selected {
@@ -100,6 +102,10 @@
 .leftContainer {
 	margin: auto calc(var(--grid-size) * 2);
 	display: flex;
+}
+
+.centerContainer {
+	height: 100%;
 }
 
 .toggleButton {
