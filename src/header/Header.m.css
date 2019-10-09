@@ -272,6 +272,6 @@
 .iconLink {
 	display: flex;
 	margin-right: calc(var(--grid-size) * 1.5);
-	width: calc(var(--grid-size) * 3.2);
-	height: calc(var(--grid-size) * 3.2);
+	width: 28px;
+	height: 28px;
 }
