@@ -44,7 +44,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 						matchParams={{}}
 						activeClasses={[themedCss.selected]}
 					>
-						<img classes={[themedCss.logo]} alt="logo" src={logo} />
+						<img classes={[themedCss.logo]} alt="dojo dragon main logo" src={logo} />
 					</Link>
 				</span>
 				<span classes={[themedCss.rightContainer]} />
@@ -79,6 +79,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 				href="https://github.com/dojo/framework"
 				target="_blank"
 				rel="noopener noreferrer"
+				aria-label="Github"
 				classes={themedCss.iconLink}
 			>
 				<svg style="fill: white;" height="28px" viewBox="0 0 16 16" version="1.1" width="28" aria-hidden="true">

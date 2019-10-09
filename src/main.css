@@ -19,18 +19,21 @@ body {
 
 /* Code */
 blockquote {
+	border-radius: 0.3em 0.3em 0 0;
 	color: var(--color-white);
 	font-size: var(--block-quote-font-size);
 	font-weight: var(--block-quote-font-weight);
 	text-align: left;
 	line-height: 28px;
-	background-color: #2a98cf;
+	background-color: #282a36;
 	padding: 4px 10px;
-	border: 1px solid #2a98cf;
+	border: 1px solid #282a36;
 	margin: 0;
 }
 
 blockquote > p {
+	font-weight: bold;
+	font-size: 14px;
 	margin: 0;
 }
 
@@ -58,7 +61,6 @@ pre {
 	font-size: var(--pre-font-size);
 	margin-bottom: 2em !important;
 	white-space: pre-wrap;
-	border: 1px solid #2a98cf;
 	padding: 1em;
 	margin: 0.5em 0;
 	overflow: auto;
@@ -202,13 +204,11 @@ img {
 /*
  * Tables
  */
-table {
-	border-collapse: collapse;
-	border: 1px solid #2a98cf;
-}
 
-thead {
-	background-color: #2a98cf;
+table {
+	background: #282a36;
+	border-radius: 0.3em;
+	border: 1px solid #282a36;
 }
 
 th {
@@ -218,12 +218,12 @@ th {
 	padding: 10px 15px;
 }
 
-tr {
-	border-bottom: 1px solid rgba(10, 16, 20, 0.12);
+thead {
+	font-size: 14px;
 }
 
-tr:last-child {
-	border-bottom: none;
+tbody {
+	background: white;
 }
 
 td {
@@ -235,6 +235,7 @@ td {
 	table {
 		box-shadow: none;
 		border: none;
+		border-collapse: collapse;
 	}
 
 	thead {
@@ -269,10 +270,4 @@ td {
 code[class*='language-'] {
 	white-space: pre-wrap;
 	word-break: break-word;
-}
-
-@media (max-width: 768px) {
-	pre[class*='language-'] {
-		font-size: 15px;
-	}
 }
