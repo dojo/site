@@ -25,7 +25,7 @@ export default factory(function CardHeader({ middleware: { theme }, properties, 
 
 	return (
 		<header key="card-header" data-test="card-header" classes={themedCss.root}>
-			{content}
+			<h3>{content}</h3>
 		</header>
 	);
 });
