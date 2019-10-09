@@ -28,10 +28,12 @@ export default factory(function Roadmap({ middleware: { theme, block } }) {
 							<div classes={themedCss.timelineMarker} />
 							<Card
 								header={
-									<CardHeader
-										title={entry.title}
-										classes={{ 'dojo.io/CardHeader': { root: [themedCss.cardHeader] } }}
-									/>
+									<h3>
+										<CardHeader
+											title={entry.title}
+											classes={{ 'dojo.io/CardHeader': { root: [themedCss.cardHeader] } }}
+										/>
+									</h3>
 								}
 								classes={{ 'dojo.io/Card': { root: [themedCss.card], content: [themedCss.content] } }}
 							>
