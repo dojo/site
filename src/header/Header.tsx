@@ -53,7 +53,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 				<ul classes={themedCss.menuList}>
 					{menuItems.map((item) => {
 						return (
-							<li classes={themedCss.menuItem}>
+							<li classes={[themedCss.menuItem, item === 'Playground' && themedCss.playgroundMenuItem]}>
 								<Link
 									classes={css.menuLink}
 									onClick={() => {

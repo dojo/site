@@ -15,4 +15,5 @@ export const toggleBar: string;
 export const srOnly: string;
 export const rightContainer: string;
 export const mainMenuToggle: string;
+export const playgroundMenuItem: string;
 export const iconLink: string;
