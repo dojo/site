@@ -31,7 +31,7 @@ export default factory(function Learn({ properties, middleware: { theme } }) {
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 	const repo = 'dojo/framework';
-	const branch = 'master';
+	const branch = 'v6';
 	return (
 		<div classes={themedCss.root}>
 			<nav classes={themedCss.nav}>

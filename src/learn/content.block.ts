@@ -5,7 +5,7 @@ import select from '@dojo/framework/testing/support/selector';
 
 export interface CompileRemoteBlockOptions {
 	repo: string;
-	branch?: string;
+	branch: string;
 	path: string;
 	page: string;
 	locale?: string;
@@ -15,7 +15,7 @@ export interface CompileRemoteBlockOptions {
 const staticPages = ['introduction', 'supplemental'];
 
 export default async function(options: CompileRemoteBlockOptions) {
-	const { repo, branch = 'master', path, locale = 'en', page } = options;
+	const { repo, branch, path, locale = 'en', page } = options;
 	const pagePath = path.replace(/:locale:/g, locale);
 	const docPage = page !== 'introduction' ? 'supplemental.md' : `${page}.md`;
 	const response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`);
