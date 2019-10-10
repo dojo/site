@@ -267,6 +267,10 @@
 	.link:hover {
 		color: var(--color-light-gray);
 	}
+
+	.playgroundMenuItem {
+		display: none;
+	}
 }
 
 .iconLink {
