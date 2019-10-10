@@ -74,11 +74,9 @@ blockquote + pre[class*='language-'] {
 	margin-top: 0;
 }
 
-pre {
-}
-
 pre,
 code {
+	font-size: 14px;
 	color: #000;
 	background: none;
 	text-shadow: 0 1px #fff;
