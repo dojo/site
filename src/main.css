@@ -19,7 +19,6 @@ body {
 
 /* Code */
 blockquote {
-	border-radius: 0.3em 0.3em 0 0;
 	color: var(--color-white);
 	font-size: var(--block-quote-font-size);
 	font-weight: var(--block-quote-font-weight);
@@ -76,7 +75,6 @@ blockquote + pre[class*='language-'] {
 
 pre,
 code {
-	font-size: 14px;
 	color: #000;
 	background: none;
 	text-shadow: 0 1px #fff;
@@ -205,8 +203,8 @@ img {
 
 table {
 	background: #282a36;
-	border-radius: 0.3em;
 	border: 1px solid #282a36;
+	border-collapse: collapse;
 }
 
 th {
