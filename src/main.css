@@ -75,9 +75,7 @@ blockquote + pre[class*='language-'] {
 
 pre,
 code {
-	color: #000;
 	background: none;
-	text-shadow: 0 1px #fff;
 	font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
 	text-align: left;
 	white-space: pre;
