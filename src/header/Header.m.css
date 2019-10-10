@@ -186,7 +186,7 @@
 		left: -100vw;
 		top: var(--header-size);
 		height: 100%;
-		width: 100vw;
+		width: 100%;
 		overflow-x: visible;
 		transition: left 0.3s ease, box-shadow 0.3s ease;
 		z-index: 999;
