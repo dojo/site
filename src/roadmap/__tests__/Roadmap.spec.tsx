@@ -61,10 +61,12 @@ describe('Roadmap Page', () => {
 						<div classes={css.timelineMarker} />
 						<Card
 							header={
-								<CardHeader
-									title="Dojo 6"
-									classes={{ 'dojo.io/CardHeader': { root: [css.cardHeader] } }}
-								/>
+								<h3>
+									<CardHeader
+										title="Dojo 6"
+										classes={{ 'dojo.io/CardHeader': { root: [css.cardHeader] } }}
+									/>
+								</h3>
 							}
 							classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 						>
@@ -78,10 +80,12 @@ describe('Roadmap Page', () => {
 						<div classes={css.timelineMarker} />
 						<Card
 							header={
-								<CardHeader
-									title="Dojo 5"
-									classes={{ 'dojo.io/CardHeader': { root: [css.cardHeader] } }}
-								/>
+								<h3>
+									<CardHeader
+										title="Dojo 5"
+										classes={{ 'dojo.io/CardHeader': { root: [css.cardHeader] } }}
+									/>
+								</h3>
 							}
 							classes={{ 'dojo.io/Card': { root: [css.card], content: [css.content] } }}
 						>

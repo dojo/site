@@ -35,7 +35,7 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 	const repo = 'dojo/framework';
-	const branch = 'master';
+	const branch = 'v6';
 
 	let language = 'en';
 	let locale = 'en';

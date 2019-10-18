@@ -12,7 +12,7 @@ import * as css from './Examples.m.css';
 const factory = create({ block });
 
 export default factory(function Examples({ middleware: { block } }) {
-	const examples = block(listBlock)();
+	const examples = block(listBlock)({ branch: 'v6' });
 
 	return (
 		<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
