@@ -138,10 +138,6 @@
 	}
 }
 
-.hide {
-	display: none;
-}
-
 .resultContent {
 	display: flex;
 	align-content: center;
