@@ -20,11 +20,11 @@ This will be the final beta release for Dojo 2! As we make releases of packages 
 
 ## Just getting started
 
-If you want to get started with Dojo 2, the best way is to take a look at our [tutorials](https://v5.dojo.io/tutorials) or even take a look at Dojo 2 in action with our [example applications](https://dojo.github.io/examples/) (source on [GitHub](https://github.com/dojo/examples)).  Good starting tutorials are:
+If you want to get started with Dojo 2, the best way is to take a look at our [tutorials](/tutorials/) or even take a look at Dojo 2 in action with our [example applications](https://dojo.github.io/examples/) (source on [GitHub](https://github.com/dojo/examples)).  Good starting tutorials are:
 
-* [Dojo 2 local installation](https://v5.dojo.io/tutorials/000_local_installation/)
-* [Your first Dojo 2 application](https://v5.dojo.io/tutorials/001_static_content/)
-* [Creating widgets](https://v5.dojo.io/tutorials/003_creating_widgets/)
+* [Dojo 2 local installation](/tutorials/000_local_installation/)
+* [Your first Dojo 2 application](/tutorials/001_static_content/)
+* [Creating widgets](/tutorials/003_creating_widgets/)
 
 ## New in beta 5
 
@@ -40,7 +40,7 @@ Prior to beta5, the structure of the build commands was focused around the tooli
 
 This refactoring is mostly complete for Beta 5, with a few remaining items to complete for release candidate 1.
 
-Usage of the build system is reflected in updates to the [Dojo 2 tutorials](https://v5.dojo.io/tutorials).
+Usage of the build system is reflected in updates to the [Dojo 2 tutorials](https://dojo.io/tutorials/).
 
 ### Improvements to using Custom Elements/Web Components
 

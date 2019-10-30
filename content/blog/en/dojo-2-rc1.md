@@ -108,7 +108,7 @@ npx @dojo/cli build widget --elements src/HelloWorld
 
 For ease of use, all [`@dojo/widgets`](http://github.com/dojo/widgets) are compiled to custom elements and published to npm and easily imported into your projects.
 
-Learn more about creating your first Dojo widgets with the [first Dojo 2 application tutorial](https://v5.dojo.io/tutorials/001_static_content/).
+Learn more about creating your first Dojo widgets with the [first Dojo 2 application tutorial](https://dojo.io/tutorials/001_static_content/).
 
 ## The Dojo CLI
 
@@ -154,7 +154,7 @@ Ultimately, each of the commands require zero configuration to get started, with
 
 To use any of the CLI commands in your Dojo 2 project by adding them as a dev dependency to your project's `package.json`.
 
-Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://v5.dojo.io/tutorials/000_local_installation/).
+Learn more about creating your first Dojo application in the [Dojo local installation tutorial](https://dojo.io/tutorials/000_local_installation/).
 
 ## State management
 

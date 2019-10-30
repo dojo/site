@@ -43,7 +43,7 @@ An efficient and intuitive framework is about doing a million things right in a 
 
 Dojo 2 does not sacrifice performance to deliver solid ergonomics. See the [RealWorld comparison](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-2018-update-e5760fb4a962) to see how Dojo 2 measures up!
 
-View the [Dojo 2 reference examples](https://dojo.github.io/examples/) including RealWorld, HNPWA, and ToDoMVC, and [check out the source code](https://github.com/dojo/examples/). To learn more about using Dojo 2, start with the [Dojo 2 tutorial series](https://v5.dojo.io/tutorials/).
+View the [Dojo 2 reference examples](https://dojo.github.io/examples/) including RealWorld, HNPWA, and ToDoMVC, and [check out the source code](https://github.com/dojo/examples/). To learn more about using Dojo 2, start with the [Dojo 2 tutorial series](https://dojo.io/tutorials/).
 
 ##  Dojo 2 promises to do community right and do right by its community
 

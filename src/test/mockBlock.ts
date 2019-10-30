@@ -1,5 +1,5 @@
 import { create } from '@dojo/framework/core/vdom';
-import { DefaultMiddlewareResult } from '@dojo/framework/core/interfaces';
+import { MiddlewareResult } from '@dojo/framework/core/interfaces';
 
 const factory = create();
 
@@ -15,7 +15,7 @@ export function createBlockMock(blocks: [Function, any][] = []) {
 		};
 	});
 
-	function mockBlock(): DefaultMiddlewareResult {
+	function mockBlock(): MiddlewareResult<any, any, any> {
 		return mockBlockMiddleware();
 	}
 	return mockBlock;

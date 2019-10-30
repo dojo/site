@@ -26,11 +26,11 @@ As we make releases of packages in anticipation of Beta 5, we will not publish t
 
 ## Just getting started
 
-If you want to get started with Dojo 2, the best way is to take a look at our [tutorials](https://v5.dojo.io/tutorials) or even take a look at Dojo 2 in action with our [example applications](https://dojo.github.io/examples/) (source on [GitHub](https://github.com/dojo/examples)).  Good starting tutorials are:
+If you want to get started with Dojo 2, the best way is to take a look at our [tutorials](/tutorials/) or even take a look at Dojo 2 in action with our [example applications](https://dojo.github.io/examples/) (source on [GitHub](https://github.com/dojo/examples)).  Good starting tutorials are:
 
-* [Dojo 2 local installation](https://v5.dojo.io/tutorials/000_local_installation)
-* [Your first Dojo 2 application](https://v5.dojo.io/tutorials/001_static_content)
-* [Creating widgets](https://v5.dojo.io/tutorials/003_creating_widgets)
+* [Dojo 2 local installation](/tutorials/000_local_installation/)
+* [Your first Dojo 2 application](/tutorials/001_static_content/)
+* [Creating widgets](/tutorials/003_creating_widgets/)
 
 ## Integrated virtual DOM
 
@@ -40,7 +40,7 @@ This change allows us to directly merge our abstraction of widgets and virtual D
 
 This alone would not affect users of Dojo 2, but it allows us to address many features and refactor code that introduces some significant **breaking changes** in the beta 4 release.
 
-Explore the widgeting system via the [Creating widgets](https://v5.dojo.io/tutorials/003_creating_widgets) tutorial.
+Explore the widgeting system via the [Creating widgets](/tutorials/003_creating_widgets/) tutorial.
 
 ## Virtual DOM classes
 
