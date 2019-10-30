@@ -19,7 +19,6 @@ export const string: string;
 export const codeline: string;
 export const codeContainer: string;
 export const cli: string;
-export const hide: string;
 export const resultContent: string;
 export const result: string;
 export const check: string;
