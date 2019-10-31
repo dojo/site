@@ -232,10 +232,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<div classes={themedCss.title}>{messages.languages}</div>
-								<a
-									href="https://zh-CN.dojo.io"
-									classes={css.link}
-								>
+								<a href="https://zh-CN.dojo.io" classes={css.link}>
 									{messages.simplifiedChinese}
 								</a>
 							</div>
