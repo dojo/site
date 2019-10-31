@@ -231,6 +231,13 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 									v5.0
 									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 								</a>
+								<div classes={themedCss.title}>{messages.languages}</div>
+								<a
+									href="https://zh-CN.dojo.io"
+									classes={css.link}
+								>
+									{messages.simplifiedChinese}
+								</a>
 							</div>
 						</div>
 					</div>

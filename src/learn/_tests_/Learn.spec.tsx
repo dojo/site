@@ -51,7 +51,7 @@ describe('Learn', () => {
 							key="menu"
 							repo="dojo/framework"
 							path="docs/:locale:/outline"
-							branch="master"
+							branch="v6"
 							language="en"
 							locale="en"
 						/>
@@ -63,7 +63,7 @@ describe('Learn', () => {
 					repo="dojo/framework"
 					page="introduction"
 					path="docs/:locale:/outline"
-					branch="master"
+					branch="v6"
 					language="en"
 					locale="en"
 				/>
