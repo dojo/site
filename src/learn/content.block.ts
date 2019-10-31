@@ -39,9 +39,9 @@ export default async function(options: CompileRemoteBlockOptions) {
 			if (node.children && node.children.length) {
 				const title = node.children[1]
 					.toLocaleLowerCase()
-					.replace(/[^a-z0-9 ]/g, '')
+					.replace(/[^a-z0-9\u4E00-\u9FCC ]/g, '')
 					.replace(/ /g, '-');
-				return title === page;
+				return title === decodeURI(page);
 			}
 			return false;
 		});
