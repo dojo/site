@@ -230,6 +230,9 @@ describe('Footer', () => {
 									<img classes={css.externalLink} alt="externalLink" src={externalLink} />
 								</a>
 								<div classes={css.title}>{messages.languages}</div>
+								<a href="https://dojo.io" classes={css.link}>
+									{messages.english}
+								</a>
 								<a href="https://zh-CN.dojo.io" classes={css.link}>
 									{messages.simplifiedChinese}
 								</a>

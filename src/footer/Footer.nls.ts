@@ -6,7 +6,8 @@ const messages = {
 	repositories: 'repositories',
 	examples: 'Examples',
 	codeOfConduct: 'Code of Conduct',
-	simplifiedChinese: 'Simplified Chinese (简体中文)'
+	simplifiedChinese: 'Simplified Chinese (简体中文)',
+	english: 'English'
 };
 
 export default { messages };
