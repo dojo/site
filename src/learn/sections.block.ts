@@ -24,7 +24,7 @@ function getHeaders(nodes: DNode[]) {
 		const title = toString(header).trim();
 		const param = title
 			.toLocaleLowerCase()
-			.replace(/[^a-z0-9 ]/g, '')
+			.replace(/[^a-z0-9\u4E00-\u9FCC ]/g, '')
 			.replace(/ /g, '-');
 
 		return {

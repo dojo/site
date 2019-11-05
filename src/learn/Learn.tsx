@@ -1,9 +1,13 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
+import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
+
 import Link from '../link/ActiveLink';
+import { getLanguageFromLocale } from '../util/language';
 
 import LearnContent from './LearnContent';
 import LearnSectionMenu from './LearnSectionMenu';
+
 import * as css from './Learn.m.css';
 
 interface LearnProperties {
@@ -12,7 +16,7 @@ interface LearnProperties {
 	url?: string;
 }
 
-const factory = create({ theme }).properties<LearnProperties>();
+const factory = create({ theme, i18n }).properties<LearnProperties>();
 
 export const guides = [
 	'Overview',
@@ -26,12 +30,21 @@ export const guides = [
 	'Testing'
 ];
 
-export default factory(function Learn({ properties, middleware: { theme } }) {
+export default factory(function Learn({ properties, middleware: { theme, i18n } }) {
 	const { guideName, pageName, url } = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 	const repo = 'dojo/framework';
 	const branch = 'v6';
+
+	let language = 'en';
+	let locale = 'en';
+	const localeData = i18n.get();
+	if (localeData && localeData.locale) {
+		language = getLanguageFromLocale(localeData.locale);
+		locale = localeData.locale;
+	}
+
 	return (
 		<div classes={themedCss.root}>
 			<nav classes={themedCss.nav}>
@@ -67,10 +80,26 @@ export default factory(function Learn({ properties, middleware: { theme } }) {
 								Introduction
 							</Link>
 						</li>
-						<LearnSectionMenu repo={repo} path={path} branch={branch} />
+						<LearnSectionMenu
+							key="menu"
+							repo={repo}
+							path={path}
+							branch={branch}
+							language={language}
+							locale={locale}
+						/>
 					</ul>
 				</div>
-				<LearnContent url={url} repo={repo} page={pageName} path={path} branch={branch} />
+				<LearnContent
+					key="content"
+					url={url}
+					repo={repo}
+					page={pageName}
+					path={path}
+					branch={branch}
+					language={language}
+					locale={locale}
+				/>
 			</main>
 		</div>
 	);

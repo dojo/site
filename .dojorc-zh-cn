@@ -1,0 +1,6 @@
+{
+	"extends": "./.dojorc",
+	"build-app": {
+		"locale": "zh-CN"
+	}
+}

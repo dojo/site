@@ -3,9 +3,10 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import * as css from './Footer.m.css';
 import { guides } from '../learn/Learn';
+
 import bundle from './Footer.nls';
+import * as css from './Footer.m.css';
 
 const openjsfLogo = require('../assets/openjsf-color.svg');
 const externalLink = require('../assets/external-link.svg');
@@ -229,6 +230,13 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								>
 									v5.0
 									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
+								</a>
+								<div classes={themedCss.title}>{messages.languages}</div>
+								<a href="https://dojo.io" classes={css.link}>
+									{messages.english}
+								</a>
+								<a href="https://zh-CN.dojo.io" classes={css.link}>
+									{messages.simplifiedChinese}
 								</a>
 							</div>
 						</div>

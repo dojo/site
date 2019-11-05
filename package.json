@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@agentofuser/rehype-section": "1.0.5",
-    "@dojo/cli": "^6.0.0",
+    "@dojo/cli": "7.0.0-alpha.1",
     "@dojo/cli-build-app": "7.0.0-alpha.1",
     "@dojo/scripts": "4.0.2",
     "@mapbox/rehype-prism": "0.3.1",

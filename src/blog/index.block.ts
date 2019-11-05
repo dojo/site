@@ -1,5 +1,5 @@
 import { join } from 'canonical-path';
-import { readdir, readFile } from 'fs-extra';
+import { readdir, readFile, existsSync } from 'fs-extra';
 
 import metadata from '../common/metadata';
 import { createBlogFeed } from './rss';
@@ -7,6 +7,7 @@ import { createBlogFeed } from './rss';
 const CONTENT_PATH = join(__dirname, '../../content/blog');
 
 interface CompileBlogIndex {
+	language?: string;
 	locale?: string;
 }
 
@@ -20,8 +21,20 @@ export interface BlogFile {
 }
 
 export default async function(options: CompileBlogIndex) {
-	const { locale = 'en' } = options;
-	const contentPath = join(CONTENT_PATH, locale);
+	const { language = 'en', locale = 'en' } = options;
+
+	let languageFolder;
+	let contentPath;
+	if (existsSync(join(CONTENT_PATH, language))) {
+		contentPath = join(CONTENT_PATH, language);
+		languageFolder = language;
+	} else if (existsSync(join(CONTENT_PATH, locale))) {
+		contentPath = join(CONTENT_PATH, locale);
+		languageFolder = locale;
+	} else {
+		contentPath = join(CONTENT_PATH, 'en');
+		languageFolder = 'en';
+	}
 
 	const files = await readdir(contentPath);
 	const blogs: BlogFile[] = [];
@@ -33,14 +46,14 @@ export default async function(options: CompileBlogIndex) {
 		blogs.push({
 			sortDate: new Date(`${blogMetaData.date}`),
 			meta: blogMetaData,
-			file: join('blog', locale, file),
+			file: join('blog', languageFolder, file),
 			content
 		});
 	}
 
 	blogs.sort((a, b) => b.sortDate.getTime() - a.sortDate.getTime());
 
-	createBlogFeed(blogs);
+	createBlogFeed(blogs, languageFolder);
 
 	return blogs.map((blog) => blog.file);
 }
