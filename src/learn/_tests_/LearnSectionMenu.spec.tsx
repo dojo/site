@@ -40,7 +40,7 @@ describe('LearnSectionMenu', () => {
 		const mockBlock = createBlockMock([
 			[
 				getSections,
-				[
+				() => [
 					{
 						title: 'Title 1',
 						param: 'param1'

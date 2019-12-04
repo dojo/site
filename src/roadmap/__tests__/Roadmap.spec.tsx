@@ -29,29 +29,26 @@ describe('Roadmap Page', () => {
 	));
 
 	it('renders', () => {
-		const blockMock = createBlockMock([
-			[
-				metadataBlock,
-				[
-					{
-						file: 'roadmap/en/dojo-6.0.0-release.md',
-						title: 'Dojo 6',
-						date: 'Q2 2019',
-						sortDate: '2019-06-30T23:59:00.000Z',
-						released: false
-					},
-					{
-						file: 'roadmap/en/dojo-5.0.0-release.md',
-						title: 'Dojo 5',
-						date: 'January 2019',
-						sortDate: '2019-01-31T23:59:00.000Z',
-						released: true
-					}
-				]
-			]
+		const mockMetadataBlock = jest.fn();
+		mockMetadataBlock.mockReturnValue([
+			{
+				file: 'roadmap/en/dojo-6.0.0-release.md',
+				title: 'Dojo 6',
+				date: 'Q2 2019',
+				sortDate: '2019-06-30T23:59:00.000Z',
+				released: false
+			},
+			{
+				file: 'roadmap/en/dojo-5.0.0-release.md',
+				title: 'Dojo 5',
+				date: 'January 2019',
+				sortDate: '2019-01-31T23:59:00.000Z',
+				released: true
+			}
 		]);
+		const mockBlock = createBlockMock([[metadataBlock, mockMetadataBlock]]);
 
-		const h = harness(() => <Roadmap />, { middleware: [[block, blockMock]] });
+		const h = harness(() => <Roadmap />, { middleware: [[block, mockBlock]] });
 
 		h.expect(
 			baseAssertion.setChildren('@timeline', () => [
@@ -98,9 +95,11 @@ describe('Roadmap Page', () => {
 	});
 
 	it('renders empty timeline if block returns undefined', () => {
-		const blockMock = createBlockMock([[metadataBlock, undefined]]);
+		const mockMetadataBlock = jest.fn();
+		mockMetadataBlock.mockReturnValue(undefined);
+		const mockBlock = createBlockMock([[metadataBlock, mockMetadataBlock]]);
 
-		const h = harness(() => <Roadmap />, { middleware: [[block, blockMock]] });
+		const h = harness(() => <Roadmap />, { middleware: [[block, mockBlock]] });
 
 		h.expect(baseAssertion);
 	});

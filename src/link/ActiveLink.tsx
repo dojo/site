@@ -12,7 +12,7 @@ export interface ActiveLinkProperties extends LinkProperties {
 	matchParams?: Params;
 }
 
-function paramsEqual(linkParams: any = {}, contextParams: any = {}) {
+function paramsEqual(linkParams: Params = {}, contextParams: Params) {
 	return Object.keys(linkParams).every((key) => linkParams[key] === contextParams[key]);
 }
 

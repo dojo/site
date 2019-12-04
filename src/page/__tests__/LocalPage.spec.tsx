@@ -17,17 +17,19 @@ jest.mock('@dojo/framework/i18n/i18n', () => ({
 jest.mock('../../page/local.block');
 
 describe('Page', () => {
-	const blockMock = createBlockMock([[localBlock, 'Some content']]);
+	const mockLocalBlock = jest.fn();
+	mockLocalBlock.mockReturnValue('Some content');
+	const mockBlock = createBlockMock([[localBlock, mockLocalBlock]]);
 
 	it('renders', () => {
-		const h = harness(() => <LocalPage path="path/to/file.md" />, { middleware: [[block, blockMock]] });
+		const h = harness(() => <LocalPage path="path/to/file.md" />, { middleware: [[block, mockBlock]] });
 
 		h.expect(() => <Page>Some content</Page>);
 	});
 
 	it('renders only content without Page widget', () => {
 		const h = harness(() => <LocalPage path="path/to/file.md" wrapInPage={false} />, {
-			middleware: [[block, blockMock]]
+			middleware: [[block, mockBlock]]
 		});
 
 		h.expect(() => 'Some content');
