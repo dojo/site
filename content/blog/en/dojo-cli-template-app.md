@@ -30,9 +30,9 @@ Now let's take a look at what you get with the new template app.
 
 More details can be about routing can be found in the [Dojo documentation](https://dojo.io/learn/routing/introduction). The key here is that each view for a route is defined by an Outlet. An `Outlet` is just a wrapper for widgets that will be displayed in that routes view.
 
-```ts
-// src/App.ts
-import { create, v, w } from '@dojo/framework/core/vdom';
+```tsx
+// src/App.tsx
+import { tsx, create } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import Outlet from '@dojo/framework/routing/Outlet';
 import dojo from '@dojo/themes/dojo';
@@ -50,14 +50,16 @@ export default factory(function App({ middleware: { theme } }) {
 	if (!theme.get()) {
 		theme.set(dojo);
 	}
-	return v('div', { classes: [css.root] }, [
-		w(Menu, {}),
-		v('div', [
-			w(Outlet, { key: 'home', id: 'home', renderer: () => w(Home, {}) }),
-			w(Outlet, { key: 'about', id: 'about', renderer: () => w(About, {}) }),
-			w(Outlet, { key: 'profile', id: 'profile', renderer: () => w(Profile, { username: 'Dojo User' }) })
-		])
-	]);
+	return (
+		<div classes={[css.root]}>
+			<Menu />
+			<div>
+				<Outlet key="home" id="home" renderer={() => <Home />} />
+				<Outlet key="about" id="about" renderer={() => <About />} />
+				<Outlet key="profile" id="profile" renderer={() => <Profile username="Dojo User" />} />
+			</div>
+		</div>
+	);
 });
 ```
 
@@ -88,9 +90,9 @@ Each route has a path, with the name of the outlet id, which coincides with the 
 
 Here is how the whole thing is put together.
 
-```ts
-// src/main.ts
-import renderer, { w } from '@dojo/framework/core/vdom';
+```tsx
+// src/main.tsx
+import renderer, { tsx } from '@dojo/framework/core/vdom';
 import Registry from '@dojo/framework/core/Registry';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import '@dojo/themes/dojo/index.css';
@@ -101,7 +103,7 @@ import App from './App';
 const registry = new Registry();
 registerRouterInjector(routes, registry);
 
-const r = renderer(() => w(App, {}));
+const r = renderer(() => <App />);
 r.mount({ registry });
 ```
 
