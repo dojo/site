@@ -10,7 +10,7 @@ It is easy to get started with Dojo using the Dojo CLI and create app command to
 npm install @dojo/cli @dojo/cli-create-app -g
 ```
 
-The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application comes with uses the programmatic API and provides a widgets, theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
+The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application comes with uses the programmatic API and provides theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
 
 To create the template application run the dojo cli create app command providing the application name
 
@@ -25,6 +25,8 @@ npx -p @dojo/cli-create-app -p @dojo/cli -- dojo create --name my-first-dojo-app
 ```
 
 Now let's take a look at what you get with the new template app.
+
+<!-- add the animated gif -->
 
 I'll do a more detailed post on routing in the future, but you can read more details in the [Dojo documentation](https://dojo.io/learn/routing/introduction). The key here is that each view for a route is defined by an Outlet. An `Outlet` is just a wrapper for widgets that will be displayed in that routes view.
 
@@ -110,6 +112,8 @@ Once your routes are registered, you can then [mount](https://dojo.io/learn/crea
 I am really glad to see the new dojo cli template app giving users a solid start with routing and an introduction to the registry, which in my opinion are key components of building scalable applications.
 
 Now, why is routing important in progressive web apps? It allows you to lazy load parts of your application until you need them. For example, in the template application some users may never click on the profile page, so why should your application load the files for that page unnecessarily . You can see what I mean in this animated image.
+
+<!-- add the animated gif -->
 
 Here, you can see that the files for the pages are not loaded until I click on them. This is code splitting, something Dojo 1 was fantastic at and that the new Dojo provides by using the `@dojo/cli-build-app` command.
 
