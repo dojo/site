@@ -4,7 +4,25 @@ date: 2020-01-01
 author: Rene Rubalcava
 ---
 
-It is easy to get started with Dojo using the Dojo CLI and create app command to scaffold a brand new project using the dojo template application. The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application comes with uses the programmatic API and provides a widgets, theming and routing out of the box so you can quickly get up and running with a feature that you will probably end up using at some point in a larger application.
+It is easy to get started with Dojo using the Dojo CLI and create app command to scaffold a brand new project using the dojo template application. Firstly install both `@dojo/cli` and `@dojo/cli-create-app` globally.
+
+```shell
+npm install @dojo/cli @dojo/cli-create-app -g
+```
+
+The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application comes with uses the programmatic API and provides a widgets, theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
+
+To create the template application run the dojo cli create app command providing the application name
+
+```shell
+dojo create app --name my-first-dojo-app
+```
+
+If you don't want to install the dependencies globally, you can also use [`npx`](https://www.npmjs.com/package/npx) to create your first dojo application.
+
+```shell
+npx -p @dojo/cli-create-app -p @dojo/cli -- dojo create --name my-first-dojo-app
+```
 
 Now let's take a look at what you get with the new template app.
 
