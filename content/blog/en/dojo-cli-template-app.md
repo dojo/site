@@ -117,4 +117,4 @@ Now, why is routing important in progressive web apps? It allows you to lazy loa
 
 Here, you can see that the files for the pages are not loaded until they are clicked on. This is code splitting, something Dojo 1 was fantastic at and that the new Dojo provides by using the [`@dojo/cli-build-app`](https://dojo.io/learn/building/creating-bundles#creating-bundles) command.
 
-Adapted from the Rene Rubalcava's original post on [learn-dojo](https://learn-dojo.com/dojo-cli-template-app/).
+Adapted from Rene Rubalcava's original post on [learn-dojo](https://learn-dojo.com/dojo-cli-template-app/).
