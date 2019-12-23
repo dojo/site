@@ -10,7 +10,7 @@ It is easy to get started with Dojo using the Dojo CLI and create app command to
 npm install @dojo/cli @dojo/cli-create-app -g
 ```
 
-The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application comes with uses the programmatic API (however for this blog we'll be using `--tsx` to create a template that uses TSX) and provides theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
+The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application uses the programmatic API (however for this blog we'll be using `--tsx` to create a template that uses TSX) and provides theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
 
 To create the template application run the dojo cli create app command providing the application name
 
