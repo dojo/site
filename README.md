@@ -20,7 +20,6 @@ Next generation dojo.io.
 	- [Tutorial](#tutorial)
 	- [Reference Guide](#reference-guide)
 	- [Roadmap Entry](#roadmap-entry)
-- [Fontawesome Icons Widget](#fontawesome-icons-widget)
 - [Tests](#tests)
 - [Now Deployments](#now-deployments)
 
