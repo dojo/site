@@ -20,7 +20,6 @@ Next generation dojo.io.
 	- [Tutorial](#tutorial)
 	- [Reference Guide](#reference-guide)
 	- [Roadmap Entry](#roadmap-entry)
-- [Fontawesome Icons Widget](#fontawesome-icons-widget)
 - [Tests](#tests)
 - [Now Deployments](#now-deployments)
 
@@ -42,15 +41,15 @@ Each route defined in the `.dojorc` file for BTR should have its own unique `Out
 
 In Dojo 5, a new feature was introduced to the Build Time Renderer called `Blocks`. `Blocks` allow us to run nodejs code during the BTR process, cache the results in the javascript output, and render them in the client. This forms the basis of the content pipeline.
 
-The site's Blocks can be found under `src/scripts`, labeled with a `.block.ts` extension.
+The site's Blocks can be found under `src` subdirectories, labeled with a `.block.ts` extension.
 
 ### Markdown Compiler
 
-Compile tasks a path to a markdown file, relative to the `content` path, as an input. The markdown file is then run through `remark`, which converts it to HTML and looks for specially designated tags to convert to Dojo widgets. This is used for generating entire pages from markdown.
+Compile takes a path to a markdown file, relative to the `content` path, as an input. The markdown file is then run through `remark`, which converts it to HTML and looks for specially designated tags to convert to Dojo widgets. This is used for generating entire pages from markdown.
 
 ### Available Widgets
 
-The available dojo widgets are defined in `src/scripts/compile.ts` file as `handlers`.
+The available dojo widgets are defined in `src/common/markdown.ts` file as `handlers`.
 
 #### Alert
 
@@ -82,7 +81,7 @@ Create a new root node for the application
 
 #### Aside
 
-The `Aside` widget takes a title parameter, and renders a card with a title and body text. The widget has a black background with an orange left border.
+The `Aside` widget takes a `title` parameter, and renders a card with a title and body text. The widget has a black background with an orange left border.
 
 **Sample**
 
@@ -155,16 +154,16 @@ The `CodeSandbox` widget takes a `url` parameter, and renders an embedded codesa
 
 You can add any Dojo widget to the handlers list by following the steps below.
 
-1. Add your widget to the `handlers` list in the `src/scripts/compiler.ts` file.
+1. Add your widget to the `handlers` list in the `src/common/markdown.ts` file.
 	- Simple widgets (no child content) can be designated as `inline` widgets. These must be written on one line in the markdown and don't need a closing tag.
 		- **Example**: `{ type: 'CodeSandbox', inline: true }`
-	- Widgets with child content should be `multi-line` widgets. These must be written on multiple lines with opening and closing tags on their own lines.
+	- Widgets with child content should be multi-line widgets. These must be written on multiple lines with opening and closing tags on their own lines.
 		- **Example**: `{ type: 'Aside' }`
 2. Define your widget with its handle in the `src/main.tsx` file.
 	1. Import your widget into the file.
 	2. Define your widget in the registry: `registry.define('docs-alert', Alert);`
 		- The handle to use is the lowercase version of the name you put in `handlers` with `docs-` added to the front.
-3. (`Optional`) If your widget needs custom parsing logic (**example**: `CodeBlock`), you can add a widget creation function to the `widgets` list in the `src/scripts/compiler.ts` file. Use the handle you put in `main.tsx` to register your widget creation function.
+3. (`Optional`) If your widget needs custom parsing logic (**example**: `CodeBlock`), you can add a widget creation function to the `widgets` list in the `src/common/markdown.ts` file. Use the handle you put in `main.tsx` to register your widget creation function.
 
 ## Adding Content
 
@@ -189,8 +188,6 @@ You can add any Dojo widget to the handlers list by following the steps below.
 	
 	More content for the blog after the break
 	```
-2. Add a path for the blog to the `.dojorc` file.
-	**Example**: `"blog/new-post",`
 
 ### Tutorial
 
@@ -299,28 +296,6 @@ Dates in the roadmap section can be of two formats:
 2. Month format. **Example**: January 2019, **Parsed Value**: January 31, 2019 23:59 GMT
 
 The entries will be sorted by the parsed date. If the date cannot be parsed, it will be sorted to the top of the roadmap.
-
-## Fontawesome Icons Widget
-
-You can use the Fontawesome Icon widget to render any of the fontawesome icons, importing only those you need.
-
-1. Import the icon you need in the `src/App.tsx` file and add it to the library.
-	```
-	import { library } from '@fortawesome/fontawesome-svg-core';
-
-	import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';
-
-	library.add(faCloudDownloadAlt, faGraduationCap, faListAlt);
-	```
-	- On the import make sure to import from the specific icon path and not the index.
-		- **Correct**: `import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons/faCloudDownloadAlt';`
-		- **Incorrect**: `import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons';`
-2. Use the `FontAwesomeIcon` widget anywhere in the app passing in the icon you want.
-	```
-	<FontAwesomeIcon icon="cloud-download-alt" />
-	```
-
-Other options (per FontAwesome) exist for changing the icons and are defined by the properties to the widget.
 
 ## Tests
 
