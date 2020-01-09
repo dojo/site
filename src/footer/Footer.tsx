@@ -29,7 +29,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 						<div classes={themedCss.linksRow}>
 							<div classes={themedCss.links}>
 								<div classes={themedCss.title}>{messages.docs}</div>
-								{guides.map((guide) => (
+								{guides.map(({ name: guide }) => (
 									<Link
 										to="learn"
 										classes={css.link}

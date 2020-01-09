@@ -27,7 +27,7 @@ describe('Footer', () => {
 						<div classes={css.linksRow}>
 							<div classes={css.links}>
 								<div classes={css.title}>{messages.docs}</div>
-								{guides.map((guide) => (
+								{guides.map(({ name: guide }) => (
 									<Link
 										to="learn"
 										classes={css.link}

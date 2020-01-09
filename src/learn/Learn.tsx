@@ -10,32 +10,46 @@ import LearnSectionMenu from './LearnSectionMenu';
 
 import * as css from './Learn.m.css';
 
+interface Guide {
+	name: string;
+	directory?: string;
+	repo?: string;
+	branch?: string;
+}
+
 interface LearnProperties {
 	guideName: string;
 	pageName: string;
 	url?: string;
+	repo?: string;
+	branch?: string;
 }
 
 const factory = create({ theme, i18n }).properties<LearnProperties>();
 
-export const guides = [
-	'Overview',
-	'Creating Widgets',
-	'Middleware',
-	'Building',
-	'I18n',
-	'Styling',
-	'Stores',
-	'Routing',
-	'Testing'
+export const sources = {
+	framework: {
+		repo: 'dojo/framework',
+		branch: 'v6'
+	}
+};
+
+export const guides: Guide[] = [
+	{ name: 'Overview' },
+	{ name: 'Creating Widgets' },
+	{ name: 'Middleware' },
+	{ name: 'Building' },
+	{ name: 'I18n' },
+	{ name: 'Styling' },
+	{ name: 'Stores' },
+	{ name: 'Routing' },
+	{ name: 'Testing' }
 ];
 
 export default factory(function Learn({ properties, middleware: { theme, i18n } }) {
-	const { guideName, pageName, url } = properties();
+	const { guideName, pageName, url, repo = sources.framework.repo, branch = sources.framework.branch } = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
-	const repo = 'dojo/framework';
-	const branch = 'v6';
 
 	let language = 'en';
 	let locale = 'en';
@@ -50,16 +64,28 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 			<nav classes={themedCss.nav}>
 				<ul classes={themedCss.menuList}>
 					{guides.map((guide) => {
+						const {
+							name,
+							directory,
+							repo = sources.framework.repo,
+							branch = sources.framework.branch
+						} = guide;
+
 						return (
 							<li classes={themedCss.menuItem}>
 								<Link
 									to="learn"
 									classes={css.menuLink}
-									params={{ guide: guide.toLowerCase().replace(' ', '-'), page: 'introduction' }}
-									matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
+									params={{
+										guide: directory || name.toLowerCase().replace(' ', '-'),
+										page: 'introduction',
+										repo,
+										branch
+									}}
+									matchParams={{ guide: directory || name.toLowerCase().replace(' ', '-') }}
 									activeClasses={[css.selected]}
 								>
-									{guide}
+									{name}
 								</Link>
 							</li>
 						);

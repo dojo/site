@@ -195,80 +195,23 @@ Coming soon.
 
 ### Reference Guide
 
-1. Reference Guides should be added to the repository of the referenced content (most likely `dojo/framework`). The reference guide should consist of the following 3 files:
+1. Reference Guides should be added to the repository of the referenced content (most likely `dojo/framework`). 
+    
+    The reference guide should consist of the following files:
 
 	- `introduction.md`
-	- `basic-usage.md`
 	- `supplemental.md`
 
-	Pages will be generated for the introduction and basic usage files, and one page for each top level header (`h1`) in the supplemental file.
-2. Add page paths (for introduction, basic usage and each top level header (`h1`) in supplemental) to the `.dojorc` file.
+    These files should appear in `docs/:locale:/guide-name/` in the repository.
 
-	**Example**:
-	> .dojo.rc
-	```json
-	"reference-guides/i18n/introduction",
-	"reference-guides/i18n/basic-usage",
-	"reference-guides/i18n/working-with-message-bundles",
-	"reference-guides/i18n/internationalizing-a-dojo-application",
-	"reference-guides/i18n/advanced-formatting-cldr",
-	"reference-guides/i18n/standalone-api",
-	```
-3. Add a route for the reference guide to `routes.ts`.
-	**Example**:
-	> src/routes.ts
-	```ts
-	{
-		path: 'reference-guides/i18n/{page}',
-		outlet: 'reference-guide-i18n'
-	}
-	```
-4. Add an outlet for the route to the `ReferenceGuides` widget.
-	**Example**:
-	> src/reference-guides/ReferenceGuides.tsx
-	```ts
-	<Outlet
-		key="reference-guide-i18n"
-		id="reference-guide-i18n"
-		renderer={(matchDetails) => {
-			const { page } = matchDetails.params;
-			return (
-				<ReferenceGuide
-					name="i18n"
-					repo="dojo/framework"
-					path="docs/:locale:/i18n"
-					route="reference-guide-i18n"
-					page={page}
-				/>
-			);
-		}}
-	/>
-	```
-5. Add a landing link to the `ReferenceGuidesLanding` widget in `src/pages`.
-	**Example**:
-	> src/ReferenceGuidesLanding.tsx
-	```ts
-	<LandingLink
-		title={messages.i18n}
-		icon="globe"
-		to="reference-guide-i18n"
-		params={{ page: 'introduction' }}
-	>
-		{messages.i18nDescription}
-	</LandingLink>
-	```
-6. Add a menu entry to the `Header` widget for use in the hamburger menu on mobile.
-	**Example**:
-	> src/header/Header.tsx
-	```
-	<ReferenceGuideMenu
-		name="i18n"
-		route="reference-guide-i18n"
-		repo="dojo/framework"
-		path="docs/:locale:/i18n"
-		standaloneMenu={false}
-	/>
-	```
+	Pages will be generated for the introduction and basic usage files, and one page for each top level header (`h1`) in the supplemental file.
+2. If a new repository will be used, add it to `sources` in  the `src/learn/Learn.tsx` file.
+3. Add the guide to the `guides` list in the `src/learn/Learn.tsx` file. Each guide has the following parameters:
+
+    - **name** - Used in navigation
+    - **directory** - (`Optional`) The name of the directory holding the guides. Defaults to `name.toLowerCase().replace(' ', '-')`
+    - **repo** - (`Optional`) GitHub repository where the guide is located. Defaults to `dojo/framework`
+    - **branch** - (`Optional`) Repository branch where the guide is located. Defaults to the latest framework branch.
 
 ### Roadmap Entry
 
