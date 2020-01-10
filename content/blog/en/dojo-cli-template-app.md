@@ -1,5 +1,5 @@
 ---
-title: Scaffolding your first dojo app with the Dojo CLI
+title: Scaffolding your first Dojo app with the Dojo CLI
 date: 2020-01-10
 author: Anthony Gubler
 ---
