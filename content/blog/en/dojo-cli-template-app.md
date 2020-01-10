@@ -28,9 +28,9 @@ If you don't want to install the dependencies globally, you can also use [`npx`]
 npx -p @dojo/cli-create-app -p @dojo/cli -- dojo create --name my-first-dojo-app --tsx
 ```
 
-Now let's take a look at what you get with the new template app.
+Now let's take a look at the structure you get with the new template app.
 
-<!-- add the animated gif -->
+![create app structure](assets/blog/dojo-cli-template-app/create-app-stucture.svg)
 
 More details can be about routing can be found in the [Dojo documentation](https://dojo.io/learn/routing/introduction). The key here is that each view for a route is defined by an Outlet. An `Outlet` is just a wrapper for widgets that will be displayed in that routes view.
 
