@@ -1,6 +1,6 @@
 ---
-title: Dojo CLI Template App
-date: 2020-01-01
+title: Scaffolding your first dojo app with the Dojo CLI
+date: 2020-01-10
 author: Anthony Gubler
 ---
 
