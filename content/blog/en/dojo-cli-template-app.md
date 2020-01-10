@@ -8,13 +8,13 @@ author: Anthony Gubler
 
 <!-- more -->
 
-It is easy to get started with Dojo using the Dojo CLI and create app command to scaffold a brand new project using the dojo template application. Firstly install both `@dojo/cli` and `@dojo/cli-create-app` globally.
+It is easy to get started with Dojo using the Dojo CLI and create app command to scaffold a new project using the dojo template application. First install both `@dojo/cli` and `@dojo/cli-create-app` globally.
 
 ```shell
 npm install @dojo/cli @dojo/cli-create-app -g
 ```
 
-The `@dojo/cli-create-app` command provides a number of options to tweak the template application. By default the template application uses the programmatic API (however for this blog we'll be using `--tsx` to create a template that uses TSX) and provides theming and routing out of the box so you can quickly get up and running with some features that you will probably end up using at some point in a larger application.
+The `@dojo/cli-create-app` command provides a number of options to customize the template application. By default the template application uses the programmatic API (however for this blog we'll be using `--tsx` to create an application template that uses TSX) and provides theming and routing out of the box so you can quickly get started with some features that you will leverage in a larger application.
 
 To create the template application run the dojo cli create app command providing the application name
 
@@ -28,11 +28,11 @@ If you don't want to install the dependencies globally, you can also use [`npx`]
 npx -p @dojo/cli-create-app -p @dojo/cli -- dojo create --name my-first-dojo-app --tsx
 ```
 
-Now let's take a look at the structure you get with the new template app.
+Now let's take a look at the structure you get with the new template application.
 
 ![create app structure](assets/blog/dojo-cli-template-app/create-app-structure.svg)
 
-More details can be about routing can be found in the [Dojo documentation](https://dojo.io/learn/routing/introduction). The key here is that each view for a route is defined by an Outlet. An `Outlet` is just a wrapper for widgets that will be displayed in that routes view.
+More details about routing are found in the [Dojo routing documentation](https://dojo.io/learn/routing/introduction). The key concept here is that each view for a route is defined by an `Outlet`, a wrapper for widgets that gets displayed in view of that route.
 
 ```tsx
 // src/App.tsx
@@ -67,9 +67,9 @@ export default factory(function App({ middleware: { theme } }) {
 });
 ```
 
-Ok, so let's break this down a little bit. The application is using TSX to create virtual DOM nodes. You can see that in this case, what is happening is there is a top level `Menu`, with a `div` underneath. In this `div` is where each Outlet is defined, with an `id`, `key` (optional), and what to display in the **render** method.
+Ok, so let's break this down a bit. The application is using TSX to create virtual DOM nodes. In this case there is a top level `Menu` with a `div` underneath. Within this `div` each Outlet gets defined with an `id`, `key` (optional), and what to display gets specified in the **render** method.
 
-We won't go in to detail on each view. They are fairly standard widgets, but let's take a look at the routing part. The routes are defined in a simple object.
+We won't go into detail for each view as they are fairly standard Dojo widgets, but let's take a look at the routing aspect. Routes get defined in a simple object.
 
 ```ts
 // src/routes.ts
@@ -90,9 +90,9 @@ export default [
 ];
 ```
 
-Each route has a path, with the name of the outlet id, which coincides with the id of the outlet defined in the previous snippet. Super simple and straight forward. You can also see that the home route is defined as the **defaultRoute**.
+Each route has a path, with the name of the outlet `id`, which simply coincides with the `id` of the outlet defined in the previous snippet. You can also see that the home route is defined as the **`defaultRoute`**.
 
-Here is how the whole thing is put together.
+Here is how the examples comes together.
 
 ```tsx
 // src/main.tsx
@@ -111,14 +111,14 @@ const r = renderer(() => <App />);
 r.mount({ registry });
 ```
 
-The `routes` are registered with the `Router` using the `registerRouterInjector` utility function, along with the a registry instance. Once your routes are registered, you can then [mount](https://dojo.io/learn/creating-widgets/introduction#rendering-to-the-dom) the application with the registry.
+The `routes` get registered with the `Router` using the `registerRouterInjector` utility function, along with the registry instance. Once routes get registered, you can then [mount](https://dojo.io/learn/creating-widgets/introduction#rendering-to-the-dom) the application with the registry.
 
-We hope that the new dojo cli template app gives users a solid start with routing and an introduction to the registry, which in our opinion are key components of building scalable applications.
+We hope that the new dojo cli template application gives Dojo users a solid start with routing and an introduction to the registry, key components of building scalable applications.
 
-Now, why is routing important in progressive web apps? It allows you to lazy load parts of your application until you need them. For example, in the template application some users may never click on the profile page, so why should your application load the files for that page unnecessarily . You can see what we mean in this animated image.
+Now, why is routing important in progressive web apps? Routing allows you to lazy load portions of your application until the users need them. For example, in the template application, some users may never click on the profile view, so why should the application unnecessarily load the files for that view.
 
 <!-- add the animated gif -->
 
-Here, you can see that the files for the pages are not loaded until they are clicked on. This is code splitting, something Dojo 1 was fantastic at and that the new Dojo provides by using the [`@dojo/cli-build-app`](https://dojo.io/learn/building/creating-bundles#creating-bundles) command.
+Here, you can see that the files for the views are not loaded until they get clicked. This is code splitting, something Dojo 1.x was fantastic at solving and that the new Dojo provides automatically by using the [`@dojo/cli-build-app`](https://dojo.io/learn/building/creating-bundles#creating-bundles) command.
 
 Adapted from Rene Rubalcava's original post on [learn-dojo](https://learn-dojo.com/dojo-cli-template-app/).
