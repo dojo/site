@@ -30,7 +30,7 @@ npx -p @dojo/cli-create-app -p @dojo/cli -- dojo create --name my-first-dojo-app
 
 Now let's take a look at the structure you get with the new template app.
 
-![create app structure](assets/blog/dojo-cli-template-app/create-app-stucture.svg)
+![create app structure](assets/blog/dojo-cli-template-app/create-app-structure.svg)
 
 More details can be about routing can be found in the [Dojo documentation](https://dojo.io/learn/routing/introduction). The key here is that each view for a route is defined by an Outlet. An `Outlet` is just a wrapper for widgets that will be displayed in that routes view.
 
