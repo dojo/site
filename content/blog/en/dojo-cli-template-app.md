@@ -67,7 +67,7 @@ export default factory(function App({ middleware: { theme } }) {
 });
 ```
 
-Ok, so let's break this down a little bit. The application is using TSX which and you can see that in this case, what is happening is there is a top level `Menu`, with a `div` underneath. In this `div` is where each Outlet is defined, with an `id`, `key` (optional), and what to display in the **render** method.
+Ok, so let's break this down a little bit. The application is using TSX to create virtual DOM nodes. You can see that in this case, what is happening is there is a top level `Menu`, with a `div` underneath. In this `div` is where each Outlet is defined, with an `id`, `key` (optional), and what to display in the **render** method.
 
 We won't go in to detail on each view. They are fairly standard widgets, but let's take a look at the routing part. The routes are defined in a simple object.
 
