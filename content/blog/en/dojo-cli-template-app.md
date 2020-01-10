@@ -4,6 +4,10 @@ date: 2020-01-01
 author: Anthony Gubler
 ---
 
+![Dojo CLI](assets/blog/dojo-cli-template-app/featured.svg)
+
+<!-- more -->
+
 It is easy to get started with Dojo using the Dojo CLI and create app command to scaffold a brand new project using the dojo template application. Firstly install both `@dojo/cli` and `@dojo/cli-create-app` globally.
 
 ```shell
