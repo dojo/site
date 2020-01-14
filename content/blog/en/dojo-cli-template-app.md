@@ -117,7 +117,7 @@ We hope that the new dojo cli template application gives Dojo users a solid star
 
 Now, why is routing important in progressive web apps? Routing allows you to lazy load portions of your application until the users need them. For example, in the template application, some users may never click on the profile view, so why should the application unnecessarily load the files for that view.
 
-![lazy laoding](assets/blog/dojo-cli-template-app/lazy-loading.gif)
+![lazy loading](assets/blog/dojo-cli-template-app/lazy-loading.gif)
 
 Here, you can see that the files for the views are not loaded until they get clicked. This is code splitting, something Dojo 1.x was fantastic at solving and that the new Dojo provides automatically by using the [`@dojo/cli-build-app`](https://dojo.io/learn/building/creating-bundles#creating-bundles) command.
 

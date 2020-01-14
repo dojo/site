@@ -88,6 +88,15 @@ describe('Footer', () => {
 								<Link to="examples" classes={css.link}>
 									{messages.examples}
 								</Link>
+								<a
+									target="_blank"
+									rel="noopener noreferrer"
+									href="https://docs.google.com/forms/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/viewform"
+									class={css.link}
+								>
+									{messages.dojoShirts}
+									<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+								</a>
 							</div>
 							<div classes={css.links}>
 								<div classes={css.title}>{messages.repositories}</div>
