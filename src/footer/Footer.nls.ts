@@ -1,6 +1,6 @@
 const messages = {
 	docs: 'docs',
-	dojoShirts: 'Dojo T-shirts',
+	dojoSwag: 'Dojo Swag',
 	community: 'community',
 	versions: 'versions',
 	languages: 'languages',

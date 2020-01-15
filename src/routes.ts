@@ -50,5 +50,9 @@ export default [
 			guide: 'overview',
 			page: 'introduction'
 		}
+	},
+	{
+		path: 'dojoswag',
+		outlet: 'dojoswag'
 	}
 ] as RouteConfig[];

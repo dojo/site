@@ -90,15 +90,9 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								<Link to="examples" classes={css.link}>
 									{messages.examples}
 								</Link>
-								<a
-									target="_blank"
-									rel="noopener noreferrer"
-									href="https://docs.google.com/forms/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/viewform"
-									class={css.link}
-								>
-									{messages.dojoShirts}
-									<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
-								</a>
+								<Link to="dojoswag" class={css.link}>
+									{messages.dojoSwag}
+								</Link>
 							</div>
 							<div classes={themedCss.links}>
 								<div classes={themedCss.title}>{messages.repositories}</div>

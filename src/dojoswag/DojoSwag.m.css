@@ -1,0 +1,35 @@
+@import '../variables.css';
+
+.root {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.label {
+	display: block;
+	padding-bottom: 1em;
+}
+
+.radioLabel {
+	display: block;
+}
+
+.input {
+	font-family: var(--default-font-family);
+	padding: 4px;
+	width: 25em;
+}
+
+.button {
+	background-color: hsl(211, 72%, 55%);
+	border: none;
+	border-radius: 5px;
+	color: hsl(0, 0%, 98%);
+	font-weight: bold;
+	padding: 8px 12px;
+}
+
+.required {
+	color: hsl(4, 71%, 50%);
+}

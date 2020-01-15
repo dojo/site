@@ -10,6 +10,7 @@ import Examples from './examples/Examples';
 import Playground from './playground/Playground';
 import Roadmap from './roadmap/Roadmap';
 import Learn from './learn/Learn';
+import DojoSwag from './dojoswag/DojoSwag';
 
 import Header from './header/Header';
 import Footer from './footer/Footer';
@@ -62,6 +63,7 @@ export default factory(function App({ middleware: { i18n } }) {
 						);
 					}}
 				/>
+				<Outlet key="dojoswag" id="dojoswag" renderer={() => <DojoSwag />} />
 			</div>
 			<Footer />
 		</div>
