@@ -13,13 +13,6 @@ export default factory(function DojoShirt() {
 
 				<label class={css.label}>
 					<div>
-						E-mail Address <span class={css.required}>*</span>
-					</div>
-					<input class={css.input} type="email" name="emailAddress" autocomplete="email" required />
-				</label>
-
-				<label class={css.label}>
-					<div>
 						Name <span class={css.required}>*</span>
 					</div>
 					<input class={css.input} type="text" name="entry.1521394193" autocomplete="name" required />
@@ -36,6 +29,13 @@ export default factory(function DojoShirt() {
 						rows="3"
 						required
 					/>
+				</label>
+
+				<label class={css.label}>
+					<div>
+						E-mail Address <span class={css.required}>*</span>
+					</div>
+					<input class={css.input} type="email" name="entry.371860426" autocomplete="email" required />
 				</label>
 
 				<label class={css.label}>

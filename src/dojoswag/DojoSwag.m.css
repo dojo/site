@@ -1,5 +1,11 @@
 @import '../variables.css';
 
+:root {
+	--dojo-blue: hsl(212, 100%, 45%);
+	--dojo-grey: hsl(210, 15%, 42%);
+	--dojo-red: hsl(0, 85%, 50%);
+}
+
 .root {
 	display: flex;
 	justify-content: center;
@@ -16,20 +22,26 @@
 }
 
 .input {
+	border: 1px solid var(--dojo-grey);
 	font-family: var(--default-font-family);
-	padding: 4px;
+	padding: 8px;
 	width: 25em;
 }
 
+.input:hover,
+.input:focus {
+	border-color: var(--dojo-blue);
+	box-shadow: 0 2px 2px 0 hsl(0, 0%, 0%, 0.2);
+}
+
 .button {
-	background-color: hsl(211, 72%, 55%);
+	background-color: var(--dojo-blue);
 	border: none;
-	border-radius: 5px;
-	color: hsl(0, 0%, 98%);
-	font-weight: bold;
-	padding: 8px 12px;
+	color: white;
+	font-weight: 700;
+	padding: 8px;
 }
 
 .required {
-	color: hsl(4, 71%, 50%);
+	color: var(--dojo-red);
 }
