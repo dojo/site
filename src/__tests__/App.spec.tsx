@@ -5,6 +5,7 @@ import { DNode } from '@dojo/framework/core/interfaces';
 
 import Blog from '../blog/Blog';
 import BlogPosts from '../blog/BlogPosts';
+import DojoSwag from '../dojoswag/DojoSwag';
 import Examples from '../examples/Examples';
 import Home from '../home/Home';
 import Playground from '../playground/Playground';
@@ -48,6 +49,7 @@ describe('App', () => {
 						id="learn"
 						renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
 					/>
+					<Outlet key="dojoswag" id="dojoswag" renderer={() => <DojoSwag />} />
 				</div>
 				<Footer />
 			</div>
