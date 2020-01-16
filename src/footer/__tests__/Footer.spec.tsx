@@ -88,9 +88,6 @@ describe('Footer', () => {
 								<Link to="examples" classes={css.link}>
 									{messages.examples}
 								</Link>
-								<Link to="dojoswag" class={css.link}>
-									{messages.dojoSwag}
-								</Link>
 							</div>
 							<div classes={css.links}>
 								<div classes={css.title}>{messages.repositories}</div>

@@ -10,7 +10,10 @@
 					"--no-sandbox",
 					"--disable-setuid-sandbox"
 				]
-			}
+			},
+			"paths": [
+				"dojoswag"
+			]
 		},
 		"pwa": {
 			"manifest": {

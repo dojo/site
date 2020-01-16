@@ -90,9 +90,6 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								<Link to="examples" classes={css.link}>
 									{messages.examples}
 								</Link>
-								<Link to="dojoswag" class={themedCss.link}>
-									{messages.dojoSwag}
-								</Link>
 							</div>
 							<div classes={themedCss.links}>
 								<div classes={themedCss.title}>{messages.repositories}</div>
