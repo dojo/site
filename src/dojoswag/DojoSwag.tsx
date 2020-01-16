@@ -13,7 +13,10 @@ export default factory(function DojoShirt({ middleware: { theme } }) {
 	return (
 		<main class={themedCss.root}>
 			<Card classes={{ 'dojo.io/Card': { root: [themedCss.card] } }}>
-				<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/formResponse">
+				<form
+					action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/formResponse"
+					target="_blank"
+				>
 					<h1>Dojo T-Shirt Request</h1>
 					<p>Please fill out the information below to request a free Dojo t-shirt!</p>
 
