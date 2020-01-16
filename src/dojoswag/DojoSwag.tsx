@@ -13,10 +13,7 @@ export default factory(function DojoShirt({ middleware: { theme } }) {
 	return (
 		<main class={themedCss.root}>
 			<Card classes={{ 'dojo.io/Card': { root: [themedCss.card] } }}>
-				<form
-					action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/formResponse"
-					target="_blank"
-				>
+				<form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfkpw5q6CkrqpM4ykoNbfP2C8gIIgLC3Xr75dgRYgMqXx5mmA/formResponse">
 					<h1>Dojo T-Shirt Request</h1>
 					<p>Please fill out the information below to request a free Dojo t-shirt!</p>
 
@@ -35,14 +32,73 @@ export default factory(function DojoShirt({ middleware: { theme } }) {
 
 					<label class={themedCss.label}>
 						<div>
-							Mailing Address <span class={themedCss.required}>*</span>
+							Address 1 <span class={themedCss.required}>*</span>
 						</div>
-						<textarea
+						<input
 							class={themedCss.input}
+							type="text"
 							name="entry.273865199"
-							autocomplete="street-address"
-							rows="3"
+							autocomplete="shipping address-line1"
 							required
+						/>
+					</label>
+
+					<label class={themedCss.label}>
+						<div>Address 2</div>
+						<input
+							class={themedCss.input}
+							type="text"
+							name="entry.273865199"
+							autocomplete="shipping address-line2"
+						/>
+					</label>
+
+					<label class={themedCss.label}>
+						<div>
+							City <span class={themedCss.required}>*</span>
+						</div>
+						<input
+							class={themedCss.input}
+							type="text"
+							name="entry.273865199"
+							autocomplete="shipping address-level2"
+							required
+						/>
+					</label>
+
+					<label class={themedCss.label}>
+						<div>
+							State <span class={themedCss.required}>*</span>
+						</div>
+						<input
+							class={themedCss.input}
+							type="text"
+							name="entry.273865199"
+							autocomplete="shipping address-level1"
+							required
+						/>
+					</label>
+
+					<label class={themedCss.label}>
+						<div>
+							Zip Code <span class={themedCss.required}>*</span>
+						</div>
+						<input
+							class={themedCss.input}
+							type="text"
+							name="entry.273865199"
+							autocomplete="shipping postal-code"
+							required
+						/>
+					</label>
+
+					<label class={themedCss.label}>
+						<div>Country</div>
+						<input
+							class={themedCss.input}
+							type="text"
+							name="entry.273865199"
+							autocomplete="shipping country-name"
 						/>
 					</label>
 
@@ -60,8 +116,8 @@ export default factory(function DojoShirt({ middleware: { theme } }) {
 					</label>
 
 					<label class={themedCss.label}>
-						<div>Pull Request or Issue</div>
-						<input class={themedCss.input} type="text" name="entry.1269168678" autocomplete="off" />
+						<div>Please describe your Dojo contribution</div>
+						<textarea class={themedCss.input} rows="2" name="entry.1269168678" autocomplete="off" />
 					</label>
 
 					<div class={themedCss.label}>

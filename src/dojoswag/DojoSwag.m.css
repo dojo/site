@@ -15,7 +15,9 @@
 
 .card {
 	flex-grow: 0;
+	margin: 2em;
 	padding: 1.5em;
+	padding-top: 0;
 }
 
 .label {
