@@ -9,20 +9,25 @@ import createI18nMock from '../../test/mockI18n';
 import LearnContent from '../LearnContent';
 import LearnSectionMenu from '../LearnSectionMenu';
 import * as css from '../Learn.m.css';
-import Learn, { guides } from '../Learn';
+import Learn, { guides, sources } from '../Learn';
 
 describe('Learn', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={css.root}>
 			<nav classes={css.nav}>
 				<ul classes={css.menuList}>
-					{guides.map((guide) => {
+					{guides.map(({ name: guide }) => {
 						return (
 							<li classes={css.menuItem}>
 								<Link
 									to="learn"
 									classes={css.menuLink}
-									params={{ guide: guide.toLowerCase().replace(' ', '-'), page: 'introduction' }}
+									params={{
+										guide: guide.toLowerCase().replace(' ', '-'),
+										page: 'introduction',
+										repo: sources.framework.repo,
+										branch: sources.framework.branch
+									}}
 									matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
 									activeClasses={[css.selected]}
 								>
