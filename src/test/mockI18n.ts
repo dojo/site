@@ -4,7 +4,7 @@ import { Bundle, Messages } from '@dojo/framework/i18n/i18n';
 
 const factory = create();
 
-export function createI18nMock(locale: string) {
+export function createI18nMock(locale: string | undefined, set: () => void = () => {}) {
 	const mockI18nMiddleware = factory(() => {
 		return {
 			get() {
@@ -12,6 +12,7 @@ export function createI18nMock(locale: string) {
 					locale
 				};
 			},
+			set,
 			localize<T extends Messages>(bundle: Bundle<T>, useDefaults?: boolean) {
 				return bundle;
 			}

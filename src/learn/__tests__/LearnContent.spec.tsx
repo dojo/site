@@ -22,17 +22,14 @@ describe('LearnContent', () => {
 	));
 
 	it('renders', () => {
-		const mockBlock = createBlockMock([
-			[
-				getContent,
-				() => (
-					<div>
-						<a href="#test">Test</a>
-						<a href="http://test.com">Test</a>
-					</div>
-				)
-			]
-		]);
+		const mockGetContent = jest.fn();
+		mockGetContent.mockReturnValue(
+			<div>
+				<a href="#test">Test</a>
+				<a href="http://test.com">Test</a>
+			</div>
+		);
+		const mockBlock = createBlockMock([[getContent, mockGetContent]]);
 
 		const h = harness(
 			() => (

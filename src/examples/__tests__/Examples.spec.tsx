@@ -15,23 +15,20 @@ import * as css from '../Examples.m.css';
 
 describe('Examples', () => {
 	it('renders', () => {
-		const blockMock = createBlockMock([
-			[
-				listBlock,
-				[
-					{
-						code: 'code',
-						demo: 'demo',
-						example: 'example',
-						exampleName: 'name',
-						overview: 'overview',
-						sandbox: true
-					}
-				]
-			]
+		const mockListBlock = jest.fn();
+		mockListBlock.mockReturnValue([
+			{
+				code: 'code',
+				demo: 'demo',
+				example: 'example',
+				exampleName: 'name',
+				overview: 'overview',
+				sandbox: true
+			}
 		]);
+		const mockBlock = createBlockMock([[listBlock, mockListBlock]]);
 
-		const h = harness(() => <Examples />, { middleware: [[block, blockMock]] });
+		const h = harness(() => <Examples />, { middleware: [[block, mockBlock]] });
 		h.expect(() => (
 			<Landing classes={{ 'dojo.io/Landing': { root: [css.root] } }}>
 				<LandingSubsection>

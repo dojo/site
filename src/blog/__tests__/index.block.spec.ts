@@ -62,15 +62,39 @@ describe('compile block index block', () => {
 		expect(result).toEqual(expectedOutput);
 	});
 
-	it('defaults to english when a locale is not provided', async () => {
+	it('defaults to english when a language is not provided', async () => {
 		const result = await indexBlock({});
 
 		expect(result).toEqual(expectedOutput);
 	});
 
-	it('looks in the appropriate folder based on locale', async () => {
+	it('defaults to english when a language and locale files not found', async () => {
+		mockExistsSync.mockReturnValue(false);
+
+		const result = await indexBlock({});
+
+		expect(result).toEqual(expectedOutput);
+	});
+
+	it('looks in the appropriate folder based on language', async () => {
 		const result = await indexBlock({ language: 'fr', locale: 'fr' });
 
 		expect(result).toEqual(expectedOutput.map((file) => file.replace('en', 'fr')));
+	});
+
+	it('looks in the appropriate folder based on locale when language file not found', async () => {
+		mockExistsSync
+			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true)
+			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true)
+			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true)
+			.mockReturnValueOnce(false)
+			.mockReturnValueOnce(true);
+
+		const result = await indexBlock({ language: 'zh', locale: 'zh-CN' });
+
+		expect(result).toEqual(expectedOutput.map((file) => file.replace('en', 'zh-CN')));
 	});
 });

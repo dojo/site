@@ -10,8 +10,8 @@ interface LearnSectionMenuProperties {
 	path: string;
 	repo: string;
 	branch: string;
-	language?: string;
-	locale?: string;
+	language: string;
+	locale: string;
 }
 
 const factory = create({ theme, block }).properties<LearnSectionMenuProperties>();

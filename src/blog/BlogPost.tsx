@@ -1,6 +1,8 @@
 import { tsx, create, isVNode } from '@dojo/framework/core/vdom';
 import block from '@dojo/framework/core/middleware/block';
 import Link from '@dojo/framework/routing/Link';
+import { decorate } from '@dojo/framework/core/util';
+import { VNode } from '@dojo/framework/core/interfaces';
 
 import LandingSubsection from '../landing/LandingSubsection';
 import Page from '../page/Page';
@@ -8,8 +10,6 @@ import Page from '../page/Page';
 import postBlock from './post.block';
 
 import * as css from './BlogPost.m.css';
-import { decorate } from '@dojo/framework/core/util';
-import { VNode } from '@dojo/framework/core/interfaces';
 
 export interface PostProperties {
 	excerpt?: boolean;

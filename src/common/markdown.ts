@@ -100,7 +100,7 @@ function clean(node: any) {
 		node.properties.target = '_blank';
 	}
 	// Make github links prettier
-	if (node.children && node.children.length === 1) {
+	if (node.children && node.children.length > 0) {
 		const child = node.children[0];
 		if (child.type === 'text') {
 			const match = /http[s]?:\/\/github.com\/[^\/]+\/[^\/]+\/[^\/]+\/([0-9]+)/g.exec(child.value);

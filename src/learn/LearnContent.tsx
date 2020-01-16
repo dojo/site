@@ -13,8 +13,8 @@ interface LearnContentProperties {
 	repo: string;
 	branch: string;
 	url?: string;
-	language?: string;
-	locale?: string;
+	language: string;
+	locale: string;
 }
 
 const factory = create({ theme, block }).properties<LearnContentProperties>();

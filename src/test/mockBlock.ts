@@ -9,7 +9,7 @@ export function createBlockMock(blocks: [Function, any][] = []) {
 		return (block: any) => {
 			const mock = blocksMockMap.get(block);
 			if (mock) {
-				return () => mock;
+				return mock;
 			}
 			return (() => {}) as any;
 		};

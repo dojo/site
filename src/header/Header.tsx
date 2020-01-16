@@ -55,6 +55,7 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 						return (
 							<li classes={[themedCss.menuItem, item === 'Playground' && themedCss.playgroundMenuItem]}>
 								<Link
+									key={item}
 									classes={css.menuLink}
 									onClick={() => {
 										icache.set('open', false);
