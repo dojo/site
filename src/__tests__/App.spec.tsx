@@ -66,7 +66,8 @@ describe('App', () => {
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{ outlet: 'examples', content: <Examples /> },
 		{ outlet: 'playground', content: <Playground /> },
-		{ outlet: 'roadmap', content: <Roadmap /> }
+		{ outlet: 'roadmap', content: <Roadmap /> },
+		{ outlet: 'dojoswag', content: <DojoSwag /> }
 	];
 
 	it('outlets render contents', () => {
