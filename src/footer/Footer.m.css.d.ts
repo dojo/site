@@ -9,3 +9,4 @@ export const copyright: string;
 export const linksWrapper: string;
 export const link: string;
 export const externalLink: string;
+export const wrapper: string;
