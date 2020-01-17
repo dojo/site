@@ -1,7 +1,7 @@
 ---
 title: Scaffolding your first Dojo app with the Dojo CLI
 date: 2020-01-13
-author: Anthony Gubler
+author: Anthony Gubler & Rene Rubalcava
 ---
 
 ![Dojo CLI](assets/blog/dojo-cli-template-app/featured.svg)
