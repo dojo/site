@@ -196,6 +196,7 @@
 	.nav {
 		width: calc(var(--grid-size) * 25);
 		height: 100%;
+		background: linear-gradient(180deg, var(--header-background-color), var(--color-blue));
 	}
 
 	.main {
