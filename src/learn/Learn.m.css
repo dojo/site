@@ -187,3 +187,46 @@
 		background-color: rgba(18, 18, 18, 0.2);
 	}
 }
+
+@media (min-width: 992px) {
+	.root {
+		display: flex;
+	}
+
+	.nav {
+		width: calc(var(--grid-size) * 25);
+		height: 100%;
+		background: linear-gradient(180deg, var(--header-background-color), var(--color-blue));
+	}
+
+	.main {
+		margin-top: 0;
+		margin-left: calc(var(--grid-size) * 25);
+	}
+
+	.menuList {
+		width: 100%;
+		display: block;
+	}
+
+	.menuItem {
+		display: block;
+		padding: calc(var(--grid-size) / 2) var(--grid-size);
+		margin: var(--grid-size);
+	}
+
+	.menuLink {
+		opacity: 0.5;
+	}
+
+	.selected,
+	.menuLink:hover {
+		opacity: 1;
+	}
+
+	.menuLink:after,
+	.menuLink:hover::before,
+	.selected::before {
+		background-color: transparent;
+	}
+}
