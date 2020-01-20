@@ -16,7 +16,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
 	echo "* $name: $nowurl" &>> deployments.txt
 else
 	if [ "$TRAVIS_BRANCH" = "master" ] ; then
-		nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public --name=$name --scope=dojo --target=production)
+		nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public --name=$name --scope=dojo --prod)
 		if [ "$nowurl" = "" ] ; then
 			echo "Now deployment failed"
 			exit 1
