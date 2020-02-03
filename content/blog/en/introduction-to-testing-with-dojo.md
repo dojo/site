@@ -14,7 +14,7 @@ There are a number of different types of testing that help to ensure that an app
 
 When creating a Dojo application using the Dojo [cli-create-app](https://dojo.io/blog/dojo-cli-template-app) command, the scaffolded project includes a set of unit tests to help guide unit testing your application.
 
-![test structure](assets/blog/introduction-to-testing-with-dojo/test-structure.png)
+![test structure](assets/blog/introduction-to-testing-with-dojo/test-structure.svg)
 
 ## Running Tests
 
@@ -29,10 +29,6 @@ You can also run the tests using the predefined scripts in the `package.json`.
 ```bash
 npm test
 ```
-
-The results should get output to the terminal
-
-![test results](assets/blog/introduction-to-testing-with-dojo/test-results.png)
 
 So what do these tests look like?
 
@@ -59,8 +55,6 @@ Dojo includes a [testing harness](https://dojo.io/learn/testing/dojo-test-harnes
 ## Assertion Templates
 
 The `Profile` widget tested above has the `username` property that we can test against in the output. We could rewrite the entirety of the expected render output for each test (that's a lot of typing) or we could create an assertion to test against that would allow us to change the expected properties on each run. An important aspect of assertion templates is they ensure assertions are made for an entire unit, which in our case is always the entire render output. It can be tempting be to trigger an action and then only partially assert the section of the render output that the action is expected to affect. Partially asserting a widget's render output can be problematic as it means a test can "pass", but in fact the render output outside of the section asserted was affected and not caught, leading to uncaught bugs in a widget's structure. This means that we would not know if the action of triggering the event handler had any unexpected affects on other areas of a widget's render output.
-
-and lead to uncaught bugs  a widgets structure means that we don't know if the action of triggering the event handler had any unexpected affects on other areas of a widget's render output.
 
 To review how assertion templates get used, we need to update the `Profile` widget's property API to make the `username` optional.
 
