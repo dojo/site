@@ -10,7 +10,7 @@ author: Anthony Gubler & Rene Rubalcava
 
 In addition to the standard features needed to build a multitude of applications, Dojo also comes with a complete testing module to help ensure that testing your application is as painless as possible. Having a well tested application is an important consideration when building a product that you need to ship to users. A well tested application will reduce negative impact on your users and increases confidence that adding new features won't introduce regressions. Good unit tests also help other engineers understand your codebase and intent when making changes in the future.
 
-Of course there are a number of different types of testing that help to ensure that an application has fewer bugs but for the purpose of this blog we'll be concentrating on unit testing.
+There are a number of different types of testing that help to ensure that an application has fewer bugs. Here we'll be concentrating on unit testing.
 
 When creating a Dojo application using the Dojo [cli-create-app](https://dojo.io/blog/dojo-cli-template-app) command, the scaffolded project includes a set of unit tests to help guide unit testing your application.
 
