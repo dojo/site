@@ -102,7 +102,7 @@ describe('Profile', () => {
 
 We can continue testing against our base assertion. In our assertion template, we add an `assertion-key` property to the node so that we can update the template for additional test scenarios.
 
-The second test scenario of the `Profile` widget is to pass the `username` property, so we need to add a new assertion template. This could be created like the `baseAssertion` and for this example would not require much effort to create and maintain. However, as widgets grow in complexity, this would quickly become unmanageable. Instead the `assertionTemplate` [API](https://dojo.io/learn/testing/assertion-templates) can be used to factory an updated template.
+The second test scenario of the `Profile` widget is to pass the `username` property, so we need to add a new assertion template. This could be created like the `baseAssertion` and for this example would not require much effort to create and maintain. However, as widgets grow in complexity, this would quickly become unmanageable. Instead the `assertionTemplate` [API](https://dojo.io/learn/testing/assertion-templates) can be used to create a new template reflecting the updates required.
 
 > src/tests/unit/widgets/Profile.tsx
 
