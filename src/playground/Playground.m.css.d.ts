@@ -6,6 +6,7 @@ export const selected: string;
 export const menu: string;
 export const wrapper: string;
 export const parent: string;
+export const chevron: string;
 export const content: string;
 export const list: string;
 export const link: string;
