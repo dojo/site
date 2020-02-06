@@ -52,6 +52,15 @@ blockquote > p {
 	}
 }
 
+@media (min-width: 992px) {
+	:target::before {
+		content: '';
+		display: block;
+		height: 60px;
+		margin: -60px 0 0;
+	}
+}
+
 .refguide-link {
 	margin-right: 5px;
 }

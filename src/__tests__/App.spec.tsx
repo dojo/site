@@ -7,7 +7,6 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 
 import Blog from '../blog/Blog';
 import BlogPosts from '../blog/BlogPosts';
-import Examples from '../examples/Examples';
 import Home from '../home/Home';
 import Playground from '../playground/Playground';
 import Header from '../header/Header';
@@ -42,8 +41,11 @@ describe('App', () => {
 					}}
 				/>
 				<BlogPosts />
-				<Outlet key="examples" id="examples" renderer={() => <Examples />} />
-				<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+				<Outlet
+					key="playground"
+					id="playground"
+					renderer={() => <Playground branch="v6" example="sandbox" />}
+				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 				<Outlet
 					key="learn"
@@ -81,8 +83,20 @@ describe('App', () => {
 			args: [{ router: { link: () => {} }, isExact: () => true }]
 		},
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
-		{ outlet: 'examples', content: <Examples /> },
-		{ outlet: 'playground', content: <Playground /> },
+		{
+			outlet: 'playground',
+			content: <Playground branch="v6" example="an-example" />,
+			args: [
+				{
+					params: {
+						example: 'an-example'
+					},
+					router: {
+						link: () => 'url/an-example'
+					}
+				}
+			]
+		},
 		{ outlet: 'roadmap', content: <Roadmap /> },
 		{ outlet: 'roadmap', content: <Roadmap /> },
 		{
@@ -132,10 +146,7 @@ describe('App', () => {
 		const h = harness(() => <App />);
 		pages.forEach(({ outlet, content, args = [] }) => {
 			const renderer = h.trigger(`@${outlet}`, 'renderer', ...args);
-			h.expect(
-				() => content,
-				() => renderer
-			);
+			h.expect(() => content, () => renderer);
 		});
 	});
 });

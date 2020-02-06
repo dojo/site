@@ -2,6 +2,7 @@ import { create, tsx } from '@dojo/framework/core/vdom';
 import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 
+import Menu from '../menu/Menu';
 import Link from '../link/ActiveLink';
 import { getLanguageFromLocale } from '../util/language';
 
@@ -61,37 +62,23 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 
 	return (
 		<div classes={themedCss.root}>
-			<nav classes={themedCss.nav}>
-				<ul classes={themedCss.menuList}>
-					{guides.map((guide) => {
-						const {
-							name,
-							directory,
-							repo = sources.framework.repo,
-							branch = sources.framework.branch
-						} = guide;
+			<Menu
+				links={guides.map((guide) => {
+					const { name, directory, repo = sources.framework.repo, branch = sources.framework.branch } = guide;
 
-						return (
-							<li classes={themedCss.menuItem}>
-								<Link
-									to="learn"
-									classes={css.menuLink}
-									params={{
-										guide: directory || name.toLowerCase().replace(' ', '-'),
-										page: 'introduction',
-										repo,
-										branch
-									}}
-									matchParams={{ guide: directory || name.toLowerCase().replace(' ', '-') }}
-									activeClasses={[css.selected]}
-								>
-									{name}
-								</Link>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
+					return {
+						label: name,
+						to: 'learn',
+						params: {
+							guide: directory || name.toLowerCase().replace(' ', '-'),
+							page: 'introduction',
+							repo,
+							branch
+						},
+						matchParams: { guide: directory || name.toLowerCase().replace(' ', '-') }
+					};
+				})}
+			/>
 			<main classes={themedCss.main}>
 				<div classes={themedCss.menu}>
 					<ul classes={themedCss.columnMenuList}>

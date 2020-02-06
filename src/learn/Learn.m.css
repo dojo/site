@@ -2,61 +2,6 @@
 	width: 100%;
 }
 
-.nav {
-	background: linear-gradient(110deg, var(--color-purple), var(--color-blue));
-	position: fixed;
-	width: 100%;
-	display: flex;
-	flex-wrap: nowrap;
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	-ms-overflow-style: -ms-autohiding-scrollbar;
-	z-index: 10;
-}
-
-.nav::-webkit-scrollbar {
-	display: none;
-}
-
-.menuList {
-	list-style: none;
-	display: flex;
-	padding: 0;
-	margin: 0;
-	height: auto;
-	width: auto;
-	background: none;
-}
-
-.menuItem {
-	font-size: 15px;
-	line-height: 24px;
-	display: inline-block;
-	text-decoration: none;
-	position: relative;
-	white-space: nowrap;
-	padding: var(--grid-size) calc(var(--grid-size) * 2);
-}
-
-.menuLink {
-	color: white;
-}
-
-.menuLink:hover {
-	text-decoration: none;
-	color: white;
-}
-
-.menuLink:hover::before {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	content: '';
-	width: 100%;
-	height: 4px;
-	background-color: rgba(18, 18, 18, 0.5);
-}
-
 .main {
 	margin-top: 44px;
 	display: flex;
@@ -101,30 +46,7 @@
 	font-weight: bold;
 }
 
-.selected::before {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	content: '';
-	width: 100%;
-	height: 4px;
-	background-color: white;
-}
-
-.menuLink::after {
-	position: absolute;
-	left: 0;
-	content: '';
-	width: 1px;
-	height: 24px;
-	background-color: rgba(18, 18, 18, 0.2);
-}
-
 @media (max-width: 768px) {
-	.nav {
-		position: inherit;
-	}
-
 	.main {
 		margin-top: 0;
 		display: block;
@@ -193,40 +115,8 @@
 		display: flex;
 	}
 
-	.nav {
-		width: calc(var(--grid-size) * 25);
-		height: 100%;
-		background: linear-gradient(180deg, var(--header-background-color), var(--color-blue));
-	}
-
 	.main {
 		margin-top: 0;
 		margin-left: calc(var(--grid-size) * 25);
-	}
-
-	.menuList {
-		width: 100%;
-		display: block;
-	}
-
-	.menuItem {
-		display: block;
-		padding: calc(var(--grid-size) / 2) var(--grid-size);
-		margin: var(--grid-size);
-	}
-
-	.menuLink {
-		opacity: 0.5;
-	}
-
-	.selected,
-	.menuLink:hover {
-		opacity: 1;
-	}
-
-	.menuLink:after,
-	.menuLink:hover::before,
-	.selected::before {
-		background-color: transparent;
 	}
 }

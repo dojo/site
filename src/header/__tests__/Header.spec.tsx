@@ -62,19 +62,6 @@ describe('Header', () => {
 							Learn
 						</Link>
 					</li>
-					<li classes={[css.menuItem, false]}>
-						<Link
-							key="Examples"
-							classes={css.menuLink}
-							onClick={noop}
-							to="examples"
-							matchParams={{}}
-							params={{}}
-							activeClasses={[css.selected]}
-						>
-							Examples
-						</Link>
-					</li>
 					<li classes={[css.menuItem, css.playgroundMenuItem]}>
 						<Link
 							key="Playground"

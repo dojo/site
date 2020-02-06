@@ -4,40 +4,121 @@ import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/ActiveLink';
 import i18n from '@dojo/framework/core/middleware/i18n';
 
+import Menu from '../../menu/Menu';
+
 import createI18nMock from '../../test/mockI18n';
 
 import LearnContent from '../LearnContent';
 import LearnSectionMenu from '../LearnSectionMenu';
 import * as css from '../Learn.m.css';
-import Learn, { guides, sources } from '../Learn';
+import Learn from '../Learn';
 
 describe('Learn', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={css.root}>
-			<nav classes={css.nav}>
-				<ul classes={css.menuList}>
-					{guides.map(({ name: guide }) => {
-						return (
-							<li classes={css.menuItem}>
-								<Link
-									to="learn"
-									classes={css.menuLink}
-									params={{
-										guide: guide.toLowerCase().replace(' ', '-'),
-										page: 'introduction',
-										repo: sources.framework.repo,
-										branch: sources.framework.branch
-									}}
-									matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
-									activeClasses={[css.selected]}
-								>
-									{guide}
-								</Link>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
+			<Menu
+				links={[
+					{
+						label: 'Overview',
+						to: 'learn',
+						params: {
+							guide: 'overview',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'overview' }
+					},
+					{
+						label: 'Creating Widgets',
+						to: 'learn',
+						params: {
+							guide: 'creating-widgets',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'creating-widgets' }
+					},
+					{
+						label: 'Middleware',
+						to: 'learn',
+						params: {
+							guide: 'middleware',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'middleware' }
+					},
+					{
+						label: 'Building',
+						to: 'learn',
+						params: {
+							guide: 'building',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'building' }
+					},
+					{
+						label: 'I18n',
+						to: 'learn',
+						params: {
+							guide: 'i18n',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'i18n' }
+					},
+					{
+						label: 'Styling',
+						to: 'learn',
+						params: {
+							guide: 'styling',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'styling' }
+					},
+					{
+						label: 'Stores',
+						to: 'learn',
+						params: {
+							guide: 'stores',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'stores' }
+					},
+					{
+						label: 'Routing',
+						to: 'learn',
+						params: {
+							guide: 'routing',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'routing' }
+					},
+					{
+						label: 'Testing',
+						to: 'learn',
+						params: {
+							guide: 'testing',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'v6'
+						},
+						matchParams: { guide: 'testing' }
+					}
+				]}
+			/>
 			<main classes={css.main}>
 				<div classes={css.menu}>
 					<ul classes={css.columnMenuList}>

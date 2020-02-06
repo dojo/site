@@ -6,7 +6,6 @@
     "build:dev": "dojo build -m=dev -s -w",
     "deploy:now": "npm run build && cp now.json ./output/dist && npx now ./output/dist --public",
     "lint:tslint": "tslint -p .",
-    "lint:prettier": "prettier -l \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "lint": "tsc && run-p lint:*",
     "prettier": "prettier --write \"{src,tests,scripts}/**/*.{ts,tsx,css}\"",
     "test": "jest",
