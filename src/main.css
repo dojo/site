@@ -52,7 +52,7 @@ blockquote > p {
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
 	:target::before {
 		content: '';
 		display: block;

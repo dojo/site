@@ -2,14 +2,13 @@ import { tsx, create } from '@dojo/framework/core/vdom';
 import i18n from '@dojo/framework/core/middleware/i18n';
 import block from '@dojo/framework/core/middleware/block';
 import theme from '@dojo/framework/core/middleware/theme';
-import Link from '@dojo/framework/routing/Link';
 import { RenderResult } from '@dojo/framework/core/interfaces';
 
-import listBlock from './list.block';
+import Menu from '../menu/Menu';
 
+import listBlock from './list.block';
 import * as css from './Playground.m.css';
 import bundle from './Playground.nls';
-
 interface PlaygroundProperties {
 	branch: string;
 	example: string;
@@ -44,30 +43,22 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 
 	return (
 		<div classes={themedCss.root}>
-			<div classes={themedCss.menu}>
-				<div classes={themedCss.wrapper}>
-					<div classes={themedCss.content}>
-						<ul classes={themedCss.list}>
-							<li classes={themedCss.listItem}>
-								<Link to="playground" params={{ example: 'sandbox' }} classes={themedCss.link}>
-									{messages.sandbox}
-								</Link>
-							</li>
-							{examples.map((example) => (
-								<li classes={themedCss.listItem}>
-									<Link
-										to="playground"
-										params={{ example: example.exampleName }}
-										classes={themedCss.link}
-									>
-										{example.example.children}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
-					<div classes={themedCss.parent}>{name}</div>
-				</div>
+			<Menu
+				desktopStyle="dropdown"
+				activeName={name}
+				links={[
+					{
+						label: messages.sandbox,
+						to: 'playground',
+						params: { example: 'sandbox' }
+					},
+					...examples.map((example) => ({
+						label: example.example.children,
+						to: 'playground',
+						params: { example: example.exampleName }
+					}))
+				]}
+			>
 				{githubUrl && (
 					<a
 						href={githubUrl}
@@ -91,7 +82,7 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 						</svg>
 					</a>
 				)}
-			</div>
+			</Menu>
 			<iframe classes={themedCss.iframe} src={url} />
 		</div>
 	);

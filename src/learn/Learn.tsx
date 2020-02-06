@@ -63,6 +63,7 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 	return (
 		<div classes={themedCss.root}>
 			<Menu
+				desktopStyle="left"
 				links={guides.map((guide) => {
 					const { name, directory, repo = sources.framework.repo, branch = sources.framework.branch } = guide;
 

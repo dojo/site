@@ -133,7 +133,7 @@
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
 	.wrapper {
 		margin-left: calc(var(--grid-size) * 25);
 		width: calc(100% - var(--grid-size) * 25);

@@ -110,7 +110,7 @@
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
 	.root {
 		display: flex;
 	}
