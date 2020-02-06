@@ -55,12 +55,10 @@ export default factory(function Menu({ middleware: { theme }, properties, childr
 						})}
 					</ul>
 				</div>
-				{activeName && (
-					<div classes={themedCss.dropdownParent}>
-						{activeName}
-						<span classes={themedCss.dropdownChevron}></span>
-					</div>
-				)}
+				<div classes={themedCss.dropdownParent}>
+					{activeName}
+					<span classes={themedCss.dropdownChevron}></span>
+				</div>
 			</div>
 			{children()}
 		</nav>

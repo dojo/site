@@ -17,6 +17,7 @@ describe('Learn', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={css.root}>
 			<Menu
+				desktopStyle="left"
 				links={[
 					{
 						label: 'Overview',

@@ -3,8 +3,8 @@ import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
 import { tsx } from '@dojo/framework/core/vdom';
 import { DefaultMiddlewareResult } from '@dojo/framework/core/interfaces';
 import block from '@dojo/framework/core/middleware/block';
-import Link from '@dojo/framework/routing/Link';
 
+import Menu from '../../menu/Menu';
 import createBlockMock from '../../test/mockBlock';
 
 import listBlock from '../list.block';
@@ -20,32 +20,28 @@ describe('Playground', () => {
 
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={css.root}>
-			<div assertion-key="menu" classes={css.menu}>
-				<div classes={css.wrapper}>
-					<div classes={css.content}>
-						<ul classes={css.list}>
-							<li classes={css.listItem}>
-								<Link to="playground" params={{ example: 'sandbox' }} classes={css.link}>
-									{messages.sandbox}
-								</Link>
-							</li>
-							<li classes={css.listItem}>
-								<Link to="playground" params={{ example: 'name' }} classes={css.link}>
-									Example Name
-								</Link>
-							</li>
-							<li classes={css.listItem}>
-								<Link to="playground" params={{ example: 'name2' }} classes={css.link}>
-									Example Name 2
-								</Link>
-							</li>
-						</ul>
-					</div>
-					<div assertion-key="title" classes={css.parent}>
-						{messages.sandbox}
-					</div>
-				</div>
-			</div>
+			<Menu
+				assertion-key="menu"
+				desktopStyle="dropdown"
+				activeName={messages.sandbox}
+				links={[
+					{
+						label: messages.sandbox,
+						to: 'playground',
+						params: { example: 'sandbox' }
+					},
+					{
+						label: ['Example Name'],
+						to: 'playground',
+						params: { example: 'name' }
+					},
+					{
+						label: ['Example Name 2'],
+						to: 'playground',
+						params: { example: 'name2' }
+					}
+				]}
+			></Menu>
 			<iframe
 				classes={css.iframe}
 				src="https://codesandbox.io/embed/github/dojo/dojo-codesandbox-template/tree/master/?autoresize=1&hidenavigation=1"
@@ -104,8 +100,8 @@ describe('Playground', () => {
 		h.expect(
 			baseAssertion
 				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/v6/name')
-				.setChildren('~title', () => ['Example Name'])
-				.append('~menu', () => githubLink('v6', 'name', 'Example Name'))
+				.setProperty('~menu', 'activeName', ['Example Name'])
+				.setChildren('~menu', () => githubLink('v6', 'name', 'Example Name'))
 		);
 	});
 
@@ -115,8 +111,8 @@ describe('Playground', () => {
 		h.expect(
 			baseAssertion
 				.setProperty('iframe', 'src', 'demo2/url')
-				.setChildren('~title', () => ['Example Name 2'])
-				.append('~menu', () => githubLink('v6', 'name2', 'Example Name 2'))
+				.setProperty('~menu', 'activeName', ['Example Name 2'])
+				.setChildren('~menu', () => githubLink('v6', 'name2', 'Example Name 2'))
 		);
 	});
 
