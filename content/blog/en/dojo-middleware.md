@@ -6,6 +6,8 @@ author: Anthony Gubler & Rene Rubalcava
 
 Dojo provides a [middleware system](https://dojo.io/learn/middleware/introduction) that you can use in developing widgets for your applications. There is a comprehensive list of [available middleware](https://dojo.io/learn/middleware/available-middleware) that you can use to manage local widget state, styling, or DOM related information.
 
+<!-- more -->
+
 Middleware is really interesting because they can be used to help you interact with the DOM or with the properties of your widget.
 
 Middleware is created using the same factory used to create a widget, except instead of returning a vnode, you return an object or function that defines the API of the middleware and can be used to do some extra work for your widget.
