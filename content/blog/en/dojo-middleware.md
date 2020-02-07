@@ -10,7 +10,7 @@ Dojo provides a [middleware system](https://dojo.io/learn/middleware/introductio
 
 Middleware is really interesting because they can be used to help you interact with the DOM or with the properties of your widget.
 
-Middleware is created using the same factory used to create a widget, except instead of returning a vnode, you return an object or function that defines the API of the middleware and can be used to do some extra work for your widget.
+Middleware is created with the same factory used to create a widget, except instead of returning a vnode, you return an object or function that defines the API of the middleware and can be used to do some extra work for your widget.
 
 The Dojo documentation touches on [creating your own middleware](https://dojo.io/learn/middleware/middleware-fundamentals#creating-middleware). How could you implement your own custom middleware for your own widgets?
 
