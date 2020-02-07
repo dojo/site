@@ -146,7 +146,10 @@ describe('App', () => {
 		const h = harness(() => <App />);
 		pages.forEach(({ outlet, content, args = [] }) => {
 			const renderer = h.trigger(`@${outlet}`, 'renderer', ...args);
-			h.expect(() => content, () => renderer);
+			h.expect(
+				() => content,
+				() => renderer
+			);
 		});
 	});
 });

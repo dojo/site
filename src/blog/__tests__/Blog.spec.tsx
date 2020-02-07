@@ -48,7 +48,10 @@ describe('Blog', () => {
 		const mockI18n = createI18nMock('zh-CN');
 
 		const h = harness(() => <Blog />, {
-			middleware: [[block, blockMock], [i18n, mockI18n]]
+			middleware: [
+				[block, blockMock],
+				[i18n, mockI18n]
+			]
 		});
 		h.expect(baseAssertion);
 
