@@ -1,7 +1,25 @@
 @import '../variables.css';
 
-.iframe {
+.root {
+	width: 100%;
+	height: calc(100vh - var(--header-size));
 	margin-bottom: calc(var(--grid-size) * -2);
+	display: flex;
+	flex-direction: column;
+}
+
+.iframe {
 	border: none;
 	flex-grow: 1;
+	height: calc(100vh - var(--header-size) - var(--menu-height));
+	width: 100%;
+}
+
+.iconLink {
+	position: relative;
+	z-index: 4;
+	display: flex;
+	margin-right: calc(var(--grid-size) * 1.5);
+	width: 28px;
+	height: 28px;
 }

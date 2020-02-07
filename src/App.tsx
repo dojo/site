@@ -6,7 +6,6 @@ import Outlet from '@dojo/framework/routing/Outlet';
 import Home from './home/Home';
 import Blog from './blog/Blog';
 import BlogPosts from './blog/BlogPosts';
-import Examples from './examples/Examples';
 import Playground from './playground/Playground';
 import Roadmap from './roadmap/Roadmap';
 import Learn from './learn/Learn';
@@ -45,8 +44,11 @@ export default factory(function App({ middleware: { i18n } }) {
 					}}
 				/>
 				<BlogPosts />
-				<Outlet key="examples" id="examples" renderer={() => <Examples />} />
-				<Outlet key="playground" id="playground" renderer={() => <Playground />} />
+				<Outlet
+					key="playground"
+					id="playground"
+					renderer={({ params: { example } }) => <Playground branch="v6" example={example} />}
+				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 				<Outlet
 					key="learn"

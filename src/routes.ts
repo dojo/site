@@ -17,12 +17,11 @@ export default [
 		]
 	},
 	{
-		path: 'examples',
-		outlet: 'examples'
-	},
-	{
-		path: 'playground',
-		outlet: 'playground'
+		path: 'playground/{example}',
+		outlet: 'playground',
+		defaultParams: {
+			example: 'sandbox'
+		}
 	},
 	{
 		path: 'roadmap',

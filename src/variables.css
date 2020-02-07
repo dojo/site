@@ -67,7 +67,8 @@
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 6);
-	--footer-size: calc(var(--grid-size) * 4.4);
+
+	--menu-height: calc(var(--grid-size) * 4.4);
 
 	--content-top-padding: calc(var(--grid-size) * 6);
 	--content-padding: calc(var(--grid-size) * 3);
@@ -90,6 +91,5 @@
 		--header-size: calc(var(--grid-size) * 5);
 		--content-top-padding: var(--grid-size);
 		--content-padding: var(--grid-size);
-		--footer-size: calc(var(--grid-size) * 3.9);
 	}
 }

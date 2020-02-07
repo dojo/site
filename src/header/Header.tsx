@@ -7,7 +7,7 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
 
-const menuItems = ['Blog', 'Learn', 'Examples', 'Playground', 'Roadmap'];
+const menuItems = ['Blog', 'Learn', 'Playground', 'Roadmap'];
 
 const factory = create({ theme, icache });
 
