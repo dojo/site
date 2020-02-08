@@ -9,9 +9,11 @@ import Menu from '../menu/Menu';
 import listBlock from './list.block';
 import * as css from './Playground.m.css';
 import bundle from './Playground.nls';
+
 interface PlaygroundProperties {
 	branch: string;
 	example: string;
+	type: string;
 }
 
 const factory = create({ theme, block, i18n }).properties<PlaygroundProperties>();
@@ -21,17 +23,19 @@ const SANDBOX_URL =
 
 export default factory(function Playground({ middleware: { theme, block, i18n }, properties }) {
 	const { messages } = i18n.localize(bundle);
-	const { branch, example: exampleName } = properties();
+	const { branch, example: exampleName, type } = properties();
 	const examples = block(listBlock)({ branch }) || [];
 	const themedCss = theme.classes(css);
 
 	let url = SANDBOX_URL;
 	let githubUrl;
 	let name: RenderResult = messages.sandbox;
+	let hasSandbox = false;
 	if (exampleName !== 'sandbox') {
 		const example = examples.find((example) => example.exampleName === exampleName);
 		if (example) {
-			if (example.sandbox) {
+			hasSandbox = Boolean(example.sandbox);
+			if (hasSandbox && type === 'sandbox') {
 				url = `https://codesandbox.io/s/github/dojo/examples/tree/${branch}/${example.exampleName}`;
 			} else {
 				url = example.demo;
@@ -39,6 +43,22 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 			name = example.example.children;
 			githubUrl = `https://github.com/dojo/examples/tree/${branch}/${example.exampleName}`;
 		}
+	}
+
+	const subLinks = [
+		{
+			label: messages.demo,
+			to: 'playground-example',
+			params: { example: exampleName, type: 'demo' }
+		}
+	];
+
+	if (hasSandbox) {
+		subLinks.push({
+			label: messages.sandbox,
+			to: 'playground-example',
+			params: { example: exampleName, type: 'sandbox' }
+		});
 	}
 
 	return (
@@ -49,15 +69,17 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 				links={[
 					{
 						label: messages.sandbox,
-						to: 'playground',
-						params: { example: 'sandbox' }
+						to: 'playground'
 					},
 					...examples.map((example) => ({
 						label: example.example.children,
-						to: 'playground',
-						params: { example: example.exampleName }
+						to: 'playground-example',
+						params: { example: example.exampleName, type: 'demo' },
+						matchParams: { example: example.exampleName }
 					}))
 				]}
+				subActiveName={type === 'sandbox' ? messages.sandbox : messages.demo}
+				subLinks={exampleName !== 'sandbox' ? subLinks : undefined}
 			>
 				{githubUrl && (
 					<a
@@ -68,12 +90,12 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 						classes={themedCss.iconLink}
 					>
 						<svg
-							style="fill: white;"
 							height="28px"
 							viewBox="0 0 16 16"
 							version="1.1"
 							width="28"
 							aria-hidden="true"
+							classes={themedCss.icon}
 						>
 							<path
 								fill-rule="evenodd"

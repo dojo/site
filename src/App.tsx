@@ -47,7 +47,14 @@ export default factory(function App({ middleware: { i18n } }) {
 				<Outlet
 					key="playground"
 					id="playground"
-					renderer={({ params: { example } }) => <Playground branch="v6" example={example} />}
+					renderer={() => <Playground branch="v6" example="sandbox" type="sandbox" />}
+				/>
+				<Outlet
+					key="playground-example"
+					id="playground-example"
+					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
+						<Playground branch="v6" example={example} type={type} />
+					)}
 				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 				<Outlet

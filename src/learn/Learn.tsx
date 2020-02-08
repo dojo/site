@@ -1,13 +1,13 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
+import block from '@dojo/framework/core/middleware/block';
 
 import Menu from '../menu/Menu';
-import Link from '../link/ActiveLink';
 import { getLanguageFromLocale } from '../util/language';
 
 import LearnContent from './LearnContent';
-import LearnSectionMenu from './LearnSectionMenu';
+import getSections from './sections.block';
 
 import * as css from './Learn.m.css';
 
@@ -26,7 +26,7 @@ interface LearnProperties {
 	branch?: string;
 }
 
-const factory = create({ theme, i18n }).properties<LearnProperties>();
+const factory = create({ theme, i18n, block }).properties<LearnProperties>();
 
 export const sources = {
 	framework: {
@@ -47,7 +47,7 @@ export const guides: Guide[] = [
 	{ name: 'Testing' }
 ];
 
-export default factory(function Learn({ properties, middleware: { theme, i18n } }) {
+export default factory(function Learn({ properties, middleware: { theme, i18n, block } }) {
 	const { guideName, pageName, url, repo = sources.framework.repo, branch = sources.framework.branch } = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
@@ -60,50 +60,43 @@ export default factory(function Learn({ properties, middleware: { theme, i18n } 
 		locale = localeData.locale;
 	}
 
+	const sections = block(getSections)({ branch, path, page: 'supplemental', repo, language, locale }) || [];
+
 	return (
 		<div classes={themedCss.root}>
 			<Menu
-				desktopStyle="left"
+				desktopStyle="side"
 				links={guides.map((guide) => {
 					const { name, directory, repo = sources.framework.repo, branch = sources.framework.branch } = guide;
+
+					const guideName = directory || name.toLowerCase().replace(' ', '-');
 
 					return {
 						label: name,
 						to: 'learn',
 						params: {
-							guide: directory || name.toLowerCase().replace(' ', '-'),
+							guide: guideName,
 							page: 'introduction',
 							repo,
 							branch
 						},
-						matchParams: { guide: directory || name.toLowerCase().replace(' ', '-') }
+						matchParams: { guide: guideName }
 					};
 				})}
+				subLinks={[
+					{
+						label: 'Introduction',
+						to: 'learn',
+						params: { page: 'introduction' }
+					},
+					...sections.map(({ param, title }) => ({
+						label: title,
+						to: 'learn',
+						params: { page: param }
+					}))
+				]}
 			/>
 			<main classes={themedCss.main}>
-				<div classes={themedCss.menu}>
-					<ul classes={themedCss.columnMenuList}>
-						<li classes={themedCss.columnMenuItem}>
-							<Link
-								key="intro"
-								classes={css.columnMenuLink}
-								to="learn"
-								params={{ page: 'introduction' }}
-								activeClasses={[css.columnMenuLinkSelected]}
-							>
-								Introduction
-							</Link>
-						</li>
-						<LearnSectionMenu
-							key="menu"
-							repo={repo}
-							path={path}
-							branch={branch}
-							language={language}
-							locale={locale}
-						/>
-					</ul>
-				</div>
 				<LearnContent
 					key="content"
 					url={url}

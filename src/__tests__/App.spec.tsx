@@ -44,7 +44,14 @@ describe('App', () => {
 				<Outlet
 					key="playground"
 					id="playground"
-					renderer={() => <Playground branch="v6" example="sandbox" />}
+					renderer={() => <Playground branch="v6" example="sandbox" type="sandbox" />}
+				/>
+				<Outlet
+					key="playground-example"
+					id="playground-example"
+					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
+						<Playground branch="v6" example={example} type={type} />
+					)}
 				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 				<Outlet
@@ -85,14 +92,16 @@ describe('App', () => {
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{
 			outlet: 'playground',
-			content: <Playground branch="v6" example="an-example" />,
+			content: <Playground branch="v6" example="sandbox" type="sandbox" />
+		},
+		{
+			outlet: 'playground-example',
+			content: <Playground branch="v6" example="an-example" type="demo" />,
 			args: [
 				{
 					params: {
-						example: 'an-example'
-					},
-					router: {
-						link: () => 'url/an-example'
+						example: 'an-example',
+						type: 'demo'
 					}
 				}
 			]

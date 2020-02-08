@@ -3,47 +3,15 @@
 }
 
 .main {
-	margin-top: 44px;
 	display: flex;
 }
 
 .content {
-	margin-right: 280px;
-	margin-left: 20px;
-	margin-bottom: 20px;
-	min-width: 300px;
-	max-width: 900px;
-}
-
-.menu {
-	position: fixed;
-	right: 0;
-	width: 260px;
-	height: 100%;
-	box-sizing: border-box;
-	border-left: 1px solid rgba(18, 18, 18, 0.2);
-}
-
-.columnMenuList {
-}
-
-.columnMenuItem {
-	font-size: 14px;
-	line-height: 1.65;
-	color: var(--font-color-inverse);
-	margin: var(--grid-size);
-	padding: calc(var(--grid-size) / 2) 0;
-	text-decoration: none;
-	position: relative;
-	list-style: none;
-}
-
-.columnMenuLink {
-	color: var(--header-background-color);
-}
-
-.columnMenuLinkSelected {
-	font-weight: bold;
+	margin-right: calc(var(--grid-size) * 33);
+	margin-left: calc(var(--grid-size) * 2);
+	margin-bottom: calc(var(--grid-size) * 2);
+	min-width: calc(var(--grid-size) * 30);
+	max-width: calc(var(--grid-size) * 90);
 }
 
 @media (max-width: 768px) {
@@ -55,58 +23,11 @@
 	.content {
 		margin-right: 20px;
 	}
+}
 
-	.menu {
-		background: white;
-		width: 100%;
-		display: flex;
-		flex-wrap: nowrap;
-		position: inherit;
-		overflow: auto;
-		-webkit-overflow-scrolling: touch;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-	}
-
-	.menu::-webkit-scrollbar {
-		display: none;
-	}
-
-	.columnMenuList {
-		list-style: none;
-		display: flex;
-		padding: 0;
-		margin: 0;
-		height: auto;
-		width: auto;
-		background: none;
-	}
-
-	.columnMenuItem {
-		font-size: 14px;
-		line-height: 1.65;
-		display: inline-block;
-		text-decoration: none;
-		position: relative;
-		white-space: nowrap;
-		margin: 0;
-		padding: var(--grid-size) calc(var(--grid-size) * 2);
-	}
-
-	.columnMenuLink {
-		color: black;
-	}
-
-	.columnMenuLink:hover {
-		text-decoration: none;
-	}
-
-	.columnMenuLink::after {
-		position: absolute;
-		left: 0;
-		content: '';
-		width: 1px;
-		height: 22px;
-		background-color: rgba(18, 18, 18, 0.2);
+@media (max-width: 1024px) and (min-width: 769px) {
+	.main {
+		margin-top: var(--menu-height);
 	}
 }
 

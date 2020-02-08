@@ -1,0 +1,96 @@
+.root {
+	display: inline-block;
+	position: relative;
+}
+
+.parent {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	line-height: 30px;
+	height: 30px;
+	color: var(--color-dark-gray);
+	z-index: 2;
+	position: relative;
+	padding: calc(var(--grid-size) * 0.7) calc(var(--grid-size) * 2);
+	color: var(--color-white);
+	white-space: nowrap;
+}
+
+.parent .chevron {
+	border-style: solid;
+	border-width: 2px 2px 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.45em;
+	left: 0.15em;
+	position: relative;
+	vertical-align: top;
+	width: 0.45em;
+	top: -2px;
+	transform: rotate(135deg);
+	margin-left: 8px;
+}
+
+.parent.noDropdown {
+	cursor: inherit;
+}
+
+.content:hover ~ .parent {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	z-index: 0;
+}
+
+.content {
+	position: absolute;
+	top: 0;
+	display: block;
+	z-index: 1;
+	padding-top: var(--menu-height);
+}
+
+.content .list {
+	display: none;
+	background: var(--color-white);
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	height: 100%;
+	padding: var(--grid-size);
+	position: relative;
+	flex-direction: column;
+}
+
+.root:active .list,
+.root:hover .list {
+	display: flex;
+	z-index: 3;
+}
+
+.content .list .link {
+	text-decoration: none;
+	white-space: nowrap;
+	padding-right: calc(var(--grid-size) * 2);
+	color: var(--header-background-color);
+}
+
+.content .listItem {
+	list-style: none;
+	text-align: left;
+	line-height: 30px;
+	height: 30px;
+	padding-left: 10px;
+}
+
+.content .listItem:last-of-type {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+	.root {
+		display: none;
+	}
+}
