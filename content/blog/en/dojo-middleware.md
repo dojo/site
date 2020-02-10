@@ -4,21 +4,21 @@ date: 2020-02-03
 author: Anthony Gubler & Rene Rubalcava
 ---
 
-Dojo provides a [middleware system](https://dojo.io/learn/middleware/introduction) that you can use in developing widgets for your applications. There is a comprehensive list of [available middleware](https://dojo.io/learn/middleware/available-middleware) that you can use to manage local widget state, styling, or DOM related information.
+Dojo provides a [middleware system](https://dojo.io/learn/middleware/introduction) for developing widgets for your applications. There is a comprehensive list of [available middleware](https://dojo.io/learn/middleware/available-middleware) for managing local widget state, styling, or DOM related information.
 
 <!-- more -->
 
-Middleware is really interesting because they can be used to help you interact with the DOM or with the properties of your widget.
+Middleware are really interesting because they can help you interact with the DOM or with the properties of your widget with retaining a reactive architecture.
 
-Middleware is created with the same factory used to create a widget, except instead of returning a vnode, you return an object or function that defines the API of the middleware and can be used to do some extra work for your widget.
+Middleware gets created with the same factory used to create a widget, except instead of returning a `vnode`, an object or function gets returned defining the API of the middleware and can get used to do some extra work for your widget.
 
 The Dojo documentation touches on [creating your own middleware](https://dojo.io/learn/middleware/middleware-fundamentals#creating-middleware). How could you implement your own custom middleware for your own widgets?
 
 ## Validation Middleware
 
-Maybe we're building some form based widgets and we want to provide my own validation. For example, we might want to validate that a phone number is entered correctly.
+Maybe we're building form-based widgets and we want to provide our own validation. For example, we might want to validate that a phone number is entered correctly.
 
-In this case, we're interested in wrapping an input in some form of validation. Firstly we need to create a `PhoneValidator` widget to wrap DOM `input`. The result would look something like this.
+In this case, we're interested in wrapping an input in some form of validation. First, we need to create a `PhoneValidator` widget to wrap DOM `input`. The result would look something like this:
 
 > src/widgets/PhoneNumber.tsx
 
@@ -54,7 +54,7 @@ export const PhoneNumber = factory(function PhoneNumber({ middleware: { icache }
 export default PhoneNumber;
 ```
 
-The idea here is that we want the `PhoneValidator` to place a red or green outline to my input to let me know if it's a valid phone number or not. It's pretty simple, but is something that could be reused across multiple applications.
+Here we want the `PhoneValidator` to place a red or green outline to the input to inform the user if it's a valid phone number or not. It's pretty simple, but is something that could be reused across multiple applications.
 
 > src/widgets/PhoneValidator.tsx
 
@@ -82,9 +82,9 @@ export const PhoneValidator = factory(function PhoneValidator({ children, middle
 export default PhoneValidator;
 ```
 
-The `PhoneValidator` uses some middleware that returns the a `valid` property that is either `true` or `false`. It will also return the `value` of the phone number that was tested. Based on whether the phone number is valid or not, it will use some CSS for a red or green border.
+The `PhoneValidator` uses middleware that returns the a `valid` property that is either `true` or `false`. The middle will also return the `value` of the phone number that was tested. Based on whether the phone number is valid or not, it will provide CSS for a red or green border.
 
-Notice that the `phone` property to the middleware is not passed explicitly to the middleware. By provide the `phoneNumberMiddleware` as a middleware to the `PhoneValidator` widget, the middleware will have access to the properties of the widget. Let's see what that looks like.
+Notice that the `phone` property to the middleware is not passed explicitly to the middleware. By providing the `phoneNumberMiddleware` as a middleware to the `PhoneValidator` widget, the middleware gets access to the properties of the widget. Let's see what that looks like:
 
 > src/middleware/phoneNumberMiddleware.tsx
 
@@ -110,17 +110,17 @@ export const phoneNumberMiddleware = factory(({ properties }) => {
 export default phoneNumberMiddleware;
 ```
 
-The middleware returns a function that will test the phone number and return whether it is valid or not.
+The middleware returns a function that tests the phone number and returns whether it is valid or not.
 
-Here is what this looks like in a sample application.
+View this middleware example in a sample phone validation application.
 
 !(https://codesandbox.io/embed/dojo-custom-middleware-w1f7m?fontsize=14&module=%2Fsrc%2Fmiddleware%2FphoneNumberMiddleware.ts)
 
 ## Geolocation Middleware
 
-You could also do some fun middleware that interacts with the DOM of you widgets. For example, there is the [`intersection`](https://dojo.io/learn/middleware/available-middleware#intersection) and [`resize`](https://dojo.io/learn/middleware/available-middleware#resize) middleware.
+You could also create some fun middleware that interacts with the DOM of your widgets. For example, there are the [`intersection`](https://dojo.io/learn/middleware/available-middleware#intersection) and [`resize`](https://dojo.io/learn/middleware/available-middleware#resize) middleware.
 
-You could use a similar pattern to grab the browsers geolocation.
+You could use a similar pattern to grab the browser's geolocation coordinates.
 
 > src/middleware/geolocation.ts
 
@@ -170,7 +170,7 @@ export const geolocation = factory(({ middleware: { icache } }) => {
 export default geolocation;
 ```
 
-This middleware uses the [`icache`](https://dojo.io/learn/middleware/available-middleware#icache) middleware so that when the geolocation properties are updated, it will invalidate the middleware and this will in turn invalidate the widget so it can re-render with new data.
+This geolocation middleware examples uses the [`icache`](https://dojo.io/learn/middleware/available-middleware#icache) middleware. When the geolocation properties get updated, `icache` will invalidate the geolocation middleware, which then invalidates the widget so the widget can get re-rendered with new geolocation data.
 
 > src/main.tsx
 
@@ -185,7 +185,7 @@ import geolocation from './middleware/geolocation';
 const factory = create({ geolocation });
 
 const App = factory(function App({ middleware: { geolocation } }) {
-	// get my geolocation middleware values
+	// get the geolocation middleware values
 	const { latitude, longitude } = geolocation();
 	return (
 		<div key="container">
@@ -202,12 +202,12 @@ const App = factory(function App({ middleware: { geolocation } }) {
 });
 ```
 
-Here is a demo of what this looks like. You may need to open it in a new window to get your location.
+View a complete demo with geolocation middleware. You may need to open it in a new window to get your location.
 
 !(https://codesandbox.io/embed/dojo-geolocation-middleware-msmvc?fontsize=14&module=%2Fsrc%2Fmiddleware%2Fgeolocation.ts)
 
 ## Summary
 
-There are numerous ways you could build middleware for your applications. Device orientation, mouse interactivity, media queries, hardware devices, drag and drop, full screen, authentication, and so much more. We're looking forward to all the different ways middleware can be implemented into Dojo widgets!
+There are numerous ways you could build middleware for your applications. Device orientation, mouse interactivity, media queries, hardware devices, drag-n-drop, full screen, authentication, and so much more. We're looking forward to seeing all the different ways middleware can be implemented into Dojo widgets!
 
-Adapted from Rene Rubalcava's original post on [learn-dojo](https://learn-dojo.com/dojo-custom-middleware/).
+Adapted with permission from Rene Rubalcava's original [Dojo custom middleware post on learn-dojo](https://learn-dojo.com/dojo-custom-middleware/).
