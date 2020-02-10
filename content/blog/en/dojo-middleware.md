@@ -1,5 +1,5 @@
 ---
-title: Custom Dojo Middleware
+title: How to use middleware to create reusable functionality across widgets
 date: 2020-02-03
 author: Anthony Gubler & Rene Rubalcava
 ---
