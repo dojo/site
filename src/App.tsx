@@ -1,4 +1,4 @@
-import i18nCore from '@dojo/framework/i18n/i18n';
+import { getComputedLocale } from '@dojo/framework/i18n/i18n';
 import { tsx, create } from '@dojo/framework/core/vdom';
 import i18n from '@dojo/framework/core/middleware/i18n';
 import Outlet from '@dojo/framework/routing/Outlet';
@@ -24,8 +24,9 @@ function isRtl(locale: string) {
 export default factory(function App({ middleware: { i18n } }) {
 	let localeDetails = i18n.get();
 	if (!localeDetails || !localeDetails.locale) {
-		let rtl = isRtl(i18nCore.locale);
-		localeDetails = { locale: i18nCore.locale, rtl };
+		const locale = getComputedLocale();
+		let rtl = isRtl(locale);
+		localeDetails = { locale, rtl };
 		i18n.set(localeDetails);
 	}
 	return (
