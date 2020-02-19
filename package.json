@@ -29,7 +29,7 @@
     "@types/node-fetch": "2.3.7",
     "canonical-path": "1.0.0",
     "chokidar-cli": "1.2.2",
-    "codecov": "3.5.0",
+    "codecov": "3.6.5",
     "feed": "4.0.0",
     "fs-extra": "8.1.0",
     "hast-to-hyperscript": "7.0.2",
