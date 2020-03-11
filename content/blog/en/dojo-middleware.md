@@ -4,9 +4,11 @@ date: 2020-02-03
 author: Anthony Gubler & Rene Rubalcava
 ---
 
-Dojo provides a [middleware system](https://dojo.io/learn/middleware/introduction) for developing widgets for your applications. There is a comprehensive list of [available middleware](https://dojo.io/learn/middleware/available-middleware) for managing local widget state, styling, or DOM related information.
+![Dojo middleware image](assets/blog/dojo-middleware/featured.svg)
 
 <!-- more -->
+
+Dojo provides a [middleware system](https://dojo.io/learn/middleware/introduction) for developing widgets for your applications. There is a comprehensive list of [available middleware](https://dojo.io/learn/middleware/available-middleware) for managing local widget state, styling, or DOM related information.
 
 Middleware are really interesting because they can help you interact with the DOM or with the properties of your widget with retaining a reactive architecture.
 
