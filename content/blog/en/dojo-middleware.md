@@ -4,7 +4,7 @@ date: 2020-02-03
 author: Anthony Gubler & Rene Rubalcava
 ---
 
-![Dojo middleware image](assets/blog/dojo-middleware/featured.svg)
+![Dojo middleware image](assets/blog/dojo-middleware/featured.png)
 
 <!-- more -->
 
