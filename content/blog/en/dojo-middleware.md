@@ -1,6 +1,6 @@
 ---
 title: How to use middleware to create reusable functionality across widgets
-date: 2020-02-03
+date: 2020-03-13
 author: Anthony Gubler & Rene Rubalcava
 ---
 
