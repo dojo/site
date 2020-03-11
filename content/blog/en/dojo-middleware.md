@@ -105,9 +105,7 @@ export default phoneNumber;
 
 The middleware returns a function that tests the phone number and returns whether it is valid or not.
 
-View this middleware example in a sample phone validation application.
-
-!(https://codesandbox.io/embed/dojo-custom-middleware-ktivf?fontsize=14&module=%2Fsrc%2Fmiddleware%2FphoneNumberMiddleware.ts)
+View this middleware example in a [sample phone validation application](https://codesandbox.io/embed/dojo-custom-middleware-ktivf?fontsize=14&module=%2Fsrc%2Fmiddleware%2FphoneNumberMiddleware.ts).
 
 ## Geolocation Middleware
 
@@ -178,9 +176,7 @@ const App = factory(function App({ middleware: { geolocation } }) {
 });
 ```
 
-View a complete demo with geolocation middleware. You may need to open it in a new window to get your location.
-
-!(https://codesandbox.io/embed/dojo-geolocation-middleware-9bnm2?fontsize=14&module=%2Fsrc%2Fmiddleware%2Fgeolocation.ts)
+View a [complete demo with geolocation middleware](https://codesandbox.io/embed/dojo-geolocation-middleware-9bnm2?fontsize=14&module=%2Fsrc%2Fmiddleware%2Fgeolocation.ts). You may need to open it in a new window to get your location.
 
 ## Summary
 
