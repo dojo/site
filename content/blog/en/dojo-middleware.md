@@ -60,23 +60,16 @@ Here we want the `PhoneValidator` to place a red or green outline to the input t
 
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
-import phoneNumberMiddleware from '../middleware/phoneNumberMiddleware';
+import phoneNumber from '../middleware/phoneNumber';
 
 import * as css from './styles/PhoneValidator.m.css';
 
-interface Properties {
-	phone: string;
-}
+const factory = create({ phoneNumber });
 
-const factory = create({ phoneNumberMiddleware }).properties<Properties>();
-
-export const PhoneValidator = factory(function PhoneValidator({ children, middleware: { phoneNumberMiddleware } }) {
-	const { valid, value } = phoneNumberMiddleware();
-	let validCss = '';
-	if (value.length) {
-		validCss = valid ? css.valid : css.invalid;
-	}
-	return <div classes={[css.root, validCss]}>{children()}</div>;
+export const PhoneValidator = factory(function PhoneValidator({ children, middleware: { phoneNumber } }) {
+	const { valid, value } = phoneNumber();
+	const validCss = (validCss = valid ? css.valid : css.invalid);
+	return <div classes={[css.root, value.length && validCss]}>{children()}</div>;
 });
 
 export default PhoneValidator;
@@ -84,22 +77,22 @@ export default PhoneValidator;
 
 The `PhoneValidator` uses middleware that returns the a `valid` property that is either `true` or `false`. The middle will also return the `value` of the phone number that was tested. Based on whether the phone number is valid or not, it will provide CSS for a red or green border.
 
-Notice that the `phone` property to the middleware is not passed explicitly to the middleware. By providing the `phoneNumberMiddleware` as a middleware to the `PhoneValidator` widget, the middleware gets access to the properties of the widget. Let's see what that looks like:
+Notice that the `phone` property to the middleware is not passed explicitly to the middleware. By providing the `phoneNumber` as a middleware to the `PhoneValidator` widget, the middleware gets access to the properties of the widget. Let's see what that looks like:
 
-> src/middleware/phoneNumberMiddleware.tsx
+> src/middleware/phoneNumber.ts
 
 ```tsx
 import { create } from '@dojo/framework/core/vdom';
 
-const factory = create().properties<{ phone?: string }>();
+const factory = create().properties<{ phone: string }>();
 
-export const phoneNumberMiddleware = factory(({ properties }) => {
+export const phoneNumber = factory(({ properties }) => {
 	return () => {
 		// extract the `phone` value from the properties of
 		// the parent widget
 		const { phone } = properties();
 		// test the phone number
-		const valid = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(phone || '');
+		const valid = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/.test(phone);
 		return {
 			valid,
 			value: phone
@@ -107,14 +100,14 @@ export const phoneNumberMiddleware = factory(({ properties }) => {
 	};
 });
 
-export default phoneNumberMiddleware;
+export default phoneNumber;
 ```
 
 The middleware returns a function that tests the phone number and returns whether it is valid or not.
 
 View this middleware example in a sample phone validation application.
 
-!(https://codesandbox.io/embed/dojo-custom-middleware-w1f7m?fontsize=14&module=%2Fsrc%2Fmiddleware%2FphoneNumberMiddleware.ts)
+!(https://codesandbox.io/embed/dojo-custom-middleware-ktivf?fontsize=14&module=%2Fsrc%2Fmiddleware%2FphoneNumberMiddleware.ts)
 
 ## Geolocation Middleware
 
@@ -124,7 +117,7 @@ You could use a similar pattern to grab the browser's geolocation coordinates.
 
 > src/middleware/geolocation.ts
 
-```ts
+```tsx
 import { create } from '@dojo/framework/core/vdom';
 import icache from '@dojo/framework/core/middleware/icache';
 
@@ -132,38 +125,19 @@ const factory = create({ icache });
 
 type Coords = Pick<Coordinates, 'latitude' | 'longitude'>;
 
-// utility to get current geolocation
-const getGeolocation = async (): Promise<Coords> => {
-	return new Promise((resolve) => {
-		if (!('geolocation' in navigator)) {
-			resolve({ latitude: 0, longitude: 0 });
-		} else {
-			navigator.geolocation.getCurrentPosition(({ coords }) => {
-				const { latitude, longitude } = coords;
-				resolve({ latitude, longitude });
-			});
-		}
-	});
-};
-
-// default coordinates
-const defaultCoordinates = { latitude: 0, longitude: 0 };
-
 export const geolocation = factory(({ middleware: { icache } }) => {
-	return (): Coords => {
-		// get current value or default
-		const coords = icache.getOrSet('coords', defaultCoordinates);
-		if (coords.latitude === 0 && coords.longitude === 0) {
-			// only get location if it is not the default
-			getGeolocation().then((results) => {
-				if (coords.latitude !== results.latitude && coords.longitude !== results.longitude) {
-					// only update cache if different from current value
-					// this will invalidate the widget
-					icache.set('coords', results);
+	return (): Coords | undefined => {
+		return icache.getOrSet('coords', async () => {
+			return new Promise((resolve) => {
+				if (!('geolocation' in navigator)) {
+					resolve();
 				}
+				navigator.geolocation.getCurrentPosition(({ coords }) => {
+					const { latitude, longitude } = coords;
+					resolve({ latitude, longitude });
+				});
 			});
-		}
-		return coords;
+		});
 	};
 });
 
@@ -185,17 +159,19 @@ import geolocation from './middleware/geolocation';
 const factory = create({ geolocation });
 
 const App = factory(function App({ middleware: { geolocation } }) {
-	// get the geolocation middleware values
-	const { latitude, longitude } = geolocation();
+	// get the current coordinates
+	const coords = geolocation();
 	return (
 		<div key="container">
 			<Hello name="Dojo CodeSandbox" />
 			<h2>{'Start editing to see some magic happen \u2728'}</h2>
 			<section>
-				<ul>
-					<li>Latitude: {latitude.toFixed(3)}</li>
-					<li>Longitude: {longitude.toFixed(3)}</li>
-				</ul>
+				{coords && (
+					<ul>
+						<li>Latitude: {coords.latitude.toFixed(3)}</li>
+						<li>Longitude: {coords.longitude.toFixed(3)}</li>
+					</ul>
+				)}
 			</section>
 		</div>
 	);
@@ -204,7 +180,7 @@ const App = factory(function App({ middleware: { geolocation } }) {
 
 View a complete demo with geolocation middleware. You may need to open it in a new window to get your location.
 
-!(https://codesandbox.io/embed/dojo-geolocation-middleware-msmvc?fontsize=14&module=%2Fsrc%2Fmiddleware%2Fgeolocation.ts)
+!(https://codesandbox.io/embed/dojo-geolocation-middleware-9bnm2?fontsize=14&module=%2Fsrc%2Fmiddleware%2Fgeolocation.ts)
 
 ## Summary
 
