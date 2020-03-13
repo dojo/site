@@ -8,14 +8,16 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	line-height: 30px;
-	height: 30px;
+	line-height: vcalc(var(--grid-size) * 3);
+	height: vcalc(var(--grid-size) * 3);
 	color: var(--color-dark-gray);
 	z-index: 2;
 	position: relative;
 	padding: calc(var(--grid-size) * 0.7) calc(var(--grid-size) * 2);
 	color: var(--color-white);
 	white-space: nowrap;
+	height: var(--menu-height);
+	box-sizing: border-box;
 }
 
 .parent .chevron {
@@ -30,7 +32,7 @@
 	width: 0.45em;
 	top: -2px;
 	transform: rotate(135deg);
-	margin-left: 8px;
+	margin-left: var(--grid-size);
 }
 
 .parent.noDropdown {
@@ -61,6 +63,7 @@
 	padding: var(--grid-size);
 	position: relative;
 	flex-direction: column;
+	box-shadow: 0 var(--grid-size) calc(var(--grid-size) * 1.5) rgba(0, 0, 0, 0.2);
 }
 
 .root:active .list,
@@ -73,20 +76,21 @@
 	text-decoration: none;
 	white-space: nowrap;
 	padding-right: calc(var(--grid-size) * 2);
+	padding-left: var(--grid-size);
 	color: var(--header-background-color);
+	display: flex;
 }
 
 .content .listItem {
 	list-style: none;
 	text-align: left;
-	line-height: 30px;
-	height: 30px;
-	padding-left: 10px;
+	line-height: calc(var(--grid-size) * 3);
+	height: calc(var(--grid-size) * 3);
 }
 
 .content .listItem:last-of-type {
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: vcalc(var(--grid-size) * 0.5);
+	border-bottom-right-radius: vcalc(var(--grid-size) * 0.5);
 }
 
 @media (max-width: 1024px) {
