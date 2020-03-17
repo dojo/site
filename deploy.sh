@@ -23,7 +23,7 @@ else
 		fi
 
 		echo "Deployed to $nowurl"
-		
+
 		if [ "$1" = "" ] ; then
 			deploymenturl=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/vnd.github.v3+json" -s -X POST https://api.github.com/repos/$TRAVIS_REPO_SLUG/deployments -d '{"ref": "'$TRAVIS_COMMIT'","environment": "production","description": "Deploy request from Travis","auto_merge":false,"required_contexts":[]}' | jq -r '.url')
 			if [ "$deploymenturl" = "null" ] ; then
