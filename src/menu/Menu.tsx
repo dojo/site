@@ -1,9 +1,10 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import { RenderResult } from '@dojo/framework/core/interfaces';
-import Link, { LinkProperties } from '@dojo/framework/routing/Link';
+import { LinkProperties } from '@dojo/framework/routing/Link';
 
 import ActiveLink from '../link/ActiveLink';
+import Dropdown from '../dropdown/Dropdown';
 
 import * as css from './Menu.m.css';
 
@@ -13,74 +14,87 @@ export interface MenuLinkProperties extends LinkProperties {
 
 export interface MenuProperties {
 	links: MenuLinkProperties[];
-	desktopStyle: 'left';
+	type?: 'main' | 'sub';
 }
 
-export interface MenuDropdownProperties {
-	links: MenuLinkProperties[];
+export interface MenuLeftProperties extends MenuProperties {
+	desktopStyle: 'side';
+	subLinks?: MenuLinkProperties[];
+}
+
+export interface MenuDropdownProperties extends MenuProperties {
 	desktopStyle: 'dropdown';
 	activeName: RenderResult;
 }
 
-function isDropdownStyle(properties: MenuProperties | MenuDropdownProperties): properties is MenuDropdownProperties {
-	return properties.desktopStyle === 'dropdown';
+export interface SubMenuDropdownProperties extends MenuDropdownProperties {
+	subLinks: MenuLinkProperties[];
+	subActiveName: RenderResult;
 }
 
-const factory = create({ theme }).properties<MenuProperties | MenuDropdownProperties>();
+function isDropdownStyle(
+	properties: MenuLeftProperties | MenuDropdownProperties | SubMenuDropdownProperties
+): properties is MenuDropdownProperties {
+	return properties.desktopStyle === 'dropdown' && !properties.hasOwnProperty('subLinks');
+}
+
+function isSubDropdownStyle(
+	properties: MenuLeftProperties | MenuDropdownProperties | SubMenuDropdownProperties
+): properties is SubMenuDropdownProperties {
+	return properties.desktopStyle === 'dropdown' && properties.hasOwnProperty('subLinks');
+}
+
+const factory = create({ theme }).properties<MenuLeftProperties | MenuDropdownProperties | SubMenuDropdownProperties>();
 
 export default factory(function Menu({ middleware: { theme }, properties, children }) {
 	const props = properties();
+
 	let activeName: RenderResult = '';
+	let subActiveName: RenderResult = '';
+	let subLinks: MenuLinkProperties[] | undefined = undefined;
+
 	if (isDropdownStyle(props)) {
 		activeName = props.activeName;
+	} else if (isSubDropdownStyle(props)) {
+		activeName = props.activeName;
+		subActiveName = props.subActiveName;
+		subLinks = props.subLinks;
+	} else {
+		subLinks = props.subLinks;
 	}
+
 	const { links, desktopStyle } = props;
 
 	const themedCss = theme.classes(css);
 
-	const dropdownMenu = () => (
-		<nav classes={themedCss.dropdownMenu}>
-			<div classes={themedCss.dropdownWrapper}>
-				<div classes={themedCss.dropdownContent}>
-					<ul classes={themedCss.dropdownList}>
-						{links.map((link) => {
-							const { label, ...props } = link;
-							return (
-								<li classes={themedCss.dropdownListItem}>
-									<Link classes={themedCss.dropdownLink} {...props}>
-										{label}
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-				<div classes={themedCss.dropdownParent}>
-					{activeName}
-					<span classes={themedCss.dropdownChevron}></span>
-				</div>
-			</div>
-			{children()}
+	const menu = (
+		type: 'main' | 'sub',
+		links: MenuLinkProperties[],
+		activeName: RenderResult,
+		showChildren: boolean
+	) => (
+		<nav classes={[themedCss.menu, themedCss[type]]}>
+			{desktopStyle === 'dropdown' && <Dropdown activeName={activeName} items={links} />}
+			<ul classes={themedCss.menuList}>
+				{links.map((link) => {
+					const { label, ...props } = link;
+					return (
+						<li classes={themedCss.menuItem}>
+							<ActiveLink classes={css.menuLink} activeClasses={[css.selected]} {...props}>
+								{label}
+							</ActiveLink>
+						</li>
+					);
+				})}
+			</ul>
+			{showChildren && children()}
 		</nav>
 	);
 
 	return (
-		<virtual>
-			{desktopStyle === 'dropdown' && dropdownMenu()}
-			<nav classes={[themedCss.root, desktopStyle === 'dropdown' && themedCss.tabletOnly]}>
-				<ul classes={themedCss.menuList}>
-					{links.map((link) => {
-						const { label, ...props } = link;
-						return (
-							<li classes={themedCss.menuItem}>
-								<ActiveLink classes={css.menuLink} activeClasses={[css.selected]} {...props}>
-									{label}
-								</ActiveLink>
-							</li>
-						);
-					})}
-				</ul>
-			</nav>
-		</virtual>
+		<div classes={themedCss[desktopStyle]}>
+			{menu('main', links, activeName, !Boolean(subLinks))}
+			{subLinks && menu('sub', subLinks, subActiveName, true)}
+		</div>
 	);
 });

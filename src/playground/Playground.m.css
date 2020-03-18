@@ -19,7 +19,17 @@
 	position: relative;
 	z-index: 4;
 	display: flex;
-	margin-right: calc(var(--grid-size) * 1.5);
+	margin-left: calc(var(--grid-size) * 1.5);
 	width: 28px;
 	height: 28px;
+}
+
+.icon {
+	fill: var(--dark-background-color);
+}
+
+@media (min-width: 1025px) {
+	.icon {
+		fill: var(--color-white);
+	}
 }

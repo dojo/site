@@ -1,5 +1,6 @@
 const messages = {
-	sandbox: 'Sandbox'
+	sandbox: 'Sandbox',
+	demo: 'Demo'
 };
 
 export default { messages };
