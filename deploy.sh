@@ -16,9 +16,14 @@ function contains() {
 	return 1
 }
 
-name="$DOMAIN_PREFIX.dojo.io"
+prefix=""
+if [ "$DOMAIN_PREFIX" != "" ] ; then
+	prefix="$DOMAIN_PREFIX."
+fi
+
+name="${prefix}dojo.io"
 if [ "$1" != "" ] ; then
-	name="$1.$DOMAIN_PREFIX.dojo.io"
+	name="$1.${prefix}dojo.io"
 fi
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
