@@ -18,12 +18,12 @@ function contains() {
 
 prefix=""
 if [ "$DOMAIN_PREFIX" != "" ] ; then
-	prefix="$DOMAIN_PREFIX."
+	prefix="$DOMAIN_PREFIX-"
 fi
 
-name="${prefix}dojo.io"
+name="${prefix}dojo-io"
 if [ "$1" != "" ] ; then
-	name="$1.${prefix}dojo.io"
+	name="$1-${prefix}dojo-io"
 fi
 
 echo "Deploying ${name}...";
