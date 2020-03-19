@@ -1,17 +1,21 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
+import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import icache from '@dojo/framework/core/middleware/icache';
+
 import Link from '../link/ActiveLink';
 
 const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
+import bundle from './Header.nls';
 
 const menuItems = ['Blog', 'Learn', 'Playground', 'Roadmap'];
 
-const factory = create({ theme, icache });
+const factory = create({ theme, icache, i18n });
 
-export default factory(function Header({ middleware: { theme, icache } }) {
+export default factory(function Header({ middleware: { theme, icache, i18n } }) {
+	const { messages } = i18n.localize(bundle);
 	const themedCss = theme.classes(css);
 	const open = icache.get<boolean>('open') || false;
 
@@ -74,6 +78,11 @@ export default factory(function Header({ middleware: { theme, icache } }) {
 							</li>
 						);
 					})}
+					<li classes={[themedCss.menuItem]}>
+						<a classes={themedCss.menuLink} target="_blank" href="https://widgets.dojo.io">
+							{messages.widgets}
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<a

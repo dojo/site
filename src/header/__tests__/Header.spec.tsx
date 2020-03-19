@@ -7,6 +7,9 @@ const logo = require('../../assets/logo.svg');
 
 import * as css from '../Header.m.css';
 import Header from '../Header';
+import bundle from '../Header.nls';
+
+const messages = bundle.messages;
 
 describe('Header', () => {
 	const noop = () => {};
@@ -87,6 +90,11 @@ describe('Header', () => {
 						>
 							Roadmap
 						</Link>
+					</li>
+					<li classes={[css.menuItem]}>
+						<a classes={css.menuLink} target="_blank" href="https://widgets.dojo.io">
+							{messages.widgets}
+						</a>
 					</li>
 				</ul>
 			</nav>
