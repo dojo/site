@@ -3,7 +3,7 @@ import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/Link';
 
-import { guides } from '../../learn/Learn';
+import { GUIDES } from '../../constants';
 
 import bundle from '../Footer.nls';
 import * as css from '../Footer.m.css';
@@ -28,7 +28,7 @@ describe('Footer', () => {
 							<div classes={css.linksRow}>
 								<div classes={css.links}>
 									<div classes={css.title}>{messages.docs}</div>
-									{guides.map(({ name: guide }) => (
+									{GUIDES.map(({ name: guide }) => (
 										<Link
 											to="learn"
 											classes={css.link}

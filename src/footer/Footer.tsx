@@ -3,7 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import { guides } from '../learn/Learn';
+import { GUIDES } from '../constants';
 
 import bundle from './Footer.nls';
 import * as css from './Footer.m.css';
@@ -30,7 +30,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 							<div classes={themedCss.linksRow}>
 								<div classes={themedCss.links}>
 									<div classes={themedCss.title}>{messages.docs}</div>
-									{guides.map(({ name: guide }) => (
+									{GUIDES.map(({ name: guide }) => (
 										<Link
 											to="learn"
 											classes={css.link}

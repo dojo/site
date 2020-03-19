@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dojo/site.svg?branch=master)](https://travis-ci.org/dojo/site) [![codecov](https://codecov.io/gh/dojo/site/branch/master/graph/badge.svg)](https://codecov.io/gh/dojo/site)
 
-Next generation dojo.io.
+Documentation website for [Dojo](https://github.com/dojo/framework).
 
 - [Running dojo.io Locally](#running-dojoio-locally)
 - [Build Time Renderer (BTR)](#build-time-renderer-btr)
@@ -31,11 +31,13 @@ To build, serve and watch, run `npm run build:dev`. Open http://localhost:9999/.
 
 ## Build Time Renderer (BTR)
 
-[dojo.io](https://dojo.io) is built using the Build Time Renderer, part of the dojo build process, to statically render each route defined in the `.dojorc` file. During the build process, after the site is built, each route is loaded up in puppeteer, a snapshot is taken, and an index.html is generated. This allows pages to be loaded in full, quickly and without javascript enabled. Once the page is loaded, the loading of the rest of the app occurs. This loading is further improved with code splitting.
+[dojo.io](https://dojo.io) is built using the Build Time Renderer, part of the dojo build process, to statically render each route as html and css only. During the build process, after the site is built, each route is loaded up in JSDom, a snapshot is taken, and an index.html is generated. This allows pages to be loaded in full, quickly and **without javascript**.
+
+No javascript is served to the user.
 
 ## Code Splitting
 
-Each route defined in the `.dojorc` file for BTR should have its own unique `Outlet` in the `App.tsx` file and that `Outlet` should point to a unique widget for the route. If you are using the content pipeline to dynamically build your pages (aka you are using the `Section` or `Page` widgets) a wrapper widget may be required to accomplish this requirement (**example**: `TutorialsPage` and `TutorialsLanding`).
+Each route should have its own unique `Outlet` in the `App.tsx` file and that `Outlet` should point to a unique widget for the route. If you are using the content pipeline to dynamically build your pages (aka you are using the `Section` or `Page` widgets) a wrapper widget may be required to accomplish this requirement (**example**: `TutorialsPage` and `TutorialsLanding`).
 
 ## Content Pipeline
 
@@ -45,7 +47,7 @@ The site's Blocks can be found under `src` subdirectories, labeled with a `.bloc
 
 ### Markdown Compiler
 
-Compile takes a path to a markdown file, relative to the `content` path, as an input. The markdown file is then run through `remark`, which converts it to HTML and looks for specially designated tags to convert to Dojo widgets. This is used for generating entire pages from markdown.
+The markdown compiler takes the contents of a mardown file as an input. The input is then run through `remark`, which converts it to HTML and looks for specially designated tags to convert to Dojo widgets. This is used for generating entire pages from markdown.
 
 ### Available Widgets
 
@@ -205,8 +207,7 @@ Coming soon.
     These files should appear in `docs/:locale:/guide-name/` in the repository.
 
 	Pages will be generated for the introduction and basic usage files, and one page for each top level header (`h1`) in the supplemental file.
-2. If a new repository will be used, add it to `sources` in  the `src/learn/Learn.tsx` file.
-3. Add the guide to the `guides` list in the `src/learn/Learn.tsx` file. Each guide has the following parameters:
+2. Add the guide to the `GUIDES` list in the `src/constants.ts` file. Each guide has the following parameters:
 
     - **name** - Used in navigation
     - **directory** - (`Optional`) The name of the directory holding the guides. Defaults to `name.toLowerCase().replace(' ', '-')`

@@ -112,7 +112,7 @@ describe('Playground', () => {
 	});
 
 	it('renders sandbox', () => {
-		const h = harness(() => <Playground branch="v6" example="sandbox" type="sandbox" />, {
+		const h = harness(() => <Playground example="sandbox" type="sandbox" />, {
 			middleware: [[block, mockBlock]]
 		});
 
@@ -120,22 +120,22 @@ describe('Playground', () => {
 	});
 
 	it('renders example with sandbox type', () => {
-		const h = harness(() => <Playground branch="v6" example="name" type="sandbox" />, {
+		const h = harness(() => <Playground example="name" type="sandbox" />, {
 			middleware: [[block, mockBlock]]
 		});
 
 		h.expect(
 			baseAssertion
-				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/v6/name')
+				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/master/name')
 				.setProperty('~menu', 'activeName', ['Example Name'])
 				.setProperty('~menu', 'subActiveName', 'Sandbox')
 				.setProperty('~menu', 'subLinks', subLinks('name', true))
-				.setChildren('~menu', () => githubLink('v6', 'name', 'Example Name'))
+				.setChildren('~menu', () => githubLink('master', 'name', 'Example Name'))
 		);
 	});
 
 	it('renders example with demo type', () => {
-		const h = harness(() => <Playground branch="v6" example="name2" type="demo" />, {
+		const h = harness(() => <Playground example="name2" type="demo" />, {
 			middleware: [[block, mockBlock]]
 		});
 
@@ -145,12 +145,12 @@ describe('Playground', () => {
 				.setProperty('~menu', 'activeName', ['Example Name 2'])
 				.setProperty('~menu', 'subActiveName', 'Demo')
 				.setProperty('~menu', 'subLinks', subLinks('name2', false))
-				.setChildren('~menu', () => githubLink('v6', 'name2', 'Example Name 2'))
+				.setChildren('~menu', () => githubLink('master', 'name2', 'Example Name 2'))
 		);
 	});
 
 	it('renders sandbox if example not found', () => {
-		const h = harness(() => <Playground branch="v6" example="badName" type="demo" />, {
+		const h = harness(() => <Playground example="badName" type="demo" />, {
 			middleware: [[block, mockBlock]]
 		});
 
