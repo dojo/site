@@ -26,6 +26,8 @@ if [ "$1" != "" ] ; then
 	name="$1.${prefix}dojo.io"
 fi
 
+echo "Deploying ${name}...";
+
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
 	nowurl=$(npx now ./output/dist --token=$PUBLIC_NOW_TOKEN --public --name=$name --confirm)
 	if [ "$nowurl" = "" ] ; then
