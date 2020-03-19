@@ -1,9 +1,24 @@
 #!/bin/bash
 cp ./now.json ./output/dist
 
-name="dojo.io"
+PROD_BRANCHES=("master" "v6")
+
+function contains() {
+	local n=$#
+	local value=${!n}
+	for ((i=1;i < $#;i++)) {
+		if [ "${!i}" == "${value}" ] ; then
+			echo "y"
+			return 0
+		fi
+	}
+	echo "n"
+	return 1
+}
+
+name="$DOMAIN_PREFIX.dojo.io"
 if [ "$1" != "" ] ; then
-	name="$1.dojo.io"
+	name="$1.$DOMAIN_PREFIX.dojo.io"
 fi
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
@@ -15,7 +30,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
 
 	echo "* $name: $nowurl" &>> deployments.txt
 else
-	if [ "$TRAVIS_BRANCH" = "master" ] ; then
+	if [ $(contains "${PROD_BRANCHES[@]}" "$TRAVIS_BRANCH") == "y" ] ; then
 		nowurl=$(npx now ./output/dist --token=$NOW_TOKEN --public --name=$name --scope=dojo --prod --confirm)
 		if [ "$nowurl" = "" ] ; then
 			echo "Now deployment failed"
