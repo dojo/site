@@ -29,6 +29,7 @@ fi
 echo "Deploying ${name}...";
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
+	echo "npx now ./output/dist --token=$PUBLIC_NOW_TOKEN --public --name=$name --confirm";
 	nowurl=$(npx now ./output/dist --token=$PUBLIC_NOW_TOKEN --public --name=$name --confirm)
 	if [ "$nowurl" = "" ] ; then
 		echo "Now deployment failed"
