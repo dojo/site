@@ -1,6 +1,4 @@
-import i18nCore from '@dojo/framework/i18n/i18n';
 import { tsx, create } from '@dojo/framework/core/vdom';
-import i18n from '@dojo/framework/core/middleware/i18n';
 import Outlet from '@dojo/framework/routing/Outlet';
 
 import Home from './home/Home';
@@ -15,19 +13,9 @@ import Footer from './footer/Footer';
 
 import * as css from './App.m.css';
 
-const factory = create({ i18n });
+const factory = create();
 
-function isRtl(locale: string) {
-	return /^ar(-.*)?$/.test(locale);
-}
-
-export default factory(function App({ middleware: { i18n } }) {
-	let localeDetails = i18n.get();
-	if (!localeDetails || !localeDetails.locale) {
-		let rtl = isRtl(i18nCore.locale);
-		localeDetails = { locale: i18nCore.locale, rtl };
-		i18n.set(localeDetails);
-	}
+export default factory(function App() {
 	return (
 		<div classes={[css.root]}>
 			<Header />
@@ -47,13 +35,13 @@ export default factory(function App({ middleware: { i18n } }) {
 				<Outlet
 					key="playground"
 					id="playground"
-					renderer={() => <Playground branch="v6" example="sandbox" type="sandbox" />}
+					renderer={() => <Playground example="sandbox" type="sandbox" />}
 				/>
 				<Outlet
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
-						<Playground branch="v6" example={example} type={type} />
+						<Playground example={example} type={type} />
 					)}
 				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />

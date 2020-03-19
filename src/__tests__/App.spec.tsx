@@ -44,13 +44,13 @@ describe('App', () => {
 				<Outlet
 					key="playground"
 					id="playground"
-					renderer={() => <Playground branch="v6" example="sandbox" type="sandbox" />}
+					renderer={() => <Playground example="sandbox" type="sandbox" />}
 				/>
 				<Outlet
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
-						<Playground branch="v6" example={example} type={type} />
+						<Playground example={example} type={type} />
 					)}
 				/>
 				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
@@ -69,8 +69,6 @@ describe('App', () => {
 		const mockI18n = createI18nMock(undefined, mockI18nSet);
 		const h = harness(() => <App />, { middleware: [[i18n, mockI18n]] });
 		h.expect(baseAssertion);
-
-		expect(mockI18nSet).toHaveBeenCalledWith({ locale: 'en-US', rtl: false });
 	});
 
 	it('renders in another language', () => {
@@ -78,8 +76,6 @@ describe('App', () => {
 		const mockI18n = createI18nMock('zh-cn', mockI18nSet);
 		const h = harness(() => <App />, { middleware: [[i18n, mockI18n]] });
 		h.expect(baseAssertion);
-
-		expect(mockI18nSet).not.toHaveBeenCalled();
 	});
 
 	const pages: Page[] = [
@@ -92,11 +88,11 @@ describe('App', () => {
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{
 			outlet: 'playground',
-			content: <Playground branch="v6" example="sandbox" type="sandbox" />
+			content: <Playground example="sandbox" type="sandbox" />
 		},
 		{
 			outlet: 'playground-example',
-			content: <Playground branch="v6" example="an-example" type="demo" />,
+			content: <Playground example="an-example" type="demo" />,
 			args: [
 				{
 					params: {

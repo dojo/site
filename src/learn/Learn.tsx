@@ -3,6 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import block from '@dojo/framework/core/middleware/block';
 
+import { GUIDES, GUIDES_DEFAULT_REPO, GUIDES_DEFAULT_BRANCH } from '../constants';
 import Menu from '../menu/Menu';
 import { getLanguageFromLocale } from '../util/language';
 
@@ -10,13 +11,6 @@ import LearnContent from './LearnContent';
 import getSections from './sections.block';
 
 import * as css from './Learn.m.css';
-
-interface Guide {
-	name: string;
-	directory?: string;
-	repo?: string;
-	branch?: string;
-}
 
 interface LearnProperties {
 	guideName: string;
@@ -28,27 +22,8 @@ interface LearnProperties {
 
 const factory = create({ theme, i18n, block }).properties<LearnProperties>();
 
-export const sources = {
-	framework: {
-		repo: 'dojo/framework',
-		branch: 'v6'
-	}
-};
-
-export const guides: Guide[] = [
-	{ name: 'Overview' },
-	{ name: 'Creating Widgets' },
-	{ name: 'Middleware' },
-	{ name: 'Building' },
-	{ name: 'I18n' },
-	{ name: 'Styling' },
-	{ name: 'Stores' },
-	{ name: 'Routing' },
-	{ name: 'Testing' }
-];
-
 export default factory(function Learn({ properties, middleware: { theme, i18n, block } }) {
-	const { guideName, pageName, url, repo = sources.framework.repo, branch = sources.framework.branch } = properties();
+	const { guideName, pageName, url, repo = GUIDES_DEFAULT_REPO, branch = GUIDES_DEFAULT_BRANCH } = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 
@@ -66,8 +41,8 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 		<div classes={themedCss.root}>
 			<Menu
 				desktopStyle="side"
-				links={guides.map((guide) => {
-					const { name, directory, repo = sources.framework.repo, branch = sources.framework.branch } = guide;
+				links={GUIDES.map((guide) => {
+					const { name, directory, repo = GUIDES_DEFAULT_REPO, branch = GUIDES_DEFAULT_BRANCH } = guide;
 
 					const guideName = directory || name.toLowerCase().replace(' ', '-');
 
