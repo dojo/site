@@ -18,17 +18,18 @@ function contains() {
 
 prefix=""
 if [ "$DOMAIN_PREFIX" != "" ] ; then
-	prefix="$DOMAIN_PREFIX."
+	prefix="$DOMAIN_PREFIX-"
 fi
 
-name="${prefix}dojo.io"
+name="${prefix}dojo-io"
 if [ "$1" != "" ] ; then
-	name="$1.${prefix}dojo.io"
+	name="$1-${prefix}dojo-io"
 fi
 
 echo "Deploying ${name}...";
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] ; then
+	echo "npx now ./output/dist --token=$PUBLIC_NOW_TOKEN --public --name=$name --confirm";
 	nowurl=$(npx now ./output/dist --token=$PUBLIC_NOW_TOKEN --public --name=$name --confirm)
 	if [ "$nowurl" = "" ] ; then
 		echo "Now deployment failed"
