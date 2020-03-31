@@ -3,7 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import { GUIDES } from '../constants';
+import { GUIDES, PREFIX } from '../constants';
 
 import bundle from './Footer.nls';
 import * as css from './Footer.m.css';
@@ -36,7 +36,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 											classes={css.link}
 											params={{
 												guide: guide.toLowerCase().replace(' ', '-'),
-												page: 'introduction'
+												page: 'introduction',
 											}}
 											matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
 										>
@@ -236,10 +236,10 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<div classes={themedCss.title}>{messages.languages}</div>
-									<a href="https://dojo.io" classes={css.link}>
+									<a href={`https://${PREFIX}dojo.io`} classes={css.link}>
 										{messages.english}
 									</a>
-									<a href="https://zh-CN.dojo.io" classes={css.link}>
+									<a href={`https://zh-cn.${PREFIX}dojo.io`} classes={css.link}>
 										{messages.simplifiedChinese}
 									</a>
 								</div>

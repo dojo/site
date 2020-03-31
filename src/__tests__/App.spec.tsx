@@ -66,7 +66,7 @@ describe('App', () => {
 
 	it('renders', () => {
 		const mockI18nSet = jest.fn();
-		const mockI18n = createI18nMock(undefined, mockI18nSet);
+		const mockI18n = createI18nMock('en', mockI18nSet);
 		const h = harness(() => <App />, { middleware: [[i18n, mockI18n]] });
 		h.expect(baseAssertion);
 	});
@@ -83,12 +83,12 @@ describe('App', () => {
 		{
 			outlet: 'blog',
 			content: <Blog url={undefined} />,
-			args: [{ router: { link: () => {} }, isExact: () => true }]
+			args: [{ router: { link: () => {} }, isExact: () => true }],
 		},
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{
 			outlet: 'playground',
-			content: <Playground example="sandbox" type="sandbox" />
+			content: <Playground example="sandbox" type="sandbox" />,
 		},
 		{
 			outlet: 'playground-example',
@@ -97,10 +97,10 @@ describe('App', () => {
 				{
 					params: {
 						example: 'an-example',
-						type: 'demo'
-					}
-				}
-			]
+						type: 'demo',
+					},
+				},
+			],
 		},
 		{ outlet: 'roadmap', content: <Roadmap /> },
 		{ outlet: 'roadmap', content: <Roadmap /> },
@@ -111,13 +111,13 @@ describe('App', () => {
 				{
 					params: {
 						guide: 'a-guide',
-						page: 'a-page'
+						page: 'a-page',
 					},
 					router: {
-						link: () => 'url/a-guide/a-page'
-					}
-				}
-			]
+						link: () => 'url/a-guide/a-page',
+					},
+				},
+			],
 		},
 		{
 			outlet: 'learn',
@@ -125,13 +125,13 @@ describe('App', () => {
 			args: [
 				{
 					params: {
-						guide: 'a-guide'
+						guide: 'a-guide',
 					},
 					router: {
-						link: () => 'url/a-guide/introduction'
-					}
-				}
-			]
+						link: () => 'url/a-guide/introduction',
+					},
+				},
+			],
 		},
 		{
 			outlet: 'learn',
@@ -140,11 +140,11 @@ describe('App', () => {
 				{
 					params: {},
 					router: {
-						link: () => 'url/overview/introduction'
-					}
-				}
-			]
-		}
+						link: () => 'url/overview/introduction',
+					},
+				},
+			],
+		},
 	];
 
 	it('outlets render contents', () => {

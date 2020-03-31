@@ -1,6 +1,6 @@
 {
 	"build-app": {
-		"locale": "en-us",
+		"locale": "en",
 		"build-time-render": {
 			"root": "root",
 			"static": true,

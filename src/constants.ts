@@ -1,5 +1,7 @@
 import { Guide } from './interfaces';
 
+export const PREFIX = 'next.';
+
 export const GUIDES_DEFAULT_REPO = 'dojo/framework';
 export const GUIDES_DEFAULT_BRANCH = 'master';
 export const GUIDES: Guide[] = [
@@ -11,7 +13,7 @@ export const GUIDES: Guide[] = [
 	{ name: 'Styling' },
 	{ name: 'Stores' },
 	{ name: 'Routing' },
-	{ name: 'Testing' }
+	{ name: 'Testing' },
 ];
 
 export const EXAMPLES_REPO = 'dojo/examples';

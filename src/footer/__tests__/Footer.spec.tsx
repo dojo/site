@@ -3,7 +3,7 @@ import harness from '@dojo/framework/testing/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 import Link from '@dojo/framework/routing/Link';
 
-import { GUIDES } from '../../constants';
+import { GUIDES, PREFIX } from '../../constants';
 
 import bundle from '../Footer.nls';
 import * as css from '../Footer.m.css';
@@ -34,7 +34,7 @@ describe('Footer', () => {
 											classes={css.link}
 											params={{
 												guide: guide.toLowerCase().replace(' ', '-'),
-												page: 'introduction'
+												page: 'introduction',
 											}}
 											matchParams={{ guide: guide.toLowerCase().replace(' ', '-') }}
 										>
@@ -234,10 +234,10 @@ describe('Footer', () => {
 										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<div classes={css.title}>{messages.languages}</div>
-									<a href="https://dojo.io" classes={css.link}>
+									<a href={`https://${PREFIX}dojo.io`} classes={css.link}>
 										{messages.english}
 									</a>
-									<a href="https://zh-CN.dojo.io" classes={css.link}>
+									<a href={`https://zh-cn.${PREFIX}dojo.io`} classes={css.link}>
 										{messages.simplifiedChinese}
 									</a>
 								</div>

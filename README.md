@@ -4,6 +4,8 @@
 
 Documentation website for [Dojo](https://github.com/dojo/framework).
 
+- [Versions](#versions)
+- [Languages](#languages)
 - [Running dojo.io Locally](#running-dojoio-locally)
 - [Build Time Renderer (BTR)](#build-time-renderer-btr)
 - [Code Splitting](#code-splitting)
@@ -22,6 +24,15 @@ Documentation website for [Dojo](https://github.com/dojo/framework).
 	- [Roadmap Entry](#roadmap-entry)
 - [Tests](#tests)
 - [Now Deployments](#now-deployments)
+
+## Versions
+| Version | Domain       | Branch | Framework Branch | Examples Branch |
+| ------- | ------------ | ------ | ---------------- | --------------- |
+| 7.x     | next.dojo.io | master | master           | master          |
+| 6.x     | dojo.io      | v6     | v6               | v6              |
+
+## Languages
+See [Languages](./LANGUAGES.md).
 
 ## Running dojo.io Locally
 
@@ -250,3 +261,7 @@ Run all unit tests, `npm run test` or `npm test` or `jest`.
 ## Now Deployments
 
 On submission of a PR, an automatic deployment of the site is made to `now.sh`. The PR will be updated with the URL to the deployment automatically. You can test this deployment prior by running `now` locally (install the now cli with `npm install -g now`).
+
+Once merged the site will be deployed for each language (subdomain) to the domain specified on the [Versions](#versions) table based on the branch your PR merged into. The master branch will always be `next.dojo.io`.
+
+To deploy new documentation from one of the repositories dojo.io pulls from (dojo/framework and dojo/examples), simpy trigger a build in Travis for the correct [Versions](#versions) you wish to redeploy.
