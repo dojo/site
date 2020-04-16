@@ -314,7 +314,7 @@ dojo create widget --name my-dojo-widget-lib
 
 ## Update to TypeScript Support
 
-Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. However Dojo remains built with TypeScript version 3.4.5 so there is no urgent need to upgrade in order to take advantage of all the new features.
+Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. Dojo continues to support 3.4.5 and greater.
 
 ## What's next?
 
