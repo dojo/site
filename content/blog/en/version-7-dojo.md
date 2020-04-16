@@ -7,6 +7,7 @@ author: Anthony Gubler
 We’re excited to announce the latest release of Dojo, a continually evolving, batteries-included, TypeScript web framework. Dojo’s primary goals haven’t changed, and we continue to focus on harmony with the modern web ecosystem, best in class developer ergonomics and intelligent, powerful defaults that enable users to concentrate on building features and applications.
 
 ![Announcing Dojo 7](assets/blog/version-7-dojo/featured.jpg)
+
 <!-- more -->
 
 After nearly two years since the first official release of modern Dojo, version 7 provides many new features, bugs fixes and general improvements spanning the entire framework. Major releases have been regular occurrences over the last two years. The latest version 7 release is the most adventurous. This release has taken a few months longer than usual but is worth the wait.
@@ -95,7 +96,7 @@ Working with Dojo 6 compiled custom elements that used the render property patte
 
 ```html
 <dojo-my-widget>
-    <div>My content for the widget</div>
+	<div>My content for the widget</div>
 </dojo-my-widget>
 ```
 
@@ -103,9 +104,9 @@ For widgets that take advantage of the named children pattern, the children can 
 
 ```html
 <dojo-card>
-    <div slot="title">My Title</div>
-     <img slot="avatar" src="https://my-content.com/avatar.png"/>
-     <div slot="content">My Main Content!</div>
+	<div slot="title">My Title</div>
+	<img slot="avatar" src="https://my-content.com/avatar.png" />
+	<div slot="content">My Main Content!</div>
 </dojo-card>
 ```
 
@@ -155,15 +156,15 @@ As part of Dojo 7 testing in Dojo has been given an overhaul to provide support 
 There are five main components to the new test renderer:
 
 -   `renderer`
-    -  The function used to render widgets in the test environment.
+    -   The function used to render widgets in the test environment.
 -   `assertion`
-    - an assertion builder which can be expected against the test renderer.
+    -   an assertion builder which can be expected against the test renderer.
 -   `wrap`
-    - A function that wraps widgets and nodes to be used as a type-safe selector when interacting with assertions and the test renderer.
+    -   A function that wraps widgets and nodes to be used as a type-safe selector when interacting with assertions and the test renderer.
 -   `ignore`
-    - A utility function to exclude nodes from an assertion
+    -   A utility function to exclude nodes from an assertion
 -   `compare`
-    - A custom comparator for node properties that can be used with a wrapped test node
+    -   A custom comparator for node properties that can be used with a wrapped test node
 
 The key concept for the new renderer is using the `wrap` function to create wrapped test nodes and widgets that are used within a tests `assertion`, in place of the real widget. This provides the assertions type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve functional and name children.
 
@@ -194,28 +195,36 @@ import { create, tsx } from '@dojo/framework/core/vdom';
 import icache from '@dojo/framework/core/middleware/icache';
 
 interface MyWidgetProperties {
-    id: string;
+	id: string;
 }
 
 // specifying a key will instruct Dojo to include that property along with `key`
 // in determining if the widget needs to be recreated.
 const factory = create()
-    .properties<MyWidgetProperties>()
-    .key('id');
+	.properties<MyWidgetProperties>()
+	.key('id');
 
 const MyWidget = factory(function MyWidget({ properties, middleware: { icache } }) {
-    const data = icache.getOrSet('data', async () => {
-        const { id } = properties();
-        const response = await fetch(`https://my-remote-service/v1/company/${id}/people'`);
-        const data = await response.json();
-        return data;
-    });
-    return (
-        <div>
-            <h2>Company Employees</h2>
-            {data ? <ul>{data.map((item) => <li>{item}</li>)}</ul> : <div>Laoding...</div>}
-        </div>
-    );
+	const data = icache.getOrSet('data', async () => {
+		const { id } = properties();
+		const response = await fetch(`https://my-remote-service/v1/company/${id}/people'`);
+		const data = await response.json();
+		return data;
+	});
+	return (
+		<div>
+			<h2>Company Employees</h2>
+			{data ? (
+				<ul>
+					{data.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			) : (
+				<div>Laoding...</div>
+			)}
+		</div>
+	);
 });
 ```
 
@@ -225,41 +234,91 @@ Dojo 7 includes considerable improvements to the in-built i18n support with all 
 
 There should be zero to very minimal changes required for application, to take advantage of these improvements. Simply ensure that all the supported locales are defined in the application's `.dojorc` (as they should already be) and enjoy smaller, smarter i18n.
 
-
 ```json
 {
-    "build-app": {
-        "locale": "en",
-        "supportedLocales": ["fr", "de"]
-    }
+	"build-app": {
+		"locale": "en",
+		"supportedLocales": ["fr", "de"]
+	}
 }
 ```
 
 ## Runtime theme variants
 
-<!-- TODO -->
+The themes in provided by Dojo have always been built using CSS variables that define aspects such as color and sizing, however it has not been easily possible to create a variant of a theme by providing a separate set of CSS variables. This is due to the variable being defined at the `:root` level on the document body.
 
--   Improvements to themes to enable switching theme variants at runtime
--   Themes could always be switched but switching CSS vars for a theme at runtime was a no go
+Dojo 7 introduces some changes designed to solve this issue, variables are no longer required to get imported into each individual CSS file, instead the theme itself has been updated to contain both the theme CSS for each widget and a set of variants that specify all the required CSS variables. These variables are no longer defined at the `:root:` but instead under a class named `.root`. When setting a theme for a widget or application, the specific variant can be set along side it and is made available by the `theme` middleware or `Themed` mixin using `theme.variant()` and `this.variant()` respectively. This "variant" class is required to get set on the outer node of a widget to ensure that the widget uses the correct CSS variables.
+
+```tsx
+import * as MyWidget from './MyWidget.m.css';
+
+import * as light from './variants/light.m.css';
+import * as dark from './variants/dark.m.css';
+
+export default {
+    theme: {
+        'my-project/MyWidget'
+    },
+    variants: {
+        default: light,
+        light,
+        dark
+    }
+}
+```
+
+**Note:** There needs to be at least a "default" variant specified that will be used it no variant is explicitly set.
+
+```tsx
+const MyWidget = factory(function MyWidget({ middleware: { theme } }) {
+    const themedCss = theme.classes(css);
+    return (
+        <div classes={[theme.variant(), themedCss.root]}>
+    );
+});
+```
+
+With widgets setup to use the variants class name, switching variant at runtime can be done by using the `theme` middleware:
+
+```tsx
+import myTheme from './my-theme';
+
+const App = factory(function App({ middleware: { theme } }) {
+	return (
+		<button
+			onclick={() => {
+				theme.set(myTheme, 'dark');
+			}}
+		>
+			dark mode
+		</button>
+	);
+});
+```
 
 ## Better BTR Developer Experience
 
--   Auto discover
--   Ondemand BTR for development
-
-<!-- TODO -->
+Dojo 7 introduces some significant improvements to the developer experience when working with build time rendering. The first is a new option, that is enabled by default to automatically discover pages to build, using the `build-time-render` options in the `.dojorc`, `discoverPaths`. The second is an on demand build time rendering mode that is turned on when working with the `watch` and `serve` cli-build-app flag. After the initial build, pages will only be built when they are visited in the browser, significantly speeding up the the development experience.
 
 ## Dojo Parade, show off your widgets
 
-<!-- TODO -->
+Dojo Parade is a brand new package for building widget documentation and examples from within you application or widget library. `@dojo/widgets` is using Dojo Parade for it's documentation, that can be seen at https://widgets.dojo.io, it's early days for Dojo Parade and we have lots of ideas on how we can improve on what we have now, but we wanted to get this released early so we can hear feedback and ideas from our community and most importantly everyone can benefit from thorough documentation for their widgets.
 
 ## Creating widget libraries
 
--   Create skeleton widget library
+To compliment the `cli-create-app` command, the existing `cli-create-widget` command has been converted to fulfill a higher destiny. The new `cli-create-widget` command in Dojo 7 will scaffold a skeleton widget library with all the tooling and documentation that we use in `@dojo/widgets`. We really hope this helps kickstart community lead widget projects.
 
-<!-- TODO -->
+```shell
+dojo create widget --name my-dojo-widget-lib
+```
 
-After eight busy months, it’s a pleasure to announce the release, but rest assured the work is not done, and over the next few weeks, we’ll be planning the goals for the next release and updating the roadmap.
+## Update to TypeScript Support
+
+Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. However Dojo remains built with TypeScript version 3.4.5 so there is no urgent need to upgrade in order to take advantage of all the new features.
+
+## What's next?
+
+After eight busy months, it’s a pleasure to announce the release, but rest assured the work is not done, and over the next few weeks, we’ll be planning the goals for the next release and updating the [roadmap](https://dojo.io/roadmap).
 
 ## Migration
 
@@ -268,5 +327,3 @@ As usual with modern Dojo releases, all breaking changes introduced in Dojo rele
 ## Support
 
 See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the Dojo roadmap and see where we are heading, and try out Dojo 7.0.0 on CodeSandbox. We look forward to your feedback!
-
-
