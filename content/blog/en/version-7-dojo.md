@@ -20,7 +20,7 @@ For `@dojo/framework` and friends, version 7 primarily focuses on building on th
 
 Function-based widgets have empowered Dojo to deliver features that were extremely difficult with the Class-based widget authoring pattern. Render properties were getting used as a workaround to being able to implement functionality for widgets where properties need to get passed back to the user to render output that effectively gets used as children. Although this pattern works, it comes with some significant gotchas, as the property needs to get treated like children by Dojo's rendering engine. Unfortunately this isn't something that Dojo can do automatically, meaning that the author was left to ensure that the widget always re-renders to guarantee that the render properties output is not stale.
 
-Now with function-based widgets, it is possible to specify the expected type(s) of the children as functions or objects. In doing so, this ensures that Dojo knows that the widget has children and provides all the correct rendering paths get followed.
+Now with function-based widgets, it is possible to specify the expected type(s) of the children as functions or objects. In doing so, this ensures that Dojo knows that the widget has children and all the correct rendering paths get followed.
 
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
@@ -90,7 +90,7 @@ const Card = factory(function Card({ children }) {
 
 ## Custom Elements, Improved
 
-Dojo's support for the Custom Elements portion of Web Components provides interoperability with other frameworks and component systems, not only consuming custom elements in the framework but building Dojo widgets as custom elements. Developer ergonomics are even more important with custom elements, to ensure that the Dojo custom elements can get used, with minimal effort, in the declarative way they get designed.
+Dojo's support for the Custom Elements portion of Web Components provides interoperability with other frameworks and component systems, not only consuming custom elements in the framework but building Dojo widgets as custom elements. Developer ergonomics are even more important with custom elements, to ensure that the Dojo custom elements can get used, with minimal effort, in the declarative way they are designed.
 
 Working with Dojo 6's compiled custom elements that used the render property pattern did not allow the custom elements to get used effectively. However, in Dojo 7, widgets that use functional children in place of a render property can use the custom element declaratively like standard HTML.
 
