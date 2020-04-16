@@ -232,7 +232,7 @@ const MyWidget = factory(function MyWidget({ properties, middleware: { icache } 
 
 Dojo 7 includes considerable improvements to the in-built i18n support with all CLDR data now automatically included based on the locales defined in the application's `.dojorc` and the i18n usage within the application. The CLDR is also split into targeted bundles that are loaded on-demand when the locale changes. This massively reduces the up-front bundle cost that a user pays for a feature that they may never require or use.
 
-There should be zero to very minimal changes required for application, to take advantage of these improvements. Simply ensure that all the supported locales are defined in the application's `.dojorc` (as they should already be) and enjoy smaller, smarter i18n.
+There should be zero to very minimal changes required for applications to take advantage of these improvements. Simply ensure that all the supported locales are defined in the application's `.dojorc` (as they should already be) and enjoy smaller, smarter i18n.
 
 ```json
 {
@@ -245,9 +245,9 @@ There should be zero to very minimal changes required for application, to take a
 
 ## Runtime theme variants
 
-The themes in provided by Dojo have always been built using CSS variables that define aspects such as color and sizing, however it has not been easily possible to create a variant of a theme by providing a separate set of CSS variables. This is due to the variable being defined at the `:root` level on the document body.
+The themes provided by Dojo have always been built using CSS variables that define aspects such as color and sizing, however, it has not been easily possible to create a variant of a theme by providing a separate set of CSS variables. This is due to the variable being defined at the `:root` level on the document body.
 
-Dojo 7 introduces some changes designed to solve this issue, variables are no longer required to get imported into each individual CSS file, instead the theme itself has been updated to contain both the theme CSS for each widget and a set of variants that specify all the required CSS variables. These variables are no longer defined at the `:root:` but instead under a class named `.root`. When setting a theme for a widget or application, the specific variant can be set along side it and is made available by the `theme` middleware or `Themed` mixin using `theme.variant()` and `this.variant()` respectively. This "variant" class is required to get set on the outer node of a widget to ensure that the widget uses the correct CSS variables.
+Dojo 7 introduces some changes designed to solve this issue. Variables are no longer required to get imported into each individual CSS file, instead the theme itself has been updated to contain both the theme CSS for each widget and a set of variants that specify all the required CSS variables. These variables are no longer defined at the `:root:` but instead under a class named `.root`. When setting a theme for a widget or application, the specific variant can get set beside it and is made available by the `theme` middleware or `Themed` mixin using `theme.variant()` and `this.variant()` respectively. This "variant" class is required to get set on the outer node of a widget to ensure that the widget uses the correct CSS variables.
 
 ```tsx
 import * as MyWidget from './MyWidget.m.css';
@@ -267,7 +267,7 @@ export default {
 }
 ```
 
-**Note:** There needs to be at least a "default" variant specified that will be used it no variant is explicitly set.
+**Note:** There needs to be at least a "default" variant specified that gets used if no variant gets explicitly set.
 
 ```tsx
 const MyWidget = factory(function MyWidget({ middleware: { theme } }) {
@@ -278,7 +278,7 @@ const MyWidget = factory(function MyWidget({ middleware: { theme } }) {
 });
 ```
 
-With widgets setup to use the variants class name, switching variant at runtime can be done by using the `theme` middleware:
+With widgets setup to use the variant's class name, switching the variant at runtime gets done by using the `theme` middleware:
 
 ```tsx
 import myTheme from './my-theme';
@@ -296,7 +296,7 @@ const App = factory(function App({ middleware: { theme } }) {
 });
 ```
 
-## Better BTR Developer Experience
+## Better BTR developer experience
 
 Dojo 7 introduces some significant improvements to the developer experience when working with build time rendering. The first is a new option, that is enabled by default to automatically discover pages to build, using the `build-time-render` options in the `.dojorc`, `discoverPaths`. The second is an on demand build time rendering mode that is turned on when working with the `watch` and `serve` cli-build-app flag. After the initial build, pages will only be built when they are visited in the browser, significantly speeding up the development experience.
 
@@ -306,7 +306,7 @@ Dojo Parade is a brand new package for building widget documentation and example
 
 ## Creating widget libraries
 
-To compliment the `cli-create-app` command, the existing `cli-create-widget` command has been converted to fulfill a higher destiny. The new `cli-create-widget` command in Dojo 7 will scaffold a skeleton widget library with all the tooling and documentation that we use in `@dojo/widgets`. We really hope this helps kickstart community lead widget projects.
+To complement the `cli-create-app` command, the existing `cli-create-widget` command has been converted to fulfill a higher destiny. The new `cli-create-widget` command in Dojo 7 will scaffold a skeleton widget library with all the tooling and documentation that we use in `@dojo/widgets`. We really hope this helps kickstart community-led widget projects!
 
 ```shell
 dojo create widget --name my-dojo-widget-lib
@@ -314,11 +314,11 @@ dojo create widget --name my-dojo-widget-lib
 
 ## Update to TypeScript Support
 
-Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. Dojo continues to support 3.4.5 and greater.
+Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. Dojo continues to support TypeScript 3.4.5 and greater.
 
 ## What's next?
 
-After eight busy months, it’s a pleasure to announce the release, but rest assured the work is not done, and over the next few weeks, we’ll be planning the goals for the next release and updating the [roadmap](https://dojo.io/roadmap).
+After eight busy months, it’s a pleasure to announce the release, but rest assured the work is not done, and over the next few weeks, we’ll be planning the goals for the next release and updating the [Dojo roadmap](https://dojo.io/roadmap).
 
 ## Migration
 
@@ -326,4 +326,4 @@ As usual with modern Dojo releases, all breaking changes introduced in Dojo rele
 
 ## Support
 
-See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the Dojo [roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on CodeSandbox. We look forward to your feedback!
+See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on CodeSandbox. We look forward to your feedback!
