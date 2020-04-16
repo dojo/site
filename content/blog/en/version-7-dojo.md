@@ -68,13 +68,13 @@ const Card = factory(function Card({ children }) {
     return (
         <div>
             <div classes={[css.title]}>
-                {title()}
+                {title}
             </div>
             <span classes={[css.avatar]}>
-                {avatar()}
+                {avatar}
             </span>
             <div classes={[css.content]}
-                {content()}
+                {content}
             </div>
         </div>
     );
@@ -221,7 +221,7 @@ const MyWidget = factory(function MyWidget({ properties, middleware: { icache } 
 					))}
 				</ul>
 			) : (
-				<div>Laoding...</div>
+				<div>Loading...</div>
 			)}
 		</div>
 	);
