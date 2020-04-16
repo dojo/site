@@ -18,7 +18,7 @@ For `@dojo/framework` and friends, version 7 primarily focuses on building on th
 
 ## Typed Widget Children
 
-Function-based widgets have empowered Dojo to deliver features that were extremely difficult with the Class-based widget authoring pattern. Render properties were getting used as a workaround to being able to implement functionality for widgets where properties need to get passed back to the user to render output that effectively gets used as children. Although this pattern works, it comes with some significant gotchas, as the property needs to get treated like children by Dojo's rendering engine. Still, Dojo was not able to do so, meaning that the author was left to ensure that the widget always re-renders to guarantee that the render properties output is not stale.
+Function-based widgets have empowered Dojo to deliver features that were extremely difficult with the Class-based widget authoring pattern. Render properties were getting used as a workaround to being able to implement functionality for widgets where properties need to get passed back to the user to render output that effectively gets used as children. Although this pattern works, it comes with some significant gotchas, as the property needs to get treated like children by Dojo's rendering engine. Unfortunately this isn't something that Dojo can do automatically, meaning that the author was left to ensure that the widget always re-renders to guarantee that the render properties output is not stale.
 
 Now with function-based widgets, it is possible to specify the expected type(s) of the children as functions or objects. In doing so, this ensures that Dojo knows that the widget has children and provides all the correct rendering paths get followed.
 
@@ -110,7 +110,7 @@ For widgets that take advantage of the named children pattern, the children can 
 </dojo-card>
 ```
 
-For more details visit the new [custom element reference guide](https://dojo.io/learn/custom-elements).
+The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots). For more details visit the new [custom element reference guide](https://dojo.io/learn/custom-elements).
 
 ## Bringing widgets and data together
 
@@ -147,9 +147,9 @@ export const List = factory(function Select({ middleware: { data } }) {
 });
 ```
 
-For more information, please see the [resource reference guide](https://dojo.io/learn/resources).
+For more information, please see the [rojo Resources reference guide](https://dojo.io/learn/resources).
 
-## A Safer Way of Testing
+## Dojo test renderer
 
 As part of the Dojo 7 release, testing in Dojo has been given an overhaul to provide support for new features such as functional children, type safety when working with assertion template the new test renderer and general updates that promote testing best practices.
 
@@ -166,13 +166,13 @@ There are five main components to the new test renderer:
 -   `compare`
     -   A custom comparator for node properties that can be used with a wrapped test node
 
-The key concept for the new renderer is using the `wrap` function to create wrapped test nodes and widgets that are used within a tests `assertion`, in place of the real widget. This provides the assertions type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve functional and name children.
+The key concept for the new renderer is using the `wrap` function to create wrapped test nodes and widgets that are used within a tests `assertion`, in place of the real widget. This provides the assertions type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve children.
 
 The current harness exists in the `@dojo/framework/testing/harness` directory. It will be supported through at least version 9 of Dojo, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
 
 For more details about the new test renderer, visit the [testing reference guide](https://dojo.io/learn/testing).
 
-## Routing, Routing, Routing
+## Simplified routing and outlets
 
 The concept of an `Outlet` in the Dojo routing has always been synonymous with each unique route, essentially the `id` of the route itself. An `Outlet` always reflected a single `Route`. As such, the `Outlet` widget is now known as `Route`. With the routing configuration requiring a unique `id` for every route, this will usually be the same value previously used for the `Outlet` name.
 
