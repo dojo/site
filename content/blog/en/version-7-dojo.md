@@ -326,4 +326,4 @@ As usual with modern Dojo releases, all breaking changes introduced in Dojo rele
 
 ## Support
 
-See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on CodeSandbox. We look forward to your feedback!
+See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on [CodeSandbox](https://codesandbox.io/s/github/dojo/dojo-codesandbox-template). We look forward to your feedback!
