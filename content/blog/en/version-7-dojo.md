@@ -21,43 +21,6 @@ Function-based widgets have empowered Dojo to deliver features that were extreme
 
 Now with function-based widgets, it is possible to specify the expected type(s) of the children as functions or objects. In doing so, this ensures that Dojo knows that the widget has children and provides all the correct rendering paths get followed.
 
-Previously in Dojo 6, using a render property called `renderer`:
-
-```tsx
-import { create, tsx, diffProperty, invalidator } from '@dojo/framework/core/vdom';
-import { RenderResult } from '@dojo/framework/core/interfaces';
-import icache from '@dojo/framework/core/middleware/icache';
-
-interface MyWidgetProperties {
-    renderer(active: boolean): RenderResult;
-}
-
-const factory = create({ icache, diffProperty, invalidator }).properties<MyWidgetProperties>();
-
-const MyWidget = factory(function MyWidget({ properties, middleware: { icache, diffProperty, invalidator } }) {
-    // need to tell the widget to always re-render to ensure that the
-    // latest output from the `renderer` property is reflected accurately
-    diffProperty('renderer', () => {
-        invalidator();
-    });
-    const { renderer } = properties();
-    const active = icache.getOrSet('active', true);
-    return (
-        <div>{renderer(active)}</div>
-        <button onclick={() => {
-            icache.set('active', icache.getOrSet('active', true));
-        }}>{`Set ${active ? 'inactive' : 'active'}`}</button>
-    );
-});
-
-// Usage
-<MyWidget renderer={(active) => {
-    return <div>{`${active ? 'ACTIVE' : 'NOT ACTIVE'}`}</div>
-}}/>
-```
-
-In Dojo 7 using a typed functional child, the renderer gets passed as the widget's child instead of as a property.
-
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import { RenderResult } from '@dojo/framework/core/interfaces';
@@ -189,65 +152,24 @@ For more information, please see the [resource reference guide](https://dojo.io/
 
 As part of Dojo 7 testing in Dojo has been given an overhaul to provide support for new features such as functional children, type safety when working with assertion template the new test renderer and general updates that promote testing best practices.
 
-The key concept for the new renderer is creating wrapping nodes or widgets that are used within a tests `assertionTemplate`, in place of the real widget. This provides the assertion templates type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve functional and name children.
+There are five main components to the new test renderer:
 
-```tsx
-import { tsx } from '@dojo/framework/core/vdom';
-import renderer, { wrap, compare } from '@dojo/framework/testing/renderer';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+-   `renderer`
+    -  The function used to render widgets in the test environment.
+-   `assertion`
+    - an assertion builder which can be expected against the test renderer.
+-   `wrap`
+    - A function that wraps widgets and nodes to be used as a type-safe selector when interacting with assertions and the test renderer.
+-   `ignore`
+    - A utility function to exclude nodes from an assertion
+-   `compare`
+    - A custom comparator for node properties that can be used with a wrapped test node
 
-import MyWidget from './MyWidget';
-import Button from './Button';
-import Card from './Card';
+The key concept for the new renderer is using the `wrap` function to create wrapped test nodes and widgets that are used within a tests `assertion`, in place of the real widget. This provides the assertions type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve functional and name children.
 
-// create a wrapped node for anything that needs to be used with the renderer or assertion template api
-const WrappedButton = wrap(Button);
-const WrappedRoot = wrap('div');
-const WrappedCard = wrap(Card);
+The current harness exists in the `@dojo/framework/testing/harness` directory. It will be supported at least through to Dojo 9, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
 
-// create the base template with the wrapped nodes
-// in place of the real node/widget
-const baseTemplate = assertionTemplate(() => (
-    // use `compare` with any property on a wrapped node to pass a custom comparator
-    <WrappedRoot id={compare((actual) => typeof actual === 'string')}>
-        <WrappedButton onClick={() => {}} />Show</WrappedButton>
-    </WrappedRoot>
-));
-
-// initialize the test renderer
-const r = renderer(() => <MyWidget />);
-
-// Always expect the default render state
-r.expect(baseTemplate);
-
-// register calling a property using a wrapped node, this will not be called until
-// the next expect assertion
-r.property(WrappedButton, 'onClick');
-
-// describe how to resolve functional children
-r.child(WrappedCard, [{ header: [], content: [] }]);
-
-// create a new template using the wrapped nodes to target the changes required
-const cardTemplate = baseTemplate
-    .setProperty(WrappedRoot, 'classes', [css.open])
-    .insertAfter(WrappedButton, () => (
-        <Card>{{
-            header: () => <h1>Header</h1>,
-            content: () => <div>Content</div>
-        }}
-        </Card>
-    ));
-
-// expect against the updated template the properties will get called before the widget re-renders
-r.expect(cardTemplate);
-
-r.property(WrappedButton, 'onClick');
-r.expect(baseTemplate);
-```
-
-The existing harness exists in the `@dojo/framework/testing/harness` directory. It will be supported at least through to Dojo 9, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
-
-For more details, visit the [testing reference guide](https://dojo.io/learn/testing).
+For more details about the new test renderer, visit the [testing reference guide](https://dojo.io/learn/testing).
 
 ## Routing, Routing, Routing
 
@@ -255,98 +177,9 @@ The concept of an `Outlet` in the Dojo routing has always been synonymous with e
 
 Making this change in routing enables the existing `Outlet`s concept to change from being tied to a specific route to represent instead a section of the application that the routing system can render, varying the content based on the matched route. This leads to less duplication in application code for each route and allows outlets in the routing configuration to more accurately describe the application layout.
 
-Consider a typical application layout which includes a left side menu and the main content view that depending on the route has a right-hand sidebar:
-
-```
--------------------------------------------------------------------
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
-|  menu  |                   main                     | side-menu |
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
-|        |                                            |           |
--------------------------------------------------------------------
-```
-
-```tsx
-const routes = [
-    {
-        id: 'landing',
-        path: '/',
-        outlet: 'main',
-        defaultRoute: true
-    },
-    {
-        id: 'widget',
-        path: 'widget/{widget}',
-        outlet: 'side-menu',
-        children: [
-            {
-                id: 'tests',
-                path: 'tests',
-                outlet: 'main'
-            },
-            {
-                id: 'overview',
-                path: 'overview',
-                outlet: 'main'
-            },
-            {
-                id: 'example'
-                path: 'example/{example}',
-                outlet: 'main'
-            }
-        ]
-    }
-];
-```
-
-In the routing configuration above, there are two outlets defined, `main` and `side-menu`, and a simplified application layout using outlets is shown below. By default, the `Outlet` renders any of the keys equal to a route id that gets matched for the outlet, in this case, `main`. If a function gets passed to the `Outlet` then it will render whenever _any_ route gets matched for the outlet specified.
-
-```tsx
-import { create, tsx } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
-
-import Menu from './Menu';
-import SideMenu from './SideMenu';
-import Landing from './Landing';
-import Tests from './Tests';
-import Example from './Example';
-
-const factory = create();
-
-const App = factory(function App() {
-    return (
-        <div>
-            <Menu />
-            <main>
-                <div>
-                    <Outlet id="main">
-                        {{
-                            landing: <Landing />,
-                            tests: <Tests />,
-                            example: ({ params: { example }}) => <Example example={example}/>,
-                            overview: <Example example="overview"/>
-                        }}
-                    </Outlet>
-                </div>
-                <div>
-                    <Outlet id="side-menu">
-                        {({ params: { widget }}) => <SideMenu widget={widget}>}
-                    </Outlet>
-                </div>
-            </main>
-        </div>
-    );
-});
-```
-
 To assist with the migration from `Outlet` to `Route` and updating the routing configurations to include an `id` for each route the `@dojo/cli-upgrade-app` command is available.
+
+For more details, visit the [routing reference guide](https://dojo.io/learn/routing/outlets).
 
 ## Custom widget keys
 
