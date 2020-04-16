@@ -10,7 +10,7 @@ We’re excited to announce the latest release of Dojo, a continually evolving, 
 
 <!-- more -->
 
-After nearly two years since the first official release of modern Dojo, version 7 provides many new features, bugs fixes and general improvements spanning the entire framework. Major releases have been regular occurrences over the last two years. The latest version 7 release is the most adventurous. This release has taken a few months longer than usual but is worth the wait.
+After nearly two years since the first official release of modern Dojo, version 7 provides many new features, bug fixes and general improvements spanning the entire framework. Major releases have been regular occurrences over the last two years. The latest version 7 release is the most adventurous. This release has taken a few months longer than usual but is worth the wait.
 
 We’re especially proud of the overhaul to the official Dojo widget library, [`@dojo/widgets`](https://github.com/dojo/widgets/), which has been re-thought from the ground up. Dojo widgets have now caught up with the Dojo framework improvements and best practices that have evolved over the last two years. Further details are available in the [Dojo widget release blog](https://dojo.io/blog/dojo-7-widgets).
 
@@ -48,7 +48,7 @@ const MyWidget = factory(function MyWidget({ children, middleware: { icache } })
 <MyWidget>{(active) => <div>{`${active ? 'ACTIVE' : 'NOT ACTIVE'}`}</div>}</MyWidget>
 ```
 
-Typed children can be even more expressive by using an object that describes children for different sections of the widget, referred to as named children. For example, a `Card` widget could have `title`, `avatar`, and `content` that can get defined by a user. Using standard children, there is no clear way for a user to define the output required for each, and using render properties still have all the original downsides of the pattern. However with named children, an object can be used to indicate the purpose of the child and whether they are mandatory or optional.
+Typed children can be even more expressive by using an object that describes children for different sections of the widget, referred to as named children. For example, a `Card` widget could have `title`, `avatar`, and `content` that can get defined by a user. Using standard children, there is no clear way for a user to define the output required for each, and using render properties still have all the original downsides of the pattern. However, with named children an object can get used to indicate the purpose of the child and whether they are mandatory or optional.
 
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
@@ -90,9 +90,9 @@ const Card = factory(function Card({ children }) {
 
 ## Custom Elements, Improved
 
-Dojo's support for the Custom Elements portion of Web Components provides interoperability with other frameworks and component systems, not only consuming custom elements in the framework but building Dojo widgets as custom elements. Developer ergonomics are even more important with custom elements, to ensure that the Dojo custom elements can get used with minimal effort, in the declarative way they get designed.
+Dojo's support for the Custom Elements portion of Web Components provides interoperability with other frameworks and component systems, not only consuming custom elements in the framework but building Dojo widgets as custom elements. Developer ergonomics are even more important with custom elements, to ensure that the Dojo custom elements can get used, with minimal effort, in the declarative way they get designed.
 
-Working with Dojo 6 compiled custom elements that used the render property pattern did not allow the custom elements to be used effectively, however, in Dojo 7 widgets that use functional children in place of a render property can use the custom element declaratively like standard HTML.
+Working with Dojo 6's compiled custom elements that used the render property pattern did not allow the custom elements to get used effectively. However, in Dojo 7, widgets that use functional children in place of a render property can use the custom element declaratively like standard HTML.
 
 ```html
 <dojo-my-widget>
@@ -151,14 +151,14 @@ For more information, please see the [resource reference guide](https://dojo.io/
 
 ## A Safer Way of Testing
 
-As part of Dojo 7 testing in Dojo has been given an overhaul to provide support for new features such as functional children, type safety when working with assertion template the new test renderer and general updates that promote testing best practices.
+As part of the Dojo 7 release, testing in Dojo has been given an overhaul to provide support for new features such as functional children, type safety when working with assertion template the new test renderer and general updates that promote testing best practices.
 
 There are five main components to the new test renderer:
 
 -   `renderer`
     -   The function used to render widgets in the test environment.
 -   `assertion`
-    -   an assertion builder which can be expected against the test renderer.
+    -   An assertion builder which can be expected against the test renderer.
 -   `wrap`
     -   A function that wraps widgets and nodes to be used as a type-safe selector when interacting with assertions and the test renderer.
 -   `ignore`
@@ -168,7 +168,7 @@ There are five main components to the new test renderer:
 
 The key concept for the new renderer is using the `wrap` function to create wrapped test nodes and widgets that are used within a tests `assertion`, in place of the real widget. This provides the assertions type information based on the wrapped widget and enables identifying the node or widget in the assertion template structure. The same is true for the test renderer itself that working with properties and children can be done in a type-safe way, using the location of the wrapped test node in the assertion template structure to call properties and resolve functional and name children.
 
-The current harness exists in the `@dojo/framework/testing/harness` directory. It will be supported at least through to Dojo 9, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
+The current harness exists in the `@dojo/framework/testing/harness` directory. It will be supported through at least version 9 of Dojo, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
 
 For more details about the new test renderer, visit the [testing reference guide](https://dojo.io/learn/testing).
 
@@ -298,11 +298,11 @@ const App = factory(function App({ middleware: { theme } }) {
 
 ## Better BTR Developer Experience
 
-Dojo 7 introduces some significant improvements to the developer experience when working with build time rendering. The first is a new option, that is enabled by default to automatically discover pages to build, using the `build-time-render` options in the `.dojorc`, `discoverPaths`. The second is an on demand build time rendering mode that is turned on when working with the `watch` and `serve` cli-build-app flag. After the initial build, pages will only be built when they are visited in the browser, significantly speeding up the the development experience.
+Dojo 7 introduces some significant improvements to the developer experience when working with build time rendering. The first is a new option, that is enabled by default to automatically discover pages to build, using the `build-time-render` options in the `.dojorc`, `discoverPaths`. The second is an on demand build time rendering mode that is turned on when working with the `watch` and `serve` cli-build-app flag. After the initial build, pages will only be built when they are visited in the browser, significantly speeding up the development experience.
 
 ## Dojo Parade, show off your widgets
 
-Dojo Parade is a brand new package for building widget documentation and examples from within you application or widget library. `@dojo/widgets` is using Dojo Parade for it's documentation, that can be seen at https://widgets.dojo.io, it's early days for Dojo Parade and we have lots of ideas on how we can improve on what we have now, but we wanted to get this released early so we can hear feedback and ideas from our community and most importantly everyone can benefit from thorough documentation for their widgets.
+Dojo Parade is a brand new package for building widget documentation and examples from within you application or widget library. `@dojo/widgets` is using Dojo Parade for its documentation, that can be seen at https://widgets.dojo.io, it's early days for Dojo Parade and we have lots of ideas on how we can improve on what we have now, but we wanted to get this released early so we can hear feedback and ideas from our community and most importantly everyone can benefit from thorough documentation for their widgets.
 
 ## Creating widget libraries
 
