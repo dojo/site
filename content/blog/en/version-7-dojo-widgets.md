@@ -1,7 +1,7 @@
 ---
 title: Announcing Dojo 7 Widgets
-date: 2019-08-28T08:00:00.000Z
-author: Anthony Gubler
+date: 2020-04-20T08:00:00.000Z
+author: Eric Osmundson
 ---
 
 Since the last release, we have been working to expand the Dojo Widgets library, while also improving the developer experience. With new advances in Dojo features, functionality, and recommended best practices, Dojo 7 was the perfect time to overhaul the Dojo Widgets library. This release makes it easier for developers to build efficient and modern web applications.
@@ -18,13 +18,53 @@ For Dojo 7, we focused on improvements in several key areas:
 
 ## Expanded Widget Library
 
-Providing maximum value to Dojo users means focusing on providing users a strong suite of widgets out of the box. Dojo 7 includes over two dozen new widgets that developers can use to build feature-rich applications even faster. Included are specialized widget variants, data-aware widgets, and widgets for building column layouts.
+Providing maximum value to Dojo users means focusing on providing users a strong suite of widgets out of the box. Version 7 of Dojo Widgets includes over two dozen new widgets that developers can use to build feature-rich applications even faster. Included are specialized widget variants, data-aware widgets, and widgets for building column layouts.
 
-Dojo 7 includes a key new feature called resources which are a combination of a middleware and resource factory that enables widget authors to build data-aware widgets with a standard, easy to use, and understandable API.
+#### New Widgets
 
-This new powerful feature is at the heart of the data-aware widgets that were built for Dojo 7 and we will be looking for feedback from our users to further refine the widgets in future releases.
+The new Card widget provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
 
-The new Card widget provides a simple and consistently styled container for content and actions.
+> src/MyCard.tsx
+```tsx
+import { create, tsx } from '@dojo/framework/core/vdom';
+import Card from '@dojo/widgets/card';
+import Button from '@dojo/widgets/button';
+import Icon from '@dojo/widgets/icon';
+const mediaSrc = require('./img/card-photo.jpg');
+
+const factory = create();
+
+export default factory(function CardWithMediaContent() {
+	return (
+		<div styles={{ width: '400px' }}>
+			<Card
+				onAction={() => {}}
+				mediaSrc={mediaSrc}
+				title="Hello, World"
+				subtitle="A pretty picture"
+			>
+				{{
+					header: <div>Header Content</div>,
+					content: <span>Travel the world today.</span>,
+					actionButtons: (
+						<virtual>
+							<Button>Read</Button>
+							<Button>Bookmark</Button>
+						</virtual>
+					),
+					actionIcons: (
+						<virtual>
+							<Icon type="secureIcon" />
+							<Icon type="downIcon" />
+							<Icon type="upIcon" />
+						</virtual>
+					)
+				}}
+			</Card>
+		</div>
+	);
+});
+```
 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
@@ -157,12 +197,14 @@ export default App;
 
 ```
 
+Check out all of the new Dojo widgets at [https://widgets.dojo.io](https://widgets.dojo.io/)
+
 ## Adopting the Latest Recommended Dojo Widget Authoring Patterns
 
 The introduction of function-based widgets fundamentally changed the recommended authoring patterns for Dojo widgets, providing more flexibility and functionality when used in combination with middleware. For simple widgets, the advantages may not be obvious, however, when working on more complex widgets these advantages become more apparent. One of the powerful key features of function-based widgets is being able to support typed children renderers, replacing the current render property pattern. There are several key advantages to using functional children over render properties:
 
-The Dojo rendering engine deals with the invalidation strategy internally.
-Typed children provide more flexibility when authoring widgets and most importantly more safety for the end user.
+- The Dojo rendering engine deals with the invalidation strategy internally.
+- Typed children provide more flexibility when authoring widgets and most importantly more safety for the end user.
 
 For Dojo 7, all widgets are now function-based, written in TSX, and reflect the latest recommended widget authoring patterns.
 
@@ -258,8 +300,8 @@ Themes in Dojo 7 now support 'variants'. This allows developers to easily create
 
 ## Revamped Documentation and Examples
 
-Dojo 7 includes improved widget documentation and examples. The widget documentation site at [widgets.dojo.io](https://widgets.dojo.io) uses the new [dojo/parade](https://github.com/dojo/parade) library to provide a consistent and up-to-date reference. Multiple examples are provided for each widget, and Dojo Parade provides auto-documentation of widget properties and theme class hooks. This new documentation tool is built in Dojo and serves as a great example of modern Dojo patterns.
+This release includes improved widget documentation and examples. The widget documentation site at [widgets.dojo.io](https://widgets.dojo.io) uses the new [@dojo/parade](https://github.com/dojo/parade) package to provide a consistent and up-to-date reference guide. Multiple examples are provided for each widget, and Dojo Parade provides auto-documentation of widget properties and theme class hooks. This new documentation tool is built with Dojo and offers a great tool for building widget documentation and examples from within your application or widget library.
 
 ## Migration
 
-All breaking changes in this release were carefully considered and focused on creating the best developer experience. For information on what has changed in Dojo 7, please see the [v7 migration guide](https://github.com/dojo/widgets/blob/master/docs/V7-Migration-Guide.md).
+All breaking changes in this release were carefully considered and focused on creating the best developer experience. For information on what has changed in Dojo Widgets, please see the [v7 migration guide](https://github.com/dojo/widgets/blob/master/docs/V7-Migration-Guide.md).
