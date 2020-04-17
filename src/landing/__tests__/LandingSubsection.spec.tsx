@@ -1,9 +1,9 @@
-import harness from '@dojo/framework/testing/harness';
+import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 
 import Subsection from '../LandingSubsection';
 import * as css from '../LandingSubsection.m.css';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
 
 describe('Landing Subsection', () => {
 	const baseAssertion = assertionTemplate(() => (

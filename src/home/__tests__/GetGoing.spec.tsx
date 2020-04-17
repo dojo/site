@@ -1,8 +1,8 @@
 import { add } from '@dojo/framework/core/has';
 add('test', true, true);
 
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
-import harness from '@dojo/framework/testing/harness';
+import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
+import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 import createIntersectionMock from '@dojo/framework/testing/mocks/middleware/intersection';
 import intersection from '@dojo/framework/core/middleware/intersection';

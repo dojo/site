@@ -1,5 +1,5 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 
 import BlogPost from './BlogPost';
 
@@ -7,7 +7,7 @@ const factory = create();
 
 export default factory(function BlogPosts() {
 	return (
-		<Outlet
+		<Route
 			key="blog-post"
 			id="blog-post"
 			renderer={(matchDetails) => {

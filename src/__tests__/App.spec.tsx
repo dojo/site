@@ -1,7 +1,7 @@
-import harness from '@dojo/framework/testing/harness';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import harness from '@dojo/framework/testing/harness/harness';
+import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
 import { tsx } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 import { DNode } from '@dojo/framework/core/interfaces';
 import i18n from '@dojo/framework/core/middleware/i18n';
 
@@ -30,8 +30,8 @@ describe('App', () => {
 		<div classes={[css.root]}>
 			<Header />
 			<div classes={[css.content]}>
-				<Outlet key="home" id="home" renderer={() => null} />
-				<Outlet
+				<Route key="home" id="home" renderer={() => null} />
+				<Route
 					key="blog"
 					id="blog"
 					renderer={(matchDetails) => {
@@ -41,20 +41,20 @@ describe('App', () => {
 					}}
 				/>
 				<BlogPosts />
-				<Outlet
+				<Route
 					key="playground"
 					id="playground"
 					renderer={() => <Playground example="sandbox" type="sandbox" />}
 				/>
-				<Outlet
+				<Route
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
 						<Playground example={example} type={type} />
 					)}
 				/>
-				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
-				<Outlet
+				<Route key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
+				<Route
 					key="learn"
 					id="learn"
 					renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}

@@ -1,5 +1,5 @@
-import harness from '@dojo/framework/testing/harness';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import harness from '@dojo/framework/testing/harness/harness';
+import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
 import { tsx } from '@dojo/framework/core/vdom';
 import { DefaultMiddlewareResult } from '@dojo/framework/core/interfaces';
 import block from '@dojo/framework/core/middleware/block';

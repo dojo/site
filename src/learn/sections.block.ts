@@ -1,6 +1,6 @@
 import { isVNode } from '@dojo/framework/core/vdom';
 import { DNode } from '@dojo/framework/core/interfaces';
-import select from '@dojo/framework/testing/support/selector';
+import select from '@dojo/framework/testing/harness/support/selector';
 
 import { toString } from '../util/to-string';
 
