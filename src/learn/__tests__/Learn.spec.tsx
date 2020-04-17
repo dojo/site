@@ -1,13 +1,11 @@
 import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
 import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
-import i18n from '@dojo/framework/core/middleware/i18n';
 import block from '@dojo/framework/core/middleware/block';
 
 import Menu from '../../menu/Menu';
 
 import createBlockMock from '../../test/mockBlock';
-import createI18nMock from '../../test/mockI18n';
 
 import { CompileRemoteBlockOptions } from '../content.block';
 import getSections from '../sections.block';
@@ -223,36 +221,30 @@ describe('Learn', () => {
 	});
 
 	it('renders in another language', () => {
-		const mockI18n = createI18nMock('zh-cn');
-
-		const h = harness(() => <Learn guideName="outline" pageName="introduction" url="url/to/page" />, {
-			middleware: [
-				[i18n, mockI18n],
-				[block, mockBlock]
-			]
-		});
+		const h = harness(
+			() => <Learn locale="zh-cn" guideName="outline" pageName="introduction" url="url/to/page" />,
+			{
+				middleware: [[block, mockBlock]]
+			}
+		);
 
 		h.expect(baseAssertion.setProperty('@content', 'language', 'zh').setProperty('@content', 'locale', 'zh-cn'));
 	});
 
 	it('renders from a different repo and branch', () => {
-		const mockI18n = createI18nMock('zh-cn');
-
 		const h = harness(
 			() => (
 				<Learn
 					guideName="outline"
 					pageName="introduction"
 					url="url/to/page"
+					locale="zh-cn"
 					repo="repo/somewhere"
 					branch="branchName"
 				/>
 			),
 			{
-				middleware: [
-					[i18n, mockI18n],
-					[block, mockBlock]
-				]
+				middleware: [[block, mockBlock]]
 			}
 		);
 
