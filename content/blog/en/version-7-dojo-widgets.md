@@ -4,23 +4,23 @@ date: 2020-04-20T08:00:00.000Z
 author: Eric Osmundson
 ---
 
-Since the last release, we have been working to expand the Dojo Widgets library, while also improving the developer experience. With new advances in Dojo features, functionality, and recommended best practices, Dojo 7 was the perfect time to overhaul the Dojo Widgets library. This release makes it easier for developers to build efficient and modern web applications.
+Since the last Dojo release, we have been expanding the features and improving the developer experience of the [Dojo Widgets](https://github.com/dojo/widgets) library. With new advances in Dojo features, functionality, and recommended best practices, Dojo version 7 provides substantial improvements to make it easier for developers to build efficient and modern web applications.
 
-For Dojo 7, we focused on improvements in several key areas:
+For Dojo version 7, we focused on improvements in several key areas:
 
 - Expanding the widget library, focusing on widgets that provide the most value to end users.
-- Refactoring all widgets as function-based and in TSX.
+- Refactoring all widgets as function-based and leveraging TSX syntax.
 - Adopt the latest recommended Dojo widget authoring patterns.
-- Improve out of the box usability of each widget.
+- Improve out-of-the-box usability of each widget.
 - Standardize widget property patterns across the library.
 - Improve the theming experience for end users.
 - Expand documentation and widget examples.
 
-## Expanded Widget Library
+## Expanded Dojo Widgets library
 
-Providing maximum value to Dojo users means focusing on providing users a strong suite of widgets out of the box. Version 7 of Dojo Widgets includes over two dozen new widgets that developers can use to build feature-rich applications even faster. Included are specialized widget variants, data-aware widgets, and widgets for building column layouts.
+One project goal is to provide users with a strong suite of widgets out-of-the-box. Version 7 of Dojo Widgets includes over two dozen new widgets that developers can use to build feature-rich applications even faster. Included are specialized widget variants, data-aware widgets, and widgets for building column layouts.
 
-#### New Widgets
+#### New Dojo Widgets
 
 The new Card widget provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
 
@@ -68,7 +68,7 @@ export default factory(function CardWithMediaContent() {
 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
-The PasswordInput widget is one of several new specialized widget variants. It handles validation state and messaging internally so the developer doesn’t have to.
+The PasswordInput widget is one of several new specialized widget variants, automatically handling validation state and messaging internally saving development time and improving productivity.
 
 > src/MyPasswordInput.tsx
 ```tsx
@@ -100,7 +100,7 @@ export default factory(function Basic() {
 
 ![Animated password input](assets/blog/version-7-dojo-widgets/passwordInput.gif)
 
-The Form widget provides an opinionated way to use a group of inputs in a form. It features a custom renderer for defining the form’s inputs and provides a middleware for custom functionality.
+The Form widget provides an opinionated way to use a group of inputs in a form, featuring a custom renderer for defining the form’s inputs and providing a middleware for custom functionality.
 
 > src/BasicForm.tsx
 ```tsx
@@ -197,34 +197,34 @@ export default App;
 
 ```
 
-Check out all of the new Dojo widgets at [https://widgets.dojo.io](https://widgets.dojo.io/)
+View the new [Dojo widgets in action](https://widgets.dojo.io/).
 
-## Adopting the Latest Recommended Dojo Widget Authoring Patterns
+## Adopting the latest recommended Dojo Widget authoring patterns
 
 The introduction of function-based widgets fundamentally changed the recommended authoring patterns for Dojo widgets, providing more flexibility and functionality when used in combination with middleware. For simple widgets, the advantages may not be obvious, however, when working on more complex widgets these advantages become more apparent. One of the powerful key features of function-based widgets is being able to support typed children renderers, replacing the current render property pattern. There are several key advantages to using functional children over render properties:
 
 - The Dojo rendering engine deals with the invalidation strategy internally.
 - Typed children provide more flexibility when authoring widgets and most importantly more safety for the end user.
 
-For Dojo 7, all widgets are now function-based, written in TSX, and reflect the latest recommended widget authoring patterns.
+For Dojo 7, all widgets are now function-based, leverage the TSX syntax, and reflect the latest recommended widget authoring patterns.
 
-## Making Widgets More Usable Out of the Box
+## Making Dojo Widgets more usable out-of-the-box
 
 As part of Dojo 7, all widgets were reviewed for usability issues with an emphasis on improving the developer experience. Property patterns were standardized across widgets and many are now partially controlled, handling their own state. The result is a more consistent and accessible collection of widgets that is usable right out of the box.
 
-### Standardization of Widget Property Patterns
+### Standardization of Dojo Widget property patterns
 
-This release brings more consistency to property patterns throughout the widgets library. The result is a reduced learning curve and improved developer experience. Common widget properties are aligned across all widgets, ensuring familiarity for end users.
+This release brings more consistency to property patterns throughout the Dojo Widgets library. The result is a reduced learning curve and improved developer experience. Common widget properties are now aligned across all widgets, ensuring familiarity for end users.
 
 #### value and onValue
 
-The use of `onInput` / `onChange` / etc has been consolidated into a consistent `onValue` callback. All widgets returning a value will do so using this callback. Additionally, callbacks that previously returned a value or key, such as `onChange` or `onBlur` have been removed or updated to return zero parameters.
+The use of `onInput` / `onChange` / etc has been consolidated into a consistent `onValue` callback. All widgets returning a value leverage this callback. Additionally, callbacks that previously returned a value or key, such as `onChange` or `onBlur` have been removed or updated to return zero parameters. Dojo previously tried to simply align with how HTML worked, but the inconsistency across HTML elements is frustrating and having a consistent pattern across all widgets streamlines cognitive overhead when working with Dojo Widgets.
 
 #### mouse / touch events
 
 Mouse and touch events have been standardized to use pointer events, allowing for removal of a large number of callbacks. Rather than `mouseIn` and `mouseOut`, widgets now provide `onOver` and `onOut`.
 
-### Partial Control of Widgets
+### Partial control of Dojo Widgets
 
 One goal with Dojo 7 is to make widgets work out of box wherever possible, without extra boilerplate for controlling the widget state. As a result, many widgets have been updated to use the `icache` middleware and now maintain their own state. This is accompanied by a standardized `initialValue` property that can control the `value` but does not need to be set each time the `onValue` callback is called. These widgets can still be optionally controlled using the `value` and `onValue` properties for backward compatibility, but we believe this new pattern provides an improvement to the developer experience.
 
@@ -267,15 +267,15 @@ export default factory(function Basic({}) {
 ```
 
 
-## Improved Theming Experience
+## Improved theming experience
 
-A primary goal of the Dojo 7 release is to make widget theming more accessible to end users. To that end, the @dojo/themes repository was deprecated, and themes were moved to @dojo/widgets. This allows developers to start building great looking applications even faster. Additional improvements include the inclusion of a Material theme and support for theme variants.
+A primary goal of the Dojo 7 release is to make widget theming more accessible to end users. To that end, the `@dojo/themes` repository was deprecated, and themes were moved to `@dojo/widgets`. This allows developers to start building great looking applications even faster. Additional improvements include the inclusion of a Material theme and support for theme variants.
 
 **Material theme**
 
-The Dojo 7 release brings a new Material theme to widgets. Beyond providing another modern appearance option for Dojo applications, the Material theme serves as an example of theming best practices. Development of the Material theme also helped validate several patterns in Dojo and helped guide the implementation of new features, such as theme variants.
+The Dojo 7 release brings a new Material Design theme to Dojo Widgets. Beyond providing another modern appearance option for Dojo applications, the Material theme serves as an example of theming best practices. Development of the Material theme also helped validate several patterns in Dojo and helped guide the implementation of new features such as theme variants.
 
-Through the use of css-modules, providing a Material theme for many widgets was as straightforward as composing the appropriate classes from the @material packages.
+Through the use of css-modules, providing a Material theme for many widgets simply required composing the appropriate classes from the @material packages.
 
 Example of adding Material theme to the Label widget:
 
@@ -294,14 +294,14 @@ Example of adding Material theme to the Label widget:
 }
 ```
 
-**Theme Variants**
+**Theme variants**
 
 Themes in Dojo 7 now support 'variants'. This allows developers to easily create variations of a theme with minimal duplication. By loading new css-variables, developers can include light, dark, high-contrast, or any number of variants within a theme.
 
-## Revamped Documentation and Examples
+## Revamped Dojo Widgets documentation and examples
 
-This release includes improved widget documentation and examples. The widget documentation site at [widgets.dojo.io](https://widgets.dojo.io) uses the new [@dojo/parade](https://github.com/dojo/parade) package to provide a consistent and up-to-date reference guide. Multiple examples are provided for each widget, and Dojo Parade provides auto-documentation of widget properties and theme class hooks. This new documentation tool is built with Dojo and offers a great tool for building widget documentation and examples from within your application or widget library.
+This release includes improved Dojo Widgets documentation and examples. The [Dojo Widgets documentation site](https://widgets.dojo.io) uses the new [@dojo/parade](https://github.com/dojo/parade) package to provide a consistent and up-to-date reference guide. Multiple examples are provided for each widget, and Dojo Parade provides auto-documentation of widget properties and theme class hooks! This new documentation tool is built with Dojo and provides a great tool for building widget documentation and examples from within your application or widget library.
 
 ## Migration
 
-All breaking changes in this release were carefully considered and focused on creating the best developer experience. For information on what has changed in Dojo Widgets, please see the [v7 migration guide](https://github.com/dojo/widgets/blob/master/docs/V7-Migration-Guide.md).
+All breaking changes in this release were carefully considered and focused on creating the best developer experience. For information on what has changed in Dojo Widgets, please see the [Dojo Widgets version 7 migration guide](https://github.com/dojo/widgets/blob/master/docs/V7-Migration-Guide.md).
