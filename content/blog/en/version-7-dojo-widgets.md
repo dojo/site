@@ -22,7 +22,7 @@ One project goal is to provide users with a strong suite of widgets out-of-the-b
 
 #### New Dojo Widgets
 
-The new Card widget provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
+The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
 
 > src/MyCard.tsx
 ```tsx
@@ -68,7 +68,7 @@ export default factory(function CardWithMediaContent() {
 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
-The PasswordInput widget is one of several new specialized widget variants, automatically handling validation state and messaging internally saving development time and improving productivity.
+The [PasswordInput widget](https://widgets.dojo.io/#widget/password-input/overview) is one of several new specialized widget variants, automatically handling validation state and messaging internally saving development time and improving productivity.
 
 > src/MyPasswordInput.tsx
 ```tsx
@@ -100,7 +100,7 @@ export default factory(function Basic() {
 
 ![Animated password input](assets/blog/version-7-dojo-widgets/passwordInput.gif)
 
-The Form widget provides an opinionated way to use a group of inputs in a form, featuring a custom renderer for defining the form’s inputs and providing a middleware for custom functionality.
+The [Form widget](https://widgets.dojo.io/#widget/form/overview) provides an opinionated way to use a group of inputs in a form, featuring a custom renderer for defining the form’s inputs and providing a middleware for custom functionality.
 
 > src/BasicForm.tsx
 ```tsx
@@ -210,7 +210,7 @@ For Dojo 7, all widgets are now function-based, leverage the TSX syntax, and ref
 
 ## Making Dojo Widgets more usable out-of-the-box
 
-As part of Dojo 7, all widgets were reviewed for usability issues with an emphasis on improving the developer experience. Property patterns were standardized across widgets and many are now partially controlled, handling their own state. The result is a more consistent and accessible collection of widgets that is usable right out of the box.
+As part of Dojo version 7, all widgets received an extensive review for usability issues with an emphasis on improving the developer experience. Property patterns were standardized across widgets and many widgets are now partially controlled, handling their own state. The result is a more consistent, usable and accessible collection of widgets.
 
 ### Standardization of Dojo Widget property patterns
 
@@ -226,7 +226,7 @@ Mouse and touch events have been standardized to use pointer events, allowing fo
 
 ### Partial control of Dojo Widgets
 
-One goal with Dojo 7 is to make widgets work out of box wherever possible, without extra boilerplate for controlling the widget state. As a result, many widgets have been updated to use the `icache` middleware and now maintain their own state. This is accompanied by a standardized `initialValue` property that can control the `value` but does not need to be set each time the `onValue` callback is called. These widgets can still be optionally controlled using the `value` and `onValue` properties for backward compatibility, but we believe this new pattern provides an improvement to the developer experience.
+One goal with Dojo 7 is to make widgets work out-of-the-box wherever possible, without extra boilerplate for controlling the widget state. As a result, many widgets have been updated to use the `icache` middleware and now maintain their own state. This is accompanied by a standardized `initialValue` property that can control the `value` but does not need to be set each time the `onValue` callback is called. These widgets can still optionally get controlled using the `value` and `onValue` properties for backward compatibility, but we believe this new pattern provides an improvement to the developer experience.
 
 Basic controlled Slider widget, using `value` and `onValue`:
 > src/MyControlledSlider
