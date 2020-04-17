@@ -14,13 +14,14 @@
     "uploadCoverage": "codecov --file=coverage/coverage-final.json"
   },
   "dependencies": {
-    "@dojo/framework": "7.0.0-alpha.1",
+    "@dojo/framework": "7.0.0-beta.1",
+    "cldr-data": "36.0.0",
     "tslib": "1.10.0"
   },
   "devDependencies": {
     "@agentofuser/rehype-section": "1.0.5",
-    "@dojo/cli": "7.0.0-alpha.1",
-    "@dojo/cli-build-app": "7.0.0-alpha.1",
+    "@dojo/cli": "next",
+    "@dojo/cli-build-app": "7.0.0-beta.1",
     "@dojo/scripts": "4.0.2",
     "@mapbox/rehype-prism": "0.3.1",
     "@types/fs-extra": "8.0.0",

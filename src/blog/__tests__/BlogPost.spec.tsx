@@ -1,5 +1,5 @@
 import Link from '@dojo/framework/routing/Link';
-import harness from '@dojo/framework/testing/harness';
+import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 import block from '@dojo/framework/core/middleware/block';
 

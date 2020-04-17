@@ -1,6 +1,7 @@
 {
 	"build-app": {
 		"locale": "en-us",
+		"watchExtraFiles": ["content/**"],
 		"build-time-render": {
 			"root": "root",
 			"static": true,

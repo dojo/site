@@ -23,18 +23,18 @@ interface LearnProperties {
 const factory = create({ theme, i18n, block }).properties<LearnProperties>();
 
 export default factory(function Learn({ properties, middleware: { theme, i18n, block } }) {
-	const { guideName, pageName, url, repo = GUIDES_DEFAULT_REPO, branch = GUIDES_DEFAULT_BRANCH } = properties();
+	const {
+		guideName,
+		pageName,
+		url,
+		repo = GUIDES_DEFAULT_REPO,
+		branch = GUIDES_DEFAULT_BRANCH,
+		locale = 'en'
+	} = properties();
 	const themedCss = theme.classes(css);
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 
-	let language = 'en';
-	let locale = 'en';
-	const localeData = i18n.get();
-	if (localeData && localeData.locale) {
-		language = getLanguageFromLocale(localeData.locale);
-		locale = localeData.locale;
-	}
-
+	const language = locale ? getLanguageFromLocale(locale) : locale;
 	const sections = block(getSections)({ branch, path, page: 'supplemental', repo, language, locale }) || [];
 
 	return (

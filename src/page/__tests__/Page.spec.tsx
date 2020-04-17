@@ -1,6 +1,6 @@
-import harness from '@dojo/framework/testing/harness';
+import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
-import assertionTemplate from '@dojo/framework/testing/assertionTemplate';
+import assertionTemplate from '@dojo/framework/testing/harness/assertionTemplate';
 
 import Page from '../Page';
 import * as css from '../Page.m.css';

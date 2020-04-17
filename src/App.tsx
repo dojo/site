@@ -1,5 +1,5 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 
 import Home from './home/Home';
 import Blog from './blog/Blog';
@@ -20,8 +20,8 @@ export default factory(function App() {
 		<div classes={[css.root]}>
 			<Header />
 			<div classes={[css.content]}>
-				<Outlet key="home" id="home" renderer={() => <Home />} />
-				<Outlet
+				<Route key="home" id="home" renderer={() => <Home />} />
+				<Route
 					key="blog"
 					id="blog"
 					renderer={(matchDetails) => {
@@ -32,20 +32,20 @@ export default factory(function App() {
 					}}
 				/>
 				<BlogPosts />
-				<Outlet
+				<Route
 					key="playground"
 					id="playground"
 					renderer={() => <Playground example="sandbox" type="sandbox" />}
 				/>
-				<Outlet
+				<Route
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
 						<Playground example={example} type={type} />
 					)}
 				/>
-				<Outlet key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
-				<Outlet
+				<Route key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
+				<Route
 					key="learn"
 					id="learn"
 					renderer={({ params, router }) => {

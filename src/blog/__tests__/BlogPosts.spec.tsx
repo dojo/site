@@ -1,6 +1,6 @@
-import harness from '@dojo/framework/testing/harness';
+import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 
 import Post from '../BlogPost';
 
@@ -9,7 +9,7 @@ import BlogPosts from '../BlogPosts';
 describe('Blog Posts', () => {
 	it('renders', () => {
 		const h = harness(() => <BlogPosts />);
-		h.expect(() => <Outlet key="blog-post" id="blog-post" renderer={() => 'anything'} />);
+		h.expect(() => <Route key="blog-post" id="blog-post" renderer={() => 'anything'} />);
 	});
 
 	it('outlet render content', () => {

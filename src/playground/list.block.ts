@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/core/interfaces';
-import { select } from '@dojo/framework/testing/support/selector';
+import { select } from '@dojo/framework/testing/harness/support/selector';
 
 import { EXAMPLES_REPO, EXAMPLES_BRANCH } from '../constants';
 import markdown from '../common/markdown';

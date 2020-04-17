@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import markdown from '../common/markdown';
-import select from '@dojo/framework/testing/support/selector';
+import select from '@dojo/framework/testing/harness/support/selector';
 
 export interface CompileRemoteBlockOptions {
 	repo: string;
