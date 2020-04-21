@@ -15,7 +15,21 @@ import App from './App';
 
 const registry = new Registry();
 
-const router = registerRouterInjector(routes, registry, { HistoryManager: StateHistory });
+const router = registerRouterInjector(routes, registry, {
+	HistoryManager: StateHistory,
+	setDocumentTitle: ({ id, title, params: { guide } }) => {
+		if (title) {
+			return title;
+		}
+		if (id === 'learn' && guide) {
+			return `Dojo ${guide
+				.split('-')
+				.map((word) => word.replace(/^\w/, (letter) => letter.toUpperCase()))
+				.join(' ')} Guide`;
+		}
+		return 'Dojo';
+	}
+});
 
 registry.define('docs-alert', Alert);
 registry.define('docs-aside', Aside);
