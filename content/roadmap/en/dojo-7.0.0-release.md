@@ -38,6 +38,10 @@ The Dojo framework 7.0.0 release.
 * Forwards compatibility for TypeScript 3.8 ([#719](https://github.com/framewoek/pull/719))
 * Configure document title on route change ([#725](https://github.com/framewoek/pull/725))
 * Skip setting the route when working with build time rendering and using the development server ([#729](https://github.com/framewoek/pull/729))
+* On-demand Build Time Rendering ([#246](https://github.com/dojo/webpack-contrib/pull/246))
+* Set document title for build time rendered pages ([#260](https://github.com/dojo/webpack-contrib/pull/260))
+* `.dojorc` schema validation for `@dojo/cli-build-app` ([#324](https://github.com/dojo/cli-build-app/pull/324))
+* asdasdasda ([#729](https://github.com/framewoek/pull/729))
 
 ### Bug Fixes
 
