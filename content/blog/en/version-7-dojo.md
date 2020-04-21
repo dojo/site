@@ -296,6 +296,10 @@ const App = factory(function App({ middleware: { theme } }) {
 });
 ```
 
+## Dojo CLi Improvements
+
+Two big improvements to using the Dojo CLI are included in version 7, the first is validation for `.dojorc` config values. If there is are unsupported or incorrect config values detected, an error will be output to the console. The second is support for composing `.dojorc` configuration to reduce duplication and maintenance using the `extends` key pointing to the config to extend from.
+
 ## Better BTR developer experience
 
 Dojo 7 introduces some significant improvements to the developer experience when working with build time rendering. The first is a new option, that is enabled by default to automatically discover pages to build, using the `build-time-render` options in the `.dojorc`, `discoverPaths`. The second is an on demand build time rendering mode that is turned on when working with the `watch` and `serve` cli-build-app flag. After the initial build, pages will only be built when they are visited in the browser, significantly speeding up the development experience.
@@ -315,6 +319,10 @@ dojo create widget --name my-dojo-widget-lib
 ## Update to TypeScript Support
 
 Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. Dojo continues to support TypeScript 3.4.5 and greater.
+
+## Seamless ZEIT Now Support
+
+Over the last couple of months we have been working with the ZEIT team to get Dojo setup for seamless, zero configuration [ZEIT Now deployment](https://zeit.co/guides/deploying-dojo-with-zeit-now), it's now even easier to deploy your next Dojo application.
 
 ## What's next?
 
