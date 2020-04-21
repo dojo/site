@@ -6,6 +6,8 @@ author: Eric Osmundson
 
 Since the last Dojo release, we have been expanding the features and improving the developer experience of the [Dojo Widgets](https://github.com/dojo/widgets) library. With new advances in Dojo features, functionality, and recommended best practices, Dojo version 7 provides substantial improvements to make it easier for developers to build efficient and modern web applications.
 
+<!-- more -->
+
 For Dojo version 7, we focused on improvements in several key areas:
 
 - Expanding the widget library, focusing on widgets that provide the most value to end users.
