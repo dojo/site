@@ -1,12 +1,12 @@
 ---
 title: Dojo 7.0 Has Arrived
-date: 2020-04-20
+date: 2020-04-22
 author: Anthony Gubler
 ---
 
 We’re excited to announce the latest release of Dojo, a continually evolving, batteries-included, TypeScript web framework. Dojo’s primary goals haven’t changed, and we continue to focus on harmony with the modern web ecosystem, best in class developer ergonomics and intelligent, powerful defaults that enable users to concentrate on building features and applications.
 
-![Announcing Dojo 7](assets/blog/version-7-dojo/featured.jpg)
+![Announcing Dojo 7](assets/blog/version-7-dojo/featured.png)
 
 <!-- more -->
 
@@ -151,7 +151,7 @@ For more information, please see the [rojo Resources reference guide](https://do
 
 ## Dojo test renderer
 
-As part of the Dojo 7 release, testing in Dojo has been given an overhaul to provide support for new features such as functional children, type safety when working with assertion template the new test renderer and general updates that promote testing best practices.
+As part of the Dojo 7 release, testing in Dojo has been given an overhaul to provide support for new features such as functional children, type-safe APIs and general updates that promote testing best practices.
 
 There are five main components to the new test renderer:
 
@@ -267,7 +267,7 @@ export default {
 }
 ```
 
-**Note:** There needs to be at least a "default" variant specified that gets used if no variant gets explicitly set.
+And using the `theme.variant()` function to apply the current variant to the root of the widget:
 
 ```tsx
 const MyWidget = factory(function MyWidget({ middleware: { theme } }) {
@@ -322,7 +322,7 @@ Dojo 7 has been tested and verified up to the latest released version, currently
 
 ## Seamless ZEIT Now Support
 
-Over the last couple of months we have been working with the ZEIT team to get Dojo setup for seamless, zero configuration [ZEIT Now deployment](https://zeit.co/guides/deploying-dojo-with-zeit-now), it's now even easier to deploy your next Dojo application.
+Over the last couple of months we have been working with the ZEIT team to get Dojo setup for seamless, zero configuration [Vercel deployment](https://vercel.com/blog/zeit-is-now-vercel), it's now even easier to deploy your next Dojo application.
 
 ## What's next?
 
