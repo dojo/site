@@ -110,7 +110,7 @@ For widgets that take advantage of the named children pattern, the children can 
 </dojo-card>
 ```
 
-The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots). For more details visit the new [custom element reference guide](https://dojo.io/learn/custom-elements).
+The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots). For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements).
 
 ## Bringing widgets and data together
 
@@ -298,7 +298,7 @@ const App = factory(function App({ middleware: { theme } }) {
 
 ## Dojo CLi Improvements
 
-Two big improvements to using the Dojo CLI are included in version 7, the first is validation for `.dojorc` config values. If there is are unsupported or incorrect config values detected, an error will be output to the console. The second is support for composing `.dojorc` configuration to reduce duplication and maintenance using the `extends` key pointing to the config to extend from.
+Two big improvements to using the Dojo CLI are included in version 7, the first is validation for `.dojorc` config values. If there are unsupported or incorrect config values detected, an error gets output to the console. The second is support for composing `.dojorc` configuration to reduce duplication and maintenance using the `extends` key pointing to the config from which to extend.
 
 ## Better BTR developer experience
 
