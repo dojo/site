@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 7 Widgets
-date: 2020-04-20T08:00:00.000Z
+date: 2020-04-22T08:00:00.000Z
 author: Eric Osmundson
 ---
 
@@ -25,7 +25,7 @@ One project goal is to provide users with a strong suite of widgets out-of-the-b
 
 #### New Dojo Widgets
 
-The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
+The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections in a [typed child object](/blog/version-7-dojo#typed-widget-children) and rendering them in the appropriate location with appropriate styling.
 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
