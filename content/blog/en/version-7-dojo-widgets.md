@@ -6,6 +6,7 @@ author: Eric Osmundson
 
 Since the last Dojo release, we have been expanding the features and improving the developer experience of the [Dojo Widgets](https://github.com/dojo/widgets) library. With new advances in Dojo features, functionality, and recommended best practices, Dojo version 7 provides substantial improvements to make it easier for developers to build efficient and modern web applications.
 
+![The image for the blog](assets/blog/version-7-dojo-widgets/featured.png)
 <!-- more -->
 
 For Dojo version 7, we focused on improvements in several key areas:
@@ -25,6 +26,8 @@ One project goal is to provide users with a strong suite of widgets out-of-the-b
 #### New Dojo Widgets
 
 The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections and rendering them in the appropriate location with appropriate styling.
+
+![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
 > src/MyCard.tsx
 ```tsx
@@ -68,9 +71,9 @@ export default factory(function CardWithMediaContent() {
 });
 ```
 
-![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
-
 The [PasswordInput widget](https://widgets.dojo.io/#widget/password-input/overview) is one of several new specialized widget variants, automatically handling validation state and messaging internally saving development time and improving productivity.
+
+![Animated Password Input](assets/blog/version-7-dojo-widgets/passwordInput.gif)
 
 > src/MyPasswordInput.tsx
 ```tsx
@@ -100,11 +103,11 @@ export default factory(function Basic() {
 });
 ```
 
-![Animated password input](assets/blog/version-7-dojo-widgets/passwordInput.gif)
-
 The [Form widget](https://widgets.dojo.io/#widget/form/overview) provides an opinionated way to use a group of inputs in a form, featuring a custom renderer for defining the form’s inputs and providing a middleware for custom functionality.
 
-> src/BasicForm.tsx
+![Animated Form widget](assets/blog/version-7-dojo-widgets/form.gif)
+
+> src/MyForm.tsx
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import { createICacheMiddleware } from '@dojo/framework/core/middleware/icache';
