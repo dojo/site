@@ -25,7 +25,7 @@ One project goal is to provide users with a strong suite of widgets out-of-the-b
 
 #### New Dojo Widgets
 
-The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections in a [typed child object](/blog/version-7-dojo#typed-widget-children) and rendering them in the appropriate location with appropriate styling.
+The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a simple and consistently styled container for content and actions. It uses the new child renderer pattern, accepting content for different sections in a [typed child object](https://dojo.io/blog/version-7-dojo#typed-widget-children) and rendering them in the appropriate location with appropriate styling.
 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
@@ -215,7 +215,7 @@ For Dojo 7, all widgets are now function-based, leverage the TSX syntax, and ref
 
 ## Making Dojo Widgets more usable out-of-the-box
 
-As part of Dojo version 7, all widgets received an extensive review for usability issues with an emphasis on improving the developer experience. Property patterns were standardized across widgets and many widgets are now partially controlled, handling their own state. The result is a more consistent, usable and accessible collection of widgets.
+As part of Dojo version 7, all widgets received an extensive review for usability issues with an emphasis on improving the developer experience. Property patterns were standardized across widgets and many widgets are now partially controlled, handling their own state. The result is a more consistent, usable, and accessible collection of widgets.
 
 ### Standardization of Dojo Widget property patterns
 
@@ -223,7 +223,7 @@ This release brings more consistency to property patterns throughout the Dojo Wi
 
 #### value and onValue
 
-The use of `onInput` / `onChange` / etc has been consolidated into a consistent `onValue` callback. All widgets returning a value leverage this callback. Additionally, callbacks that previously returned a value or key, such as `onChange` or `onBlur` have been removed or updated to return zero parameters. Dojo previously tried to simply align with how HTML worked, but the inconsistency across HTML elements is frustrating and having a consistent pattern across all widgets streamlines cognitive overhead when working with Dojo Widgets.
+The use of `onInput` / `onChange` / etc has been consolidated into a consistent `onValue` callback. All widgets returning a value leverage this callback. Additionally, callbacks that previously returned a value or key, such as `onChange` or `onBlur` have been removed or updated to return zero parameters. Dojo previously tried to simply align with how HTML worked, but the inconsistency across HTML elements is frustrating, and having a consistent pattern across all widgets streamlines cognitive overhead when working with Dojo Widgets.
 
 #### mouse / touch events
 
@@ -310,3 +310,7 @@ This release includes improved Dojo Widgets documentation and examples. The [Doj
 ## Migration
 
 All breaking changes in this release were carefully considered and focused on creating the best developer experience. For information on what has changed in Dojo Widgets, please see the [Dojo Widgets version 7 migration guide](https://github.com/dojo/widgets/blob/master/docs/V7-Migration-Guide.md).
+
+## Support
+
+See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on [CodeSandbox](https://codesandbox.io/s/github/dojo/dojo-codesandbox-template). We look forward to your feedback!
