@@ -55,7 +55,7 @@
  */
 .main.menu .menuLink,
 .main.menu .menuLink:hover {
-	color: var(--color-white);
+	color: var(--header-background-color);
 }
 
 .main.menu .menuLink:hover::before {
@@ -116,7 +116,8 @@
 	.side .main.menu {
 		width: calc(var(--grid-size) * 25);
 		height: 100%;
-		background: linear-gradient(180deg, var(--header-background-color), var(--color-blue));
+		background: #f9f9f9;
+		border-right: 1px solid var(--color-border);
 		align-items: flex-start;
 	}
 

@@ -4,7 +4,7 @@ import Link from '@dojo/framework/routing/Link';
 
 import * as css from './Hero.m.css';
 
-const hero = require('../assets/herobg.png');
+const hero = require('../assets/herobg.jpg');
 
 const factory = create({ theme });
 
