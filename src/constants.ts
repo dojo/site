@@ -13,7 +13,7 @@ export const GUIDES: Guide[] = [
 	{ name: 'Resources' },
 	{ name: 'Routing' },
 	{ name: 'Testing' },
-	{ name: 'Custom Elements'}
+	{ name: 'Custom Elements' }
 ];
 
 export const EXAMPLES_REPO = 'dojo/examples';
