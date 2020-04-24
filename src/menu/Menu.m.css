@@ -98,6 +98,11 @@
 		overflow: auto;
 		width: 100%;
 	}
+
+	.main.menu .menuLink,
+	.main.menu .menuLink:hover {
+		color: var(--color-white);
+	}
 }
 
 @media (min-width: 1025px) {
