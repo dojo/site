@@ -1,12 +1,12 @@
 ---
 title: Announcing Dojo 7 Widgets
-date: 2020-04-22T08:00:00.000Z
+date: 2020-04-27T11:00:00.000Z
 author: Eric Osmundson
 ---
 
 Since the last Dojo release, we have been expanding the features and improving the developer experience of the [Dojo Widgets](https://github.com/dojo/widgets) library. With new advances in Dojo features, functionality, and recommended best practices, Dojo version 7 provides substantial improvements to make it easier for developers to build efficient and modern web applications.
 
-![The image for the blog](assets/blog/version-7-dojo-widgets/featured.png)
+![The image for the blog](assets/blog/version-7-dojo-widgets/featured.jpg)
 <!-- more -->
 
 For Dojo version 7, we focused on improvements in several key areas:

@@ -1,12 +1,12 @@
 ---
 title: Dojo 7.0 Has Arrived
-date: 2020-04-22
+date: 2020-04-27T12:00:00.000Z
 author: Anthony Gubler
 ---
 
 We’re excited to announce the latest release of Dojo, a continually evolving, batteries-included, TypeScript web framework. Dojo’s primary goals haven’t changed, and we continue to focus on harmony with the modern web ecosystem, best in class developer ergonomics and intelligent, powerful defaults that enable users to concentrate on building features and applications.
 
-![Announcing Dojo 7](assets/blog/version-7-dojo/featured.png)
+![Announcing Dojo 7](assets/blog/version-7-dojo/featured.jpg)
 
 <!-- more -->
 
