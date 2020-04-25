@@ -18,7 +18,7 @@ For `@dojo/framework` and friends, version 7 primarily focuses on building on th
 
 ## Typed Widget Children
 
-Function-based widgets have empowered Dojo to deliver features that were extremely difficult with the Class-based widget authoring pattern. Render properties were getting used as a workaround to being able to implement functionality for widgets where properties need to get passed back to the user to render output that effectively gets used as children. Although this pattern works, it comes with some significant gotchas, as the property needs to get treated like children by Dojo's rendering engine. Unfortunately this isn't something that Dojo can do automatically, meaning that the author was left to ensure that the widget always re-renders to guarantee that the render properties output is not stale.
+Function-based widgets have empowered Dojo to deliver features that were extremely difficult with the Class-based widget authoring pattern. Render properties were getting used as a workaround to being able to implement functionality for widgets where properties need to get passed back to the user to render output that effectively gets used as children. Although this pattern works, it comes with some significant gotchas, as the property needs to get treated like children by Dojo's rendering engine. Unfortunately, this isn't something that Dojo can do automatically, meaning that the author was left to ensure that the widget always re-renders to guarantee that the render properties output is not stale.
 
 Now with function-based widgets, it is possible to specify the expected type(s) of the children as functions or objects. In doing so, this ensures that Dojo knows that the widget has children and all the correct rendering paths get followed.
 
@@ -48,7 +48,7 @@ const MyWidget = factory(function MyWidget({ children, middleware: { icache } })
 <MyWidget>{(active) => <div>{`${active ? 'ACTIVE' : 'NOT ACTIVE'}`}</div>}</MyWidget>
 ```
 
-Typed children can be even more expressive by using an object that describes children for different sections of the widget, referred to as named children. For example, a `Card` widget could have `title`, `avatar`, and `content` that can get defined by a user. Using standard children, there is no clear way for a user to define the output required for each, and using render properties still have all the original downsides of the pattern. However, with named children an object can get used to indicate the purpose of the child and whether they are mandatory or optional.
+Typed children can be even more expressive by using an object that describes children for different sections of the widget, referred to as named children. For example, a `Card` widget could have `title`, `avatar`, and `content` that can get defined by a user. Using standard children, there is no clear way for a user to define the output required for each, and using render properties still have all the original downsides of the pattern. However, with named children an object can be used to indicate the purpose of the child and whether they are mandatory or optional.
 
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
@@ -306,7 +306,7 @@ Dojo 7 introduces some significant improvements to the developer experience when
 
 ## Dojo Parade, show off your widgets
 
-Dojo Parade is a brand new package for building widget documentation and examples from within you application or widget library. `@dojo/widgets` is using Dojo Parade for its documentation, that can be seen at https://widgets.dojo.io, it's early days for Dojo Parade and we have lots of ideas on how we can improve on what we have now, but we wanted to get this released early so we can hear feedback and ideas from our community and most importantly everyone can benefit from thorough documentation for their widgets.
+Dojo Parade is a brand new package for building widget documentation and examples from within your application or widget library. `@dojo/widgets` is using Dojo Parade for its documentation, that can be seen at https://widgets.dojo.io, it's early days for Dojo Parade and we have lots of ideas on how we can improve on what we have now, but we wanted to get this released early so we can hear feedback and ideas from our community and most importantly everyone can benefit from thorough documentation for their widgets.
 
 ## Creating widget libraries
 
