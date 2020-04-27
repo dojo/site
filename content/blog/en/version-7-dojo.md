@@ -12,7 +12,7 @@ We’re excited to announce the latest release of Dojo, a continually evolving, 
 
 After nearly two years since the first official release of modern Dojo, version 7 provides many new features, bug fixes and general improvements spanning the entire framework. Major releases have been regular occurrences over the last two years. The latest version 7 release is the most adventurous. This release has taken a few months longer than usual but is worth the wait.
 
-We’re especially proud of the overhaul to the official Dojo widget library, [`@dojo/widgets`](https://github.com/dojo/widgets/), which has been re-thought from the ground up. Dojo widgets have now caught up with the Dojo framework improvements and best practices that have evolved over the last two years. Further details are available in the [Dojo widget release blog](https://dojo.io/blog/dojo-7-widgets).
+We’re especially proud of the overhaul to the official Dojo widget library, [`@dojo/widgets`](https://github.com/dojo/widgets/), which has been re-thought from the ground up. Dojo widgets have now caught up with the Dojo framework improvements and best practices that have evolved over the last two years. Further details are available in the [Dojo widget release blog](blog/version-7-dojo-widgets).
 
 For `@dojo/framework` and friends, version 7 primarily focuses on building on the function-based widget and middleware authoring patterns from Dojo 6. This effort helps make building applications more straightforward than ever, continues improving the developer experience and ergonomics, and further refines Dojo's Web Component Custom Element support.
 
