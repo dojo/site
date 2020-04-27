@@ -1,5 +1,5 @@
 ---
-title: Dojo 7.0 Has Arrived
+title: Dojo 7 Has Arrived
 date: 2020-04-27T12:00:00.000Z
 author: Anthony Gubler
 ---
