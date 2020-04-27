@@ -296,7 +296,7 @@ const App = factory(function App({ middleware: { theme } }) {
 });
 ```
 
-## Dojo CLi Improvements
+## Dojo CLI Improvements
 
 Two big improvements to using the Dojo CLI are included in version 7, the first is validation for `.dojorc` config values. If there are unsupported or incorrect config values detected, an error gets output to the console. The second is support for composing `.dojorc` configuration to reduce duplication and maintenance using the `extends` key pointing to the config from which to extend.
 
