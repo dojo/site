@@ -320,9 +320,9 @@ dojo create widget --name my-dojo-widget-lib
 
 Dojo 7 has been tested and verified up to the latest released version, currently TypeScript 3.8, which includes enhancements such as optional chaining that landed in TypeScript 3.7. Dojo continues to support TypeScript 3.4.5 and greater.
 
-## Seamless ZEIT Now Support
+## Seamless Vercel Support
 
-Over the last couple of months we have been working with the ZEIT team to get Dojo setup for seamless, zero configuration [Vercel deployment](https://vercel.com/blog/zeit-is-now-vercel), it's now even easier to deploy your next Dojo application.
+Over the last couple of months we have been working with the Vercel (previously ZEIT) team to get Dojo setup for seamless, zero configuration [Vercel deployment](https://vercel.com/guides/deploying-dojo-with-vercel), it's now even easier to deploy your next Dojo application.
 
 ## What's next?
 
