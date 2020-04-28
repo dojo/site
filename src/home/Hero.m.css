@@ -6,6 +6,7 @@
 	height: calc(var(--grid-size) * 47.5);
 	color: var(--color-white);
 	background-size: cover;
+	background-position: bottom center;
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -14,41 +15,42 @@
 
 .headline {
 	color: var(--color-white);
-	width: calc(var(--grid-size) * 60);
-	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
 	margin-bottom: calc(var(--grid-size) * 5);
+	text-align: center;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 .build {
-	display: inline-flex;
 	align-items: center;
-	justify-content: center;
-	background: rgba(0, 0, 0, 0);
-	font-size: 0.875em;
-	color: var(--color-white);
-	border: 3px solid;
-	border-image: linear-gradient(110deg, var(--color-red), var(--color-purple));
-	border-image-slice: 1;
-	width: calc(var(--grid-size) * 30);
-	height: calc(var(--grid-size) * 7);
-	margin-bottom: var(--grid-size);
-	text-transform: uppercase;
+	background: var(--color-white);
 	box-sizing: border-box;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10rem;
+	color: var(--color-black);
+	display: inline-flex;
+	font-size: 0.875em;
+	font-weight: bold;
+	justify-content: center;
+	margin-bottom: var(--grid-size);
+	padding: calc(var(--grid-size) * 2) calc(var(--grid-size) * 6);
+	text-transform: uppercase;
+	transition: 0.3s ease-in-out;
 }
 
 .build:hover {
-	font-weight: bold;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	cursor: pointer;
-	color: var(--color-white);
 	text-decoration: none;
 }
 
 @media (max-width: 960px) {
-	.headline {
-		font-size: 1.25em;
-		width: calc(var(--grid-size) * 28);
+	.root {
+		height: calc(var(--grid-size) * 24);
 	}
-	.build {
-		width: calc(var(--grid-size) * 25);
+
+	.headline {
+		font-size: 1.6rem;
 	}
 }

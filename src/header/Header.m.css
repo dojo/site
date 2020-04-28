@@ -145,7 +145,7 @@
 	background: var(--toggle-button-color);
 	border-radius: var(--border-radius);
 	content: '';
-	height: calc(var(--toggle-button-height) / 5);
+	height: calc(var(--toggle-button-height) / 10);
 	width: 100%;
 }
 
