@@ -98,6 +98,17 @@ describe('Learn', () => {
 						matchParams: { guide: 'stores' }
 					},
 					{
+						label: 'Resources',
+						to: 'learn',
+						params: {
+							guide: 'resources',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'master'
+						},
+						matchParams: { guide: 'resources' }
+					},
+					{
 						label: 'Routing',
 						to: 'learn',
 						params: {
@@ -118,6 +129,17 @@ describe('Learn', () => {
 							branch: 'master'
 						},
 						matchParams: { guide: 'testing' }
+					},
+					{
+						label: 'Custom Elements',
+						to: 'learn',
+						params: {
+							guide: 'custom-elements',
+							page: 'introduction',
+							repo: 'dojo/framework',
+							branch: 'master'
+						},
+						matchParams: { guide: 'custom-elements' }
 					}
 				]}
 				subLinks={subLinks()}
