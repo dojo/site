@@ -63,7 +63,7 @@
 
 	--header-background-color: var(--dark-background-color);
 	--responsive-header-background-color: var(--darker-background-color);
-	--hero-background: #17191c;
+	--hero-background: #000000;
 	--menu-offset: calc(var(--grid-size) * 2);
 	--toggle-button-width: calc(var(--grid-size) * 2.6);
 	--header-size: calc(var(--grid-size) * 6);
