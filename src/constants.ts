@@ -10,8 +10,10 @@ export const GUIDES: Guide[] = [
 	{ name: 'I18n' },
 	{ name: 'Styling' },
 	{ name: 'Stores' },
+	{ name: 'Resources' },
 	{ name: 'Routing' },
-	{ name: 'Testing' }
+	{ name: 'Testing' },
+	{ name: 'Custom Elements' }
 ];
 
 export const EXAMPLES_REPO = 'dojo/examples';
