@@ -1,23 +1,24 @@
 ---
 title: Announcing Dojo 7 Widgets
-date: 2020-04-27T11:00:00.000Z
+date: 2020-05-26T11:00:00.000Z
 author: Eric Osmundson
 ---
 
 Since the last Dojo release, we have been expanding the features and improving the developer experience of the [Dojo Widgets](https://github.com/dojo/widgets) library. With new advances in Dojo features, functionality, and recommended best practices, Dojo version 7 provides substantial improvements to make it easier for developers to build efficient and modern web applications.
 
 ![The image for the blog](assets/blog/version-7-dojo-widgets/featured.jpg)
+
 <!-- more -->
 
 For Dojo version 7, we focused on improvements in several key areas:
 
-- Expanding the widget library, focusing on widgets that provide the most value to end users.
-- Refactoring all widgets as function-based and leveraging TSX syntax.
-- Adopt the latest recommended Dojo widget authoring patterns.
-- Improve out-of-the-box usability of each widget.
-- Standardize widget property patterns across the library.
-- Improve the theming experience for end users.
-- Expand documentation and widget examples.
+-   Expanding the widget library, focusing on widgets that provide the most value to end users.
+-   Refactoring all widgets as function-based and leveraging TSX syntax.
+-   Adopt the latest recommended Dojo widget authoring patterns.
+-   Improve out-of-the-box usability of each widget.
+-   Standardize widget property patterns across the library.
+-   Improve the theming experience for end users.
+-   Expand documentation and widget examples.
 
 ## Expanded Dojo Widgets library
 
@@ -30,6 +31,7 @@ The new [Card widget](https://widgets.dojo.io/#widget/card/overview) provides a 
 ![Card Widget](assets/blog/version-7-dojo-widgets/cardWidget.png)
 
 > src/MyCard.tsx
+
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Card from '@dojo/widgets/card';
@@ -42,12 +44,7 @@ const factory = create();
 export default factory(function CardWithMediaContent() {
 	return (
 		<div styles={{ width: '400px' }}>
-			<Card
-				onAction={() => {}}
-				mediaSrc={mediaSrc}
-				title="Hello, World"
-				subtitle="A pretty picture"
-			>
+			<Card onAction={() => {}} mediaSrc={mediaSrc} title="Hello, World" subtitle="A pretty picture">
 				{{
 					header: <div>Header Content</div>,
 					content: <span>Travel the world today.</span>,
@@ -76,6 +73,7 @@ The [PasswordInput widget](https://widgets.dojo.io/#widget/password-input/overvi
 ![Animated Password Input](assets/blog/version-7-dojo-widgets/passwordInput.gif)
 
 > src/MyPasswordInput.tsx
+
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import PasswordInput from '@dojo/widgets/password-input';
@@ -108,6 +106,7 @@ The [Form widget](https://widgets.dojo.io/#widget/form/overview) provides an opi
 ![Animated Form widget](assets/blog/version-7-dojo-widgets/form.gif)
 
 > src/MyForm.tsx
+
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import { createICacheMiddleware } from '@dojo/framework/core/middleware/icache';
@@ -134,10 +133,7 @@ const App = factory(function({ middleware: { icache } }) {
 
 	return (
 		<virtual>
-			<Form
-				name="basicForm"
-				onValue={(values) => icache.set('basic', { ...icache.get('basic'), ...values })}
-			>
+			<Form name="basicForm" onValue={(values) => icache.set('basic', { ...icache.get('basic'), ...values })}>
 				{({ field }: FormMiddleware<Fields>) => {
 					const firstName = field('firstName');
 					const middleName = field('middleName');
@@ -199,17 +195,16 @@ const App = factory(function({ middleware: { icache } }) {
 });
 
 export default App;
-
 ```
 
-View the new [Dojo widgets in action](https://widgets.dojo.io/).
+View the new Dojo widgets in action on our brand new [widget documentation site](https://widgets.dojo.io/) built using `@dojo/parade`.
 
 ## Adopting the latest recommended Dojo Widget authoring patterns
 
 The introduction of function-based widgets fundamentally changed the recommended authoring patterns for Dojo widgets, providing more flexibility and functionality when used in combination with middleware. For simple widgets, the advantages may not be obvious, however, when working on more complex widgets these advantages become more apparent. One of the powerful key features of function-based widgets is being able to support typed children renderers, replacing the current render property pattern. There are several key advantages to using functional children over render properties:
 
-- The Dojo rendering engine deals with the invalidation strategy internally.
-- Typed children provide more flexibility when authoring widgets and most importantly more safety for the end user.
+-   The Dojo rendering engine deals with the invalidation strategy internally.
+-   Typed children provide more flexibility when authoring widgets and most importantly more safety for the end user.
 
 For Dojo 7, all widgets are now function-based, leverage the TSX syntax, and reflect the latest recommended widget authoring patterns.
 
@@ -234,7 +229,9 @@ Mouse and touch events have been standardized to use pointer events, allowing fo
 One goal with Dojo 7 is to make widgets work out-of-the-box wherever possible, without extra boilerplate for controlling the widget state. As a result, many widgets have been updated to use the `icache` middleware and now maintain their own state. This is accompanied by a standardized `initialValue` property that can control the `value` but does not need to be set each time the `onValue` callback is called. These widgets can still optionally get controlled using the `value` and `onValue` properties for backward compatibility, but we believe this new pattern provides an improvement to the developer experience.
 
 Basic controlled Slider widget, using `value` and `onValue`:
+
 > src/MyControlledSlider
+
 ```tsx
 import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
@@ -259,7 +256,9 @@ export default factory(function Controlled({ middleware: { icache } }) {
 ```
 
 Basic Slider widget with `initialValue`:
+
 > src/MySlider
+
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Slider from '@dojo/widgets/slider';
@@ -271,10 +270,9 @@ export default factory(function Basic({}) {
 });
 ```
 
+## Improved widget themes
 
-## Improved theming experience
-
-A primary goal of the Dojo 7 release is to make widget theming more accessible to end users. To that end, the `@dojo/themes` repository was deprecated, and themes were moved to `@dojo/widgets`. This allows developers to start building great looking applications even faster. Additional improvements include the inclusion of a Material theme and support for theme variants.
+A primary goal of the Dojo 7 release is to make widget themes more accessible to end users. To that end, the `@dojo/themes` repository was deprecated, and themes were moved to `@dojo/widgets`. This allows developers to start building great looking applications even faster. Additional improvements include the inclusion of a Material theme and support for theme variants.
 
 **Material theme**
 
@@ -285,6 +283,7 @@ Through the use of css-modules, providing a Material theme for many widgets simp
 Example of adding Material theme to the Label widget:
 
 > widgets/src/theme/material/label.m.css
+
 ```css
 .root {
 	composes: mdc-floating-label from '@material/textfield/dist/mdc.textfield.css';

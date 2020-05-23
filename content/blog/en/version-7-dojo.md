@@ -1,6 +1,6 @@
 ---
 title: Dojo 7 Has Arrived
-date: 2020-04-27T12:00:00.000Z
+date: 2020-05-26T12:00:00.000Z
 author: Anthony Gubler
 ---
 
@@ -15,6 +15,8 @@ After nearly two years since the first official release of modern Dojo, version 
 We’re especially proud of the overhaul to the official Dojo widget library, [`@dojo/widgets`](https://github.com/dojo/widgets/), which has been re-thought from the ground up. Dojo widgets have now caught up with the Dojo framework improvements and best practices that have evolved over the last two years. Further details are available in the [Dojo widget release blog](blog/version-7-dojo-widgets).
 
 For `@dojo/framework` and friends, version 7 primarily focuses on building on the function-based widget and middleware authoring patterns from Dojo 6. This effort helps make building applications more straightforward than ever, continues improving the developer experience and ergonomics, and further refines Dojo's Web Component Custom Element support.
+
+Listen to one of the Dojo's lead engineers [Matt Gadd](https://twitter.com/_matt) talking about this release of Dojo 7 and the future of Dojo on the [JS Party podcast](https://changelog.com/jsparty/128).
 
 ## Typed Widget Children
 
@@ -112,38 +114,34 @@ For widgets that take advantage of the named children pattern, the children can 
 
 The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots). For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements).
 
-## Bringing widgets and data together
+## Dojo Resources, bringing widgets and data together
 
-Dojo 7 makes widgets data-aware with the addition of resources and the new data middleware. This allows a user to create a single sharable resource which can be passed to multiple widgets without them having any knowledge of how the data is fetched or where it is coming from. This provides a single consistent approach to working with data, capable of pagination and filtering. We've implemented this pattern in the new List / Select and Typeahead widgets meaning you can get up and running with resources right away.
-
-```tsx
-import { DataTemplate, createResource } from '@dojo/framework/core/resource';
-import { fetcher } from './personfetcher';
-import { List } from './List';
-
-const template: DataTemplate = {
-	read: fetcher
-};
-
-const resource = createResource(template);
-
-export default factory(function() {
-	return <List resource={resource} />;
-});
-```
-
-The new data middleware allows widgets to read and set queries on the data resource by providing a simple API that enables a set of Options to get shared between multiple widgets. This approach makes building more complex widgets such as typeaheads or loading indicators much simpler as they need only make calls to the data middleware using the shared Options provided.
+Dojo 7 makes widgets resource-aware with the addition of resources. This allows a user to define a single sharable resource template which can be passed used across your application without widgets needing any knowledge of how the data is fetched or where it is coming from. Dojo resources provides a single consistent approach to working with data, capable of pagination and filtering. We've implemented this pattern in the new `List`, `Select` and `Typeahead` widgets meaning you can get up and running with resources right away.
 
 ```tsx
 import { create, tsx } from '@dojo/framework/core/vdom';
-import { data } from '@dojo/framework/core/middleware/data';
+import { createMemoryResourceTemplate, createResourceMiddleware } from '@dojo/framework/core/middleware/resources';
+import { List } from './List';
 
-const factory = create({ data });
+interface MyResourceItem {
+    value: string;
+}
 
-export const List = factory(function Select({ middleware: { data } }) {
-	const { getOrRead, getOptions } = data();
+const template = createMemoryResourceTemplate<MyResourceItem>();
+const resource = createResourceMiddleware();
+const factory = create({ resource }).properties<{ items: MyResourceItem[] }>;
 
-	const items = getOrRead(getOptions());
+export default factory(function({ id, properties, middleware: { resource }}) {
+    const { items } = properties();
+    const { getOrRead, createOptions } = resource;
+    const options = createOptions(id);
+    const [items] = getOrRead(template, options(), { id, data: item })
+	return (
+        <div>
+            <List resource={resource{{ template, initOptions: { id, data: item }}}} />
+            {items && <ul>{items.map((item) => <li>{item.value}</li>)}</ul>}
+        </div>
+    );
 });
 ```
 
