@@ -112,7 +112,17 @@ For widgets that take advantage of the named children pattern, the children can 
 </dojo-card>
 ```
 
-The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots). For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements).
+The slot feature for Dojo custom elements provides the equivalent support that slots solve for [native custom elements.](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots).
+
+Working with Dojo custom elements that require more than simple attributes has also become easier, in Dojo 7, arrays and objects are now supported as standard attributes. These attribute need to be serialized and passed as attributes to the custom element and will automatically be deserialized with the property getting set on the custom element.
+
+```html
+<dojo-checkbox-group options="[{value:'cat'},{value:'dog'},{value:'fish'}]">
+	<label slot="label">pets</label>
+</dojo-checkbox-group>
+```
+
+For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements).
 
 ## Dojo Resources, bringing widgets and data together
 
@@ -145,7 +155,7 @@ export default factory(function({ id, properties, middleware: { resource }}) {
 });
 ```
 
-For more information, please see the [rojo Resources reference guide](https://dojo.io/learn/resources).
+For more information, please see the [Dojo Resources reference guide](https://dojo.io/learn/resources).
 
 ## Dojo test renderer
 
