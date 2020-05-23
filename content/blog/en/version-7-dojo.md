@@ -16,7 +16,7 @@ We’re especially proud of the overhaul to the official Dojo widget library, [`
 
 For `@dojo/framework` and friends, version 7 primarily focuses on building on the function-based widget and middleware authoring patterns from Dojo 6. This effort helps make building applications more straightforward than ever, continues improving the developer experience and ergonomics, and further refines Dojo's Web Component Custom Element support.
 
-Listen to one of the Dojo's lead engineers [Matt Gadd](https://twitter.com/_matt) talking about this release of Dojo 7 and the future of Dojo on the [JS Party podcast](https://changelog.com/jsparty/128).
+Listen to one of Dojo's lead engineers, [Matt Gadd](https://twitter.com/_matt), talking about this release of Dojo 7 and the future of Dojo on the [JS Party podcast](https://changelog.com/jsparty/128).
 
 ## Typed Widget Children
 
