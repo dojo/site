@@ -59,7 +59,7 @@ The Dojo framework 7.0.0 release.
 * Return injected `theme` as the widget's `theme` property ([#659](https://github.com/framework/pull/659))
 * Support a mixture of arrays and single children for TSX ([#671](https://github.com/framework/pull/671))
 * Update diff type for `Themed` mixin to be `auto` ([#685](https://github.com/framework/pull/685))
-* Invalidate for the `icache.delete` and icache.clear` API ([#695](https://github.com/framework/pull/695))
+* Invalidate for the `icache.delete` and `icache.clear` API ([#695](https://github.com/framework/pull/695))
 * `ActiveLink` support for matching query params ([#699](https://github.com/framework/pull/699))
 * Widgets can render twice during a single scheduled render ([#712](https://github.com/framework/pull/712))
 * Spread widget properties for function-based widget in vdom ([#717](https://github.com/framework/pull/717))
