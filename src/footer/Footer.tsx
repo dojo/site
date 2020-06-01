@@ -229,6 +229,15 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
+										href="https://dojo.io"
+										classes={css.link}
+									>
+										Latest
+										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
+									</a>
+									<a
+										target="_blank"
+										rel="noopener noreferrer"
 										href="https://v5.dojo.io"
 										classes={css.link}
 									>
@@ -236,10 +245,10 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<div classes={themedCss.title}>{messages.languages}</div>
-									<a href="https://dojo.io" classes={css.link}>
+									<a href="https://v6.dojo.io" classes={css.link}>
 										{messages.english}
 									</a>
-									<a href="https://zh-CN.dojo.io" classes={css.link}>
+									<a href="https://zh-CN.v6.dojo.io" classes={css.link}>
 										{messages.simplifiedChinese}
 									</a>
 								</div>
