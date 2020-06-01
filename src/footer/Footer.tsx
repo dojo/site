@@ -232,7 +232,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 										href="https://dojo.io"
 										classes={css.link}
 									>
-										Current
+										Latest
 										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<a

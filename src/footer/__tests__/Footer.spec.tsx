@@ -227,6 +227,15 @@ describe('Footer', () => {
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
+										href="https://dojo.io"
+										classes={css.link}
+									>
+										Latest
+										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+									</a>
+									<a
+										target="_blank"
+										rel="noopener noreferrer"
 										href="https://v5.dojo.io"
 										classes={css.link}
 									>
@@ -234,10 +243,10 @@ describe('Footer', () => {
 										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<div classes={css.title}>{messages.languages}</div>
-									<a href="https://dojo.io" classes={css.link}>
+									<a href="https://v6.dojo.io" classes={css.link}>
 										{messages.english}
 									</a>
-									<a href="https://zh-CN.dojo.io" classes={css.link}>
+									<a href="https://zh-CN.v6.dojo.io" classes={css.link}>
 										{messages.simplifiedChinese}
 									</a>
 								</div>
