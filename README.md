@@ -250,3 +250,37 @@ Run all unit tests, `npm run test` or `npm test` or `jest`.
 ## Now Deployments
 
 On submission of a PR, an automatic deployment of the site is made to `now.sh`. The PR will be updated with the URL to the deployment automatically. You can test this deployment prior by running `now` locally (install the now cli with `npm install -g now`).
+
+## Switching Versions
+
+On a major version change, the following steps should be followed to archive the old site and update to the new version. All changes for the upcoming version can (and should) be merged into master ahead of time so they are deployed to `https://next.dojo.io/` for testing before the switch.
+
+As part of this process you will be creating a new branch for the upcoming version. Master is always `next`, current should be in a versioned branch, like `v7`. For the sake of this example, `v7` will be the upcoming version and `v6` will be the previous "current" version.
+
+| Version          | Version Number | Current Domain | New Domain After Update |
+| ---------------- | -------------- | -------------- | ----------------------- |
+| Current Version  | v6             | dojo.io        | v6.dojo.io              |
+| Upcoming Version | v7             | next.dojo.io   | dojo.io                 |
+
+1. Update the `deploy.sh` script to include the upcoming version's (`v7`) branch as a "production" branch. **NOTE: Do not create the branch yet.** (Example PR: [#220](https://github.com/dojo/site/pull/220))
+    ```sh
+    PROD_BRANCHES=("master" "v6" "v7")
+    ```
+2. In the Travis settings for `dojo/site`, add an `Environment Variable` for the current version (`v6`) branch.
+   | Name | Value | Branch |
+   | ---- | ----- | ------ |
+   | DOMAIN_PREFIX | v6 | v6 |
+3. In the current version's (`v6`) branch, update the footer links (Example PR: [#222](https://github.com/dojo/site/pull/222)):
+    - Language links should be updated to include the new subdomain (in `Footer.tsx`)
+    - Add a `Latest` link back to dojo.io
+4. Update subdomains for the current version `v6`.
+    1. After the #3 changes are merged, go to dojo project dashboard in now/vercel. Find the newly created projects for the current version (`v6`). In this case, two new projects were made `v6-dojo-io` and `zh-cn-v6-dojo-io`.
+    2. In the settings for each, add the appropriate subdomains:
+       | Project | Subdomain |
+       | ------- | --------- |
+       | `v6-dojo.io` | v6.dojo.io |
+       | `zh-cn-v6-dojo-io` | zh-cn.v6.dojo.io |
+5. Create the branch for the upcoming version (`v7`).
+6. Update the target branches for documentation and examples (Example PR: [#221](https://github.com/dojo/site/pull/221))
+
+After #6 is merged, the `v7` branch will now be the new current version and will deploy to `dojo.io`.
