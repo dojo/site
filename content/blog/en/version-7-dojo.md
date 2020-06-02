@@ -338,8 +338,8 @@ After eight busy months, it’s a pleasure to announce the release, but rest ass
 
 ## Migration
 
-As usual with modern Dojo releases, all breaking changes introduced in Dojo releases are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition, we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible, and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 7, please see the version 6 to 7 migration guide.
+As usual with modern Dojo releases, all breaking changes introduced in Dojo releases are carefully considered, so that we truly believe the benefits outweigh the upgrade effort. To assist with the transition, we have updated the CLI upgrade command, which will automatically upgrade your Dojo dependencies, upgrade your application code where possible, and highlight areas in the application that require manual intervention. For more information on what has changed in Dojo 7, please see the [version 6 to 7 migration guide](https://github.com/dojo/framework/blob/master/docs/V7-Migration-Guide.md).
 
 ## Support
 
-See the Dojo version 7 release notes for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on [CodeSandbox](https://codesandbox.io/s/github/dojo/dojo-codesandbox-template). We look forward to your feedback!
+See the [Dojo version 7 release notes](https://github.com/dojo/framework/releases/tag/v7.0.0) for more details on version 7.0.0 of Dojo! Love what we’re doing or having a problem? We ❤️ our community. Reach out to the Dojo team on Discord, check out the [Dojo roadmap](https://dojo.io/roadmap) and see where we are heading, and try out Dojo 7.0.0 on [CodeSandbox](https://codesandbox.io/s/github/dojo/dojo-codesandbox-template). We look forward to your feedback!
