@@ -155,7 +155,7 @@ export default factory(function({ id, properties, middleware: { resource }}) {
 });
 ```
 
-For more information, please see the [Dojo Resources reference guide](https://dojo.io/learn/resources).
+For more information, please see the [Dojo Resources reference guide](https://dojo.io/learn/resources/introduction).
 
 ## Dojo test renderer
 
