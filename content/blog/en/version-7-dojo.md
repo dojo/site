@@ -122,7 +122,7 @@ Working with Dojo custom elements that require more than simple attributes has a
 </dojo-checkbox-group>
 ```
 
-For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements).
+For more details visit the new [Dojo custom element reference guide](https://dojo.io/learn/custom-elements/introduction).
 
 ## Dojo Resources, bringing widgets and data together
 
@@ -178,7 +178,7 @@ The key concept for the new renderer is using the `wrap` function to create wrap
 
 The current harness exists in the `@dojo/framework/testing/harness` directory. It will be supported through at least version 9 of Dojo, giving time for applications to update their existing tests to use the new test renderer. The `harness` imports will automatically be updated when upgrading your application using the `cli-upgrade-app` Dojo CLI command.
 
-For more details about the new test renderer, visit the [testing reference guide](https://dojo.io/learn/testing).
+For more details about the new test renderer, visit the [testing reference guide](https://dojo.io/learn/testing/introduction).
 
 ## Simplified routing and outlets
 
