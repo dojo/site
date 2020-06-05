@@ -103,7 +103,7 @@ const HackerNewList = factory(function HackerNewList({
 }) {
   // de-structure resource API controls
   const { createOptions, getOrRead, isFailed, isLoading } = resource;
-  // create n set of options to work with via the widget id
+  // create a set of options to work with via the widget id
   const options = createOptions(id);
   // get the current search term
   const search = icache.getOrSet("search", "TypeScript");
@@ -343,7 +343,7 @@ The first thing we do is check to see if the resource has failed for some reason
 
 ```tsx
 if (failed) {
-  // if a resource read fails show an error message
+  // if a resource read fails, show an error message
   return <span>Something went wrong</span>;
 }
 ```
