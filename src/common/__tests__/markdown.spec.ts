@@ -159,7 +159,7 @@ describe('content compiler', () => {
 	});
 
 	it('should convert to string instead of DNodes', async () => {
-		const output = markdown(mockMarkupContent, 'string');
+		const output = markdown(mockMarkupContent, true, 'string');
 
 		expect(output).toEqual(mockMarkupStringOutput);
 	});

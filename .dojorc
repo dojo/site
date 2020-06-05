@@ -33,6 +33,9 @@
 			},
 			"serviceWorker": {
 				"clientsClaim": true,
+				"precache": {
+					"index": "fake.html"
+				},
 				"routes": [
 					{
 						"urlPattern": ".*",
