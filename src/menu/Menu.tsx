@@ -27,7 +27,10 @@ export interface MenuDropdownProperties extends MenuProperties {
 	activeName: RenderResult;
 }
 
-export interface SubMenuDropdownProperties extends MenuDropdownProperties {
+export interface SubMenuDropdownProperties {
+	links: MenuLinkProperties[];
+	desktopStyle: 'dropdown';
+	activeName: RenderResult;
 	subLinks: MenuLinkProperties[];
 	subActiveName: RenderResult;
 }
