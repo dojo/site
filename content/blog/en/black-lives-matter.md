@@ -1,6 +1,6 @@
 ---
 title: Black Lives Matter
-date: 2020-06-20T2:00:00.000Z
+date: 2020-06-05T12:00:00.000Z
 author: Dojo
 ---
 
