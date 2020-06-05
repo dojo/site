@@ -111,14 +111,16 @@ function clean(node: any) {
 	}
 }
 
-export const markdown = (content: string, outputType: 'dnode' | 'string' = 'dnode'): DNode => {
+export const markdown = (content: string, renderHeadings = true, outputType: 'dnode' | 'string' = 'dnode'): DNode => {
 	const pipeline = unified()
 		.use(remarkParse, { commonmark: true })
 
 		.use(frontmatter, 'yaml')
 		.use(macro.transformer)
-		.use(slug)
-		.use(headings, {
+		.use(slug);
+
+	if (renderHeadings) {
+		pipeline.use(headings, {
 			content: {
 				type: 'element',
 				tagName: 'svg',
@@ -138,7 +140,10 @@ export const markdown = (content: string, outputType: 'dnode' | 'string' = 'dnod
 					}
 				]
 			}
-		})
+		});
+	}
+
+	pipeline
 		.use(section)
 		.use(remark2rehype, { handlers: registeredHandlers })
 		.use(() => (tree: any) => visit(tree, 'element', clean))
