@@ -37,5 +37,3 @@ For your donation to be eligible for a match, it must:
 Please DM your electronic receipt image reflecting the above information to [@dojo](https://twitter.com/dojo) on Twitter or email it to <hello@sitepen.com>.  
 
 Once you’re done, please do what you can to [learn more](https://blacklivesmatters.carrd.co/) about how you can continue to create space and raise the voices of people of color around the world.
-
-```
