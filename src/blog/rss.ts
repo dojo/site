@@ -47,8 +47,8 @@ export function createBlogFeed(files: BlogFile[], languageFolder: string) {
 			continue;
 		}
 
-		const fullContent = markdown(file.content, 'string') as string;
-		const description = markdown(file.content.split('<!-- more -->')[0], 'string') as string;
+		const fullContent = markdown(file.content, true, 'string') as string;
+		const description = markdown(file.content.split('<!-- more -->')[0], true, 'string') as string;
 
 		const url = `https://dojo.io/blog/${file.file.replace(`blog/${languageFolder}/`, '').replace('.md', '')}`;
 		const item = {

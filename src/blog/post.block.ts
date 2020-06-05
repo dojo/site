@@ -20,7 +20,7 @@ export default async function(options: CompileBlogPost) {
 	let rawContent = await readFile(contentPath, 'utf-8');
 	rawContent = options.excerpt ? rawContent.split('<!-- more -->')[0] : rawContent;
 
-	const content = markdown(rawContent);
+	const content = markdown(rawContent, false);
 	const meta = metadata(rawContent);
 	return { content, meta };
 }
