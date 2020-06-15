@@ -1,6 +1,6 @@
 ---
 title: Dojo 7
-date: May 2020
+date: June 2020
 released: true
 ---
 
