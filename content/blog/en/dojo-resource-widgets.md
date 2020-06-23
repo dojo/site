@@ -1,12 +1,12 @@
 ---
 title: Data Aware Widgets in Dojo
-date: 2020-06-05T12:00:00.000Z
+date: 2020-06-23T12:00:00.000Z
 author: Rene Rubalcava
 ---
 
 The latest [Dojo release](blog/version-7-dojo) introduced a new way to integrate data into your widgets. Beyond merely managing your application state, you can now create reusable Resource templates that can be used by multiple widgets in the same application. These templates could all interact with the data differently; one could show a list; another could show charts, and so on.
 
-![The image for the blog](assets/blog/title-of-blog/featured.png)
+![The image for the blog](assets/blog/dojo-resource-widgets/featured.jpg)
 
 <!-- more -->
 
