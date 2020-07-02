@@ -1,6 +1,6 @@
 ---
 title: Data Aware Widgets in Dojo
-date: 2020-06-23T12:00:00.000Z
+date: 2020-07-02T12:00:00.000Z
 author: Rene Rubalcava
 ---
 
