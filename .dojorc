@@ -5,13 +5,7 @@
 		"build-time-render": {
 			"root": "root",
 			"static": true,
-			"renderer": "jsdom",
-			"puppeteerOptions": {
-				"args": [
-					"--no-sandbox",
-					"--disable-setuid-sandbox"
-				]
-			}
+			"renderer": "jsdom"
 		},
 		"pwa": {
 			"manifest": {
