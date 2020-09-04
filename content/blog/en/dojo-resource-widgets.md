@@ -37,7 +37,7 @@ export interface HackerNewsItem {
 Let's create a simple template that will read the Hacker News feed.
 
 ```ts
-// template.ts
+// hnTemplate.ts
 import {
   createResourceTemplate,
   defaultFind
