@@ -376,7 +376,7 @@ Once we have verified that our resource has not thrown an error and all is right
 </button>
 ```
 
-The first thing we do is update our local state for the widget. For the `oninput` event, we don't want our `icache` update to fire a render, because that will happen when you press the Enter key or the submit button. `icache` now accepts an optional third boolean argument to update with invalidating local state and preventing the widget from rendering itself.
+The first thing we do is update our local state for the widget. For the `oninput` event, we don't want our `icache` update to fire a render, because that will happen when you press the Enter key or the submit button. `icache` now accepts an optional third boolean argument to update without invalidating local state and preventing the widget from rendering itself.
 
 ```ts
 // This will not force a rerender
