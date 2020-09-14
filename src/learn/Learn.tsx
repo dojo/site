@@ -35,7 +35,11 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 	const path = `docs/:locale:/${guideName === 'overview' ? 'outline' : guideName.toLowerCase()}`;
 
 	const language = locale ? getLanguageFromLocale(locale) : locale;
-	const sections = block(getSections)({ branch, path, page: 'supplemental', repo, language, locale }) || [];
+	const introductionSections =
+		block(getSections)({ branch, path, page: 'introduction', repo, language, locale }) || [];
+	const supplementalSections =
+		block(getSections)({ branch, path, page: 'supplemental', repo, language, locale }) || [];
+	const sections = [...introductionSections, ...supplementalSections];
 
 	return (
 		<div classes={themedCss.root}>
@@ -59,11 +63,6 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 					};
 				})}
 				subLinks={[
-					{
-						label: 'Introduction',
-						to: 'learn',
-						params: { page: 'introduction' }
-					},
 					...sections.map(({ param, title }) => ({
 						label: title,
 						to: 'learn',

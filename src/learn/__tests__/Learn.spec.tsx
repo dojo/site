@@ -199,6 +199,13 @@ describe('Learn', () => {
 		[
 			getSections,
 			(options: CompileRemoteBlockOptions) => {
+				if (options.page === 'introduction') {
+					return {
+						title: 'Introduction',
+						param: 'introduction'
+					};
+				}
+
 				if (options.repo === 'repo/somewhere') {
 					return [
 						{
