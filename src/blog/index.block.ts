@@ -20,7 +20,7 @@ export interface BlogFile {
 	content: string;
 }
 
-export default async function(options: CompileBlogIndex) {
+export default async function (options: CompileBlogIndex) {
 	const { language = 'en', locale = 'en' } = options;
 
 	let languageFolder;

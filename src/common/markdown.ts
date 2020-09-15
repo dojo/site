@@ -153,9 +153,7 @@ export const markdown = (content: string, renderHeadings = true, outputType: 'dn
 	const result = pipeline.runSync(nodes);
 
 	if (outputType === 'string') {
-		const string: string = unified()
-			.use(stringify)
-			.stringify(result);
+		const string: string = unified().use(stringify).stringify(result);
 
 		return string;
 	}

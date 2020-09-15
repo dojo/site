@@ -47,7 +47,7 @@ function visit(nodes: DNode | DNode[], visitor: VisitorFunction) {
 	return finalNodes;
 }
 
-export default function(nodes: DNode | DNode[], visitor: VisitorFunction) {
+export default function (nodes: DNode | DNode[], visitor: VisitorFunction) {
 	const final = visit(nodes, visitor);
 	return final;
 }

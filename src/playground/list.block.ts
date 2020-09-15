@@ -14,7 +14,7 @@ export interface ExampleMeta {
 	sandbox?: boolean;
 }
 
-export default async function(): Promise<ExampleMeta[]> {
+export default async function (): Promise<ExampleMeta[]> {
 	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${EXAMPLES_BRANCH}/README.md`);
 	const text = await response.text();
 	const rows = text.match(/\|.*\|/g)!.map((row) => row.trim());
