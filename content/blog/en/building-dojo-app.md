@@ -10,9 +10,9 @@ Dojo provides a one stop shop for building scalable and efficient web applicatio
 * Routing
 * State Management
 
-Sometimes when building an app, you might have to choose between a mix and match of different libraries to use these features, but when working with a full framework, this is the type of tooling you would expect to get out of the box.
+Sometimes when building an app, you might have to mix and match different libraries to get all these features, but when working with a full framework, this is the type of tooling you would expect to get out of the box. It's a tradeoff of flexibility versus versatility. I personally like having everything I need in one place, with room to bring in extra tooling as needed.
 
-Today, we're going to build a coffee app, where you can add a type of coffee and customize it for your order. These are some of the key items and features our application will need.
+Today, we're going to build a coffee shop app, where you can add a type of coffee and customize it for your order. These are some of the key items and features our application will need.
 
 * Home Page
 * Menu Page
@@ -24,7 +24,7 @@ Navigating between these pages will require the use of routing and we'll use Doj
 
 ## Start with state
 
-I like to start writing my apps by defining interfaces and types. This is why I'm such a huge fan of TypeScript, it let's me take a look at an application at a high level and think about how it from a data perspective. Since this is a coffee shop application, we should probably have an interface for our coffee drink.
+I like to start writing my apps by defining interfaces and types. This is why I'm such a huge fan of TypeScript, it let's me take a look at an application at a high level and think about it from a data perspective. Since this is a coffee shop application, we should probably have an interface for our coffee drink.
 
 ```ts
 // src/interfaces.ts
@@ -49,7 +49,7 @@ export interface State {
 }
 ```
 
-This let's me define what a coffee drink and it also has options to define the size, flavors, toppings, and addins we want for our coffee drink. We also have a general state to provide an array of drinks.
+This let's me define the properties of a coffee drink and it also has options to define the size, flavors, toppings, and addins we want for our coffee drink. We also have a general state interface to provide an array of drinks.
 
 ## Route in the right direction
 
@@ -263,7 +263,7 @@ import { State } from '../interfaces';
 export default createStoreMiddleware<State>();
 ```
 
-Now we can add this to our application to define our menu of items.
+We can add this to our application to define our menu of items.
 
 ```tsx
 // src/App.tsx
@@ -306,7 +306,7 @@ export default factory(function App({ middleware: { icache, store, theme } }) {
 });
 ```
 
-Now we use the store middleware to get access to the drinks from our external source. The first time the widget renders, drinks will be `undefined` so we can use the `executor` of the store to execute our `fetchDrinks` process.
+The store middleware is used to get access to the drinks from our external source. The first time the widget renders, drinks will be `undefined` so we can use the `executor` of the store to execute our `fetchDrinks` process.
 
 ```ts
 // use the store to get state
@@ -318,11 +318,11 @@ if (!drinks) {
 }
 ```
 
-When the process executes, it will kick of another render of the widget when the `drinks` array is updated. The `drinks` are then passed to our `DrinkList`, `<DrinkList drinks={drinks} />`. So let's take a look at that next.
+When the process executes, it will kick of another render of the widget when the `drinks` array is updated. The `drinks` are then passed to our `DrinkList`, via `<DrinkList drinks={drinks} />`. So let's take a look at that next.
 
 ## Keep a list
 
-The `DrinkList` is going to represent our menu page. It will display an image, name, and price for the drinks our customers can choose from. But it's just a list of `<DrinkCard>` widgets.
+The `DrinkList` is going to represent our menu page. It will display an image, name, and price for the drinks our customers can choose from. This is accomplished with a list of `<DrinkCard>` widgets.
 
 ```tsx
 // src/widgets/DrinkList.tsx
@@ -343,7 +343,7 @@ export default factory(function DrinkList({ properties }) {
 });
 ```
 
-There's not much happening here, except it delegates the drinks to `DrinkCard` widgets.
+The `DrinkCard` widget is going to provide a nice preview for our stellar coffee drinks!
 
 ```tsx
 // src/widgets/DrinkCard.tsx
@@ -392,7 +392,7 @@ export default factory(function DrinkCard({ properties }) {
 });
 ```
 
-The `DrinkCard` utilizes some widgets from `@dojo/widgets`. We're going to use the `Card` to wrap the widget. We'll be using the `Avatar` to display the image in a circle for us. We can the use the `Link` widget from `@dojo/framework/routing/Link` to create an Add button. This will let us route to a specific drink page to customize the drink to add to our order.
+The `DrinkCard` utilizes some widgets from `@dojo/widgets`. We're going to use the `Card` to wrap the widget. We'll be using the `Avatar` to display a circular shaped image for us. We can then use the `Link` widget from `@dojo/framework/routing/Link` to create an Add button. This will let us route to a specific drink page to customize the drink and add it to our order.
 
 The `DrinkList` is fairly straightforward as it just displays the list of `DrinkCard`.
 
@@ -414,11 +414,11 @@ export default factory(function DrinkList({ properties }) {
 });
 ```
 
-This also opens up avenues where we can apply filters to the drinks in the future. Maybe by price or type of coffee. The filter could be applied in the process or directly in this `DrinkList` widget. Not something to be implemented at the moment, but it's nice to think about future scalability and what's possible.
+This also opens up avenues where we can apply filters to the drinks in the future. Maybe by price, or type of coffee. The filter could be applied in the process or directly in this `DrinkList` widget. Not something to be implemented at the moment, but it's nice to think about future scalability and what's possible.
 
 ## Building a Cart
 
-Once a user navigates to a page to customize their drink, we need a way for them to save that to a cart. We need a few things here.
+Once a user navigates to a page to customize their drink, we need a way for a use to save their drink to a cart. We need a few things here.
 
 * Initialize a cart
 * Add drinks to cart
@@ -454,7 +454,7 @@ const initCartCommand = commandFactory(async ({ state }) => {
 export const initCart = createProcess('init-cart', [initCartCommand]);
 ```
 
-Here we set up a basic `initCartCommand` that initializes state with an empty array of `drinks` and a `total` of zero. The `total` is just the total cost of the `drinks` in the cart.
+Here we set up a basic `initCartCommand` that initializes state with an empty array of `drinks` and a `total` price of zero. The `total` is just the total cost of the `drinks` in the cart.
 
 ### Add to Cart
 
@@ -487,7 +487,7 @@ const addToCartCommand = commandFactory<Drink>(async ({ state, payload }) => {
 export const addToCart = createProcess('add-to-cart', [addToCartCommand]);
 ```
 
-For the `addToCardCommand`, we take a `Drink` payload from a widget and we're going to assign a random number as the `id`. The `Math.floor((1 + Math.random()) * 0x10000)` is just a poor mans way of generating a larger random number. In a production environment, hopefully you would be using a backend and database to manage this for you. As you can see we add the payload to the `drinks` array and calculate the total price of drinks in the cart.
+For the `addToCardCommand`, we take a `Drink` payload from a widget and we're going to assign a random number as the `id`. We do that with `Math.floor((1 + Math.random()) * 0x10000)`. This is just a poor mans way of generating a larger random number. In a production environment, hopefully you would be using a backend and database to manage this for you. As you can see we add the payload to the `drinks` array and calculate the total price of drinks in the cart.
 
 ```ts
 const prices = state.drinks.map((x) => x.price);
@@ -529,15 +529,15 @@ export const removeFromCart = createProcess('remove-from-cart', [
 ]);
 ```
 
-To remove an item from the cart, we can filter out the drink to remove from the `drinks` array.
+To remove an item from the cart, we can filter out the drink to remove it from the `drinks` array.
 
 ```ts
 const drinks = state.drinks.filter((x) => x.id !== payload.id);
 ```
 
-Once we filter out the drink to remove, we can recaulate the total price of all the drinks in the cart and update the state.
+Once we filter out the drink to remove, we can recalculate the total price of all the drinks in the cart and update the state object.
 
-In general, we kept the `cart` process pretty simple. The idea is you would make any external requests in the process, parse the results, maybe transform the data a little bit to be easier to work with in your widgets.
+In general, we kept the `cart` process pretty simple. The idea is you would make any external requests in the process, parse the results, and maybe transform the data a little bit to be easier to work with in your widgets.
 
 ## Customize and Add to Cart
 
@@ -613,7 +613,7 @@ Because we are going to want to navigate back to our `DrinkList` menu, we need t
 const router = injector.get<Router>('router');
 ```
 
-The `injector` middleware is a great utility you can use to access the Dojo Registry to get access to the `Router` or `State` depending on what is available to you. Now that we have the `router` in our application, we can use it to programmitically route to other pages.
+Remember, when we initialize the application, we used the `registerRouterInjector` to inject the `router` into the Dojo registry. The `injector` middleware is a great utility you can use to access the Dojo Registry to get access to the `Router` or `State` depending on what is available to you. Now that we have the `router` in our application, we can use it to programmitically route to other pages.
 
 Now we can take a look at the customization options for our Drink.
 
@@ -788,7 +788,7 @@ export default factory(function DrinkPage({
 });
 ```
 
-This looks like there is more happening here than there really is. We basically have a number of `Card` widgets from `@dojo/widgets` that wrap `CheckboxGroup`, which provides a list of options as checkboxes. When you click on a checkbox, the `onValue` method is kicked off and it provides an array of checked `values`. We can use these `values` to update our internal state with `icache`.
+This looks like there is more happening here than there really is. We basically have a number of `Card` widgets that wrap a `CheckboxGroup`, which provides a list of options as checkboxes. When you click on a checkbox, the `onValue` method is kicked off and it provides an array of checked `values`. We can use these `values` to update our internal state with `icache`.
 
 ```ts
 // per CheckboxGroup
@@ -945,7 +945,7 @@ if (router) {
 
 ## Show me the Cart
 
-The `Cart` widget is a basic list of the Drinks that are in the Cart. It provides a look at the total for all the drinks and a way to remove drinks from the Cart.
+The `Cart` widget is a basic list of the Drinks that are in the Cart. It provides a look at the total price for all the drinks and a way to remove drinks from the Cart.
 
 ```tsx
 // src/widgets/Cart.tsx
@@ -999,7 +999,7 @@ export default factory(function Cart({ middleware: { store } }) {
 
 It's not too fancy, but it's only job is to display the Drinks in the Cart and let the user remove Drinks from the Cart. In this application, the Cart is not its own page, it will be displayed in a `SlidePane` so that it's visible on any page the user is on.
 
-We can take a look at the `App.tsx` again and look at the `SlidePane` use.
+We can take a look at the `App.tsx` again and see how to use the `SlidePane`.
 
 ```tsx
 // src/App.tsx
@@ -1032,7 +1032,7 @@ export default factory(function App({ middleware: { icache, store, theme } }) {
 });
 ```
 
-The `SlidePan` widget from `@dojo/widgets` is pretty cool. You can place it at various places on the page and set it the `open` property to `true` or `false`. No need to overcomplicate it here.
+The `SlidePane` widget is pretty cool. You can place it at various places on the page and toggle the `open` property to `true` or `false`. No need to overcomplicate it here.
 
 
 ## Build It
@@ -1056,7 +1056,7 @@ You can configure this in your `.dojorc`.
 }
 ```
 
-You tel the BTR what the id of the `root` element in your application is and the rendering engine it should use to build the pages. As you can, they tried to make it complicated, but just couldn't do it.
+You give the BTR the id of the `root` element in your application, and the rendering engine it should use to build the pages. As you can see, they tried to make it complicated, but just couldn't do it.
 
 _But I need a progressive web app..._
 
@@ -1117,8 +1117,8 @@ Building apps with Dojo is a great experience. As I mentioned at the beginning o
 * Routing
 * State Management
 
-Dojo provides a flexible suite of widgets in `@dojo/widgets` that I can pluck from when I'm looking for some specific functionality. It saves me a ton of time from writing custom widgets that can better be spent on other features. Creating widgets is also very intuitive. I have local state management with `icache` to manage the basics.
+Dojo provides a flexible suite of widgets in `@dojo/widgets` that we can pluck from when looking for some specific functionality. It saves a ton of time from writing custom widgets that can better be spent on other features. Creating widgets is also very intuitive. We have local state management with `icache` to manage the basics.
 
-Routing with Dojo is really simple too. I can use hash routing or normal routing depending on my preference. The point here is _it just works_.
+Routing with Dojo is really simple too. We can use hash routing or normal routing depending on our preference. The point here is _it just works_.
 
-State management might be the more involved portion of any application. Dojo lets me create small and focused commands to handle one task at a time. Then I can glue them together as a process and execute them as needed in my widgets. There's no need to overcomplicate it.
+State management might be the more involved portion of any application. Dojo lets us create small and focused commands to handle one task at a time. Then we can glue them together as a process and execute them as needed in our widgets. There's no need to overcomplicate it.
