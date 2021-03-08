@@ -1,16 +1,16 @@
 ---
 title: Building apps with Dojo
-date: 2020-11-30T12:00:00.000Z
+date: 2021-03-15T12:00:00.000Z
 author: Rene Rubalcava
 ---
 
-Dojo provides a one stop shop for building scalable and efficient web applications. It comes with all the basics you need:
+Dojo provides a one-stop shop for building scalable and efficient web applications. Dojo includes all the basics you need:
 
 * Widgets
 * Routing
 * State Management
 
-Sometimes when building an app, you might have to mix and match different libraries to get all these features, but when working with a full framework, this is the type of tooling you would expect to get out of the box. It's a tradeoff of flexibility versus versatility. I personally like having everything I need in one place, with room to bring in extra tooling as needed.
+Sometimes when building an app, you might need to mix and match different libraries to get all of these features, but when working with a full framework, this tooling is expected out of the box. Sometimes this is a tradeoff between flexibility versus versatility. I personally like having everything I need to get started in one place, with room to bring in extra tooling as needed.
 
 Today, we're going to build a coffee shop app, where you can add a type of coffee and customize it for your order. These are some of the key items and features our application will need.
 
@@ -24,7 +24,7 @@ Navigating between these pages will require the use of routing and we'll use Doj
 
 ## Start with state
 
-I like to start writing my apps by defining interfaces and types. This is why I'm such a huge fan of TypeScript, it let's me take a look at an application at a high level and think about it from a data perspective. Since this is a coffee shop application, we should probably have an interface for our coffee drink.
+Let's start by defining interfaces and types. This is why I'm such a huge fan of TypeScript, it let's me take a look at an application at a high level and think about it from a data perspective. Since this is a coffee shop application, we should probably have an interface for our coffee drink.
 
 ```ts
 // src/interfaces.ts
@@ -49,7 +49,7 @@ export interface State {
 }
 ```
 
-This let's me define the properties of a coffee drink and it also has options to define the size, flavors, toppings, and addins we want for our coffee drink. We also have a general state interface to provide an array of drinks.
+This let's us define the properties of a coffee drink and it also has options to define the size, flavors, toppings, and add-ins we want for our coffee drink. We also have a general state interface to provide an array of drinks.
 
 ## Route in the right direction
 
@@ -106,7 +106,7 @@ import { tsx, create } from '@dojo/framework/core/vdom';
 import icache from '@dojo/framework/core/middleware/icache';
 import theme from '@dojo/framework/core/middleware/theme';
 
-import dojo from '@dojo/widgets/theme/dojo';
+import dojoTheme from '@dojo/widgets/theme/dojo';
 import Header from '@dojo/widgets/header';
 
 import Outlet from '@dojo/framework/routing/Outlet';
@@ -120,7 +120,7 @@ const factory = create({ icache,theme });
 
 export default factory(function App({ middleware: { icache, theme } }) {
 	if (!theme.get()) {
-		theme.set(dojo);
+		theme.set(dojoTheme);
 	}
 
 	return (
@@ -999,7 +999,7 @@ export default factory(function Cart({ middleware: { store } }) {
 
 It's not too fancy, but it's only job is to display the Drinks in the Cart and let the user remove Drinks from the Cart. In this application, the Cart is not its own page, it will be displayed in a `SlidePane` so that it's visible on any page the user is on.
 
-We can take a look at the `App.tsx` again and see how to use the `SlidePane`.
+We can look at the `App.tsx` again and see how to use the `SlidePane`.
 
 ```tsx
 // src/App.tsx
@@ -1035,7 +1035,7 @@ export default factory(function App({ middleware: { icache, store, theme } }) {
 The `SlidePane` widget is pretty cool. You can place it at various places on the page and toggle the `open` property to `true` or `false`. No need to overcomplicate it here.
 
 
-## Build It
+## Build it
 
 Now we approach one of the most complicated tasks in web development and that is building a production deployment that is performant, uses service workers, and only loads the JavaScript as needed.
 
@@ -1105,7 +1105,7 @@ Ok, ok. You don't need to do too much, that can be configured in the `.dojorc` a
 }
 ```
 
-You can find more details on configuring for progressive web apps in the [documentation](https://dojo.io/learn/building/progressive-web-applications).
+You can find more details on [configuring for progressive web apps](https://dojo.io/learn/building/progressive-web-applications) in the documentation.
 
 Now, we can build our app, deploy our app, and rake in all those coffee dollars!
 
@@ -1117,8 +1117,8 @@ Building apps with Dojo is a great experience. As I mentioned at the beginning o
 * Routing
 * State Management
 
-Dojo provides a flexible suite of widgets in `@dojo/widgets` that we can pluck from when looking for some specific functionality. It saves a ton of time from writing custom widgets that can better be spent on other features. Creating widgets is also very intuitive. We have local state management with `icache` to manage the basics.
+Dojo provides a flexible suite of widgets in `@dojo/widgets` that we can pluck from when looking for some specific functionality. It saves significant time from writing custom widgets that can instead be spent on other features. Creating widgets is also very intuitive. We have local state management with `icache` to manage the basics.
 
 Routing with Dojo is really simple too. We can use hash routing or normal routing depending on our preference. The point here is _it just works_.
 
-State management might be the more involved portion of any application. Dojo lets us create small and focused commands to handle one task at a time. Then we can glue them together as a process and execute them as needed in our widgets. There's no need to overcomplicate it.
+State management might be the more involved portion of any application. Dojo lets us create small and focused commands to handle one task at a time. Then we can glue them together as a process and execute them as needed in our widgets!
