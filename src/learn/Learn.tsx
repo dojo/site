@@ -51,6 +51,7 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 					const guideName = directory || name.toLowerCase().replace(' ', '-');
 
 					return {
+						key: name,
 						label: name,
 						to: 'learn',
 						params: {
@@ -64,6 +65,7 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 				})}
 				subLinks={[
 					...sections.map(({ param, title }) => ({
+						key: `${guideName}-${title}`,
 						label: title,
 						to: 'learn',
 						params: { page: param }

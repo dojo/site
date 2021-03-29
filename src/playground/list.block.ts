@@ -14,7 +14,7 @@ export interface ExampleMeta {
 	sandbox?: boolean;
 }
 
-export default async function(): Promise<ExampleMeta[]> {
+export default async function (): Promise<ExampleMeta[]> {
 	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${EXAMPLES_BRANCH}/README.md`);
 	const text = await response.text();
 	const rows = text.match(/\|.*\|/g)!.map((row) => row.trim());
@@ -30,7 +30,7 @@ export default async function(): Promise<ExampleMeta[]> {
 			.split('|')
 			.map((value) => value.trim())
 			.filter((value) => value);
-		const exampleName = data[1].replace(/((^\[Link\]\(\.\/)|(\)$))/g, '');
+		const exampleName = data[1].replace(/((^\[Link\]\(\.\/packages\/)|(\)$))/g, '');
 		const demoLink = select('a', markdown(data[2]));
 		let demoUrl = '';
 		if (demoLink && demoLink.length === 1) {

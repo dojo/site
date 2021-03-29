@@ -12,7 +12,7 @@ export interface SupplementalHeaders {
 	param: string;
 }
 
-export default async function(options: CompileRemoteBlockOptions) {
+export default async function (options: CompileRemoteBlockOptions) {
 	const content = await compileRemoteBlock(options);
 	const nodes = isVNode(content) && content.children ? content.children : [];
 	return getHeaders(nodes);

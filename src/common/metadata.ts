@@ -18,10 +18,7 @@ function isYamlNode(child: any): child is YamlNode {
 }
 
 export const metadata = (content: string) => {
-	const pipeline = unified()
-		.use(remarkParse, { commonmark: true })
-		.use(frontmatter, 'yaml')
-		.use(parseFrontmatter);
+	const pipeline = unified().use(remarkParse, { commonmark: true }).use(frontmatter, 'yaml').use(parseFrontmatter);
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);

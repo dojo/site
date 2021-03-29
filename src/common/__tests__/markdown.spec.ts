@@ -32,7 +32,7 @@ I am another tutorial
 
 const mockMarkupOutput = v('section', { key: 'compiled-35' }, [
 	v('h1', { key: 'compiled-6', id: 'another-tutorial' }, [
-		v('a', { key: 'compiled-5', 'aria-hidden': 'true', href: '#another-tutorial' }, [
+		v('a', { key: 'compiled-5', 'aria-hidden': 'true', href: '#another-tutorial', tabindex: -1 }, [
 			v('svg', { width: '16', height: '16', key: 'compiled-4', classes: 'refguide-link' }, [
 				v('path', {
 					d:
@@ -63,7 +63,8 @@ const mockMarkupOutput = v('section', { key: 'compiled-35' }, [
 				{
 					'aria-hidden': 'true',
 					href: '#aside',
-					key: 'compiled-18'
+					key: 'compiled-18',
+					tabindex: -1
 				},
 				[
 					v('svg', { width: '16', height: '16', key: 'compiled-17', classes: 'refguide-link' }, [
@@ -88,7 +89,8 @@ const mockMarkupOutput = v('section', { key: 'compiled-35' }, [
 				{
 					'aria-hidden': 'true',
 					href: '#codesandbox-embed',
-					key: 'compiled-25'
+					key: 'compiled-25',
+					tabindex: -1
 				},
 				[
 					v('svg', { width: '16', height: '16', key: 'compiled-24', classes: 'refguide-link' }, [
@@ -115,7 +117,8 @@ const mockMarkupOutput = v('section', { key: 'compiled-35' }, [
 				{
 					'aria-hidden': 'true',
 					href: '#codeblock',
-					key: 'compiled-31'
+					key: 'compiled-31',
+					tabindex: -1
 				},
 				[
 					v('svg', { width: '16', height: '16', key: 'compiled-30', classes: 'refguide-link' }, [
@@ -133,7 +136,7 @@ const mockMarkupOutput = v('section', { key: 'compiled-35' }, [
 	])
 ]);
 
-const mockMarkupStringOutput = `<section><h1 id=\"another-tutorial\"><a href=\"#another-tutorial\" aria-hidden=\"true\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>Another Tutorial</h1><p><a href=\"https://example.com/\" target=\"_blank\">absolute link to another page!</a></p><p><a href=\"./other-page\">link to another page!</a></p><p><a href=\"./other-page\">link to another page with anchor!</a></p><p>A github link</p><p><a href=\"https://github.com/dojo/framework/pull/1\" target=\"_blank\">#1</a></p><section><h2 id=\"aside\"><a href=\"#aside\" aria-hidden=\"true\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>Aside</h2><Aside title=\"Another tutorial\"><p>I am another tutorial</p></Aside></section><section><h2 id=\"codesandbox-embed\"><a href=\"#codesandbox-embed\" aria-hidden=\"true\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>CodeSandbox Embed</h2><CodeSandbox url=\"https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc\"></CodeSandbox></section><section><h2 id=\"codeblock\"><a href=\"#codeblock\" aria-hidden=\"true\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>CodeBlock</h2><CodeBlock path=\"tutorial-2-finished/src/widgets/App.tsx\" language=\"tsx\"></CodeBlock></section></section>`;
+const mockMarkupStringOutput = `<section><h1 id=\"another-tutorial\"><a href=\"#another-tutorial\" aria-hidden=\"true\" tabindex=\"-1\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>Another Tutorial</h1><p><a href=\"https://example.com/\" target=\"_blank\">absolute link to another page!</a></p><p><a href=\"./other-page\">link to another page!</a></p><p><a href=\"./other-page\">link to another page with anchor!</a></p><p>A github link</p><p><a href=\"https://github.com/dojo/framework/pull/1\" target=\"_blank\">#1</a></p><section><h2 id=\"aside\"><a href=\"#aside\" aria-hidden=\"true\" tabindex=\"-1\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>Aside</h2><Aside title=\"Another tutorial\"><p>I am another tutorial</p></Aside></section><section><h2 id=\"codesandbox-embed\"><a href=\"#codesandbox-embed\" aria-hidden=\"true\" tabindex=\"-1\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>CodeSandbox Embed</h2><CodeSandbox url=\"https://codesandbox.io/embed/github/dojo/examples/tree/master/todo-mvc\"></CodeSandbox></section><section><h2 id=\"codeblock\"><a href=\"#codeblock\" aria-hidden=\"true\" tabindex=\"-1\"><svg classes=\"refguide-link\" width=\"16\" height=\"16\"><path d=\"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z\"></path></svg></a>CodeBlock</h2><CodeBlock path=\"tutorial-2-finished/src/widgets/App.tsx\" language=\"tsx\"></CodeBlock></section></section>`;
 
 describe('content compiler', () => {
 	let mockRegionBuilder: jest.SpyInstance;

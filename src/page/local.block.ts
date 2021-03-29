@@ -10,7 +10,7 @@ interface CompileLocalBlockOptions {
 	locale?: string;
 }
 
-export default async function(options: CompileLocalBlockOptions) {
+export default async function (options: CompileLocalBlockOptions) {
 	const { path, locale = 'en' } = options;
 
 	const contentPath = join(CONTENT_PATH, path).replace(/:locale:/g, locale);

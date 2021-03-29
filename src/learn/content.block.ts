@@ -18,7 +18,7 @@ const url = (repo: string, branch: string, pagePath: string, docPage: string) =>
 	return `https://raw.githubusercontent.com/${repo}/${branch}/${pagePath}/${docPage}`;
 };
 
-export default async function(options: CompileRemoteBlockOptions) {
+export default async function (options: CompileRemoteBlockOptions) {
 	const { repo, branch, path, language, locale, page } = options;
 	const docPage = page !== 'introduction' ? 'supplemental.md' : `${page}.md`;
 

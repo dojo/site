@@ -32,7 +32,8 @@ const header1 = () =>
 						{
 							key: 'compiled-5',
 							'aria-hidden': 'true',
-							href: '#header-1'
+							href: '#header-1',
+							tabindex: -1
 						},
 						[
 							v(
@@ -87,7 +88,8 @@ const header2 = () =>
 								{
 									key: `compiled-11`,
 									'aria-hidden': 'true',
-									href: '#header-2'
+									href: '#header-2',
+									tabindex: -1
 								},
 								[
 									v(
