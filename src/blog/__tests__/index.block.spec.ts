@@ -41,7 +41,7 @@ jest.mock('fs-extra');
 
 describe('compile block index block', () => {
 	const mockExistsSync = jest.spyOn(fs, 'existsSync');
-	const mockReaddir = jest.spyOn(fs, 'readdir');
+	const mockReaddir = jest.spyOn(fs, 'readdir') as unknown as jest.SpyInstance<Promise<string[]>>;
 	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
 
 	beforeEach(() => {

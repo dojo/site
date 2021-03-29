@@ -4,7 +4,7 @@ import { tsx } from '@dojo/framework/core/vdom';
 import { DefaultMiddlewareResult } from '@dojo/framework/core/interfaces';
 import block from '@dojo/framework/core/middleware/block';
 
-import Menu from '../../menu/Menu';
+import Menu, { MenuLinkProperties } from '../../menu/Menu';
 import createBlockMock from '../../test/mockBlock';
 
 import listBlock from '../list.block';
@@ -26,16 +26,19 @@ describe('Playground', () => {
 				activeName={messages.sandbox}
 				links={[
 					{
+						key: 'sandbox',
 						label: messages.sandbox,
 						to: 'playground'
 					},
 					{
+						key: 'name-demo',
 						label: ['Example Name'],
 						to: 'playground-example',
 						params: { example: 'name', type: 'demo' },
 						matchParams: { example: 'name' }
 					},
 					{
+						key: 'name2-demo',
 						label: ['Example Name 2'],
 						to: 'playground-example',
 						params: { example: 'name2', type: 'demo' },
@@ -53,8 +56,9 @@ describe('Playground', () => {
 	));
 
 	const subLinks = (exampleName: string, showSandbox: boolean) => {
-		const links = [
+		const links: MenuLinkProperties[] = [
 			{
+				key: `${exampleName}-demo`,
 				label: messages.demo,
 				to: 'playground-example',
 				params: { example: exampleName, type: 'demo' }
@@ -63,6 +67,7 @@ describe('Playground', () => {
 
 		if (showSandbox) {
 			links.push({
+				key: `${exampleName}-sandbox`,
 				label: messages.sandbox,
 				to: 'playground-example',
 				params: { example: exampleName, type: 'sandbox' }

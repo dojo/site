@@ -3,7 +3,7 @@ import harness from '@dojo/framework/testing/harness/harness';
 import { tsx } from '@dojo/framework/core/vdom';
 import block from '@dojo/framework/core/middleware/block';
 
-import Menu from '../../menu/Menu';
+import Menu, { MenuLinkProperties } from '../../menu/Menu';
 
 import createBlockMock from '../../test/mockBlock';
 
@@ -21,6 +21,7 @@ describe('Learn', () => {
 				desktopStyle="side"
 				links={[
 					{
+						key: 'Overview',
 						label: 'Overview',
 						to: 'learn',
 						params: {
@@ -32,6 +33,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'overview' }
 					},
 					{
+						key: 'Creating Widgets',
 						label: 'Creating Widgets',
 						to: 'learn',
 						params: {
@@ -43,6 +45,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'creating-widgets' }
 					},
 					{
+						key: 'Middleware',
 						label: 'Middleware',
 						to: 'learn',
 						params: {
@@ -54,6 +57,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'middleware' }
 					},
 					{
+						key: 'Building',
 						label: 'Building',
 						to: 'learn',
 						params: {
@@ -65,6 +69,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'building' }
 					},
 					{
+						key: 'I18n',
 						label: 'I18n',
 						to: 'learn',
 						params: {
@@ -76,6 +81,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'i18n' }
 					},
 					{
+						key: 'Styling',
 						label: 'Styling',
 						to: 'learn',
 						params: {
@@ -87,6 +93,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'styling' }
 					},
 					{
+						key: 'Stores',
 						label: 'Stores',
 						to: 'learn',
 						params: {
@@ -98,6 +105,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'stores' }
 					},
 					{
+						key: 'Resources',
 						label: 'Resources',
 						to: 'learn',
 						params: {
@@ -109,6 +117,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'resources' }
 					},
 					{
+						key: 'Routing',
 						label: 'Routing',
 						to: 'learn',
 						params: {
@@ -120,6 +129,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'routing' }
 					},
 					{
+						key: 'Testing',
 						label: 'Testing',
 						to: 'learn',
 						params: {
@@ -131,6 +141,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'testing' }
 					},
 					{
+						key: 'Custom Elements',
 						label: 'Custom Elements',
 						to: 'learn',
 						params: {
@@ -142,7 +153,7 @@ describe('Learn', () => {
 						matchParams: { guide: 'custom-elements' }
 					}
 				]}
-				subLinks={subLinks()}
+				subLinks={subLinks('overview')}
 			/>
 			<main classes={css.main}>
 				<LearnContent
@@ -159,36 +170,42 @@ describe('Learn', () => {
 		</div>
 	));
 
-	const subLinks = () => [
+	const subLinks: (guideName: string) => MenuLinkProperties[] = (guideName) => [
 		{
+			key: `${guideName}-Introduction`,
 			label: 'Introduction',
 			to: 'learn',
 			params: { page: 'introduction' }
 		},
 		{
+			key: `${guideName}-Title 3`,
 			label: 'Title 3',
 			to: 'learn',
 			params: { page: 'param3' }
 		},
 		{
+			key: `${guideName}-Title 4`,
 			label: 'Title 4',
 			to: 'learn',
 			params: { page: 'param4' }
 		}
 	];
 
-	const subLinksRepoSomewhere = () => [
+	const subLinksRepoSomewhere: () => MenuLinkProperties[] = () => [
 		{
+			key: 'outline-Introduction',
 			label: 'Introduction',
 			to: 'learn',
 			params: { page: 'introduction' }
 		},
 		{
+			key: 'outline-Title 5',
 			label: 'Title 5',
 			to: 'learn',
 			params: { page: 'param5' }
 		},
 		{
+			key: 'outline-Title 6',
 			label: 'Title 6',
 			to: 'learn',
 			params: { page: 'param6' }
@@ -246,7 +263,11 @@ describe('Learn', () => {
 			middleware: [[block, mockBlock]]
 		});
 
-		h.expect(baseAssertion.setProperty('@content', 'path', 'docs/:locale:/middleware'));
+		h.expect(
+			baseAssertion
+				.setProperty('@content', 'path', 'docs/:locale:/middleware')
+				.setProperty('~menu', 'subLinks', subLinks('middleware'))
+		);
 	});
 
 	it('renders in another language', () => {
@@ -257,7 +278,12 @@ describe('Learn', () => {
 			}
 		);
 
-		h.expect(baseAssertion.setProperty('@content', 'language', 'zh').setProperty('@content', 'locale', 'zh-cn'));
+		h.expect(
+			baseAssertion
+				.setProperty('@content', 'language', 'zh')
+				.setProperty('@content', 'locale', 'zh-cn')
+				.setProperty('~menu', 'subLinks', subLinks('outline'))
+		);
 	});
 
 	it('renders from a different repo and branch', () => {

@@ -12,6 +12,7 @@ import Dropdown from '../../dropdown/Dropdown';
 describe('Menu', () => {
 	const links: MenuLinkProperties[] = [
 		{
+			key: 'key1',
 			label: 'Link 1',
 			to: 'outlet',
 			params: {
@@ -19,6 +20,7 @@ describe('Menu', () => {
 			}
 		},
 		{
+			key: 'key2',
 			label: 'Link 2',
 			to: 'outlet2'
 		}
@@ -26,6 +28,7 @@ describe('Menu', () => {
 
 	const subLinks: MenuLinkProperties[] = [
 		{
+			key: 'key1',
 			label: 'Sub Link 1',
 			to: 'outlet3',
 			params: {
@@ -33,6 +36,7 @@ describe('Menu', () => {
 			}
 		},
 		{
+			key: 'key2',
 			label: 'Sub Link 2',
 			to: 'outlet4'
 		}
@@ -60,7 +64,7 @@ describe('Menu', () => {
 					{links.map((link) => {
 						const { label, ...props } = link;
 						return (
-							<li classes={css.menuItem}>
+							<li key={props.key} classes={css.menuItem}>
 								<ActiveLink classes={css.menuLink} activeClasses={[css.selected]} {...props}>
 									{label}
 								</ActiveLink>

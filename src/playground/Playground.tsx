@@ -5,7 +5,7 @@ import theme from '@dojo/framework/core/middleware/theme';
 import { RenderResult } from '@dojo/framework/core/interfaces';
 
 import { EXAMPLES_REPO, EXAMPLES_BRANCH } from '../constants';
-import Menu from '../menu/Menu';
+import Menu, { MenuLinkProperties } from '../menu/Menu';
 
 import listBlock from './list.block';
 import * as css from './Playground.m.css';
@@ -36,7 +36,7 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 		if (example) {
 			hasSandbox = Boolean(example.sandbox);
 			if (hasSandbox && type === 'sandbox') {
-				url = `https://codesandbox.io/s/github/dojo/examples/tree/${EXAMPLES_BRANCH}/${example.exampleName}`;
+				url = `https://codesandbox.io/s/github/dojo/examples/tree/${EXAMPLES_BRANCH}/packages/${example.exampleName}`;
 			} else {
 				url = example.demo;
 			}
@@ -45,8 +45,9 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 		}
 	}
 
-	const subLinks = [
+	const subLinks: MenuLinkProperties[] = [
 		{
+			key: `${exampleName}-demo`,
 			label: messages.demo,
 			to: 'playground-example',
 			params: { example: exampleName, type: 'demo' }
@@ -55,6 +56,7 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 
 	if (hasSandbox) {
 		subLinks.push({
+			key: `${exampleName}-sandbox`,
 			label: messages.sandbox,
 			to: 'playground-example',
 			params: { example: exampleName, type: 'sandbox' }
@@ -68,10 +70,12 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 				activeName={name}
 				links={[
 					{
+						key: 'sandbox',
 						label: messages.sandbox,
 						to: 'playground'
 					},
 					...examples.map((example) => ({
+						key: `${example.exampleName}-demo`,
 						label: example.example.children,
 						to: 'playground-example',
 						params: { example: example.exampleName, type: 'demo' },
