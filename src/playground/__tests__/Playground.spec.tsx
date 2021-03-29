@@ -79,7 +79,7 @@ describe('Playground', () => {
 
 	const githubLink = (branch: string, name: string, displayName: string) => [
 		<a
-			href={`https://github.com/dojo/examples/tree/${branch}/${name}`}
+			href={`https://github.com/dojo/examples/tree/${branch}/packages/${name}`}
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={`${displayName} Github`}
@@ -131,7 +131,7 @@ describe('Playground', () => {
 
 		h.expect(
 			baseAssertion
-				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/master/name')
+				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/master/packages/name')
 				.setProperty('~menu', 'activeName', ['Example Name'])
 				.setProperty('~menu', 'subActiveName', 'Sandbox')
 				.setProperty('~menu', 'subLinks', subLinks('name', true))

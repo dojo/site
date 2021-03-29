@@ -136,7 +136,7 @@ A random file with no meta data
 
 	const mockReadFile: jest.SpyInstance<Promise<string>> = jest.spyOn(fs, 'readFile') as any;
 	const mockJoin = jest.spyOn(path, 'join');
-	const mockReaddir = jest.spyOn(fs, 'readdir') as unknown as jest.SpyInstance<Promise<string[]>>;
+	const mockReaddir = (jest.spyOn(fs, 'readdir') as unknown) as jest.SpyInstance<Promise<string[]>>;
 
 	beforeEach(() => {
 		jest.resetAllMocks();
