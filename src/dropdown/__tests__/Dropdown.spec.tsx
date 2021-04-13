@@ -12,12 +12,12 @@ describe('Dropdown', () => {
 			<div classes={css.content}>
 				<ul classes={css.list}>
 					<li classes={css.listItem}>
-						<Link classes={css.link} to="outletName1">
+						<Link key="key1" classes={css.link} to="outletName1">
 							Link Name 1
 						</Link>
 					</li>
 					<li classes={css.listItem}>
-						<Link classes={css.link} to="outletName2" params={{ paramName: 'paramValue' }}>
+						<Link key="key2" classes={css.link} to="outletName2" params={{ paramName: 'paramValue' }}>
 							Link Name 2
 						</Link>
 					</li>
@@ -40,10 +40,12 @@ describe('Dropdown', () => {
 				activeName="Link Name 1"
 				items={[
 					{
+						key: 'key1',
 						label: 'Link Name 1',
 						to: 'outletName1'
 					},
 					{
+						key: 'key2',
 						label: 'Link Name 2',
 						to: 'outletName2',
 						params: { paramName: 'paramValue' }
@@ -61,6 +63,7 @@ describe('Dropdown', () => {
 				activeName="Link Name 1"
 				items={[
 					{
+						key: 'key1',
 						label: 'Link Name 1',
 						to: 'outletName1'
 					}

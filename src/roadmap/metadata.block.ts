@@ -17,7 +17,7 @@ export interface RoadmapMetaData {
 	released: boolean;
 }
 
-export default async function(options: CompileRoadmapMetadataBlockOptions) {
+export default async function (options: CompileRoadmapMetadataBlockOptions) {
 	const { locale = 'en' } = options;
 	const folder = join(CONTENT_PATH, locale);
 

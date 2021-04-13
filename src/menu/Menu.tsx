@@ -9,6 +9,7 @@ import Dropdown from '../dropdown/Dropdown';
 import * as css from './Menu.m.css';
 
 export interface MenuLinkProperties extends LinkProperties {
+	key: string;
 	label: RenderResult;
 }
 
@@ -82,7 +83,7 @@ export default factory(function Menu({ middleware: { theme }, properties, childr
 				{links.map((link) => {
 					const { label, ...props } = link;
 					return (
-						<li classes={themedCss.menuItem}>
+						<li key={props.key} classes={themedCss.menuItem}>
 							<ActiveLink classes={css.menuLink} activeClasses={[css.selected]} {...props}>
 								{label}
 							</ActiveLink>

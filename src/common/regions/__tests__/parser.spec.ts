@@ -41,7 +41,7 @@ export const fromMarkdownOutput: DNode<DefaultWidgetBaseInterface> = v(
 			v('span', { class: 'token punctuation', key: 'compiled-6' }, [')']),
 			' ',
 			v('span', { class: 'token punctuation', key: 'compiled-7' }, ['{']),
-			'\n    ',
+			'\n	',
 			v('span', { class: 'token keyword', key: 'compiled-8' }, ['const']),
 			' div ',
 			v('span', { class: 'token operator', key: 'compiled-9' }, ['=']),
@@ -62,7 +62,7 @@ export const fromMarkdownOutput: DNode<DefaultWidgetBaseInterface> = v(
 				v('span', { class: 'token punctuation', key: 'compiled-17' }, ['>'])
 			]),
 			v('span', { class: 'token punctuation', key: 'compiled-19' }, [';']),
-			'\n\n    ',
+			'\n\n	',
 			v('span', { class: 'token keyword', key: 'compiled-20' }, ['return']),
 			' ',
 			v('span', { class: 'token punctuation', key: 'compiled-21' }, ['{']),
