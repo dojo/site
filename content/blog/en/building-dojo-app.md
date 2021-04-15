@@ -10,7 +10,7 @@ Dojo provides a one-stop shop for building scalable and efficient web applicatio
 * Routing
 * State Management
 
-![Building a Dojo App](assets/blog/building-dojoapp/featured.jpg)
+![Building a Dojo App](assets/blog/building-dojo-app/featured.jpg)
 
 <!-- more -->
 
