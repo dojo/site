@@ -10,6 +10,10 @@ Dojo provides a one-stop shop for building scalable and efficient web applicatio
 * Routing
 * State Management
 
+![Building a Dojo App](assets/blog/building-dojoapp/featured.jpg)
+
+<!-- more -->
+
 Sometimes when building an app, you might need to mix and match different libraries to get all of these features, but when working with a full framework, this tooling is expected out of the box. Sometimes this is a tradeoff between flexibility versus versatility. I personally like having everything I need to get started in one place, with room to bring in extra tooling as needed.
 
 Today, we're going to build a coffee shop app, where you can add a type of coffee and customize it for your order. These are some of the key items and features our application will need.
