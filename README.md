@@ -27,7 +27,7 @@ Documentation website for [Dojo](https://github.com/dojo/framework).
 
 Before building for the first time, run `npm install`.
 
-To build, serve and watch, run `npm run build:dev`. Open http://localhost:9999/. The page will reload on any changes.
+To build, serve and watch, run `npm run build:dev`. Open http://localhost:9999/, the page will reload on any changes.
 
 ## Build Time Renderer (BTR)
 
