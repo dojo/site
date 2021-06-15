@@ -1,6 +1,6 @@
 ---
 title: Building apps with Dojo
-date: 2021-03-15T12:00:00.000Z
+date: 2021-06-15T12:00:00.000Z
 author: Rene Rubalcava
 ---
 
