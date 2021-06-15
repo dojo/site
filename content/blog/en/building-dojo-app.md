@@ -24,7 +24,7 @@ Today, we're going to build a coffee shop app, where you can add a type of coffe
 * Add to Cart
 * Remove from Cart
 
-Navigating between these pages will require the use of routing and we'll use Dojo state management to handle customizing drink orders.
+Navigating between these pages will require the use of routing and we will use Dojo state management to handle customizing drink orders.
 
 ## Start with state
 
