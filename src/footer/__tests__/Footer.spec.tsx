@@ -227,6 +227,15 @@ describe('Footer', () => {
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
+										href="https://v7.dojo.io"
+										classes={css.link}
+									>
+										v7.0
+										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+									</a>
+									<a
+										target="_blank"
+										rel="noopener noreferrer"
 										href="https://v6.dojo.io"
 										classes={css.link}
 									>
