@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { add } from '@dojo/framework/core/has';
 add('test', true, true);
 

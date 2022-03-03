@@ -28,7 +28,7 @@ describe('Learn', () => {
 							guide: 'overview',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'overview' }
 					},
@@ -40,7 +40,7 @@ describe('Learn', () => {
 							guide: 'creating-widgets',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'creating-widgets' }
 					},
@@ -52,7 +52,7 @@ describe('Learn', () => {
 							guide: 'middleware',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'middleware' }
 					},
@@ -64,7 +64,7 @@ describe('Learn', () => {
 							guide: 'building',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'building' }
 					},
@@ -76,7 +76,7 @@ describe('Learn', () => {
 							guide: 'i18n',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'i18n' }
 					},
@@ -88,7 +88,7 @@ describe('Learn', () => {
 							guide: 'styling',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'styling' }
 					},
@@ -100,7 +100,7 @@ describe('Learn', () => {
 							guide: 'stores',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'stores' }
 					},
@@ -112,7 +112,7 @@ describe('Learn', () => {
 							guide: 'resources',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'resources' }
 					},
@@ -124,7 +124,7 @@ describe('Learn', () => {
 							guide: 'routing',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'routing' }
 					},
@@ -136,7 +136,7 @@ describe('Learn', () => {
 							guide: 'testing',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'testing' }
 					},
@@ -148,7 +148,7 @@ describe('Learn', () => {
 							guide: 'custom-elements',
 							page: 'introduction',
 							repo: 'dojo/framework',
-							branch: 'master'
+							branch: 'v8'
 						},
 						matchParams: { guide: 'custom-elements' }
 					}
@@ -162,7 +162,7 @@ describe('Learn', () => {
 					repo="dojo/framework"
 					page="introduction"
 					path="docs/:locale:/outline"
-					branch="master"
+					branch="v8"
 					language="en"
 					locale="en"
 				/>

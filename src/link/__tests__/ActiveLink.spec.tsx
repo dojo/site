@@ -23,6 +23,7 @@ describe('ActiveLink', () => {
 		type: 'index',
 		params: {},
 		queryParams: {},
+		wildcardSegments: [],
 		isError: () => false,
 		isExact: () => true
 	};

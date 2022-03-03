@@ -1,6 +1,6 @@
 ---
 title: Announcing Dojo 7 Widgets
-date: 2020-05-26T11:00:00.000Z
+date: 2020-06-01T11:00:00.000Z
 author: Eric Osmundson
 ---
 

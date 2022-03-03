@@ -1,7 +1,7 @@
 #!/bin/bash
 cp ./now.json ./output/dist
 
-PROD_BRANCHES=("master" "v6" "v7")
+PROD_BRANCHES=("master" "v6" "v7" "v8")
 
 function contains() {
 	local n=$#

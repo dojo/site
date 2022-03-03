@@ -20,7 +20,7 @@ export interface PostProperties {
 
 export function formatDate(date: string) {
 	let d = new Date(date);
-	const options = {
+	const options: Intl.DateTimeFormatOptions = {
 		year: 'numeric',
 		month: 'long',
 		day: '2-digit',
