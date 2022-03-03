@@ -46,5 +46,5 @@ export default async function (): Promise<ExampleMeta[]> {
 			exampleName
 		};
 	});
-	return (examples as any) as ExampleMeta[];
+	return examples as any as ExampleMeta[];
 }

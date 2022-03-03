@@ -66,9 +66,10 @@ export function parseAbstractDate(date: string): Date | string {
 	}
 
 	// Match `Month Year` format
-	const monthMatch = /(January|February|March|April|May|June|July|August|September|October|November|December) ([2-9][0-9]{3})/g.exec(
-		date
-	);
+	const monthMatch =
+		/(January|February|March|April|May|June|July|August|September|October|November|December) ([2-9][0-9]{3})/g.exec(
+			date
+		);
 	if (monthMatch && monthMatch.length === 3) {
 		const month = new Date(Date.parse(`${monthMatch[1]} 1, ${monthMatch[2]}`)).getMonth();
 		const endOfMonth = new Date(Date.UTC(+monthMatch[2], month + 1));

@@ -131,11 +131,11 @@ describe('Playground', () => {
 
 		h.expect(
 			baseAssertion
-				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/master/packages/name')
+				.setProperty('iframe', 'src', 'https://codesandbox.io/s/github/dojo/examples/tree/v8/packages/name')
 				.setProperty('~menu', 'activeName', ['Example Name'])
 				.setProperty('~menu', 'subActiveName', 'Sandbox')
 				.setProperty('~menu', 'subLinks', subLinks('name', true))
-				.setChildren('~menu', () => githubLink('master', 'name', 'Example Name'))
+				.setChildren('~menu', () => githubLink('v8', 'name', 'Example Name'))
 		);
 	});
 
@@ -150,7 +150,7 @@ describe('Playground', () => {
 				.setProperty('~menu', 'activeName', ['Example Name 2'])
 				.setProperty('~menu', 'subActiveName', 'Demo')
 				.setProperty('~menu', 'subLinks', subLinks('name2', false))
-				.setChildren('~menu', () => githubLink('master', 'name2', 'Example Name 2'))
+				.setChildren('~menu', () => githubLink('v8', 'name2', 'Example Name 2'))
 		);
 	});
 

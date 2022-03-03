@@ -1,6 +1,6 @@
 ---
 title: Dojo 7 Has Arrived
-date: 2020-05-26T12:00:00.000Z
+date: 2020-06-01T12:00:00.000Z
 author: Anthony Gubler
 ---
 
