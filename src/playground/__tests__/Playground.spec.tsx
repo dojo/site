@@ -112,7 +112,7 @@ describe('Playground', () => {
 	});
 
 	it('renders sandbox', () => {
-		const h = harness(() => <Playground example="sandbox" type="sandbox" />, {
+		const h = harness(() => <Playground examplesBranch="v8" example="sandbox" type="sandbox" branch="v8" />, {
 			middleware: [[block, mockBlock]]
 		});
 
@@ -120,7 +120,7 @@ describe('Playground', () => {
 	});
 
 	it('renders example with sandbox type', () => {
-		const h = harness(() => <Playground example="name" type="sandbox" />, {
+		const h = harness(() => <Playground examplesBranch="v8" example="name" type="sandbox" branch="v8" />, {
 			middleware: [[block, mockBlock]]
 		});
 
@@ -135,7 +135,7 @@ describe('Playground', () => {
 	});
 
 	it('renders example with demo type', () => {
-		const h = harness(() => <Playground example="name2" type="demo" />, {
+		const h = harness(() => <Playground examplesBranch="v8" example="name2" type="demo" branch="v8" />, {
 			middleware: [[block, mockBlock]]
 		});
 
@@ -150,7 +150,7 @@ describe('Playground', () => {
 	});
 
 	it('renders sandbox if example not found', () => {
-		const h = harness(() => <Playground example="badName" type="demo" />, {
+		const h = harness(() => <Playground examplesBranch="v8" example="badName" type="demo" branch="v8" />, {
 			middleware: [[block, mockBlock]]
 		});
 

@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/core/interfaces';
 import { select } from '@dojo/framework/testing/harness/support/selector';
 
-import { EXAMPLES_REPO, EXAMPLES_BRANCH } from '../constants';
+import { EXAMPLES_REPO } from '../constants';
 import markdown from '../common/markdown';
 
 export interface ExampleMeta {
@@ -14,8 +14,8 @@ export interface ExampleMeta {
 	sandbox?: boolean;
 }
 
-export default async function(): Promise<ExampleMeta[]> {
-	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${EXAMPLES_BRANCH}/README.md`);
+export default async function(examplesBranch: string): Promise<ExampleMeta[]> {
+	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${examplesBranch}/README.md`);
 	const text = await response.text();
 	const rows = text.match(/\|.*\|/g)!.map((row) => row.trim());
 	const keys = rows

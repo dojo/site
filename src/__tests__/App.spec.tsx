@@ -18,6 +18,14 @@ import createI18nMock from '../test/mockI18n';
 
 import * as css from '../App.m.css';
 import App from '../App';
+import {
+	EXAMPLES_BRANCH,
+	GUIDES_DEFAULT_BRANCH,
+	IS_LATEST,
+	OTHER_VERSIONS,
+	VERSION_BRANCH,
+	WIDGETS_DEFAULT_BRANCH
+} from '../constants';
 
 interface Page {
 	outlet: string;
@@ -28,7 +36,7 @@ interface Page {
 describe('App', () => {
 	const baseAssertion = assertionTemplate(() => (
 		<div classes={[css.root]}>
-			<Header />
+			<Header widgetsBranch={WIDGETS_DEFAULT_BRANCH} isLatest={IS_LATEST} />
 			<div classes={[css.content]}>
 				<Route key="home" id="home" renderer={() => null} />
 				<Route
@@ -44,23 +52,27 @@ describe('App', () => {
 				<Route
 					key="playground"
 					id="playground"
-					renderer={() => <Playground example="sandbox" type="sandbox" />}
+					renderer={() => (
+						<Playground examplesBranch={EXAMPLES_BRANCH} example="sandbox" type="sandbox" branch="v8" />
+					)}
 				/>
 				<Route
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
-						<Playground example={example} type={type} />
+						<Playground examplesBranch={EXAMPLES_BRANCH} example={example} type={type} branch="v8" />
 					)}
 				/>
 				<Route key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
 				<Route
 					key="learn"
 					id="learn"
-					renderer={({ params }) => <Learn guideName={params.guide} pageName={params.page} />}
+					renderer={({ params }) => (
+						<Learn guidesBranch={GUIDES_DEFAULT_BRANCH} guideName={params.guide} pageName={params.page} />
+					)}
 				/>
 			</div>
-			<Footer />
+			<Footer branch={VERSION_BRANCH} isLatest={IS_LATEST} otherVersions={OTHER_VERSIONS} />
 		</div>
 	));
 
@@ -88,11 +100,15 @@ describe('App', () => {
 		{ outlet: 'blog', content: undefined, args: [{ router: { link: () => {} }, isExact: () => false }] },
 		{
 			outlet: 'playground',
-			content: <Playground example="sandbox" type="sandbox" />
+			content: (
+				<Playground examplesBranch={EXAMPLES_BRANCH} example="sandbox" type="sandbox" branch={VERSION_BRANCH} />
+			)
 		},
 		{
 			outlet: 'playground-example',
-			content: <Playground example="an-example" type="demo" />,
+			content: (
+				<Playground examplesBranch={EXAMPLES_BRANCH} example="an-example" type="demo" branch={VERSION_BRANCH} />
+			),
 			args: [
 				{
 					params: {
@@ -106,7 +122,14 @@ describe('App', () => {
 		{ outlet: 'roadmap', content: <Roadmap /> },
 		{
 			outlet: 'learn',
-			content: <Learn url="url/a-guide/a-page" guideName="a-guide" pageName="a-page" />,
+			content: (
+				<Learn
+					guidesBranch={GUIDES_DEFAULT_BRANCH}
+					url="url/a-guide/a-page"
+					guideName="a-guide"
+					pageName="a-page"
+				/>
+			),
 			args: [
 				{
 					params: {
@@ -121,7 +144,14 @@ describe('App', () => {
 		},
 		{
 			outlet: 'learn',
-			content: <Learn url="url/a-guide/introduction" guideName="a-guide" pageName="introduction" />,
+			content: (
+				<Learn
+					guidesBranch={GUIDES_DEFAULT_BRANCH}
+					url="url/a-guide/introduction"
+					guideName="a-guide"
+					pageName="introduction"
+				/>
+			),
 			args: [
 				{
 					params: {
@@ -135,7 +165,14 @@ describe('App', () => {
 		},
 		{
 			outlet: 'learn',
-			content: <Learn url="url/overview/introduction" guideName="overview" pageName="introduction" />,
+			content: (
+				<Learn
+					guidesBranch={GUIDES_DEFAULT_BRANCH}
+					url="url/overview/introduction"
+					guideName="overview"
+					pageName="introduction"
+				/>
+			),
 			args: [
 				{
 					params: {},

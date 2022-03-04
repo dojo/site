@@ -3,7 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import { GUIDES, IS_LATEST, VERSION_BRANCH } from '../constants';
+import { GUIDES } from '../constants';
 
 import bundle from './Footer.nls';
 import * as css from './Footer.m.css';
@@ -11,19 +11,24 @@ import * as css from './Footer.m.css';
 const openjsfLogo = require('../assets/openjsf-color.svg');
 const externalLink = require('../assets/external-link.svg');
 
-const factory = create({ theme, i18n });
+interface FooterProperties {
+	branch: string;
+	isLatest: boolean;
+	otherVersions: string[];
+}
 
-export default factory(function Footer({ middleware: { theme, i18n } }) {
+const factory = create({ theme, i18n }).properties<FooterProperties>();
+
+export default factory(function Footer({ middleware: { theme, i18n }, properties }) {
+	const { branch, isLatest, otherVersions } = properties();
 	const { messages } = i18n.localize(bundle);
 	const themedCss = theme.classes(css);
 
 	let prefix = '';
-	if (!IS_LATEST) {
-		if (VERSION_BRANCH === 'master') {
-			prefix = `next.`;
-		} else {
-			prefix = `${VERSION_BRANCH}.`;
-		}
+	if (branch === 'master') {
+		prefix = `next.`;
+	} else if (!isLatest) {
+		prefix = `${branch}.`;
 	}
 
 	return (
@@ -235,7 +240,7 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								</div>
 								<div classes={themedCss.links}>
 									<div classes={themedCss.title}>{messages.versions}</div>
-									{!IS_LATEST && (
+									{!isLatest && (
 										<a
 											target="_blank"
 											rel="noopener noreferrer"
@@ -246,24 +251,17 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 											<img classes={css.externalLink} alt="externalLink" src={externalLink} />
 										</a>
 									)}
-									<a
-										target="_blank"
-										rel="noopener noreferrer"
-										href="https://v6.dojo.io"
-										classes={css.link}
-									>
-										v6.0
-										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
-									</a>
-									<a
-										target="_blank"
-										rel="noopener noreferrer"
-										href="https://v5.dojo.io"
-										classes={css.link}
-									>
-										v5.0
-										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
-									</a>
+									{otherVersions.map((otherVersion) => (
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											href={`https://${otherVersion}.dojo.io`}
+											classes={css.link}
+										>
+											{`${otherVersion}.0`}
+											<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+										</a>
+									))}
 									<div classes={themedCss.title}>{messages.languages}</div>
 									<a href={`https://${prefix}dojo.io`} classes={css.link}>
 										{messages.english}

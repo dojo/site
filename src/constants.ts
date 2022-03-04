@@ -2,7 +2,7 @@ import { Guide } from './interfaces';
 
 export const IS_LATEST = false;
 export const VERSION_BRANCH: string = 'v7';
-
+export const OTHER_VERSIONS: string[] = ['v6', 'v5'];
 export const GUIDES_DEFAULT_REPO = 'dojo/framework';
 export const GUIDES_DEFAULT_BRANCH = VERSION_BRANCH;
 export const GUIDES: Guide[] = [

@@ -62,7 +62,7 @@ describe('content compiler', () => {
 	});
 
 	it('should process', async () => {
-		const result = await listBlock();
+		const result = await listBlock('v8');
 
 		expect(result[0]).toEqual(expectedOutput[0]);
 		expect(result[1]).toEqual(expectedOutput[1]);
