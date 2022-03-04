@@ -4,7 +4,7 @@ import block from '@dojo/framework/core/middleware/block';
 import theme from '@dojo/framework/core/middleware/theme';
 import { RenderResult } from '@dojo/framework/core/interfaces';
 
-import { EXAMPLES_REPO, EXAMPLES_BRANCH } from '../constants';
+import { EXAMPLES_REPO } from '../constants';
 import Menu, { MenuLinkProperties } from '../menu/Menu';
 
 import listBlock from './list.block';
@@ -12,8 +12,10 @@ import * as css from './Playground.m.css';
 import bundle from './Playground.nls';
 
 interface PlaygroundProperties {
+	examplesBranch: string;
 	example: string;
 	type: string;
+	branch: string;
 }
 
 const factory = create({ theme, block, i18n }).properties<PlaygroundProperties>();
@@ -23,8 +25,8 @@ const SANDBOX_URL =
 
 export default factory(function Playground({ middleware: { theme, block, i18n }, properties }) {
 	const { messages } = i18n.localize(bundle);
-	const { example: exampleName, type } = properties();
-	const examples = block(listBlock)() || [];
+	const { examplesBranch, example: exampleName, type, branch } = properties();
+	const examples = block(listBlock)(examplesBranch) || [];
 	const themedCss = theme.classes(css);
 
 	let url = SANDBOX_URL;
@@ -36,12 +38,12 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 		if (example) {
 			hasSandbox = Boolean(example.sandbox);
 			if (hasSandbox && type === 'sandbox') {
-				url = `https://codesandbox.io/s/github/dojo/examples/tree/${EXAMPLES_BRANCH}/packages/${example.exampleName}`;
+				url = `https://codesandbox.io/s/github/dojo/examples/tree/${branch}/packages/${example.exampleName}`;
 			} else {
 				url = example.demo;
 			}
 			name = example.example.children;
-			githubUrl = `https://github.com/${EXAMPLES_REPO}/tree/${EXAMPLES_BRANCH}/packages/${example.exampleName}`;
+			githubUrl = `https://github.com/${EXAMPLES_REPO}/tree/${branch}/packages/${example.exampleName}`;
 		}
 	}
 
