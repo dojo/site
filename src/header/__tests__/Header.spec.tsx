@@ -121,7 +121,7 @@ describe('Header', () => {
 	));
 
 	it('renders', () => {
-		const h = harness(() => <Header widgetsBranch="v8" isLatest={true} />);
+		const h = harness(() => <Header widgetsBranch="v7" isLatest={true} />);
 		h.expect(baseAssertion);
 	});
 
@@ -136,7 +136,7 @@ describe('Header', () => {
 	});
 
 	it('opens and closes menu', () => {
-		const h = harness(() => <Header widgetsBranch="v8" isLatest={true} />);
+		const h = harness(() => <Header widgetsBranch="v7" isLatest={true} />);
 		h.expect(baseAssertion);
 
 		h.trigger('#mainMenuToggle', 'onclick');

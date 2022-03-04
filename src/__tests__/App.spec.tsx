@@ -58,7 +58,7 @@ describe('App', () => {
 							isLatest={IS_LATEST}
 							example="sandbox"
 							type="sandbox"
-							branch="v8"
+							branch="v7"
 						/>
 					)}
 				/>
@@ -71,7 +71,7 @@ describe('App', () => {
 							isLatest={IS_LATEST}
 							example={example}
 							type={type}
-							branch="v8"
+							branch="v7"
 						/>
 					)}
 				/>

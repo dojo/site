@@ -26,16 +26,19 @@ describe('Playground', () => {
 				activeName={messages.sandbox}
 				links={[
 					{
+						key: 'sandbox',
 						label: messages.sandbox,
 						to: 'playground'
 					},
 					{
+						key: 'name-demo',
 						label: ['Example Name'],
 						to: 'playground-example',
 						params: { example: 'name', type: 'demo' },
 						matchParams: { example: 'name' }
 					},
 					{
+						key: 'name2-demo',
 						label: ['Example Name 2'],
 						to: 'playground-example',
 						params: { example: 'name2', type: 'demo' },
@@ -55,6 +58,7 @@ describe('Playground', () => {
 	const subLinks = (exampleName: string, showSandbox: boolean) => {
 		const links = [
 			{
+				key: `${exampleName}-demo`,
 				label: messages.demo,
 				to: 'playground-example',
 				params: { example: exampleName, type: 'demo' }
@@ -63,6 +67,7 @@ describe('Playground', () => {
 
 		if (showSandbox) {
 			links.push({
+				key: `${exampleName}-sandbox`,
 				label: messages.sandbox,
 				to: 'playground-example',
 				params: { example: exampleName, type: 'sandbox' }
@@ -113,7 +118,7 @@ describe('Playground', () => {
 
 	it('renders sandbox', () => {
 		const h = harness(
-			() => <Playground examplesBranch="v8" isLatest={true} example="sandbox" type="sandbox" branch="v8" />,
+			() => <Playground examplesBranch="v7" isLatest={true} example="sandbox" type="sandbox" branch="v7" />,
 			{
 				middleware: [[block, mockBlock]]
 			}
@@ -124,7 +129,7 @@ describe('Playground', () => {
 
 	it('renders example with sandbox type', () => {
 		const h = harness(
-			() => <Playground examplesBranch="v8" isLatest={true} example="name" type="sandbox" branch="v8" />,
+			() => <Playground examplesBranch="v7" isLatest={true} example="name" type="sandbox" branch="v7" />,
 			{
 				middleware: [[block, mockBlock]]
 			}
@@ -142,7 +147,7 @@ describe('Playground', () => {
 
 	it('renders example with demo type', () => {
 		const h = harness(
-			() => <Playground examplesBranch="v8" isLatest={true} example="name2" type="demo" branch="v8" />,
+			() => <Playground examplesBranch="v7" isLatest={true} example="name2" type="demo" branch="v7" />,
 			{
 				middleware: [[block, mockBlock]]
 			}
@@ -160,7 +165,7 @@ describe('Playground', () => {
 
 	it('renders sandbox if example not found', () => {
 		const h = harness(
-			() => <Playground examplesBranch="v8" isLatest={true} example="badName" type="demo" branch="v8" />,
+			() => <Playground examplesBranch="v7" isLatest={true} example="badName" type="demo" branch="v7" />,
 			{
 				middleware: [[block, mockBlock]]
 			}

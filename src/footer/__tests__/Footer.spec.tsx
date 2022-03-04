@@ -227,16 +227,7 @@ describe('Footer', () => {
 										{messages.versions}
 									</div>
 									<a
-										assertion-key="v7-link"
-										target="_blank"
-										rel="noopener noreferrer"
-										href="https://dojo.io"
-										classes={css.link}
-									>
-										Latest
-										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
-									</a>
-									<a
+										assertion-key="v6-link"
 										target="_blank"
 										rel="noopener noreferrer"
 										href="https://v6.dojo.io"
@@ -275,12 +266,12 @@ describe('Footer', () => {
 	));
 
 	it('renders', () => {
-		const h = harness(() => <Footer branch="v8" isLatest={true} otherVersions={['v7', 'v6', 'v5']} />);
+		const h = harness(() => <Footer branch="v7" isLatest={true} otherVersions={['v6', 'v5']} />);
 		h.expect(baseAssertion);
 	});
 
 	it('renders not latest', () => {
-		const h = harness(() => <Footer branch="v7" isLatest={false} otherVersions={['v6', 'v5']} />);
+		const h = harness(() => <Footer branch="v6" isLatest={false} otherVersions={['v5']} />);
 		h.expect(
 			baseAssertion
 				.insertAfter('~versions-title', () => [
@@ -289,14 +280,14 @@ describe('Footer', () => {
 						<img classes={css.externalLink} alt="externalLink" src={externalLink} />
 					</a>
 				])
-				.remove('~v7-link')
-				.setProperty('~english-link', 'href', 'https://v7.dojo.io')
-				.setProperty('~simplifiedChinese-link', 'href', 'https://zh-CN.v7.dojo.io')
+				.remove('~v6-link')
+				.setProperty('~english-link', 'href', 'https://v6.dojo.io')
+				.setProperty('~simplifiedChinese-link', 'href', 'https://zh-CN.v6.dojo.io')
 		);
 	});
 
 	it('renders master (next)', () => {
-		const h = harness(() => <Footer branch="master" isLatest={true} otherVersions={['v7', 'v6', 'v5']} />);
+		const h = harness(() => <Footer branch="master" isLatest={true} otherVersions={['v6', 'v5']} />);
 		h.expect(
 			baseAssertion
 				.setProperty('~english-link', 'href', 'https://next.dojo.io')

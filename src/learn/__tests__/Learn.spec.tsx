@@ -228,7 +228,7 @@ describe('Learn', () => {
 
 	it('renders overview', () => {
 		const h = harness(
-			() => <Learn guidesBranch="v8" guideName="overview" pageName="introduction" url="url/to/page" />,
+			() => <Learn guidesBranch="v7" guideName="overview" pageName="introduction" url="url/to/page" />,
 			{
 				middleware: [[block, mockBlock]]
 			}
@@ -239,7 +239,7 @@ describe('Learn', () => {
 
 	it('renders non-overview guide', () => {
 		const h = harness(
-			() => <Learn guidesBranch="v8" guideName="middleware" pageName="introduction" url="url/to/page" />,
+			() => <Learn guidesBranch="v7" guideName="middleware" pageName="introduction" url="url/to/page" />,
 			{
 				middleware: [[block, mockBlock]]
 			}
@@ -251,7 +251,7 @@ describe('Learn', () => {
 	it('renders in another language', () => {
 		const h = harness(
 			() => (
-				<Learn guidesBranch="v8" locale="zh-cn" guideName="outline" pageName="introduction" url="url/to/page" />
+				<Learn guidesBranch="v7" locale="zh-cn" guideName="outline" pageName="introduction" url="url/to/page" />
 			),
 			{
 				middleware: [[block, mockBlock]]
@@ -265,7 +265,7 @@ describe('Learn', () => {
 		const h = harness(
 			() => (
 				<Learn
-					guidesBranch="v8"
+					guidesBranch="v7"
 					guideName="outline"
 					pageName="introduction"
 					url="url/to/page"
