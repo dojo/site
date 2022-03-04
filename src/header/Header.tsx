@@ -9,24 +9,27 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
 import bundle from './Header.nls';
-import { IS_LATEST, WIDGETS_DEFAULT_BRANCH } from '../constants';
+
+interface HeaderProperties {
+	widgetsBranch: string;
+	isLatest: boolean;
+}
 
 const menuItems = ['Blog', 'Learn', 'Playground', 'Roadmap'];
 
-const factory = create({ theme, icache, i18n });
+const factory = create({ theme, icache, i18n }).properties<HeaderProperties>();
 
-export default factory(function Header({ middleware: { theme, icache, i18n } }) {
+export default factory(function Header({ middleware: { theme, icache, i18n }, properties }) {
+	const { widgetsBranch, isLatest } = properties();
 	const { messages } = i18n.localize(bundle);
 	const themedCss = theme.classes(css);
 	const open = icache.get<boolean>('open') || false;
 
-	let widgetsUrl = 'widgets.dojo.io';
-	if (!IS_LATEST) {
-		if (WIDGETS_DEFAULT_BRANCH === 'master') {
-			widgetsUrl = `next.${widgetsUrl}`;
-		} else {
-			widgetsUrl = `${WIDGETS_DEFAULT_BRANCH}.${widgetsUrl}`;
-		}
+	let prefix = '';
+	if (widgetsBranch === 'master') {
+		prefix = 'next.';
+	} else if (!isLatest) {
+		prefix = `${widgetsBranch}.`;
 	}
 
 	return (
@@ -89,7 +92,7 @@ export default factory(function Header({ middleware: { theme, icache, i18n } }) 
 						);
 					})}
 					<li classes={[themedCss.menuItem]}>
-						<a classes={themedCss.menuLink} target="_blank" href={`https://${widgetsUrl}`}>
+						<a classes={themedCss.menuLink} target="_blank" href={`https://${prefix}widgets.dojo.io`}>
 							{messages.widgets}
 						</a>
 					</li>

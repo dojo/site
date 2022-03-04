@@ -3,7 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import block from '@dojo/framework/core/middleware/block';
 
-import { GUIDES, GUIDES_DEFAULT_REPO, GUIDES_DEFAULT_BRANCH } from '../constants';
+import { GUIDES, GUIDES_DEFAULT_REPO } from '../constants';
 import Menu from '../menu/Menu';
 import { getLanguageFromLocale } from '../util/language';
 
@@ -13,6 +13,7 @@ import getSections from './sections.block';
 import * as css from './Learn.m.css';
 
 interface LearnProperties {
+	guidesBranch: string;
 	guideName: string;
 	pageName: string;
 	url?: string;
@@ -24,11 +25,12 @@ const factory = create({ theme, i18n, block }).properties<LearnProperties>();
 
 export default factory(function Learn({ properties, middleware: { theme, i18n, block } }) {
 	const {
+		guidesBranch,
 		guideName,
 		pageName,
 		url,
 		repo = GUIDES_DEFAULT_REPO,
-		branch = GUIDES_DEFAULT_BRANCH,
+		branch = guidesBranch,
 		locale = 'en'
 	} = properties();
 	const themedCss = theme.classes(css);
@@ -46,7 +48,7 @@ export default factory(function Learn({ properties, middleware: { theme, i18n, b
 			<Menu
 				desktopStyle="side"
 				links={GUIDES.map((guide) => {
-					const { name, directory, repo = GUIDES_DEFAULT_REPO, branch = GUIDES_DEFAULT_BRANCH } = guide;
+					const { name, directory, repo = GUIDES_DEFAULT_REPO, branch = guidesBranch } = guide;
 
 					const guideName = directory || name.toLowerCase().replace(' ', '-');
 

@@ -92,7 +92,12 @@ describe('Header', () => {
 						</Link>
 					</li>
 					<li classes={[css.menuItem]}>
-						<a classes={css.menuLink} target="_blank" href="https://widgets.dojo.io">
+						<a
+							assertion-key="widgets-link"
+							classes={css.menuLink}
+							target="_blank"
+							href="https://widgets.dojo.io"
+						>
 							{messages.widgets}
 						</a>
 					</li>
@@ -116,12 +121,22 @@ describe('Header', () => {
 	));
 
 	it('renders', () => {
-		const h = harness(() => <Header />);
+		const h = harness(() => <Header widgetsBranch="v8" isLatest={true} />);
 		h.expect(baseAssertion);
 	});
 
+	it('renders not latest', () => {
+		const h = harness(() => <Header widgetsBranch="v7" isLatest={false} />);
+		h.expect(baseAssertion.setProperty('~widgets-link', 'href', 'https://v7.widgets.dojo.io'));
+	});
+
+	it('renders master (next)', () => {
+		const h = harness(() => <Header widgetsBranch="master" isLatest={true} />);
+		h.expect(baseAssertion.setProperty('~widgets-link', 'href', 'https://next.widgets.dojo.io'));
+	});
+
 	it('opens and closes menu', () => {
-		const h = harness(() => <Header />);
+		const h = harness(() => <Header widgetsBranch="v8" isLatest={true} />);
 		h.expect(baseAssertion);
 
 		h.trigger('#mainMenuToggle', 'onclick');

@@ -12,13 +12,21 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 
 import * as css from './App.m.css';
+import {
+	EXAMPLES_BRANCH,
+	GUIDES_DEFAULT_BRANCH,
+	IS_LATEST,
+	OTHER_VERSIONS,
+	VERSION_BRANCH,
+	WIDGETS_DEFAULT_BRANCH
+} from './constants';
 
 const factory = create();
 
 export default factory(function App() {
 	return (
 		<div classes={[css.root]}>
-			<Header />
+			<Header widgetsBranch={WIDGETS_DEFAULT_BRANCH} isLatest={IS_LATEST} />
 			<div classes={[css.content]}>
 				<Route key="home" id="home" renderer={() => <Home />} />
 				<Route
@@ -35,13 +43,27 @@ export default factory(function App() {
 				<Route
 					key="playground"
 					id="playground"
-					renderer={() => <Playground example="sandbox" type="sandbox" />}
+					renderer={() => (
+						<Playground
+							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
+							example="sandbox"
+							type="sandbox"
+							branch={EXAMPLES_BRANCH}
+						/>
+					)}
 				/>
 				<Route
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
-						<Playground example={example} type={type} />
+						<Playground
+							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
+							example={example}
+							type={type}
+							branch={EXAMPLES_BRANCH}
+						/>
 					)}
 				/>
 				<Route key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
@@ -53,6 +75,7 @@ export default factory(function App() {
 						return (
 							<Learn
 								url={url}
+								guidesBranch={GUIDES_DEFAULT_BRANCH}
 								guideName={params.guide || 'overview'}
 								pageName={params.page || 'introduction'}
 							/>
@@ -60,7 +83,7 @@ export default factory(function App() {
 					}}
 				/>
 			</div>
-			<Footer />
+			<Footer branch={VERSION_BRANCH} isLatest={IS_LATEST} otherVersions={OTHER_VERSIONS} />
 		</div>
 	);
 });

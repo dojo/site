@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
 import { VNode } from '@dojo/framework/core/interfaces';
-import { select } from '@dojo/framework/testing/harness/support/selector';
 
-import { EXAMPLES_REPO, EXAMPLES_BRANCH } from '../constants';
+import { EXAMPLES_REPO } from '../constants';
 import markdown from '../common/markdown';
 
 export interface ExampleMeta {
@@ -14,8 +13,8 @@ export interface ExampleMeta {
 	sandbox?: boolean;
 }
 
-export default async function (): Promise<ExampleMeta[]> {
-	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${EXAMPLES_BRANCH}/README.md`);
+export default async function (examplesBranch: string, isLatest: boolean): Promise<ExampleMeta[]> {
+	const response = await fetch(`https://raw.githubusercontent.com/${EXAMPLES_REPO}/${examplesBranch}/README.md`);
 	const text = await response.text();
 	const rows = text.match(/\|.*\|/g)!.map((row) => row.trim());
 	const keys = rows
@@ -25,22 +24,26 @@ export default async function (): Promise<ExampleMeta[]> {
 		.filter((value) => value);
 	rows.shift();
 
+	let prefix = '';
+	if (examplesBranch === 'master') {
+		prefix = 'next.';
+	} else if (!isLatest) {
+		prefix = `${examplesBranch}.`;
+	}
+
+	const examplesDemoUrl = `https://${prefix}examples.dojo.io/`;
+
 	const examples = rows.map((row) => {
 		const data = row
 			.split('|')
 			.map((value) => value.trim())
 			.filter((value) => value);
 		const exampleName = data[1].replace(/((^\[Link\]\(\.\/packages\/)|(\)$))/g, '');
-		const demoLink = select('a', markdown(data[2]));
-		let demoUrl = '';
-		if (demoLink && demoLink.length === 1) {
-			demoUrl = (demoLink[0].properties as any).href;
-		}
 
 		return {
 			[keys[0]]: markdown(data[0]),
 			[keys[1]]: markdown(data[1]),
-			[keys[2]]: demoUrl,
+			[keys[2]]: `${examplesDemoUrl}${exampleName}`,
 			[keys[3]]: data.length === keys.length,
 			[keys[4]]: markdown(data.length === keys.length ? data[4] : data[3]),
 			exampleName
