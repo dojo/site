@@ -9,6 +9,7 @@ const logo = require('../assets/logo.svg');
 
 import * as css from './Header.m.css';
 import bundle from './Header.nls';
+import { IS_LATEST, WIDGETS_DEFAULT_BRANCH } from '../constants';
 
 const menuItems = ['Blog', 'Learn', 'Playground', 'Roadmap'];
 
@@ -18,6 +19,15 @@ export default factory(function Header({ middleware: { theme, icache, i18n } }) 
 	const { messages } = i18n.localize(bundle);
 	const themedCss = theme.classes(css);
 	const open = icache.get<boolean>('open') || false;
+
+	let widgetsUrl = 'widgets.dojo.io';
+	if (!IS_LATEST) {
+		if (WIDGETS_DEFAULT_BRANCH === 'master') {
+			widgetsUrl = `next.${widgetsUrl}`;
+		} else {
+			widgetsUrl = `${WIDGETS_DEFAULT_BRANCH}.${widgetsUrl}`;
+		}
+	}
 
 	return (
 		<header key="root" classes={themedCss.root}>
@@ -79,7 +89,7 @@ export default factory(function Header({ middleware: { theme, icache, i18n } }) 
 						);
 					})}
 					<li classes={[themedCss.menuItem]}>
-						<a classes={themedCss.menuLink} target="_blank" href="https://v7.widgets.dojo.io">
+						<a classes={themedCss.menuLink} target="_blank" href={`https://${widgetsUrl}`}>
 							{messages.widgets}
 						</a>
 					</li>

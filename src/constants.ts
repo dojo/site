@@ -1,7 +1,10 @@
 import { Guide } from './interfaces';
 
+export const IS_LATEST = false;
+export const VERSION_BRANCH: string = 'v7';
+
 export const GUIDES_DEFAULT_REPO = 'dojo/framework';
-export const GUIDES_DEFAULT_BRANCH = 'v7';
+export const GUIDES_DEFAULT_BRANCH = VERSION_BRANCH;
 export const GUIDES: Guide[] = [
 	{ name: 'Overview' },
 	{ name: 'Creating Widgets' },
@@ -17,4 +20,6 @@ export const GUIDES: Guide[] = [
 ];
 
 export const EXAMPLES_REPO = 'dojo/examples';
-export const EXAMPLES_BRANCH = 'v7';
+export const EXAMPLES_BRANCH = VERSION_BRANCH;
+
+export const WIDGETS_DEFAULT_BRANCH = VERSION_BRANCH;

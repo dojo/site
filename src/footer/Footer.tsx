@@ -3,7 +3,7 @@ import i18n from '@dojo/framework/core/middleware/i18n';
 import theme from '@dojo/framework/core/middleware/theme';
 import Link from '@dojo/framework/routing/Link';
 
-import { GUIDES } from '../constants';
+import { GUIDES, IS_LATEST, VERSION_BRANCH } from '../constants';
 
 import bundle from './Footer.nls';
 import * as css from './Footer.m.css';
@@ -16,6 +16,15 @@ const factory = create({ theme, i18n });
 export default factory(function Footer({ middleware: { theme, i18n } }) {
 	const { messages } = i18n.localize(bundle);
 	const themedCss = theme.classes(css);
+
+	let prefix = '';
+	if (!IS_LATEST) {
+		if (VERSION_BRANCH === 'master') {
+			prefix = `next.`;
+		} else {
+			prefix = `${VERSION_BRANCH}.`;
+		}
+	}
 
 	return (
 		<footer classes={themedCss.root}>
@@ -226,15 +235,17 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 								</div>
 								<div classes={themedCss.links}>
 									<div classes={themedCss.title}>{messages.versions}</div>
-									<a
-										target="_blank"
-										rel="noopener noreferrer"
-										href="https://dojo.io"
-										classes={css.link}
-									>
-										Latest
-										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
-									</a>
+									{!IS_LATEST && (
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											href="https://dojo.io"
+											classes={css.link}
+										>
+											Latest
+											<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+										</a>
+									)}
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
@@ -254,10 +265,10 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 										<img classes={themedCss.externalLink} alt="externalLink" src={externalLink} />
 									</a>
 									<div classes={themedCss.title}>{messages.languages}</div>
-									<a href="https://v7.dojo.io" classes={css.link}>
+									<a href={`https://${prefix}dojo.io`} classes={css.link}>
 										{messages.english}
 									</a>
-									<a href="https://zh-CN.v7.dojo.io" classes={css.link}>
+									<a href={`https://zh-CN.${prefix}dojo.io`} classes={css.link}>
 										{messages.simplifiedChinese}
 									</a>
 								</div>
