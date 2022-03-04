@@ -46,6 +46,7 @@ export default factory(function App() {
 					renderer={() => (
 						<Playground
 							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
 							example="sandbox"
 							type="sandbox"
 							branch={EXAMPLES_BRANCH}
@@ -58,6 +59,7 @@ export default factory(function App() {
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
 						<Playground
 							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
 							example={example}
 							type={type}
 							branch={EXAMPLES_BRANCH}
