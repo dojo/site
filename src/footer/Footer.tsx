@@ -229,6 +229,15 @@ export default factory(function Footer({ middleware: { theme, i18n } }) {
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
+										href="https://dojo.io"
+										classes={css.link}
+									>
+										Latest
+										<img classes={css.externalLink} alt="externalLink" src={externalLink} />
+									</a>
+									<a
+										target="_blank"
+										rel="noopener noreferrer"
 										href="https://v6.dojo.io"
 										classes={css.link}
 									>

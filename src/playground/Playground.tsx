@@ -36,12 +36,12 @@ export default factory(function Playground({ middleware: { theme, block, i18n },
 		if (example) {
 			hasSandbox = Boolean(example.sandbox);
 			if (hasSandbox && type === 'sandbox') {
-				url = `https://codesandbox.io/s/github/dojo/examples/tree/${EXAMPLES_BRANCH}/${example.exampleName}`;
+				url = `https://codesandbox.io/s/github/dojo/examples/tree/${EXAMPLES_BRANCH}/packages/${example.exampleName}`;
 			} else {
 				url = example.demo;
 			}
 			name = example.example.children;
-			githubUrl = `https://github.com/${EXAMPLES_REPO}/tree/${EXAMPLES_BRANCH}/${example.exampleName}`;
+			githubUrl = `https://github.com/${EXAMPLES_REPO}/tree/${EXAMPLES_BRANCH}/packages/${example.exampleName}`;
 		}
 	}
 

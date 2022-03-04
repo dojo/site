@@ -8,9 +8,9 @@ Some junk
 
 | Example  | Code  | Demo  | Sandbox | Overview  |
 |---|---|---|---|---|
-|  TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
-|  TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  |  |    Feature-enhanced version of TodoMVC built using Dojo packages. |
-|  Example 3 | [Link](./example3) | No demo |  | A third example with no demo |
+|  TodoMVC  | [Link](./packages/todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
+|  TodoMVC (kitchen sink) | [Link](./packages/todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  |  |    Feature-enhanced version of TodoMVC built using Dojo packages. |
+|  Example 3 | [Link](./packages/example3) | No demo |  | A third example with no demo |
 
 Some other junk
 `;
@@ -19,7 +19,7 @@ const expectedOutput: ExampleMeta[] = [
 	{
 		exampleName: 'todo-mvc',
 		example: v('p', { key: 'compiled-3' }, ['TodoMVC']),
-		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './todo-mvc' }, ['Link'])]),
+		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './packages/todo-mvc' }, ['Link'])]),
 		demo: 'https://dojo.github.io/examples/todo-mvc',
 		sandbox: true,
 		overview: v('p', { key: 'compiled-4' }, [
@@ -31,7 +31,9 @@ const expectedOutput: ExampleMeta[] = [
 	{
 		exampleName: 'todo-mvc-kitchensink',
 		example: v('p', { key: 'compiled-3' }, ['TodoMVC (kitchen sink)']),
-		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './todo-mvc-kitchensink' }, ['Link'])]),
+		code: v('p', { key: 'compiled-4' }, [
+			v('a', { key: 'compiled-3', href: './packages/todo-mvc-kitchensink' }, ['Link'])
+		]),
 		demo: 'https://dojo.github.io/examples/todo-mvc-kitchensink',
 		sandbox: false,
 		overview: v('p', { key: 'compiled-3' }, ['Feature-enhanced version of TodoMVC built using Dojo packages.'])
@@ -39,7 +41,7 @@ const expectedOutput: ExampleMeta[] = [
 	{
 		exampleName: 'example3',
 		example: v('p', { key: 'compiled-3' }, ['Example 3']),
-		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './example3' }, ['Link'])]),
+		code: v('p', { key: 'compiled-4' }, [v('a', { key: 'compiled-3', href: './packages/example3' }, ['Link'])]),
 		demo: '',
 		sandbox: false,
 		overview: v('p', { key: 'compiled-3' }, ['A third example with no demo'])

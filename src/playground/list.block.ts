@@ -30,7 +30,7 @@ export default async function(): Promise<ExampleMeta[]> {
 			.split('|')
 			.map((value) => value.trim())
 			.filter((value) => value);
-		const exampleName = data[1].replace(/((^\[Link\]\(\.\/)|(\)$))/g, '');
+		const exampleName = data[1].replace(/((^\[Link\]\(\.\/packages\/)|(\)$))/g, '');
 		const demoLink = select('a', markdown(data[2]));
 		let demoUrl = '';
 		if (demoLink && demoLink.length === 1) {
