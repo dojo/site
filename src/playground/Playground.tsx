@@ -16,6 +16,7 @@ interface PlaygroundProperties {
 	example: string;
 	type: string;
 	branch: string;
+	isLatest: boolean;
 }
 
 const factory = create({ theme, block, i18n }).properties<PlaygroundProperties>();
@@ -25,8 +26,8 @@ const SANDBOX_URL =
 
 export default factory(function Playground({ middleware: { theme, block, i18n }, properties }) {
 	const { messages } = i18n.localize(bundle);
-	const { examplesBranch, example: exampleName, type, branch } = properties();
-	const examples = block(listBlock)(examplesBranch) || [];
+	const { examplesBranch, example: exampleName, type, branch, isLatest } = properties();
+	const examples = block(listBlock)(examplesBranch, isLatest) || [];
 	const themedCss = theme.classes(css);
 
 	let url = SANDBOX_URL;

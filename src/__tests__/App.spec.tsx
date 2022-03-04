@@ -53,14 +53,26 @@ describe('App', () => {
 					key="playground"
 					id="playground"
 					renderer={() => (
-						<Playground examplesBranch={EXAMPLES_BRANCH} example="sandbox" type="sandbox" branch="v8" />
+						<Playground
+							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
+							example="sandbox"
+							type="sandbox"
+							branch="v8"
+						/>
 					)}
 				/>
 				<Route
 					key="playground-example"
 					id="playground-example"
 					renderer={({ params: { example = 'sandbox', type = 'sandbox' } }) => (
-						<Playground examplesBranch={EXAMPLES_BRANCH} example={example} type={type} branch="v8" />
+						<Playground
+							examplesBranch={EXAMPLES_BRANCH}
+							isLatest={IS_LATEST}
+							example={example}
+							type={type}
+							branch="v8"
+						/>
 					)}
 				/>
 				<Route key="roadmap" id="roadmap" renderer={() => <Roadmap />} />
@@ -101,13 +113,25 @@ describe('App', () => {
 		{
 			outlet: 'playground',
 			content: (
-				<Playground examplesBranch={EXAMPLES_BRANCH} example="sandbox" type="sandbox" branch={VERSION_BRANCH} />
+				<Playground
+					examplesBranch={EXAMPLES_BRANCH}
+					isLatest={IS_LATEST}
+					example="sandbox"
+					type="sandbox"
+					branch={VERSION_BRANCH}
+				/>
 			)
 		},
 		{
 			outlet: 'playground-example',
 			content: (
-				<Playground examplesBranch={EXAMPLES_BRANCH} example="an-example" type="demo" branch={VERSION_BRANCH} />
+				<Playground
+					examplesBranch={EXAMPLES_BRANCH}
+					isLatest={IS_LATEST}
+					example="an-example"
+					type="demo"
+					branch={VERSION_BRANCH}
+				/>
 			),
 			args: [
 				{

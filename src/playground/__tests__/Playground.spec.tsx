@@ -112,17 +112,23 @@ describe('Playground', () => {
 	});
 
 	it('renders sandbox', () => {
-		const h = harness(() => <Playground examplesBranch="v8" example="sandbox" type="sandbox" branch="v8" />, {
-			middleware: [[block, mockBlock]]
-		});
+		const h = harness(
+			() => <Playground examplesBranch="v8" isLatest={true} example="sandbox" type="sandbox" branch="v8" />,
+			{
+				middleware: [[block, mockBlock]]
+			}
+		);
 
 		h.expect(baseAssertion);
 	});
 
 	it('renders example with sandbox type', () => {
-		const h = harness(() => <Playground examplesBranch="v8" example="name" type="sandbox" branch="v8" />, {
-			middleware: [[block, mockBlock]]
-		});
+		const h = harness(
+			() => <Playground examplesBranch="v8" isLatest={true} example="name" type="sandbox" branch="v8" />,
+			{
+				middleware: [[block, mockBlock]]
+			}
+		);
 
 		h.expect(
 			baseAssertion
@@ -135,9 +141,12 @@ describe('Playground', () => {
 	});
 
 	it('renders example with demo type', () => {
-		const h = harness(() => <Playground examplesBranch="v8" example="name2" type="demo" branch="v8" />, {
-			middleware: [[block, mockBlock]]
-		});
+		const h = harness(
+			() => <Playground examplesBranch="v8" isLatest={true} example="name2" type="demo" branch="v8" />,
+			{
+				middleware: [[block, mockBlock]]
+			}
+		);
 
 		h.expect(
 			baseAssertion
@@ -150,9 +159,12 @@ describe('Playground', () => {
 	});
 
 	it('renders sandbox if example not found', () => {
-		const h = harness(() => <Playground examplesBranch="v8" example="badName" type="demo" branch="v8" />, {
-			middleware: [[block, mockBlock]]
-		});
+		const h = harness(
+			() => <Playground examplesBranch="v8" isLatest={true} example="badName" type="demo" branch="v8" />,
+			{
+				middleware: [[block, mockBlock]]
+			}
+		);
 
 		h.expect(
 			baseAssertion
