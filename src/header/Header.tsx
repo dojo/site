@@ -79,7 +79,7 @@ export default factory(function Header({ middleware: { theme, icache, i18n } }) 
 						);
 					})}
 					<li classes={[themedCss.menuItem]}>
-						<a classes={themedCss.menuLink} target="_blank" href="https://widgets.dojo.io">
+						<a classes={themedCss.menuLink} target="_blank" href="https://v7.widgets.dojo.io">
 							{messages.widgets}
 						</a>
 					</li>

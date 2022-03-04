@@ -92,7 +92,7 @@ describe('Header', () => {
 						</Link>
 					</li>
 					<li classes={[css.menuItem]}>
-						<a classes={css.menuLink} target="_blank" href="https://widgets.dojo.io">
+						<a classes={css.menuLink} target="_blank" href="https://v7.widgets.dojo.io">
 							{messages.widgets}
 						</a>
 					</li>
