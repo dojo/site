@@ -90,7 +90,7 @@ export default factory(function Footer({ middleware: { theme, i18n }, properties
 									<a
 										target="_blank"
 										rel="noopener noreferrer"
-										href="https://twitter.com/dojo"
+										href="https://twitter.com/DojoFramework"
 										classes={css.link}
 									>
 										Twitter
